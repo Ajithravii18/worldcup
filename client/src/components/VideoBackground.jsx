@@ -7,6 +7,8 @@ export default function VideoBackground() {
   if (!isAuthPage) return null;
   
   return (
-    <div className="fixed inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900 via-[#0a0e1a] to-black pointer-events-none" />
+    <div className="fixed inset-0 -z-10 bg-gray-50 pointer-events-none">
+      <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]"></div>
+    </div>
   );
 }
