@@ -2,7 +2,7 @@ import { useLocation } from 'react-router-dom';
 
 export default function VideoBackground() {
   const location = useLocation();
-  const isAuthPage = ['/login', '/register', '/forgot-password'].includes(location.pathname);
+  const isAuthPage = ['/', '/login', '/register', '/forgot-password'].includes(location.pathname);
   
   if (!isAuthPage) return null;
   

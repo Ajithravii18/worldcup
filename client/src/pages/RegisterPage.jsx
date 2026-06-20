@@ -140,8 +140,8 @@ export default function RegisterPage() {
         Back
       </Link>
 
-      <div className="mb-6 animate-pulse text-center relative z-10">
-        <h1 className="font-display text-4xl sm:text-5xl leading-none tracking-[0.25em] font-black text-white drop-shadow-xl">LUCKY STAR FC</h1>
+      <div className="mb-8 text-center relative z-10 animate-fade-in">
+        <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl leading-none tracking-[0.25em] font-black text-white drop-shadow-xl animate-pulse">LUCKY STAR FC</h1>
         <p className="text-xs sm:text-sm text-wc-gold tracking-[0.4em] uppercase leading-none mt-3 font-bold">PREDICTIONS</p>
       </div>
 
