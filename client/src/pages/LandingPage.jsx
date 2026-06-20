@@ -19,7 +19,7 @@ export default function LandingPage() {
             <span className="text-white font-black text-4xl sm:text-5xl leading-none font-display italic pr-1">K</span>
           </div>
           <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl leading-tight tracking-[0.1em] font-black text-gray-900 drop-shadow-sm">
-            KURUKSHETRA
+            LUCKY STAR FC
           </h1>
           <p className="text-sm sm:text-base text-theme-primary tracking-[0.3em] uppercase leading-none mt-4 font-bold">
             PREDICTIONS

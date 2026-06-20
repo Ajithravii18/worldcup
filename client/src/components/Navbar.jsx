@@ -38,7 +38,7 @@ export default function Navbar({ view, setView, statusFilter, setStatusFilter })
           </div>
           <div className="flex flex-col justify-center">
             <h1 className="font-display text-xl sm:text-2xl leading-none tracking-[0.2em] font-black text-gray-900 group-hover:text-theme-primary transition-colors duration-300">
-              KURUKSHETRA
+              LUCKY STAR FC
             </h1>
             <div className="flex items-center gap-1.5 mt-1 sm:mt-1.5">
               <div className="h-[1px] w-4 bg-theme-primary"></div>

@@ -27,7 +27,7 @@ export default function HeroLanding() {
         </div>
         
         <h1 className={`text-4xl md:text-5xl lg:text-6xl font-black font-display text-gray-900 tracking-tight mb-4 transition-all duration-700 delay-100 transform ${loaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
-          KURUKSHETRA <br />
+          LUCKY STAR FC <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-theme-primary to-theme-highlight">PREDICTIONS</span>
         </h1>
         

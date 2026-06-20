@@ -120,17 +120,6 @@ export default function ProfileEdit() {
               Select Jersey Avatar ({AVATARS.length} Options)
             </label>
             
-            {/* Avatar Preview */}
-            <div className="flex items-center gap-4 bg-wc-surface/40 border border-wc-border/30 rounded-none p-3.5 mb-4 justify-center">
-              <UserAvatar avatarId={selectedAvatar} className="w-16 h-16 text-3xl border-4" />
-              <div className="text-left">
-                <span className="text-xs text-wc-muted uppercase tracking-widest font-semibold">Active Jersey</span>
-                <div className="text-sm font-semibold text-wc-text">
-                  {AVATARS.find(a => a.id === selectedAvatar)?.name || 'Unknown'}
-                </div>
-              </div>
-            </div>
-
             {/* Avatar Selection Grid */}
             <div className="grid grid-cols-4 gap-3 max-h-56 overflow-y-auto p-1 custom-scrollbar border border-wc-border/20 rounded-none bg-wc-surface/20">
               {AVATARS.map((av) => {

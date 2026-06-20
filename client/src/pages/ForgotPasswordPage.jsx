@@ -98,7 +98,7 @@ export default function ForgotPasswordPage() {
       </Link>
 
       <div className="mb-6 text-center relative z-10">
-        <h1 className="font-display text-4xl sm:text-5xl leading-none tracking-[0.25em] font-black text-white drop-shadow-xl">KURUKSHETHRA</h1>
+        <h1 className="font-display text-4xl sm:text-5xl leading-none tracking-[0.25em] font-black text-white drop-shadow-xl">LUCKY STAR FC</h1>
         <p className="text-xs sm:text-sm text-wc-gold tracking-[0.4em] uppercase leading-none mt-3 font-bold">PREDICTIONS</p>
       </div>
 

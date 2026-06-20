@@ -212,20 +212,6 @@ export default function ProfileModal({ isOpen, onClose }) {
               Choose Jersey Avatar
             </label>
             
-            {/* Avatar Preview */}
-            <div className="flex items-center gap-4 bg-emerald-50/50 border border-emerald-200 rounded-none p-4 mb-4 justify-center shadow-sm">
-              <div className="relative">
-                <div className="absolute inset-0 bg-emerald-400 blur-md opacity-30 rounded-full"></div>
-                <UserAvatar avatarId={selectedAvatar} className="w-16 h-16 text-3xl border-[3px] border-emerald-400 relative z-10 shadow-md bg-white" />
-              </div>
-              <div className="text-left border-l border-emerald-200 pl-4">
-                <span className="text-[10px] text-emerald-600 uppercase tracking-widest font-bold">Active Jersey</span>
-                <div className="text-lg font-black text-gray-900 tracking-wide uppercase drop-shadow-sm mt-0.5">
-                  {AVATARS.find(a => a.id === selectedAvatar)?.name || 'Unknown'}
-                </div>
-              </div>
-            </div>
-
             {/* Avatar Selection Grid */}
             <div className="grid grid-cols-4 gap-3 max-h-48 overflow-y-auto p-1.5 custom-scrollbar border border-gray-200 rounded-none bg-gray-50">
               {AVATARS.map((av) => {

@@ -31,10 +31,10 @@ const sendOtpEmail = async ({ to, otp, purpose }) => {
   const isForgot = purpose === 'forgot-password';
 
   const subject = isRegister
-    ? '🏆 Kurukshethra — Verify Your Account'
+    ? '🏆 LUCKY STAR FC — Verify Your Account'
     : isForgot
-    ? '🔑 Kurukshethra — Reset Your Password'
-    : '🔐 Kurukshethra — Password Change OTP';
+    ? '🔑 LUCKY STAR FC — Reset Your Password'
+    : '🔐 LUCKY STAR FC — Password Change OTP';
 
   const actionLabel = isRegister
     ? 'complete your registration'
@@ -70,7 +70,7 @@ const sendOtpEmail = async ({ to, otp, purpose }) => {
     <body>
       <div class="wrapper">
         <div class="header">
-          <p class="logo">KURUKSHETHRA</p>
+          <p class="logo">LUCKY STAR FC</p>
           <p class="sub">Prediction Corner · World Cup 2026</p>
         </div>
         <div class="body">
@@ -84,14 +84,14 @@ const sendOtpEmail = async ({ to, otp, purpose }) => {
             If you didn't request this, ignore this email.
           </p>
         </div>
-        <div class="footer">KURUKSHETHRA © 2026 · All rights reserved</div>
+        <div class="footer">LUCKY STAR FC © 2026 · All rights reserved</div>
       </div>
     </body>
     </html>
   `;
 
   await transporter.sendMail({
-    from: `"Kurukshethra" <${process.env.EMAIL_USER}>`,
+    from: `"LUCKY STAR FC" <${process.env.EMAIL_USER}>`,
     to,
     subject,
     html,

@@ -1,5 +1,5 @@
 /**
- * Seed script for Kurukshethra — World Cup 2026 match data from iCalendar.
+ * Seed script for LUCKY STAR FC — World Cup 2026 match data from iCalendar.
  * Run with: node seed.js
  * WARNING: This will clear and re-insert all match, prediction, and user data!
  */
