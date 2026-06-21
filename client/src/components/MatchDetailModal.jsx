@@ -5,6 +5,7 @@ import UserAvatar from './UserAvatar';
 import api from '../api/axios';
 import confetti from 'canvas-confetti';
 import MatchComments from './MatchComments';
+import { useAuth } from '../context/AuthContext';
 
 export default function MatchDetailModal({
   isOpenModal,
@@ -15,6 +16,7 @@ export default function MatchDetailModal({
   globalMode = false,
   globalPreds = [],
 }) {
+  const { user } = useAuth();
   const [currentTime, setCurrentTime] = useState(Date.now());
   const [homeGoals, setHomeGoals] = useState(prediction?.homeGoals ?? 0);
   const [awayGoals, setAwayGoals] = useState(prediction?.awayGoals ?? 0);
@@ -131,11 +133,9 @@ export default function MatchDetailModal({
 
   const handleSimulateEnd = async () => {
     try {
-      const hScore = Math.floor(Math.random() * 4);
-      const aScore = Math.floor(Math.random() * 4);
       await api.put(`/matches/${match._id}/result`, {
-        homeScore: hScore,
-        awayScore: aScore,
+        homeScore: match.homeScore ?? 0,
+        awayScore: match.awayScore ?? 0,
         status: 'completed'
       });
       onPredicted && onPredicted(); // This will refresh matches in HomePage
@@ -143,6 +143,22 @@ export default function MatchDetailModal({
     } catch (err) {
       console.error('Failed to simulate match end:', err);
       alert('Failed to simulate match end');
+    }
+  };
+
+  const handleUpdateLiveScore = async (newHomeScore, newAwayScore) => {
+    try {
+      const hScore = Math.max(0, newHomeScore ?? 0);
+      const aScore = Math.max(0, newAwayScore ?? 0);
+      await api.put(`/matches/${match._id}/result`, {
+        homeScore: hScore,
+        awayScore: aScore,
+        status: 'live'
+      });
+      onPredicted && onPredicted(); // Refresh match lists
+    } catch (err) {
+      console.error('Failed to update live score:', err);
+      alert('Failed to update live score');
     }
   };
 
@@ -460,6 +476,26 @@ export default function MatchDetailModal({
                         <div className="font-display text-lg text-gray-900 font-bold uppercase tracking-widest">{match.awayTeam}</div>
                       </div>
                     </div>
+                    
+                    {globalPreds.length > 0 && (
+                      <div className="mt-6 border-t border-gray-200 pt-4">
+                        <div className="text-[10px] text-gray-500 uppercase tracking-widest mb-3 font-bold text-center">
+                          COMMUNITY PREDICTIONS ({globalPreds.length})
+                        </div>
+                        <div className="mb-4 px-2">
+                          <div className="flex items-center justify-between text-[9px] font-bold text-gray-500 uppercase tracking-widest mb-1.5">
+                            <span className="text-theme-secondary">{match.homeTeam} {homePct}%</span>
+                            <span className="text-gray-400">DRAW {drawPct}%</span>
+                            <span className="text-theme-primary">{match.awayTeam} {awayPct}%</span>
+                          </div>
+                          <div className="h-1.5 w-full flex rounded-full overflow-hidden bg-gray-100">
+                            {homePct > 0 && <div className="bg-theme-secondary transition-all duration-500" style={{ width: `${homePct}%` }} />}
+                            {drawPct > 0 && <div className="bg-gray-300 transition-all duration-500" style={{ width: `${drawPct}%` }} />}
+                            {awayPct > 0 && <div className="bg-theme-primary transition-all duration-500" style={{ width: `${awayPct}%` }} />}
+                          </div>
+                        </div>
+                      </div>
+                    )}
                   </>
                 )}
 
@@ -477,9 +513,23 @@ export default function MatchDetailModal({
                         </div>
                         <div className="font-display text-sm text-gray-900 font-bold tracking-widest uppercase truncate w-full">{match.homeTeam}</div>
                       </div>
-                      <div className="px-2 text-center opacity-70 flex-shrink-0">
-                        <div className="font-display text-3xl text-gray-300 font-black">VS</div>
-                      </div>
+                      
+                      {match.status === 'live' ? (
+                        <div className="px-2 text-center flex-shrink-0 flex flex-col items-center">
+                          <div className="font-display text-4xl text-gray-900 px-5 py-2.5 rounded-2xl bg-red-50 border border-red-100 shadow-sm whitespace-nowrap flex items-center gap-2 font-black">
+                            <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse"></span>
+                            <span>{match.homeScore ?? 0} – {match.awayScore ?? 0}</span>
+                          </div>
+                          <span className="text-[9px] font-black uppercase tracking-widest text-red-500 mt-2 animate-pulse">
+                            LIVE NOW
+                          </span>
+                        </div>
+                      ) : (
+                        <div className="px-2 text-center opacity-70 flex-shrink-0">
+                          <div className="font-display text-3xl text-gray-300 font-black">VS</div>
+                        </div>
+                      )}
+
                       <div className="flex-1 text-center flex flex-col items-center opacity-70 max-w-[90px]">
                         <div className="flex items-center justify-center h-10 mb-2">
                           <TeamFlag teamName={match.awayTeam} fallbackEmoji={match.awayFlag} className="w-12 h-9 flex-shrink-0" />
@@ -488,6 +538,60 @@ export default function MatchDetailModal({
                       </div>
                     </div>
 
+                    {user?.role === 'admin' && match.status === 'live' && (
+                      <div className="mt-6 border-t border-gray-200 pt-4 text-center">
+                        <span className="text-[10px] text-gray-500 uppercase tracking-widest font-bold block mb-3">
+                          Live Score Simulator (Admin)
+                        </span>
+                        <div className="flex items-center justify-center gap-6 mb-4">
+                          <div className="flex items-center gap-2">
+                            <span className="text-xs font-bold text-slate-500">{match.homeTeam}</span>
+                            <button
+                              onClick={() => handleUpdateLiveScore((match.homeScore ?? 0) - 1, match.awayScore ?? 0)}
+                              disabled={(match.homeScore ?? 0) <= 0}
+                              className="w-8 h-8 rounded-full border border-gray-300 hover:bg-gray-100 flex items-center justify-center font-bold text-gray-700 active:scale-95 transition-transform"
+                            >
+                              -
+                            </button>
+                            <span className="font-display text-xl font-bold w-6">{match.homeScore ?? 0}</span>
+                            <button
+                              onClick={() => handleUpdateLiveScore((match.homeScore ?? 0) + 1, match.awayScore ?? 0)}
+                              className="w-8 h-8 rounded-full border border-gray-300 hover:bg-gray-100 flex items-center justify-center font-bold text-gray-700 active:scale-95 transition-transform"
+                            >
+                              +
+                            </button>
+                          </div>
+                          
+                          <div className="w-[1px] h-8 bg-gray-200"></div>
+
+                          <div className="flex items-center gap-2">
+                            <button
+                              onClick={() => handleUpdateLiveScore(match.homeScore ?? 0, (match.awayScore ?? 0) - 1)}
+                              disabled={(match.awayScore ?? 0) <= 0}
+                              className="w-8 h-8 rounded-full border border-gray-300 hover:bg-gray-100 flex items-center justify-center font-bold text-gray-700 active:scale-95 transition-transform"
+                            >
+                              -
+                            </button>
+                            <span className="font-display text-xl font-bold w-6">{match.awayScore ?? 0}</span>
+                            <button
+                              onClick={() => handleUpdateLiveScore(match.homeScore ?? 0, (match.awayScore ?? 0) + 1)}
+                              className="w-8 h-8 rounded-full border border-gray-300 hover:bg-gray-100 flex items-center justify-center font-bold text-gray-700 active:scale-95 transition-transform"
+                            >
+                              +
+                            </button>
+                            <span className="text-xs font-bold text-slate-500">{match.awayTeam}</span>
+                          </div>
+                        </div>
+
+                        <button
+                          onClick={handleSimulateEnd}
+                          className="w-full py-2.5 bg-red-600 hover:bg-red-700 text-white rounded-xl text-xs font-black uppercase tracking-widest transition-colors shadow-sm active:scale-95 mb-4"
+                        >
+                          End Match & Finalize Results
+                        </button>
+                      </div>
+                    )}
+
                     {prediction ? (
                       <div className="text-center text-sm text-gray-500 font-bold py-4 rounded-xl mt-2 bg-white border border-gray-200 uppercase tracking-widest shadow-sm">
                         YOUR SCORE: <span className="text-gray-900 font-black">{prediction.homeGoals} – {prediction.awayGoals}</span>
@@ -495,6 +599,26 @@ export default function MatchDetailModal({
                     ) : (
                       <div className="text-center text-[10px] text-gray-400 font-bold py-4 rounded-xl mt-2 bg-gray-50 border border-gray-200 uppercase tracking-widest">
                         MISSED THIS MATCH
+                      </div>
+                    )}
+
+                    {globalPreds.length > 0 && (
+                      <div className="mt-6 border-t border-gray-200 pt-4">
+                        <div className="text-[10px] text-gray-500 uppercase tracking-widest mb-3 font-bold text-center">
+                          COMMUNITY PREDICTIONS ({globalPreds.length})
+                        </div>
+                        <div className="mb-4 px-2">
+                          <div className="flex items-center justify-between text-[9px] font-bold text-gray-500 uppercase tracking-widest mb-1.5">
+                            <span className="text-theme-secondary">{match.homeTeam} {homePct}%</span>
+                            <span className="text-gray-400">DRAW {drawPct}%</span>
+                            <span className="text-theme-primary">{match.awayTeam} {awayPct}%</span>
+                          </div>
+                          <div className="h-1.5 w-full flex rounded-full overflow-hidden bg-gray-100">
+                            {homePct > 0 && <div className="bg-theme-secondary transition-all duration-500" style={{ width: `${homePct}%` }} />}
+                            {drawPct > 0 && <div className="bg-gray-300 transition-all duration-500" style={{ width: `${drawPct}%` }} />}
+                            {awayPct > 0 && <div className="bg-theme-primary transition-all duration-500" style={{ width: `${awayPct}%` }} />}
+                          </div>
+                        </div>
                       </div>
                     )}
                   </>
