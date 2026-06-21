@@ -116,15 +116,15 @@ export default function Navbar({ view, setView, statusFilter, setStatusFilter })
             <button
               id="logout-btn"
               onClick={onLogoutClick}
-              className="flex items-center justify-center h-8 px-2 sm:px-3 rounded transition-all duration-150 hover:bg-red-50 text-slate-500 hover:text-red-600 sm:border sm:border-slate-200"
+              className="flex items-center justify-center h-8 px-2 sm:px-3 rounded transition-all duration-150 text-slate-400 hover:text-red-500 sm:border sm:border-slate-200"
               title="Logout"
             >
               <span className="hidden sm:block text-[10px] font-bold uppercase tracking-widest">
                 Logout
               </span>
-              <span className="sm:hidden flex items-center justify-center text-red-500">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M5.636 5.636a9 9 0 1 1 12.728 0M12 3v9" />
+              <span className="sm:hidden flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+                  <path fillRule="evenodd" d="M12 2.25a.75.75 0 0 1 .75.75v9a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75ZM6.166 5.106a.75.75 0 0 1 0 1.06 8.25 8.25 0 1 0 11.668 0 .75.75 0 1 1 1.06-1.06c3.808 3.807 3.808 9.98 0 13.788-3.807 3.808-9.98 3.808-13.788 0-3.808-3.807-3.808-9.98 0-13.788a.75.75 0 0 1 1.06 0Z" clipRule="evenodd" />
                 </svg>
               </span>
             </button>

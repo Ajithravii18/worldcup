@@ -114,33 +114,33 @@ export default function WinnerBanner({ matches, predictions = [], currentTime = 
           </div>
 
           {/* Stadium Scoreboard Score display */}
-          <div className="flex items-center justify-between bg-white/10 rounded-xl p-6 relative backdrop-blur-sm border border-white/20">
+          <div className="flex items-center justify-between bg-white/10 rounded-xl p-3 sm:p-6 relative backdrop-blur-sm border border-white/20">
             
             {/* Home team */}
-            <div className="flex-1 flex flex-col items-center gap-4 z-10">
-              <TeamFlag teamName={matchToDisplay.homeTeam} fallbackEmoji={matchToDisplay.homeFlag} className="w-20 h-14 rounded-md shadow-sm" />
-              <div className="font-display text-lg sm:text-xl text-white tracking-[0.1em] font-bold uppercase text-center drop-shadow-sm">
+            <div className="flex-1 flex flex-col items-center gap-2 sm:gap-4 z-10">
+              <TeamFlag teamName={matchToDisplay.homeTeam} fallbackEmoji={matchToDisplay.homeFlag} className="w-12 h-8 sm:w-20 sm:h-14 rounded-md shadow-sm" />
+              <div className="font-display text-xs sm:text-xl text-white tracking-widest sm:tracking-[0.1em] font-bold uppercase text-center drop-shadow-sm truncate max-w-full px-1">
                 {matchToDisplay.homeTeam}
               </div>
             </div>
 
             {/* Score */}
-            <div className="flex flex-col items-center justify-center mx-4 sm:mx-6 z-10 bg-white rounded-2xl px-6 sm:px-8 py-4 shadow-xl">
-              <div className="flex items-center justify-center gap-4 sm:gap-6">
-                <span className="font-display text-5xl sm:text-7xl text-gray-900 font-black">
+            <div className="flex flex-col items-center justify-center mx-2 sm:mx-6 z-10 bg-white rounded-xl sm:rounded-2xl px-4 sm:px-8 py-2 sm:py-4 shadow-xl shrink-0">
+              <div className="flex items-center justify-center gap-2 sm:gap-6">
+                <span className="font-display text-3xl sm:text-7xl text-gray-900 font-black">
                   {matchToDisplay.homeScore ?? 0}
                 </span>
-                <span className="text-gray-300 text-3xl sm:text-4xl font-light">-</span>
-                <span className="font-display text-5xl sm:text-7xl text-gray-900 font-black">
+                <span className="text-gray-300 text-xl sm:text-4xl font-light">-</span>
+                <span className="font-display text-3xl sm:text-7xl text-gray-900 font-black">
                   {matchToDisplay.awayScore ?? 0}
                 </span>
               </div>
             </div>
 
             {/* Away team */}
-            <div className="flex-1 flex flex-col items-center gap-4 z-10">
-              <TeamFlag teamName={matchToDisplay.awayTeam} fallbackEmoji={matchToDisplay.awayFlag} className="w-20 h-14 rounded-md shadow-sm" />
-              <div className="font-display text-lg sm:text-xl text-white tracking-[0.1em] font-bold uppercase text-center drop-shadow-sm">
+            <div className="flex-1 flex flex-col items-center gap-2 sm:gap-4 z-10">
+              <TeamFlag teamName={matchToDisplay.awayTeam} fallbackEmoji={matchToDisplay.awayFlag} className="w-12 h-8 sm:w-20 sm:h-14 rounded-md shadow-sm" />
+              <div className="font-display text-xs sm:text-xl text-white tracking-widest sm:tracking-[0.1em] font-bold uppercase text-center drop-shadow-sm truncate max-w-full px-1">
                 {matchToDisplay.awayTeam}
               </div>
             </div>
@@ -207,32 +207,32 @@ export default function WinnerBanner({ matches, predictions = [], currentTime = 
         </div>
 
         {/* Stadium Scoreboard Score display */}
-        <div className="flex items-center justify-between bg-white/10 rounded-xl p-6 relative backdrop-blur-sm border border-white/20">
+        <div className="flex items-center justify-between bg-white/10 rounded-xl p-3 sm:p-6 relative backdrop-blur-sm border border-white/20">
           {/* Home team */}
-          <div className="flex-1 flex flex-col items-center gap-4 z-10">
-            <TeamFlag teamName={matchToDisplay.homeTeam} fallbackEmoji={matchToDisplay.homeFlag} className="w-20 h-14 rounded-md shadow-sm" />
-            <div className="font-display text-lg sm:text-xl text-white tracking-[0.1em] font-bold uppercase text-center drop-shadow-md">
+          <div className="flex-1 flex flex-col items-center gap-2 sm:gap-4 z-10">
+            <TeamFlag teamName={matchToDisplay.homeTeam} fallbackEmoji={matchToDisplay.homeFlag} className="w-12 h-8 sm:w-20 sm:h-14 rounded-md shadow-sm" />
+            <div className="font-display text-xs sm:text-xl text-white tracking-widest sm:tracking-[0.1em] font-bold uppercase text-center drop-shadow-md truncate max-w-full px-1">
               {matchToDisplay.homeTeam}
             </div>
           </div>
 
           {/* Score */}
-          <div className="flex flex-col items-center justify-center mx-4 sm:mx-6 z-10 bg-white rounded-2xl px-6 sm:px-8 py-4 shadow-xl">
-            <div className="flex items-center justify-center gap-4 sm:gap-6">
-              <span className={`font-display text-5xl sm:text-7xl font-black ${matchToDisplay.homeScore > matchToDisplay.awayScore ? 'text-gray-900' : matchToDisplay.homeScore < matchToDisplay.awayScore ? 'text-gray-300' : 'text-gray-600'}`}>
+          <div className="flex flex-col items-center justify-center mx-2 sm:mx-6 z-10 bg-white rounded-xl sm:rounded-2xl px-4 sm:px-8 py-2 sm:py-4 shadow-xl shrink-0">
+            <div className="flex items-center justify-center gap-2 sm:gap-6">
+              <span className={`font-display text-3xl sm:text-7xl font-black ${matchToDisplay.homeScore > matchToDisplay.awayScore ? 'text-gray-900' : matchToDisplay.homeScore < matchToDisplay.awayScore ? 'text-gray-300' : 'text-gray-600'}`}>
                 {matchToDisplay.homeScore ?? 0}
               </span>
-              <span className="text-gray-300 text-3xl sm:text-4xl font-light">-</span>
-              <span className={`font-display text-5xl sm:text-7xl font-black ${matchToDisplay.awayScore > matchToDisplay.homeScore ? 'text-gray-900' : matchToDisplay.awayScore < matchToDisplay.homeScore ? 'text-gray-300' : 'text-gray-600'}`}>
+              <span className="text-gray-300 text-xl sm:text-4xl font-light">-</span>
+              <span className={`font-display text-3xl sm:text-7xl font-black ${matchToDisplay.awayScore > matchToDisplay.homeScore ? 'text-gray-900' : matchToDisplay.awayScore < matchToDisplay.homeScore ? 'text-gray-300' : 'text-gray-600'}`}>
                 {matchToDisplay.awayScore ?? 0}
               </span>
             </div>
           </div>
 
           {/* Away team */}
-          <div className="flex-1 flex flex-col items-center gap-4 z-10">
-            <TeamFlag teamName={matchToDisplay.awayTeam} fallbackEmoji={matchToDisplay.awayFlag} className="w-20 h-14 rounded-md shadow-sm" />
-            <div className="font-display text-lg sm:text-xl text-white tracking-[0.1em] font-bold uppercase text-center drop-shadow-md">
+          <div className="flex-1 flex flex-col items-center gap-2 sm:gap-4 z-10">
+            <TeamFlag teamName={matchToDisplay.awayTeam} fallbackEmoji={matchToDisplay.awayFlag} className="w-12 h-8 sm:w-20 sm:h-14 rounded-md shadow-sm" />
+            <div className="font-display text-xs sm:text-xl text-white tracking-widest sm:tracking-[0.1em] font-bold uppercase text-center drop-shadow-md truncate max-w-full px-1">
               {matchToDisplay.awayTeam}
             </div>
           </div>
