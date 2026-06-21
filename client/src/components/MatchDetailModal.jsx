@@ -333,6 +333,8 @@ export default function MatchDetailModal({
                 >
                   {submitting ? 'SAVING...' : 'SUBMIT PREDICTION'}
                 </button>
+
+                <MatchComments matchId={match._id} />
               </>
             ) : globalMode ? (
               // Global Mode / Viewing others
