@@ -36,6 +36,30 @@ export default function WinnerBanner({ matches, predictions = [], currentTime = 
     }
   }
 
+  // Group scorers by team
+  const homeScorersMap = {};
+  const awayScorersMap = {};
+
+  (matchToDisplay.events || []).forEach(e => {
+    if (!e.player) return;
+    const timeStr = e.extra ? `${e.time}+${e.extra}'` : `${e.time}'`;
+    
+    // Check which team scored (support partial match in case API string differs slightly)
+    const isHome = e.team?.toLowerCase() === matchToDisplay.homeTeam.toLowerCase();
+    const isAway = e.team?.toLowerCase() === matchToDisplay.awayTeam.toLowerCase();
+    
+    if (isHome) {
+      if (!homeScorersMap[e.player]) homeScorersMap[e.player] = [];
+      homeScorersMap[e.player].push(timeStr);
+    } else if (isAway) {
+      if (!awayScorersMap[e.player]) awayScorersMap[e.player] = [];
+      awayScorersMap[e.player].push(timeStr);
+    }
+  });
+
+  const homeScorers = Object.entries(homeScorersMap).map(([player, times]) => ({ player, times }));
+  const awayScorers = Object.entries(awayScorersMap).map(([player, times]) => ({ player, times }));
+
   // Find who predicted this match exactly correct (only relevant for completed matches)
   const correctPredictions = !isLive ? predictions.filter(
     (p) =>
@@ -111,6 +135,31 @@ export default function WinnerBanner({ matches, predictions = [], currentTime = 
               </div>
             </div>
           </div>
+
+          {/* Goal Scorers (Live) */}
+          {(homeScorers.length > 0 || awayScorers.length > 0) && (
+            <div className="flex justify-between items-start mt-3 px-2 sm:px-6 relative z-10 border-t border-white/10 pt-3">
+              <div className="flex-1 flex flex-col gap-1 text-white/90 text-xs sm:text-sm font-medium">
+                {homeScorers.map(s => (
+                  <div key={s.player} className="flex items-center gap-1.5">
+                    <span className="truncate max-w-[120px] sm:max-w-[200px]">{s.player}</span>
+                    <span className="text-white/60 text-[10px] sm:text-xs pt-[1px] font-mono">{s.times.join(', ')}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="flex flex-col justify-center px-4 text-white/50 animate-pulse">
+                <span className="text-[10px] sm:text-xs text-white/30">⚽</span>
+              </div>
+              <div className="flex-1 flex flex-col gap-1 text-white/90 text-xs sm:text-sm font-medium items-end text-right">
+                {awayScorers.map(s => (
+                  <div key={s.player} className="flex items-center gap-1.5 justify-end">
+                    <span className="text-white/60 text-[10px] sm:text-xs pt-[1px] font-mono">{s.times.join(', ')}</span>
+                    <span className="truncate max-w-[120px] sm:max-w-[200px]">{s.player}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </div>
     );
@@ -178,6 +227,31 @@ export default function WinnerBanner({ matches, predictions = [], currentTime = 
             </div>
           </div>
         </div>
+
+        {/* Goal Scorers (Completed) */}
+        {(homeScorers.length > 0 || awayScorers.length > 0) && (
+          <div className="flex justify-between items-start mt-3 px-2 sm:px-6 relative z-10 border-t border-white/10 pt-3 mb-2">
+            <div className="flex-1 flex flex-col gap-1 text-white/90 text-xs sm:text-sm font-medium">
+              {homeScorers.map(s => (
+                <div key={s.player} className="flex items-center gap-1.5">
+                  <span className="truncate max-w-[120px] sm:max-w-[200px]">{s.player}</span>
+                  <span className="text-white/60 text-[10px] sm:text-xs pt-[1px] font-mono">{s.times.join(', ')}</span>
+                </div>
+              ))}
+            </div>
+            <div className="flex flex-col justify-center px-4 text-white/50">
+              <span className="text-[10px] sm:text-xs text-white/30">⚽</span>
+            </div>
+            <div className="flex-1 flex flex-col gap-1 text-white/90 text-xs sm:text-sm font-medium items-end text-right">
+              {awayScorers.map(s => (
+                <div key={s.player} className="flex items-center gap-1.5 justify-end">
+                  <span className="text-white/60 text-[10px] sm:text-xs pt-[1px] font-mono">{s.times.join(', ')}</span>
+                  <span className="truncate max-w-[120px] sm:max-w-[200px]">{s.player}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Completed Match Extras */}
         <div className="mt-6 flex flex-col items-center">
