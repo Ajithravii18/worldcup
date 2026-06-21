@@ -5,7 +5,7 @@ import confetti from 'canvas-confetti';
 import api from '../api/axios';
 
 export default function RegisterPage() {
-  const { login: authLogin } = useAuth();
+  const { setAuthData } = useAuth();
   const navigate = useNavigate();
 
   // Step: 'form' | 'otp' | 'success'
@@ -56,8 +56,8 @@ export default function RegisterPage() {
     setLoading(true);
     try {
       const res = await api.post('/auth/register/verify-otp', { email, otp: otpCode });
-      // Manually set auth context with the returned token
-      authLogin && localStorage.setItem('token', res.data.token);
+      // Manually set auth context with the returned token and user
+      setAuthData(res.data);
       setStep('success');
       confetti({ particleCount: 150, spread: 85, origin: { y: 0.5 } });
       setTimeout(() => navigate('/app'), 1800);

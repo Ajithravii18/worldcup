@@ -63,8 +63,14 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem('kuru_user', JSON.stringify(newUser));
   };
 
+  const setAuthData = (data) => {
+    localStorage.setItem('kuru_token', data.token);
+    localStorage.setItem('kuru_user', JSON.stringify(data));
+    setUser(data);
+  };
+
   return (
-    <AuthContext.Provider value={{ user, loading, login, register, logout, updateUserProfile }}>
+    <AuthContext.Provider value={{ user, loading, login, register, logout, updateUserProfile, setAuthData }}>
       {children}
     </AuthContext.Provider>
   );
