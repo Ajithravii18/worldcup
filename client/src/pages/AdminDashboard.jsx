@@ -85,7 +85,54 @@ export default function AdminDashboard() {
           </div>
         )}
 
-        <div className="overflow-x-auto rounded-2xl border border-gray-200 shadow-sm">
+        {/* Mobile View (Cards) */}
+        <div className="md:hidden space-y-4">
+          {users.map((u) => (
+            <div key={u._id} className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex flex-col gap-3">
+              <div className="flex justify-between items-start">
+                <div className="flex flex-col">
+                  <span className="font-bold text-gray-900 truncate max-w-[200px]">{u.name}</span>
+                  <span className="text-xs text-gray-500 truncate max-w-[200px]">{u.email}</span>
+                </div>
+                <span className={`px-2 py-1 rounded-full text-[10px] font-black uppercase tracking-widest ${u.role === 'admin' ? 'bg-theme-secondary/10 text-theme-secondary border border-theme-secondary/20' : 'bg-gray-100 text-gray-600'}`}>
+                  {u.role}
+                </span>
+              </div>
+              
+              <div className="flex justify-between items-center text-xs">
+                <span className="text-gray-500 font-semibold">{new Date(u.createdAt).toLocaleDateString()}</span>
+                <span className={`px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-widest ${u.isFrozen ? 'bg-red-100 text-red-700 border border-red-200' : 'bg-theme-primary/10 text-theme-primary border border-theme-primary/20'}`}>
+                  {u.isFrozen ? 'Frozen' : 'Active'}
+                </span>
+              </div>
+              
+              <div className="flex gap-2 pt-3 border-t border-gray-100">
+                <button
+                  onClick={() => handleToggleFreeze(u._id)}
+                  disabled={u.role === 'admin'}
+                  className={`flex-1 text-xs font-bold px-3 py-2 rounded-lg transition-colors border ${u.isFrozen ? 'bg-theme-primary/10 text-theme-primary border-theme-primary/20 hover:bg-theme-primary/20' : 'bg-orange-50 text-orange-600 border-orange-200 hover:bg-orange-100'} disabled:opacity-50 disabled:cursor-not-allowed`}
+                >
+                  {u.isFrozen ? 'Unfreeze' : 'Freeze'}
+                </button>
+                <button
+                  onClick={() => handleDeleteUser(u._id)}
+                  disabled={u.role === 'admin'}
+                  className="flex-1 text-xs font-bold px-3 py-2 rounded-lg bg-red-50 text-red-600 border border-red-200 hover:bg-red-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          ))}
+          {users.length === 0 && (
+            <div className="text-center text-gray-500 font-semibold uppercase tracking-widest text-xs p-6 bg-white rounded-xl border border-gray-200">
+              No users found
+            </div>
+          )}
+        </div>
+
+        {/* Desktop View (Table) */}
+        <div className="hidden md:block overflow-x-auto rounded-2xl border border-gray-200 shadow-sm">
           <table className="w-full text-left text-sm text-gray-700">
             <thead className="bg-gray-50 text-xs uppercase font-black text-gray-500 border-b border-gray-200">
               <tr>

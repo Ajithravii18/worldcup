@@ -9,7 +9,6 @@ export default function Navbar({ view, setView, statusFilter, setStatusFilter })
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const [profileOpen, setProfileOpen] = useState(false);
-  const [confirmLogout, setConfirmLogout] = useState(false);
 
   const handleLogout = () => {
     logout();
@@ -17,11 +16,8 @@ export default function Navbar({ view, setView, statusFilter, setStatusFilter })
   };
 
   const onLogoutClick = () => {
-    if (confirmLogout) {
+    if (window.confirm('Are you sure you want to log out?')) {
       handleLogout();
-    } else {
-      setConfirmLogout(true);
-      setTimeout(() => setConfirmLogout(false), 3000);
     }
   };
 
@@ -120,17 +116,16 @@ export default function Navbar({ view, setView, statusFilter, setStatusFilter })
             <button
               id="logout-btn"
               onClick={onLogoutClick}
-              className="flex items-center justify-center h-8 px-2 sm:px-3 rounded transition-all duration-150"
-              style={confirmLogout
-                ? { background: '#ef4444', color: '#fff' }
-                : { background: 'transparent', color: '#64748b', border: '1px solid #e2e8f0' }
-              }
+              className="flex items-center justify-center h-8 px-2 sm:px-3 rounded transition-all duration-150 hover:bg-red-50 text-slate-500 hover:text-red-600 sm:border sm:border-slate-200"
+              title="Logout"
             >
               <span className="hidden sm:block text-[10px] font-bold uppercase tracking-widest">
-                {confirmLogout ? 'Confirm?' : 'Logout'}
+                Logout
               </span>
-              <span className="sm:hidden text-lg leading-none">
-                {confirmLogout ? '⚠️' : '🚪'}
+              <span className="sm:hidden flex items-center justify-center text-red-500">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5.636 5.636a9 9 0 1 1 12.728 0M12 3v9" />
+                </svg>
               </span>
             </button>
           </div>
