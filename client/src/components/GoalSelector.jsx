@@ -38,7 +38,7 @@ export default function GoalSelector({
           onClick={onIncrease}
           disabled={disabled}
           aria-label={`Increase ${teamName} goals`}
-          className="goal-btn-up"
+          className="goal-btn goal-btn-up"
         >
           +
         </button>
@@ -60,7 +60,7 @@ export default function GoalSelector({
           onClick={onDecrease}
           disabled={disabled || goals === 0}
           aria-label={`Decrease ${teamName} goals`}
-          className="goal-btn-down"
+          className="goal-btn goal-btn-down"
         >
           -
         </button>

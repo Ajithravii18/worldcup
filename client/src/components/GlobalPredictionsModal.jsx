@@ -71,12 +71,12 @@ export default function GlobalPredictionsModal({ isOpen, onClose, match, predict
     >
       {/* Bottom Sheet Card */}
       <div
-        className={`w-full max-w-lg rounded-t-[2rem] border-t border-wc-gold/25 p-6 shadow-2xl relative overflow-hidden transition-transform duration-300 ${
+        className={`w-full max-w-lg rounded-t-[2rem] border-t border-gray-200 p-6 shadow-2xl relative overflow-hidden transition-transform duration-300 ${
           animate ? 'translate-y-0' : 'translate-y-full'
         }`}
         style={{
-          background: 'linear-gradient(180deg, #111827 0%, #0d1530 100%)',
-          boxShadow: '0 -10px 40px rgba(255, 215, 0, 0.1)',
+          background: '#ffffff',
+          boxShadow: '0 -10px 40px rgba(0, 0, 0, 0.05)',
         }}
       >
         {/* Drag handle decoration */}
@@ -111,7 +111,7 @@ export default function GlobalPredictionsModal({ isOpen, onClose, match, predict
           
           <div className="px-4 text-center">
             {match.status === 'completed' ? (
-              <div className="font-display text-3xl text-wc-gold bg-black/40 px-3 py-1 rounded-none border border-wc-gold/20">
+              <div className="font-display text-3xl text-wc-gold bg-gray-50 px-3 py-1 rounded-none border border-wc-gold/20">
                 {match.homeScore} - {match.awayScore}
               </div>
             ) : (
@@ -214,7 +214,7 @@ export default function GlobalPredictionsModal({ isOpen, onClose, match, predict
                       }`}>
                         {isHomeWin ? 'Home Win' : isAwayWin ? 'Away Win' : 'Draw'}
                       </span>
-                      <span className="font-display text-xl text-wc-gold bg-black/30 px-3 py-1 rounded-none border border-wc-border/30 min-w-[50px] text-center">
+                      <span className="font-display text-xl text-wc-gold bg-gray-50 px-3 py-1 rounded-none border border-wc-border/30 min-w-[50px] text-center">
                         {pred.homeGoals} – {pred.awayGoals}
                       </span>
                     </div>

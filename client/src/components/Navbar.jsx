@@ -34,7 +34,7 @@ export default function Navbar({ view, setView, statusFilter, setStatusFilter })
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full" style={{ background: '#141921', borderBottom: '1px solid #2a3347' }}>
+    <header className="sticky top-0 z-50 w-full" style={{ background: '#ffffff', borderBottom: '1px solid #e2e8f0' }}>
 
       {/* Top bar */}
       <div className="w-full px-4 h-14 flex items-center justify-between gap-4">
@@ -51,7 +51,7 @@ export default function Navbar({ view, setView, statusFilter, setStatusFilter })
             K
           </div>
           <div className="flex flex-col leading-none">
-            <span className="font-display font-black text-sm tracking-[0.15em] text-white uppercase">
+            <span className="font-display font-black text-sm tracking-[0.15em] text-slate-900 uppercase">
               Lucky Star FC
             </span>
             <span className="text-[8px] font-bold tracking-[0.3em] uppercase" style={{ color: '#F26522' }}>
@@ -69,8 +69,8 @@ export default function Navbar({ view, setView, statusFilter, setStatusFilter })
                 onClick={() => setView(tab.id)}
                 className={`px-5 h-14 text-[11px] font-bold uppercase tracking-widest transition-colors duration-150 border-b-2 ${
                   view === tab.id
-                    ? 'text-white border-[#F26522]'
-                    : 'text-[#6b7280] border-transparent hover:text-white hover:border-white/30'
+                    ? 'text-slate-900 border-[#F26522]'
+                    : 'text-[#64748b] border-transparent hover:text-slate-900 hover:border-slate-900/30'
                 }`}
               >
                 {tab.label}
@@ -90,13 +90,13 @@ export default function Navbar({ view, setView, statusFilter, setStatusFilter })
 
         {/* Desktop filter pills — only on matches views */}
         {user && isMatchesView && setStatusFilter && (
-          <div className="hidden md:flex items-center gap-0 border" style={{ borderColor: '#2a3347' }}>
+          <div className="hidden md:flex items-center gap-0 border" style={{ borderColor: '#e2e8f0' }}>
             <button
               onClick={() => setStatusFilter('upcoming')}
               className={`px-4 py-1.5 text-[10px] font-bold uppercase tracking-widest transition-colors duration-150 ${
                 statusFilter === 'upcoming'
                   ? 'text-white'
-                  : 'text-[#6b7280] hover:text-white'
+                  : 'text-[#64748b] hover:text-slate-900'
               }`}
               style={statusFilter === 'upcoming' ? { background: '#F26522' } : { background: 'transparent' }}
             >
@@ -107,7 +107,7 @@ export default function Navbar({ view, setView, statusFilter, setStatusFilter })
               className={`px-4 py-1.5 text-[10px] font-bold uppercase tracking-widest transition-colors duration-150 ${
                 statusFilter === 'completed'
                   ? 'text-white'
-                  : 'text-[#6b7280] hover:text-white'
+                  : 'text-[#64748b] hover:text-slate-900'
               }`}
               style={statusFilter === 'completed' ? { background: '#F26522' } : { background: 'transparent' }}
             >
@@ -129,7 +129,7 @@ export default function Navbar({ view, setView, statusFilter, setStatusFilter })
               <UserAvatar
                 avatarId={user.avatar}
                 className="w-8 h-8 text-xs border-2"
-                style={{ borderColor: '#2a3347' }}
+                style={{ borderColor: '#e2e8f0' }}
               />
             </button>
 
@@ -139,7 +139,7 @@ export default function Navbar({ view, setView, statusFilter, setStatusFilter })
               className="hidden sm:block text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 transition-all duration-150"
               style={confirmLogout
                 ? { background: '#ef4444', color: '#fff' }
-                : { background: 'transparent', color: '#6b7280', border: '1px solid #2a3347' }
+                : { background: 'transparent', color: '#64748b', border: '1px solid #e2e8f0' }
               }
             >
               {confirmLogout ? 'Confirm?' : 'Logout'}

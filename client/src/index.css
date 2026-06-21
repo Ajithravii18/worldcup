@@ -27,8 +27,8 @@
 
   body {
     @apply font-body;
-    background-color: #141921;
-    color: #f0f0f0;
+    background-color: #f8fafc;
+    color: #0f172a;
     min-height: 100dvh;
     overscroll-behavior: none;
   }
@@ -42,17 +42,17 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: rgba(255,255,255,0.15);
+    background: rgba(15,23,42,0.15);
     border-radius: 0;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: rgba(255,255,255,0.3);
+    background: rgba(15,23,42,0.3);
   }
 
   select option {
-    background: #1e2636;
-    color: #f0f0f0;
+    background: #ffffff;
+    color: #0f172a;
   }
 }
 
@@ -61,8 +61,8 @@
 
   /* FotMob-style card */
   .fm-card {
-    background: #1e2636;
-    border: 1px solid #2a3347;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
     border-radius: 0;
   }
 
@@ -71,7 +71,7 @@
   }
 
   .fm-card-hover:hover {
-    background: #253049;
+    background: #f8fafc;
     border-color: #F26522;
   }
 
@@ -88,8 +88,8 @@
   }
 
   .btn-primary:disabled {
-    background: #2a3347;
-    color: #4a5568;
+    background: #e2e8f0;
+    color: #94a3b8;
     cursor: not-allowed;
     transform: none;
   }
@@ -116,15 +116,15 @@
   /* Ghost / secondary button */
   .btn-ghost {
     @apply font-body font-bold transition-all duration-150 active:scale-95;
-    background: #2a3347;
-    color: #a0aec0;
-    border: 1px solid #2a3347;
+    background: #f1f5f9;
+    color: #64748b;
+    border: 1px solid #e2e8f0;
     border-radius: 0;
   }
 
   .btn-ghost:hover:not(:disabled) {
-    background: #344060;
-    color: #f0f0f0;
+    background: #e2e8f0;
+    color: #0f172a;
   }
 
   /* Goal arrow button */
@@ -132,8 +132,8 @@
     @apply flex items-center justify-center w-10 h-10 text-xl transition-all duration-150 active:scale-90 select-none border;
     border-radius: 0;
     background: transparent;
-    border-color: #2a3347;
-    color: #6b7280;
+    border-color: #e2e8f0;
+    color: #64748b;
   }
 
   .goal-btn-up:hover:not(:disabled),
@@ -151,16 +151,16 @@
   /* Text input */
   .input-fm {
     @apply w-full font-body transition-all duration-150;
-    background: #1e2636;
-    border: 1.5px solid #2a3347;
+    background: #ffffff;
+    border: 1.5px solid #e2e8f0;
     border-radius: 0;
-    color: #f0f0f0;
+    color: #0f172a;
     padding: 0.65rem 1rem;
     outline: none;
   }
 
   .input-fm::placeholder {
-    color: #4a5568;
+    color: #94a3b8;
   }
 
   .input-fm:focus {
@@ -170,7 +170,7 @@
   /* Status badges — flat, square */
   .badge-live {
     background: rgba(239,68,68,0.15);
-    color: #f87171;
+    color: #ef4444;
     border: 1px solid rgba(239,68,68,0.3);
     @apply inline-flex items-center px-1.5 py-0.5 text-[8px] font-black uppercase tracking-widest;
     border-radius: 0;
@@ -185,25 +185,25 @@
   }
 
   .badge-locked {
-    background: rgba(255,255,255,0.05);
-    color: #6b7280;
-    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(15,23,42,0.05);
+    color: #64748b;
+    border: 1px solid rgba(15,23,42,0.1);
     @apply inline-flex items-center px-1.5 py-0.5 text-[8px] font-black uppercase tracking-widest;
     border-radius: 0;
   }
 
   .badge-completed {
-    background: rgba(255,255,255,0.05);
-    color: #6b7280;
-    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(15,23,42,0.05);
+    color: #64748b;
+    border: 1px solid rgba(15,23,42,0.1);
     @apply inline-flex items-center px-1.5 py-0.5 text-[8px] font-black uppercase tracking-widest;
     border-radius: 0;
   }
 
   .badge-soon {
-    background: rgba(255,255,255,0.05);
-    color: #6b7280;
-    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(15,23,42,0.05);
+    color: #64748b;
+    border: 1px solid rgba(15,23,42,0.1);
     @apply inline-flex items-center px-1.5 py-0.5 text-[8px] font-black uppercase tracking-widest;
     border-radius: 0;
   }
@@ -211,7 +211,7 @@
   /* Divider */
   .fm-divider {
     border: none;
-    border-top: 1px solid #2a3347;
+    border-top: 1px solid #e2e8f0;
   }
 }
 
@@ -238,19 +238,19 @@
   }
 
   .bg-fm-dark {
-    background: #141921;
+    background: #f8fafc;
   }
 
   .bg-fm-card {
-    background: #1e2636;
+    background: #ffffff;
   }
 
   .bg-fm-card-hover {
-    background: #253049;
+    background: #f1f5f9;
   }
 
   .border-fm {
-    border-color: #2a3347;
+    border-color: #e2e8f0;
   }
 
   /* Tab underline indicator — FotMob style */
@@ -260,7 +260,7 @@
   }
 
   .fm-tab-inactive {
-    color: #6b7280;
+    color: #64748b;
     border-bottom: 2px solid transparent;
   }
 }

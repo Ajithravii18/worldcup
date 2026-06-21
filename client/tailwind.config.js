@@ -7,26 +7,30 @@ export default {
   theme: {
     extend: {
       colors: {
-        // FotMob-inspired palette
-        'fm-bg':       '#141921',   // page background
-        'fm-surface':  '#1e2636',   // card surface
-        'fm-surface2': '#253049',   // card hover / elevated
-        'fm-border':   '#2a3347',   // border
-        'fm-muted':    '#6b7280',   // muted text
-        'fm-text':     '#f0f0f0',   // primary text
+        // Light Theme palette
+        'fm-bg':       '#f8fafc',   // page background (light Slate 50)
+        'fm-surface':  '#ffffff',   // card surface (white)
+        'fm-surface2': '#f1f5f9',   // card hover / elevated (light Slate 100)
+        'fm-border':   '#e2e8f0',   // border (light Slate 200)
+        'fm-muted':    '#64748b',   // muted text (Slate 500)
+        'fm-text':     '#0f172a',   // primary text (Slate 900)
         'fm-orange':   '#F26522',   // primary accent (FotMob orange)
         'fm-orange2':  '#e05a14',   // darker orange for hover
         'fm-green':    '#22c55e',   // success / correct prediction
         'fm-red':      '#ef4444',   // live / danger
         'fm-gold':     '#f59e0b',   // top scorer / trophy
-        // Legacy aliases kept for existing components
-        'wc-navy':     '#141921',
-        'wc-deep':     '#1e2636',
+        // Legacy aliases kept for existing components, mapped to light mode
+        'wc-navy':     '#f8fafc',
+        'wc-deep':     '#ffffff',
         'wc-gold':     '#f59e0b',
+        'wc-text':     '#0f172a',
+        'wc-muted':    '#64748b',
+        'wc-border':   '#e2e8f0',
+        'wc-surface':  '#ffffff',
         'theme-primary': '#F26522',
         'theme-secondary': '#22c55e',
-        'theme-bg':    '#141921',
-        'theme-deep':  '#1e2636',
+        'theme-bg':    '#f8fafc',
+        'theme-deep':  '#ffffff',
       },
       fontFamily: {
         'display': ['Outfit', 'sans-serif'],

@@ -15,10 +15,10 @@ const ProtectedRoute = ({ children }) => {
 
   if (loading) {
     return (
-      <div className="min-h-dvh flex items-center justify-center" style={{ background: '#141921' }}>
+      <div className="min-h-dvh flex items-center justify-center" style={{ background: '#f8fafc' }}>
         <div className="flex flex-col items-center gap-4">
-          <div className="w-10 h-10 border-4 border-[#2a3347] border-t-[#F26522] animate-spin" />
-          <p className="font-display text-xs tracking-[0.3em] uppercase animate-pulse" style={{ color: '#6b7280' }}>Loading</p>
+          <div className="w-10 h-10 border-4 border-[#e2e8f0] border-t-[#F26522] animate-spin" />
+          <p className="font-display text-xs tracking-[0.3em] uppercase animate-pulse" style={{ color: '#64748b' }}>Loading</p>
         </div>
       </div>
     );
@@ -37,8 +37,8 @@ const PublicRoute = ({ children }) => {
 
   if (loading) {
     return (
-      <div className="min-h-dvh flex items-center justify-center" style={{ background: '#141921' }}>
-        <div className="w-10 h-10 border-4 border-[#2a3347] border-t-[#F26522] animate-spin" />
+      <div className="min-h-dvh flex items-center justify-center" style={{ background: '#f8fafc' }}>
+        <div className="w-10 h-10 border-4 border-[#e2e8f0] border-t-[#F26522] animate-spin" />
       </div>
     );
   }

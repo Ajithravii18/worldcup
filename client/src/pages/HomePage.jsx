@@ -254,7 +254,7 @@ export default function HomePage() {
   const matchPages = chunkMatches(filteredMatches, chunkSize);
 
   return (
-    <div className="min-h-dvh flex flex-col" style={{ background: '#141921' }}>
+    <div className="min-h-dvh flex flex-col" style={{ background: '#f8fafc' }}>
       <Navbar 
         view={view} 
         setView={setView} 
@@ -275,11 +275,11 @@ export default function HomePage() {
         {/* Correct Prediction Toast */}
         {notification && (
           <div className="fixed top-20 left-1/2 -translate-x-1/2 z-50 animate-slide-up w-[90%] max-w-sm">
-            <div className="relative overflow-hidden p-4 text-center" style={{ background: '#1e2636', border: '1px solid #22c55e', borderLeft: '4px solid #22c55e' }}>
+            <div className="relative overflow-hidden p-4 text-center" style={{ background: '#ffffff', border: '1px solid #22c55e', borderLeft: '4px solid #22c55e' }}>
               <button onClick={() => setNotification(null)} className="absolute top-2 right-3 font-bold text-lg" style={{ color: '#22c55e' }}>✕</button>
               <h3 className="font-display font-black tracking-[0.2em] uppercase text-base mb-1 mt-2" style={{ color: '#22c55e' }}>SPOT ON!</h3>
-              <p className="text-[10px] font-bold mb-3 tracking-widest uppercase" style={{ color: '#6b7280' }}>You perfectly predicted:</p>
-              <div className="text-sm font-bold py-3" style={{ background: '#141921', color: '#f0f0f0' }}>
+              <p className="text-[10px] font-bold mb-3 tracking-widest uppercase" style={{ color: '#64748b' }}>You perfectly predicted:</p>
+              <div className="text-sm font-bold py-3" style={{ background: '#f8fafc', color: '#0f172a' }}>
                 {notification.homeTeam} <span className="font-normal" style={{ color: '#6b7280' }}>vs</span> {notification.awayTeam}<br/>
                 <span className="text-2xl tracking-widest mt-2 inline-block font-black">{notification.score}</span>
               </div>
@@ -308,7 +308,7 @@ export default function HomePage() {
             {isLoading && (
               <div className="flex flex-col items-center justify-center py-24">
                 <div className="relative w-12 h-12">
-                  <div className="absolute inset-0 border-4 border-[#2a3347] border-t-[#F26522] animate-spin" style={{ borderRadius: 0 }}></div>
+                  <div className="absolute inset-0 border-4 border-[#e2e8f0] border-t-[#F26522] animate-spin" style={{ borderRadius: 0 }}></div>
                 </div>
                 <div className="mt-5 text-[10px] font-black tracking-widest uppercase animate-pulse" style={{ color: '#F26522' }}>
                   Loading Matches...
@@ -320,9 +320,9 @@ export default function HomePage() {
             {!isLoading && matches.length === 0 && (
               <div className="text-center py-16 font-bold uppercase tracking-widest">
                 <div className="text-5xl mb-4 opacity-20 font-display" style={{ color: '#6b7280' }}>0</div>
-                <p className="font-display text-xl tracking-[0.2em] mb-2 uppercase" style={{ color: '#f0f0f0' }}>No Matches</p>
-                <p className="text-[10px] mb-4" style={{ color: '#6b7280' }}>Run the seed script to add matches.</p>
-                <code className="mt-3 block text-[10px] px-4 py-2 mx-auto max-w-xs" style={{ background: '#1e2636', color: '#F26522', border: '1px solid #2a3347' }}>
+                <p className="font-display text-xl tracking-[0.2em] mb-2 uppercase" style={{ color: '#0f172a' }}>No Matches</p>
+                <p className="text-[10px] mb-4" style={{ color: '#64748b' }}>Run the seed script to add matches.</p>
+                <code className="mt-3 block text-[10px] px-4 py-2 mx-auto max-w-xs" style={{ background: '#ffffff', color: '#F26522', border: '1px solid #e2e8f0' }}>
                   cd server &amp;&amp; npm run seed
                 </code>
               </div>
@@ -331,8 +331,8 @@ export default function HomePage() {
             {!isLoading && matches.length > 0 && (
               <div className="flex flex-col">
                 {/* Filter and Sort Row */}
-                <div className="mx-4 mb-4 flex flex-col sm:flex-row items-center justify-between gap-2 p-3 animate-fade-in" style={{ background: '#1e2636', border: '1px solid #2a3347' }}>
-                  <span className="text-[10px] uppercase tracking-[0.2em] font-bold w-full sm:w-auto text-center sm:text-left" style={{ color: '#6b7280' }}>
+                <div className="mx-4 mb-4 flex flex-col sm:flex-row items-center justify-between gap-2 p-3 animate-fade-in" style={{ background: '#ffffff', border: '1px solid #e2e8f0' }}>
+                  <span className="text-[10px] uppercase tracking-[0.2em] font-bold w-full sm:w-auto text-center sm:text-left" style={{ color: '#64748b' }}>
                     {view === 'global' ? 'Community' : 'Your Predictions'} — {filteredMatches.length} matches
                   </span>
 
@@ -345,14 +345,14 @@ export default function HomePage() {
                           if (scrollContainerRef.current) scrollContainerRef.current.scrollLeft = 0;
                         }}
                         className="w-full text-[10px] font-bold uppercase tracking-widest px-4 py-2.5 outline-none appearance-none cursor-pointer"
-                        style={{ background: '#141921', border: '1px solid #2a3347', color: '#F26522' }}
+                        style={{ background: '#f8fafc', border: '1px solid #e2e8f0', color: '#F26522' }}
                       >
                         <option value="All">All Teams</option>
                         {uniqueTeams.map(t => (
                           <option key={t} value={t}>{t}</option>
                         ))}
                       </select>
-                      <span className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-[10px]" style={{ color: '#6b7280' }}>▼</span>
+                      <span className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-[10px]" style={{ color: '#64748b' }}>▼</span>
                     </div>
 
                     <button
@@ -361,7 +361,7 @@ export default function HomePage() {
                         if (scrollContainerRef.current) scrollContainerRef.current.scrollLeft = 0;
                       }}
                       className="flex-1 sm:flex-none text-[10px] font-bold uppercase tracking-widest px-4 py-2.5 active:scale-95 transition-all flex items-center justify-center gap-1.5 cursor-pointer"
-                      style={{ background: '#141921', border: '1px solid #2a3347', color: '#f0f0f0' }}
+                      style={{ background: '#f8fafc', border: '1px solid #e2e8f0', color: '#0f172a' }}
                     >
                       Date <span style={{ color: '#F26522' }}>{dateSort === 'earliest' ? '↑' : '↓'}</span>
                     </button>
@@ -373,7 +373,7 @@ export default function HomePage() {
                     <button
                       onClick={scrollLeft}
                       className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-6 z-10 w-10 h-10 items-center justify-center font-bold text-xl opacity-0 group-hover:opacity-100 transition-all active:scale-95"
-                      style={{ background: '#1e2636', border: '1px solid #2a3347', color: '#f0f0f0' }}
+                      style={{ background: '#ffffff', border: '1px solid #e2e8f0', color: '#0f172a' }}
                     >
                       ❮
                     </button>
@@ -398,13 +398,13 @@ export default function HomePage() {
                     <button
                       onClick={scrollRight}
                       className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-6 z-10 w-10 h-10 items-center justify-center font-bold text-xl opacity-0 group-hover:opacity-100 transition-all active:scale-95"
-                      style={{ background: '#1e2636', border: '1px solid #2a3347', color: '#f0f0f0' }}
+                      style={{ background: '#ffffff', border: '1px solid #e2e8f0', color: '#0f172a' }}
                     >
                       ❯
                     </button>
                   </div>
                 ) : (
-                  <div className="text-center py-16 text-[10px] mx-4 animate-fade-in uppercase tracking-widest font-bold" style={{ color: '#6b7280', background: '#1e2636', border: '1px solid #2a3347' }}>
+                  <div className="text-center py-16 text-[10px] mx-4 animate-fade-in uppercase tracking-widest font-bold" style={{ color: '#64748b', background: '#ffffff', border: '1px solid #e2e8f0' }}>
                     {view === 'my' ? 'No predictions made yet.' : 'No matches open in this section.'}
                   </div>
                 )}

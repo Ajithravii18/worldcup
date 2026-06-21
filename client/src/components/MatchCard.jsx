@@ -54,16 +54,16 @@ export default function MatchCard({ match, prediction = null, onClick }) {
         onClick={() => onClick && onClick(match)}
         className="flex flex-col cursor-pointer transition-colors duration-150 min-h-[140px] relative overflow-hidden"
         style={{
-          background: '#1e2636',
-          border: '1px solid #2a3347',
-          borderLeft: isPerfect ? '3px solid #22c55e' : '3px solid #2a3347',
+          background: '#ffffff',
+          border: '1px solid #e2e8f0',
+          borderLeft: isPerfect ? '3px solid #22c55e' : '3px solid #e2e8f0',
         }}
         onMouseEnter={e => e.currentTarget.style.borderColor = '#F26522'}
-        onMouseLeave={e => e.currentTarget.style.borderColor = isPerfect ? '#22c55e' : '#2a3347'}
+        onMouseLeave={e => e.currentTarget.style.borderColor = isPerfect ? '#22c55e' : '#e2e8f0'}
       >
         {/* Header row */}
-        <div className="flex items-center justify-between px-3 pt-2.5 pb-1.5" style={{ borderBottom: '1px solid #2a3347' }}>
-          <span className="text-[8px] font-bold uppercase tracking-widest" style={{ color: '#6b7280' }}>
+        <div className="flex items-center justify-between px-3 pt-2.5 pb-1.5" style={{ borderBottom: '1px solid #e2e8f0' }}>
+          <span className="text-[8px] font-bold uppercase tracking-widest" style={{ color: '#64748b' }}>
             {formattedTime}
           </span>
           <span className="badge-completed">FT</span>
@@ -76,15 +76,15 @@ export default function MatchCard({ match, prediction = null, onClick }) {
               ? <span className="text-xl opacity-20">?</span>
               : <TeamFlag teamName={match.homeTeam} fallbackEmoji={match.homeFlag} className="w-8 h-6" />
             }
-            <span className={`font-display text-[10px] font-bold text-center truncate w-full px-1 ${homeWin ? 'text-white' : 'text-[#6b7280]'}`}>
+            <span className={`font-display text-[10px] font-bold text-center truncate w-full px-1 ${homeWin ? 'text-slate-900' : 'text-[#6b7280]'}`}>
               {displayTeam(match.homeTeam)}
             </span>
           </div>
 
-          <div className="flex items-center gap-1 px-3 py-1.5 min-w-[64px] justify-center" style={{ background: '#141921' }}>
-            <span className={`font-display text-2xl font-black ${homeWin ? 'text-white' : 'text-[#6b7280]'}`}>{match.homeScore}</span>
-            <span className="text-[#2a3347] text-sm mx-0.5">–</span>
-            <span className={`font-display text-2xl font-black ${awayWin ? 'text-white' : 'text-[#6b7280]'}`}>{match.awayScore}</span>
+          <div className="flex items-center gap-1 px-3 py-1.5 min-w-[64px] justify-center" style={{ background: '#f1f5f9' }}>
+            <span className={`font-display text-2xl font-black ${homeWin ? 'text-slate-900' : 'text-slate-400'}`}>{match.homeScore}</span>
+            <span className="text-[#cbd5e1] text-sm mx-0.5">–</span>
+            <span className={`font-display text-2xl font-black ${awayWin ? 'text-slate-900' : 'text-slate-400'}`}>{match.awayScore}</span>
           </div>
 
           <div className={`flex-1 flex flex-col items-center gap-1.5 ${!awayWin && !draw ? 'opacity-40' : ''}`}>
@@ -92,7 +92,7 @@ export default function MatchCard({ match, prediction = null, onClick }) {
               ? <span className="text-xl opacity-20">?</span>
               : <TeamFlag teamName={match.awayTeam} fallbackEmoji={match.awayFlag} className="w-8 h-6" />
             }
-            <span className={`font-display text-[10px] font-bold text-center truncate w-full px-1 ${awayWin ? 'text-white' : 'text-[#6b7280]'}`}>
+            <span className={`font-display text-[10px] font-bold text-center truncate w-full px-1 ${awayWin ? 'text-slate-900' : 'text-[#6b7280]'}`}>
               {displayTeam(match.awayTeam)}
             </span>
           </div>
@@ -100,14 +100,14 @@ export default function MatchCard({ match, prediction = null, onClick }) {
 
         {/* Prediction row */}
         {prediction && (
-          <div className="px-3 py-2 text-center" style={{ borderTop: '1px solid #2a3347' }}>
+          <div className="px-3 py-2 text-center" style={{ borderTop: '1px solid #e2e8f0' }}>
             {isPerfect ? (
               <span className="text-[8px] font-black uppercase tracking-widest" style={{ color: '#22c55e' }}>
                 🏆 Perfect Prediction
               </span>
             ) : (
-              <span className="text-[8px] font-bold uppercase tracking-widest" style={{ color: '#6b7280' }}>
-                Predicted: <span style={{ color: '#f0f0f0' }}>{prediction.homeGoals} – {prediction.awayGoals}</span>
+              <span className="text-[8px] font-bold uppercase tracking-widest" style={{ color: '#64748b' }}>
+                Predicted: <span style={{ color: '#0f172a' }}>{prediction.homeGoals} – {prediction.awayGoals}</span>
               </span>
             )}
           </div>
@@ -122,18 +122,18 @@ export default function MatchCard({ match, prediction = null, onClick }) {
       onClick={() => onClick && onClick(match)}
       className="flex flex-col cursor-pointer transition-colors duration-150 min-h-[140px] relative"
       style={{
-        background: isLocked || isEarly ? '#181f2d' : '#1e2636',
+        background: isLocked || isEarly ? '#f1f5f9' : '#ffffff',
         border: '1px solid',
-        borderColor: isOpen && !prediction ? '#F26522' : '#2a3347',
-        borderLeft: isOpen && !prediction ? '3px solid #F26522' : '3px solid #2a3347',
+        borderColor: isOpen && !prediction ? '#F26522' : '#e2e8f0',
+        borderLeft: isOpen && !prediction ? '3px solid #F26522' : '3px solid #e2e8f0',
         opacity: isLocked ? 0.75 : 1,
       }}
-      onMouseEnter={e => { if (!isLocked) e.currentTarget.style.background = '#253049'; }}
-      onMouseLeave={e => e.currentTarget.style.background = isLocked || isEarly ? '#181f2d' : '#1e2636'}
+      onMouseEnter={e => { if (!isLocked) e.currentTarget.style.background = '#f8fafc'; }}
+      onMouseLeave={e => e.currentTarget.style.background = isLocked || isEarly ? '#f1f5f9' : '#ffffff'}
     >
       {/* Header */}
-      <div className="flex items-center justify-between px-3 pt-2.5 pb-1.5" style={{ borderBottom: '1px solid #2a3347' }}>
-        <span className="text-[8px] font-bold uppercase tracking-widest" style={{ color: '#6b7280' }}>
+      <div className="flex items-center justify-between px-3 pt-2.5 pb-1.5" style={{ borderBottom: '1px solid #e2e8f0' }}>
+        <span className="text-[8px] font-bold uppercase tracking-widest" style={{ color: '#64748b' }}>
           {formattedTime}
         </span>
         <StatusBadge />
@@ -148,8 +148,8 @@ export default function MatchCard({ match, prediction = null, onClick }) {
               ? <span className="text-lg opacity-30">?</span>
               : <TeamFlag teamName={match.homeTeam} fallbackEmoji={match.homeFlag} />
             }
-            <span className={`font-display text-sm font-bold truncate max-w-[90px] sm:max-w-[120px] ${isTBD(match.homeTeam) ? 'italic text-[10px]' : 'text-[#f0f0f0]'}`}
-              style={{ color: isTBD(match.homeTeam) ? '#6b7280' : undefined }}>
+            <span className={`font-display text-sm font-bold truncate max-w-[90px] sm:max-w-[120px] ${isTBD(match.homeTeam) ? 'italic text-[10px]' : 'text-[#0f172a]'}`}
+              style={{ color: isTBD(match.homeTeam) ? '#64748b' : undefined }}>
               {displayTeam(match.homeTeam)}
             </span>
           </div>
@@ -168,7 +168,7 @@ export default function MatchCard({ match, prediction = null, onClick }) {
               : <TeamFlag teamName={match.awayTeam} fallbackEmoji={match.awayFlag} />
             }
             <span className={`font-display text-sm font-bold truncate max-w-[90px] sm:max-w-[120px]`}
-              style={{ color: isTBD(match.awayTeam) ? '#6b7280' : '#f0f0f0' }}>
+              style={{ color: isTBD(match.awayTeam) ? '#64748b' : '#0f172a' }}>
               {displayTeam(match.awayTeam)}
             </span>
           </div>
@@ -182,7 +182,7 @@ export default function MatchCard({ match, prediction = null, onClick }) {
 
       {/* Predicted footer */}
       {prediction && (
-        <div className="px-3 py-1.5 text-center" style={{ borderTop: '1px solid #2a3347' }}>
+        <div className="px-3 py-1.5 text-center" style={{ borderTop: '1px solid #e2e8f0' }}>
           <span className="text-[8px] font-black uppercase tracking-widest" style={{ color: '#F26522' }}>
             ✓ Predicted
           </span>

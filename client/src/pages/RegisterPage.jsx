@@ -22,8 +22,8 @@ function FMInput({ id, label, type, value, onChange, required, autoComplete, ext
         onBlur={() => setFocused(false)}
         className="peer w-full bg-transparent px-0 py-2 placeholder-transparent outline-none font-body font-medium transition-colors duration-200"
         style={{
-          borderBottom: `2px solid ${focused ? '#F26522' : '#2a3347'}`,
-          color: '#f0f0f0',
+          borderBottom: `2px solid ${focused ? '#F26522' : '#e2e8f0'}`,
+          color: '#0f172a',
         }}
         {...extra}
       />
@@ -144,14 +144,14 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="min-h-dvh flex flex-col items-center justify-center px-4 py-8" style={{ background: '#141921' }}>
+    <div className="min-h-dvh flex flex-col items-center justify-center px-4 py-8" style={{ background: '#f8fafc' }}>
 
       <Link
         to="/"
         className="absolute top-6 left-6 flex items-center gap-2 text-xs tracking-widest uppercase font-bold transition-colors z-50"
-        style={{ color: '#6b7280' }}
-        onMouseEnter={e => e.currentTarget.style.color = '#f0f0f0'}
-        onMouseLeave={e => e.currentTarget.style.color = '#6b7280'}
+        style={{ color: '#64748b' }}
+        onMouseEnter={e => e.currentTarget.style.color = '#0f172a'}
+        onMouseLeave={e => e.currentTarget.style.color = '#64748b'}
       >
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -163,17 +163,17 @@ export default function RegisterPage() {
       <div className="mb-6 text-center animate-fade-in">
         <div className="flex items-center justify-center gap-3 mb-3">
           <div className="w-10 h-10 flex items-center justify-center font-black text-white text-2xl font-display" style={{ background: '#F26522' }}>K</div>
-          <h1 className="font-display text-3xl font-black tracking-[0.2em] uppercase" style={{ color: '#f0f0f0' }}>Lucky Star FC</h1>
+          <h1 className="font-display text-3xl font-black tracking-[0.2em] uppercase" style={{ color: '#0f172a' }}>Lucky Star FC</h1>
         </div>
         <p className="text-xs tracking-[0.4em] uppercase font-bold" style={{ color: '#F26522' }}>Predictions</p>
       </div>
 
       <div className="w-full max-w-sm animate-slide-up">
-        <div className="relative p-8 overflow-hidden" style={{ background: '#1e2636', border: '1px solid #2a3347' }}>
+        <div className="relative p-8 overflow-hidden" style={{ background: '#ffffff', border: '1px solid #e2e8f0' }}>
 
           {/* Loading bar */}
           {loading && (
-            <div className="absolute top-0 left-0 w-full h-[2px] overflow-hidden" style={{ background: '#2a3347' }}>
+            <div className="absolute top-0 left-0 w-full h-[2px] overflow-hidden" style={{ background: '#e2e8f0' }}>
               <div className="h-full w-1/2 animate-[slide_1s_ease-in-out_infinite]" style={{ background: '#F26522' }} />
             </div>
           )}
@@ -182,8 +182,8 @@ export default function RegisterPage() {
           <div className="flex items-center justify-center gap-2 mb-6">
             <div className="w-6 h-0.5 transition-all" style={{ background: step === 'form' ? '#F26522' : '#22c55e' }} />
             <div className="w-2 h-2 transition-all" style={{ background: step === 'form' ? '#F26522' : '#22c55e' }} />
-            <div className="w-6 h-0.5 transition-all" style={{ background: step === 'otp' ? '#F26522' : step === 'success' ? '#22c55e' : '#2a3347' }} />
-            <div className="w-2 h-2 transition-all" style={{ background: step === 'otp' ? '#F26522' : '#2a3347' }} />
+            <div className="w-6 h-0.5 transition-all" style={{ background: step === 'otp' ? '#F26522' : step === 'success' ? '#22c55e' : '#e2e8f0' }} />
+            <div className="w-2 h-2 transition-all" style={{ background: step === 'otp' ? '#F26522' : '#e2e8f0' }} />
           </div>
 
           {error && (
@@ -195,7 +195,7 @@ export default function RegisterPage() {
           {/* ── Step 1: Form ── */}
           {step === 'form' && (
             <>
-              <h2 className="font-display text-lg font-black tracking-[0.2em] mb-7 text-center uppercase" style={{ color: '#f0f0f0' }}>
+              <h2 className="font-display text-lg font-black tracking-[0.2em] mb-7 text-center uppercase" style={{ color: '#0f172a' }}>
                 Create Account
               </h2>
               <form id="register-form" onSubmit={handleSendOtp} className={`space-y-5 transition-opacity ${loading ? 'opacity-50' : ''}`}>
@@ -207,9 +207,9 @@ export default function RegisterPage() {
                     id="register-password" type={showPassword ? 'text' : 'password'} value={password}
                     onChange={e => setPassword(e.target.value)} required autoComplete="new-password" placeholder=" "
                     className="peer w-full bg-transparent px-0 py-2 pr-12 placeholder-transparent outline-none font-body font-medium"
-                    style={{ borderBottom: '2px solid #2a3347', color: '#f0f0f0' }}
+                    style={{ borderBottom: '2px solid #e2e8f0', color: '#0f172a' }}
                     onFocus={e => e.currentTarget.style.borderBottomColor = '#F26522'}
-                    onBlur={e => e.currentTarget.style.borderBottomColor = '#2a3347'}
+                    onBlur={e => e.currentTarget.style.borderBottomColor = '#e2e8f0'}
                   />
                   <label className="absolute left-0 top-5 text-xs tracking-[0.2em] uppercase font-bold transition-all duration-200 peer-focus:top-0 peer-focus:text-[10px] peer-valid:top-0 peer-valid:text-[10px]"
                     style={{ color: '#6b7280' }} htmlFor="register-password">Password</label>
@@ -236,11 +236,11 @@ export default function RegisterPage() {
           {/* ── Step 2: OTP ── */}
           {step === 'otp' && (
             <>
-              <h2 className="font-display text-lg font-black tracking-[0.2em] mb-2 text-center uppercase" style={{ color: '#f0f0f0' }}>
+              <h2 className="font-display text-lg font-black tracking-[0.2em] mb-2 text-center uppercase" style={{ color: '#0f172a' }}>
                 Verify Email
               </h2>
-              <p className="text-center text-[11px] tracking-widest uppercase mb-7 font-bold" style={{ color: '#6b7280' }}>
-                Code sent to <span style={{ color: '#f0f0f0' }}>{email}</span>
+              <p className="text-center text-[11px] tracking-widest uppercase mb-7 font-bold" style={{ color: '#64748b' }}>
+                Code sent to <span style={{ color: '#0f172a' }}>{email}</span>
               </p>
 
               <form id="otp-form" onSubmit={handleVerifyOtp} className={`transition-opacity ${loading ? 'opacity-50' : ''}`}>
@@ -252,8 +252,8 @@ export default function RegisterPage() {
                       onKeyDown={e => handleOtpKeyDown(i, e)}
                       className="w-11 h-14 text-center text-2xl font-black bg-transparent outline-none transition-colors"
                       style={{
-                        borderBottom: `2px solid ${digit ? '#F26522' : '#2a3347'}`,
-                        color: '#f0f0f0',
+                        borderBottom: `2px solid ${digit ? '#F26522' : '#e2e8f0'}`,
+                        color: '#0f172a',
                       }}
                     />
                   ))}
@@ -290,7 +290,7 @@ export default function RegisterPage() {
         </div>
       </div>
 
-      <p className="mt-6 text-[10px] uppercase tracking-[0.3em] text-center font-bold animate-fade-in" style={{ color: '#2a3347' }}>
+      <p className="mt-6 text-[10px] uppercase tracking-[0.3em] text-center font-bold animate-fade-in" style={{ color: '#cbd5e1' }}>
         Predict · Compete · Glory
       </p>
     </div>

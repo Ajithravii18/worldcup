@@ -4,7 +4,7 @@ export default function LandingPage() {
   return (
     <div
       className="min-h-dvh flex flex-col items-center justify-center relative overflow-hidden px-4"
-      style={{ background: '#141921' }}
+      style={{ background: '#f8fafc' }}
     >
       {/* Subtle orange glow */}
       <div
@@ -25,7 +25,7 @@ export default function LandingPage() {
             >
               K
             </div>
-            <h1 className="font-display text-3xl sm:text-4xl font-black tracking-[0.2em] uppercase" style={{ color: '#f0f0f0' }}>
+            <h1 className="font-display text-3xl sm:text-4xl font-black tracking-[0.2em] uppercase" style={{ color: '#0f172a' }}>
               Lucky Star FC
             </h1>
           </div>
@@ -37,11 +37,11 @@ export default function LandingPage() {
         {/* Badge */}
         <div
           className="mb-10 flex items-center gap-3 px-5 py-2.5 opacity-0 animate-[slideUp_0.6s_ease-out_0.3s_forwards]"
-          style={{ background: '#1e2636', border: '1px solid #2a3347' }}
+          style={{ background: '#ffffff', border: '1px solid #e2e8f0' }}
         >
           <span className="text-lg animate-bounce" style={{ animationDuration: '2.5s' }}>🏆</span>
-          <span className="text-[10px] font-bold uppercase tracking-[0.2em]" style={{ color: '#f0f0f0' }}>World Cup 2026</span>
-          <span style={{ color: '#2a3347' }}>|</span>
+          <span className="text-[10px] font-bold uppercase tracking-[0.2em]" style={{ color: '#0f172a' }}>World Cup 2026</span>
+          <span style={{ color: '#e2e8f0' }}>|</span>
           <span className="text-base tracking-widest">🇨🇦 🇲🇽 🇺🇸</span>
         </div>
 
@@ -81,7 +81,7 @@ export default function LandingPage() {
 
       <p
         className="absolute bottom-8 text-[10px] uppercase tracking-[0.3em] text-center z-10 opacity-0 animate-[fadeIn_1s_ease-out_1.2s_forwards]"
-        style={{ color: '#2a3347' }}
+        style={{ color: '#cbd5e1' }}
       >
         Predict · Compete · Glory
       </p>

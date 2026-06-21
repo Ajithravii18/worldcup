@@ -31,28 +31,28 @@ export default function LoginPage() {
 
   if (success) {
     return (
-      <div className="min-h-dvh flex flex-col items-center justify-center text-center p-6 animate-fade-in" style={{ background: '#141921' }}>
+      <div className="min-h-dvh flex flex-col items-center justify-center text-center p-6 animate-fade-in" style={{ background: '#f8fafc' }}>
         <div className="text-8xl mb-6 animate-bounce">🏆</div>
         <h1 className="font-display text-4xl tracking-widest animate-pulse mb-3 font-black" style={{ color: '#F26522' }}>WELCOME BACK!</h1>
-        <p className="text-sm uppercase tracking-widest font-bold" style={{ color: '#6b7280' }}>Entering the Arena...</p>
+        <p className="text-sm uppercase tracking-widest font-bold" style={{ color: '#64748b' }}>Entering the Arena...</p>
         <div className="mt-8 flex items-center justify-center gap-2 animate-pulse">
           <div className="w-2 h-2 animate-ping" style={{ background: '#F26522' }} />
-          <span className="text-xs uppercase tracking-widest font-bold" style={{ color: '#6b7280' }}>Loading...</span>
+          <span className="text-xs uppercase tracking-widest font-bold" style={{ color: '#64748b' }}>Loading...</span>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-dvh flex flex-col items-center justify-center px-4" style={{ background: '#141921' }}>
+    <div className="min-h-dvh flex flex-col items-center justify-center px-4" style={{ background: '#f8fafc' }}>
 
       {/* Back */}
       <Link
         to="/"
         className="absolute top-6 left-6 flex items-center gap-2 text-xs tracking-widest uppercase font-bold transition-colors z-50"
-        style={{ color: '#6b7280' }}
-        onMouseEnter={e => e.currentTarget.style.color = '#f0f0f0'}
-        onMouseLeave={e => e.currentTarget.style.color = '#6b7280'}
+        style={{ color: '#64748b' }}
+        onMouseEnter={e => e.currentTarget.style.color = '#0f172a'}
+        onMouseLeave={e => e.currentTarget.style.color = '#64748b'}
       >
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -66,7 +66,7 @@ export default function LoginPage() {
           <div className="w-10 h-10 flex items-center justify-center font-black text-white text-2xl font-display" style={{ background: '#F26522' }}>
             K
           </div>
-          <h1 className="font-display text-3xl sm:text-4xl font-black tracking-[0.2em] uppercase" style={{ color: '#f0f0f0' }}>
+          <h1 className="font-display text-3xl sm:text-4xl font-black tracking-[0.2em] uppercase" style={{ color: '#0f172a' }}>
             Lucky Star FC
           </h1>
         </div>
@@ -75,16 +75,16 @@ export default function LoginPage() {
 
       {/* Card */}
       <div className="w-full max-w-sm animate-slide-up">
-        <div className="relative p-8 overflow-hidden" style={{ background: '#1e2636', border: '1px solid #2a3347' }}>
+        <div className="relative p-8 overflow-hidden" style={{ background: '#ffffff', border: '1px solid #e2e8f0' }}>
 
           {/* Loading bar */}
           {loading && (
-            <div className="absolute top-0 left-0 w-full h-[2px] overflow-hidden" style={{ background: '#2a3347' }}>
+            <div className="absolute top-0 left-0 w-full h-[2px] overflow-hidden" style={{ background: '#e2e8f0' }}>
               <div className="h-full w-1/2 animate-[slide_1s_ease-in-out_infinite]" style={{ background: '#F26522' }} />
             </div>
           )}
 
-          <h2 className="font-display text-lg font-black tracking-[0.2em] mb-8 text-center uppercase" style={{ color: '#f0f0f0' }}>
+          <h2 className="font-display text-lg font-black tracking-[0.2em] mb-8 text-center uppercase" style={{ color: '#0f172a' }}>
             Sign In
           </h2>
 
@@ -106,9 +106,9 @@ export default function LoginPage() {
                 required
                 autoComplete="email"
                 className="peer w-full bg-transparent px-0 py-2 placeholder-transparent outline-none font-body font-medium transition-colors duration-200"
-                style={{ borderBottom: '2px solid #2a3347', color: '#f0f0f0' }}
+                style={{ borderBottom: '2px solid #e2e8f0', color: '#0f172a' }}
                 onFocus={e => e.currentTarget.style.borderBottomColor = '#F26522'}
-                onBlur={e => e.currentTarget.style.borderBottomColor = '#2a3347'}
+                onBlur={e => e.currentTarget.style.borderBottomColor = '#e2e8f0'}
               />
               <label
                 className="absolute left-0 top-6 text-xs tracking-[0.2em] uppercase font-bold transition-all duration-300 peer-focus:top-0 peer-focus:text-[10px] peer-valid:top-0 peer-valid:text-[10px]"
@@ -128,10 +128,10 @@ export default function LoginPage() {
                 placeholder=" "
                 required
                 autoComplete="current-password"
-                className="peer w-full bg-transparent px-0 py-2 pr-12 placeholder-transparent outline-none font-body font-medium transition-colors duration-200"
-                style={{ borderBottom: '2px solid #2a3347', color: '#f0f0f0' }}
+                 className="peer w-full bg-transparent px-0 py-2 pr-12 placeholder-transparent outline-none font-body font-medium transition-colors duration-200"
+                style={{ borderBottom: '2px solid #e2e8f0', color: '#0f172a' }}
                 onFocus={e => e.currentTarget.style.borderBottomColor = '#F26522'}
-                onBlur={e => e.currentTarget.style.borderBottomColor = '#2a3347'}
+                onBlur={e => e.currentTarget.style.borderBottomColor = '#e2e8f0'}
               />
               <label
                 className="absolute left-0 top-6 text-xs tracking-[0.2em] uppercase font-bold transition-all duration-300 peer-focus:top-0 peer-focus:text-[10px] peer-valid:top-0 peer-valid:text-[10px]"
@@ -188,7 +188,7 @@ export default function LoginPage() {
         </div>
       </div>
 
-      <p className="mt-8 text-[10px] uppercase tracking-[0.3em] text-center font-bold animate-fade-in" style={{ color: '#2a3347' }}>
+      <p className="mt-8 text-[10px] uppercase tracking-[0.3em] text-center font-bold animate-fade-in" style={{ color: '#cbd5e1' }}>
         Predict · Compete · Glory
       </p>
     </div>
