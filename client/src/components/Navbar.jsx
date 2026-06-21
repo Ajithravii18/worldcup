@@ -92,7 +92,17 @@ export default function Navbar({ view, setView, statusFilter, setStatusFilter })
 
         {/* Right side: user controls */}
         {user && (
-          <div className="flex items-center gap-3 ml-auto md:ml-0">
+          <div className="flex items-center gap-2 sm:gap-3 ml-auto md:ml-0">
+            {user?.role === 'admin' && (
+              <button
+                onClick={() => navigate('/admin')}
+                className="md:hidden flex items-center justify-center w-8 h-8 rounded-full bg-theme-primary/10 text-theme-primary transition-colors"
+                title="Admin Dashboard"
+              >
+                ⚙️
+              </button>
+            )}
+
             <NotificationBell />
 
             <button
@@ -110,13 +120,18 @@ export default function Navbar({ view, setView, statusFilter, setStatusFilter })
             <button
               id="logout-btn"
               onClick={onLogoutClick}
-              className="hidden sm:block text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 transition-all duration-150"
+              className="flex items-center justify-center h-8 px-2 sm:px-3 rounded transition-all duration-150"
               style={confirmLogout
                 ? { background: '#ef4444', color: '#fff' }
                 : { background: 'transparent', color: '#64748b', border: '1px solid #e2e8f0' }
               }
             >
-              {confirmLogout ? 'Confirm?' : 'Logout'}
+              <span className="hidden sm:block text-[10px] font-bold uppercase tracking-widest">
+                {confirmLogout ? 'Confirm?' : 'Logout'}
+              </span>
+              <span className="sm:hidden text-lg leading-none">
+                {confirmLogout ? '⚠️' : '🚪'}
+              </span>
             </button>
           </div>
         )}

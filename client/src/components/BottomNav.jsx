@@ -59,16 +59,6 @@ export default function BottomNav({ view, setView, statusFilter, setStatusFilter
             <span className="text-[8px] font-black tracking-widest leading-normal">{tab.label}</span>
           </button>
         ))}
-        {user?.role === 'admin' && (
-          <button
-            onClick={() => navigate('/admin')}
-            className="flex-1 flex flex-col items-center justify-center pt-2.5 pb-3 gap-0.5 transition-colors duration-150"
-            style={{ color: '#64748b' }}
-          >
-            <span className="text-lg leading-tight">⚙️</span>
-            <span className="text-[8px] font-black tracking-widest leading-normal">ADMIN</span>
-          </button>
-        )}
       </div>
     </div>
   );
