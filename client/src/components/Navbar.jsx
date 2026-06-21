@@ -88,33 +88,7 @@ export default function Navbar({ view, setView, statusFilter, setStatusFilter })
           </nav>
         )}
 
-        {/* Desktop filter pills — only on matches views */}
-        {user && isMatchesView && setStatusFilter && (
-          <div className="hidden md:flex items-center gap-0 border" style={{ borderColor: '#e2e8f0' }}>
-            <button
-              onClick={() => setStatusFilter('upcoming')}
-              className={`px-4 py-1.5 text-[10px] font-bold uppercase tracking-widest transition-colors duration-150 ${
-                statusFilter === 'upcoming'
-                  ? 'text-white'
-                  : 'text-[#64748b] hover:text-slate-900'
-              }`}
-              style={statusFilter === 'upcoming' ? { background: '#F26522' } : { background: 'transparent' }}
-            >
-              Open
-            </button>
-            <button
-              onClick={() => setStatusFilter('completed')}
-              className={`px-4 py-1.5 text-[10px] font-bold uppercase tracking-widest transition-colors duration-150 ${
-                statusFilter === 'completed'
-                  ? 'text-white'
-                  : 'text-[#64748b] hover:text-slate-900'
-              }`}
-              style={statusFilter === 'completed' ? { background: '#F26522' } : { background: 'transparent' }}
-            >
-              Results
-            </button>
-          </div>
-        )}
+        {/* Desktop filter pills removed and moved to HomePage */}
 
         {/* Right side: user controls */}
         {user && (

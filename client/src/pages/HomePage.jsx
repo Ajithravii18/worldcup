@@ -336,7 +336,33 @@ export default function HomePage() {
                     {view === 'global' ? 'Community' : 'Your Predictions'} — {filteredMatches.length} matches
                   </span>
 
-                  <div className="flex items-center gap-2 w-full sm:w-auto">
+                  <div className="flex flex-col sm:flex-row items-center gap-2 w-full sm:w-auto">
+                    {/* Desktop filter pills moved here */}
+                    <div className="hidden md:flex items-center gap-0 border" style={{ borderColor: '#e2e8f0' }}>
+                      <button
+                        onClick={() => setStatusFilter('upcoming')}
+                        className={`px-4 py-2.5 text-[10px] font-bold uppercase tracking-widest transition-colors duration-150 ${
+                          statusFilter === 'upcoming'
+                            ? 'text-white'
+                            : 'text-[#64748b] hover:text-slate-900'
+                        }`}
+                        style={statusFilter === 'upcoming' ? { background: '#F26522' } : { background: 'transparent' }}
+                      >
+                        Open
+                      </button>
+                      <button
+                        onClick={() => setStatusFilter('completed')}
+                        className={`px-4 py-2.5 text-[10px] font-bold uppercase tracking-widest transition-colors duration-150 ${
+                          statusFilter === 'completed'
+                            ? 'text-white'
+                            : 'text-[#64748b] hover:text-slate-900'
+                        }`}
+                        style={statusFilter === 'completed' ? { background: '#F26522' } : { background: 'transparent' }}
+                      >
+                        Results
+                      </button>
+                    </div>
+
                     <div className="relative flex-1 sm:flex-none">
                       <select
                         value={teamFilter}
