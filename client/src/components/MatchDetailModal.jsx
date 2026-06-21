@@ -521,7 +521,7 @@ export default function MatchDetailModal({
                             <span>{match.homeScore ?? 0} – {match.awayScore ?? 0}</span>
                           </div>
                           <span className="text-[9px] font-black uppercase tracking-widest text-red-500 mt-2 animate-pulse">
-                            LIVE NOW
+                            {match.shortStatus && match.shortStatus !== '1H' && match.shortStatus !== '2H' ? match.shortStatus : match.elapsed ? `LIVE ${match.elapsed}'` : 'LIVE NOW'}
                           </span>
                         </div>
                       ) : (

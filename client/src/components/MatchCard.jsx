@@ -31,7 +31,15 @@ export default function MatchCard({ match, prediction = null, onClick }) {
   };
 
   const StatusBadge = () => {
-    if (match.status === 'live')       return <span className="badge-live animate-pulse">LIVE</span>;
+    if (match.status === 'live') {
+      let liveText = 'LIVE';
+      if (match.shortStatus && match.shortStatus !== '1H' && match.shortStatus !== '2H') {
+        liveText = match.shortStatus;
+      } else if (match.elapsed) {
+        liveText = `${match.elapsed}'`;
+      }
+      return <span className="badge-live animate-pulse">{liveText}</span>;
+    }
     if (match.status === 'completed')  return <span className="badge-completed">FT</span>;
     if (isEarly)  return <span className="badge-soon">Soon</span>;
     if (isOpen)   return <span className="badge-open">Open</span>;

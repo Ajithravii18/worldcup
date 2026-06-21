@@ -21,12 +21,19 @@ export default function WinnerBanner({ matches, predictions = [], currentTime = 
   const isDraw = !isLive && matchToDisplay.winner === 'Draw';
 
   // Calculate elapsed time for live matches
-  let elapsedMinutes = 0;
+  let displayTime = '';
   if (isLive) {
-    const kickoff = new Date(matchToDisplay.kickoffTime).getTime();
-    elapsedMinutes = Math.floor((currentTime - kickoff) / 60000);
-    if (elapsedMinutes < 0) elapsedMinutes = 0;
-    if (elapsedMinutes > 120) elapsedMinutes = '120+';
+    if (matchToDisplay.shortStatus && matchToDisplay.shortStatus !== '1H' && matchToDisplay.shortStatus !== '2H') {
+      displayTime = matchToDisplay.shortStatus; // e.g. HT, PEN, BT, etc.
+    } else if (matchToDisplay.elapsed) {
+      displayTime = `${matchToDisplay.elapsed}'`;
+    } else {
+      const kickoff = new Date(matchToDisplay.kickoffTime).getTime();
+      let elapsedMinutes = Math.floor((currentTime - kickoff) / 60000);
+      if (elapsedMinutes < 0) elapsedMinutes = 0;
+      if (elapsedMinutes > 120) elapsedMinutes = '120+';
+      displayTime = `${elapsedMinutes}'`;
+    }
   }
 
   // Find who predicted this match exactly correct (only relevant for completed matches)
@@ -63,7 +70,7 @@ export default function WinnerBanner({ matches, predictions = [], currentTime = 
                   LIVE
                 </span>
                 <span className="font-display tracking-widest text-[11px] text-red-100 font-bold ml-1">
-                  {elapsedMinutes}'
+                  {displayTime}
                 </span>
               </div>
             </div>
