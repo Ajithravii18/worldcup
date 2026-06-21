@@ -7,23 +7,66 @@ export default function AdminDashboard() {
   const { user } = useAuth();
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
+  const [matches, setMatches] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
-  const fetchUsers = async () => {
+  const fetchData = async () => {
     try {
-      const res = await api.get('/admin/users');
-      setUsers(res.data);
+      setLoading(true);
+      const [usersRes, matchesRes] = await Promise.all([
+        api.get('/admin/users'),
+        api.get('/matches')
+      ]);
+      setUsers(usersRes.data);
+      setMatches(matchesRes.data);
       setError('');
     } catch (err) {
-      setError(err.response?.data?.message || 'Failed to load users');
+      setError(err.response?.data?.message || 'Failed to load dashboard data');
     } finally {
       setLoading(false);
     }
   };
 
+  const fetchMatches = async () => {
+    try {
+      const res = await api.get('/matches');
+      setMatches(res.data);
+    } catch (err) {
+      alert('Failed to refresh matches');
+    }
+  };
+
+  const updateMatchScore = async (matchId, homeScore, awayScore) => {
+    try {
+      // Optimistic update
+      setMatches(matches.map(m => m._id === matchId ? { ...m, homeScore, awayScore } : m));
+      await api.put(`/matches/${matchId}/result`, { homeScore, awayScore });
+    } catch (err) {
+      alert(err.response?.data?.message || 'Failed to update score');
+      fetchMatches(); // Revert on failure
+    }
+  };
+
+  const updateMatchStatus = async (matchId, status) => {
+    if (status === 'completed' && !window.confirm('Are you sure you want to finish this match? This will permanently award points to users.')) {
+      return;
+    }
+    try {
+      setMatches(matches.map(m => m._id === matchId ? { ...m, status } : m));
+      await api.put(`/matches/${matchId}/result`, { status });
+      if (status === 'completed') {
+        alert('Match completed and points awarded successfully!');
+        fetchMatches(); // Re-fetch to get verified status
+      }
+    } catch (err) {
+      alert(err.response?.data?.message || 'Failed to update status');
+      fetchMatches(); // Revert on failure
+    }
+  };
+
   useEffect(() => {
-    fetchUsers();
+    fetchData();
   }, []);
 
   const handleToggleFreeze = async (userId) => {
@@ -207,6 +250,79 @@ export default function AdminDashboard() {
               )}
             </tbody>
           </table>
+        </div>
+
+        {/* Live Match Controller Section */}
+        <div className="mt-12">
+          <div className="flex items-center justify-between mb-6">
+            <div>
+              <h2 className="text-2xl font-black text-gray-900 tracking-tight uppercase">Live Match Controller</h2>
+              <p className="text-sm text-gray-500 font-bold uppercase tracking-widest mt-1">Manually update scores</p>
+            </div>
+            <button
+              onClick={fetchMatches}
+              className="bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-full font-bold text-xs uppercase tracking-widest transition-colors shadow-sm"
+            >
+              Refresh Matches
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            {matches.filter(m => m.status === 'live' || m.status === 'upcoming' || (m.status === 'completed' && !m.apiVerified)).map((m) => (
+              <div key={m._id} className="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm flex flex-col">
+                <div className="flex justify-between items-center mb-4">
+                  <span className="text-xs font-black text-gray-400 uppercase tracking-widest">{new Date(m.kickoffTime).toLocaleString()}</span>
+                  <span className={`px-2 py-1 rounded-full text-[10px] font-black uppercase tracking-widest ${m.status === 'live' ? 'bg-red-100 text-red-600 animate-pulse' : m.status === 'completed' ? 'bg-gray-100 text-gray-600' : 'bg-blue-50 text-blue-600'}`}>
+                    {m.status}
+                  </span>
+                </div>
+                
+                <div className="flex items-center justify-between gap-4 mb-6">
+                  <div className="flex-1 flex flex-col items-center gap-2">
+                    <span className="font-bold text-sm md:text-base text-center truncate w-full">{m.homeTeam}</span>
+                    <div className="flex items-center gap-2">
+                      <button onClick={() => updateMatchScore(m._id, Math.max(0, m.homeScore - 1), m.awayScore)} className="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 font-black text-gray-600 flex items-center justify-center">-</button>
+                      <span className="text-2xl font-black w-8 text-center">{m.homeScore}</span>
+                      <button onClick={() => updateMatchScore(m._id, m.homeScore + 1, m.awayScore)} className="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 font-black text-gray-600 flex items-center justify-center">+</button>
+                    </div>
+                  </div>
+                  <span className="text-gray-300 font-black text-xl">VS</span>
+                  <div className="flex-1 flex flex-col items-center gap-2">
+                    <span className="font-bold text-sm md:text-base text-center truncate w-full">{m.awayTeam}</span>
+                    <div className="flex items-center gap-2">
+                      <button onClick={() => updateMatchScore(m._id, m.homeScore, Math.max(0, m.awayScore - 1))} className="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 font-black text-gray-600 flex items-center justify-center">-</button>
+                      <span className="text-2xl font-black w-8 text-center">{m.awayScore}</span>
+                      <button onClick={() => updateMatchScore(m._id, m.homeScore, m.awayScore + 1)} className="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 font-black text-gray-600 flex items-center justify-center">+</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex gap-2 mt-auto">
+                  {m.status !== 'live' && (
+                    <button 
+                      onClick={() => updateMatchStatus(m._id, 'live')}
+                      className="flex-1 bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 py-2 rounded-xl font-bold text-xs uppercase tracking-widest transition-colors"
+                    >
+                      Start Match
+                    </button>
+                  )}
+                  {m.status !== 'completed' && (
+                    <button 
+                      onClick={() => updateMatchStatus(m._id, 'completed')}
+                      className="flex-1 bg-theme-primary text-white border border-theme-primary hover:bg-theme-secondary py-2 rounded-xl font-bold text-xs uppercase tracking-widest transition-colors shadow-sm"
+                    >
+                      Finish & Award Points
+                    </button>
+                  )}
+                </div>
+              </div>
+            ))}
+            {matches.filter(m => m.status === 'live' || m.status === 'upcoming' || (m.status === 'completed' && !m.apiVerified)).length === 0 && (
+              <div className="col-span-full text-center text-gray-500 font-semibold uppercase tracking-widest text-xs p-8 bg-white rounded-2xl border border-gray-200 shadow-sm">
+                No active or upcoming matches
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
