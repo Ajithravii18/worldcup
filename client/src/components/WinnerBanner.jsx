@@ -265,17 +265,6 @@ export default function WinnerBanner({ matches, predictions = [], currentTime = 
 
         {/* Completed Match Extras */}
         <div className="mt-6 flex flex-col items-center">
-          {/* Winner highlight */}
-          {!isDraw && matchToDisplay.winner && (
-            <div className="flex items-center gap-2 mb-4 animate-pulse">
-              <span className="text-xl">🏆</span>
-              <span className="font-display text-[12px] sm:text-sm uppercase tracking-[0.2em] text-white font-bold drop-shadow-md">
-                WINNER: {matchToDisplay.winner}
-              </span>
-              <span className="text-xl">🏆</span>
-            </div>
-          )}
-
           {/* Prediction Winners Section */}
           <div className="w-full pt-4 border-t border-white/20 text-center text-[10px] bg-black/10 rounded-xl p-4 mt-2">
             <span className="text-white/80 font-bold uppercase tracking-[0.2em] block mb-3">
