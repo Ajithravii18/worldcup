@@ -21,14 +21,8 @@ export default function LoginPage() {
     try {
       await login(email, password);
       setSuccess(true);
-      confetti({
-        particleCount: 150,
-        spread: 85,
-        origin: { y: 0.5 }
-      });
-      setTimeout(() => {
-        navigate('/app');
-      }, 1600);
+      confetti({ particleCount: 150, spread: 85, origin: { y: 0.5 } });
+      setTimeout(() => navigate('/app'), 1600);
     } catch (err) {
       setError(err.response?.data?.message || 'Login failed. Please try again.');
       setLoading(false);
@@ -37,26 +31,28 @@ export default function LoginPage() {
 
   if (success) {
     return (
-      <div className="min-h-dvh flex flex-col items-center justify-center text-center p-6 animate-fade-in relative z-50">
-        <div className="absolute inset-0 -z-10 bg-white/90 backdrop-blur-md" />
+      <div className="min-h-dvh flex flex-col items-center justify-center text-center p-6 animate-fade-in" style={{ background: '#141921' }}>
         <div className="text-8xl mb-6 animate-bounce">🏆</div>
-        <h1 className="font-display text-5xl text-theme-primary tracking-widest animate-pulse mb-3 font-black">PROFILE SYNCED!</h1>
-        <p className="text-gray-600 text-lg uppercase tracking-wide font-bold">Ready for the Matchday</p>
-        <div className="mt-8 flex items-center justify-center gap-2 text-gray-500 animate-pulse">
-          <div className="w-2.5 h-2.5 bg-theme-primary rounded-full animate-ping" />
-          <span className="text-xs uppercase tracking-widest font-bold">Entering Arena...</span>
+        <h1 className="font-display text-4xl tracking-widest animate-pulse mb-3 font-black" style={{ color: '#F26522' }}>WELCOME BACK!</h1>
+        <p className="text-sm uppercase tracking-widest font-bold" style={{ color: '#6b7280' }}>Entering the Arena...</p>
+        <div className="mt-8 flex items-center justify-center gap-2 animate-pulse">
+          <div className="w-2 h-2 animate-ping" style={{ background: '#F26522' }} />
+          <span className="text-xs uppercase tracking-widest font-bold" style={{ color: '#6b7280' }}>Loading...</span>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-dvh flex flex-col items-center justify-center relative overflow-hidden px-4 bg-transparent">
+    <div className="min-h-dvh flex flex-col items-center justify-center px-4" style={{ background: '#141921' }}>
 
-      {/* Back Navigation */}
-      <Link 
-        to="/" 
-        className="absolute top-6 left-6 text-gray-500 hover:text-gray-900 flex items-center gap-2 text-xs tracking-widest uppercase transition-colors z-50 font-bold"
+      {/* Back */}
+      <Link
+        to="/"
+        className="absolute top-6 left-6 flex items-center gap-2 text-xs tracking-widest uppercase font-bold transition-colors z-50"
+        style={{ color: '#6b7280' }}
+        onMouseEnter={e => e.currentTarget.style.color = '#f0f0f0'}
+        onMouseLeave={e => e.currentTarget.style.color = '#6b7280'}
       >
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -64,114 +60,136 @@ export default function LoginPage() {
         Back
       </Link>
 
-      {/* Branding matching LandingPage */}
-      <div className="mb-8 text-center relative z-10 animate-fade-in">
-        <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl leading-none tracking-[0.25em] font-black text-gray-900 drop-shadow-sm animate-pulse">
-          LUCKY STAR FC
-        </h1>
-        <p className="text-xs sm:text-sm text-theme-primary tracking-[0.4em] uppercase leading-none mt-3 font-bold">
-          PREDICTIONS
-        </p>
+      {/* Branding */}
+      <div className="mb-8 text-center animate-fade-in">
+        <div className="flex items-center justify-center gap-3 mb-3">
+          <div className="w-10 h-10 flex items-center justify-center font-black text-white text-2xl font-display" style={{ background: '#F26522' }}>
+            K
+          </div>
+          <h1 className="font-display text-3xl sm:text-4xl font-black tracking-[0.2em] uppercase" style={{ color: '#f0f0f0' }}>
+            Lucky Star FC
+          </h1>
+        </div>
+        <p className="text-xs tracking-[0.4em] uppercase font-bold" style={{ color: '#F26522' }}>Predictions</p>
       </div>
 
-      {/* Login card */}
-      <div
-        className="w-full max-w-sm animate-slide-up relative z-10"
-      >
-        <div className="relative p-8 bg-white border border-gray-100 rounded-xl overflow-hidden shadow-2xl">
-          {/* Sleek loading bar */}
+      {/* Card */}
+      <div className="w-full max-w-sm animate-slide-up">
+        <div className="relative p-8 overflow-hidden" style={{ background: '#1e2636', border: '1px solid #2a3347' }}>
+
+          {/* Loading bar */}
           {loading && (
-            <div className="absolute top-0 left-0 w-full h-[3px] bg-gray-100 overflow-hidden">
-              <div className="h-full bg-theme-primary w-1/2 animate-[slide_1s_ease-in-out_infinite]" />
+            <div className="absolute top-0 left-0 w-full h-[2px] overflow-hidden" style={{ background: '#2a3347' }}>
+              <div className="h-full w-1/2 animate-[slide_1s_ease-in-out_infinite]" style={{ background: '#F26522' }} />
             </div>
           )}
 
-        <h2 className="font-display text-xl text-gray-900 tracking-[0.2em] mb-8 text-center uppercase font-black">
-          SIGN IN
-        </h2>
-
-        {error && (
-          <div className="mb-4 p-3 rounded-lg text-sm text-red-600 font-bold animate-fade-in"
-            style={{ background: 'rgba(220, 38, 38, 0.05)', border: '1px solid rgba(220, 38, 38, 0.2)' }}>
-            ⚠️ {error}
-          </div>
-        )}
-
-        <form id="login-form" onSubmit={handleSubmit} className={`space-y-6 transition-opacity duration-300 ${loading ? 'opacity-50' : ''}`}>
-          <div className="relative group pt-4">
-            <input
-              id="login-email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder=" "
-              required
-              className="peer w-full bg-transparent border-b-2 border-gray-200 px-0 py-2 text-gray-900 placeholder-transparent focus:border-theme-primary focus:outline-none transition-colors duration-300 font-body font-medium"
-              autoComplete="email"
-            />
-            <label 
-              className="absolute left-0 top-6 text-gray-400 text-xs tracking-[0.2em] uppercase transition-all duration-300 peer-focus:top-0 peer-focus:text-[10px] peer-focus:text-theme-primary peer-valid:top-0 peer-valid:text-[10px] peer-valid:text-gray-400 font-bold"
-              htmlFor="login-email"
-            >
-              Email
-            </label>
-          </div>
-
-          <div className="relative group pt-4">
-            <input
-              id="login-password"
-              type={showPassword ? 'text' : 'password'}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder=" "
-              required
-              className="peer w-full bg-transparent border-b-2 border-gray-200 px-0 py-2 pr-10 text-gray-900 placeholder-transparent focus:border-theme-primary focus:outline-none transition-colors duration-300 font-body font-medium"
-              autoComplete="current-password"
-            />
-            <label 
-              className="absolute left-0 top-6 text-gray-400 text-xs tracking-[0.2em] uppercase transition-all duration-300 peer-focus:top-0 peer-focus:text-[10px] peer-focus:text-theme-primary peer-valid:top-0 peer-valid:text-[10px] peer-valid:text-gray-400 font-bold"
-              htmlFor="login-password"
-            >
-              Password
-            </label>
-            <button
-              type="button"
-              onClick={() => setShowPassword((v) => !v)}
-              className="absolute right-0 top-6 text-gray-400 hover:text-theme-primary text-xs uppercase tracking-widest transition-colors duration-300 font-bold"
-              aria-label="Toggle password visibility"
-            >
-              {showPassword ? 'Hide' : 'Show'}
-            </button>
-          </div>
-
-          <button
-            id="login-submit-btn"
-            type="submit"
-            disabled={loading}
-            className="w-full py-4 text-xs tracking-[0.2em] uppercase font-black text-white bg-theme-primary hover:bg-blue-700 transition-all duration-300 mt-8 rounded-lg disabled:opacity-50 shadow-md hover:shadow-lg"
-          >
+          <h2 className="font-display text-lg font-black tracking-[0.2em] mb-8 text-center uppercase" style={{ color: '#f0f0f0' }}>
             Sign In
-          </button>
+          </h2>
 
-          <div className="text-center mt-4">
-            <Link to="/forgot-password" className="text-gray-500 hover:text-theme-primary text-xs uppercase tracking-widest transition-colors font-bold">
-              Forgot Password?
+          {error && (
+            <div className="mb-5 p-3 text-sm font-bold animate-fade-in" style={{ background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.25)', color: '#f87171' }}>
+              ⚠ {error}
+            </div>
+          )}
+
+          <form id="login-form" onSubmit={handleSubmit} className={`space-y-6 transition-opacity duration-300 ${loading ? 'opacity-50' : ''}`}>
+
+            <div className="relative group pt-4">
+              <input
+                id="login-email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder=" "
+                required
+                autoComplete="email"
+                className="peer w-full bg-transparent px-0 py-2 placeholder-transparent outline-none font-body font-medium transition-colors duration-200"
+                style={{ borderBottom: '2px solid #2a3347', color: '#f0f0f0' }}
+                onFocus={e => e.currentTarget.style.borderBottomColor = '#F26522'}
+                onBlur={e => e.currentTarget.style.borderBottomColor = '#2a3347'}
+              />
+              <label
+                className="absolute left-0 top-6 text-xs tracking-[0.2em] uppercase font-bold transition-all duration-300 peer-focus:top-0 peer-focus:text-[10px] peer-valid:top-0 peer-valid:text-[10px]"
+                style={{ color: '#6b7280' }}
+                htmlFor="login-email"
+              >
+                Email
+              </label>
+            </div>
+
+            <div className="relative group pt-4">
+              <input
+                id="login-password"
+                type={showPassword ? 'text' : 'password'}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder=" "
+                required
+                autoComplete="current-password"
+                className="peer w-full bg-transparent px-0 py-2 pr-12 placeholder-transparent outline-none font-body font-medium transition-colors duration-200"
+                style={{ borderBottom: '2px solid #2a3347', color: '#f0f0f0' }}
+                onFocus={e => e.currentTarget.style.borderBottomColor = '#F26522'}
+                onBlur={e => e.currentTarget.style.borderBottomColor = '#2a3347'}
+              />
+              <label
+                className="absolute left-0 top-6 text-xs tracking-[0.2em] uppercase font-bold transition-all duration-300 peer-focus:top-0 peer-focus:text-[10px] peer-valid:top-0 peer-valid:text-[10px]"
+                style={{ color: '#6b7280' }}
+                htmlFor="login-password"
+              >
+                Password
+              </label>
+              <button
+                type="button"
+                onClick={() => setShowPassword(v => !v)}
+                className="absolute right-0 top-6 text-xs uppercase tracking-widest font-bold transition-colors"
+                style={{ color: '#6b7280' }}
+                onMouseEnter={e => e.currentTarget.style.color = '#F26522'}
+                onMouseLeave={e => e.currentTarget.style.color = '#6b7280'}
+              >
+                {showPassword ? 'Hide' : 'Show'}
+              </button>
+            </div>
+
+            <button
+              id="login-submit-btn"
+              type="submit"
+              disabled={loading}
+              className="w-full py-3.5 text-xs tracking-[0.2em] uppercase font-black text-white mt-8 active:scale-95 transition-all disabled:opacity-40 disabled:cursor-not-allowed"
+              style={{ background: '#F26522' }}
+            >
+              {loading ? 'Signing in...' : 'Sign In'}
+            </button>
+
+            <div className="text-center mt-3">
+              <Link
+                to="/forgot-password"
+                className="text-xs uppercase tracking-widest font-bold transition-colors"
+                style={{ color: '#6b7280' }}
+                onMouseEnter={e => e.currentTarget.style.color = '#F26522'}
+                onMouseLeave={e => e.currentTarget.style.color = '#6b7280'}
+              >
+                Forgot Password?
+              </Link>
+            </div>
+          </form>
+
+          <p className="mt-8 text-center text-xs tracking-widest uppercase font-bold" style={{ color: '#6b7280' }}>
+            No account?{' '}
+            <Link
+              to="/register"
+              className="font-black transition-colors"
+              style={{ color: '#F26522' }}
+            >
+              Register
             </Link>
-          </div>
-        </form>
-
-        <p className="mt-8 text-center text-xs tracking-widest text-gray-500 uppercase font-bold">
-          Don't have an account?{' '}
-          <Link to="/register" className="text-theme-primary hover:text-blue-700 hover:underline">
-            Create Account
-          </Link>
-        </p>
+          </p>
         </div>
       </div>
 
-      {/* Bottom tagline */}
-      <p className="mt-8 text-gray-400 text-[10px] uppercase tracking-[0.3em] text-center animate-fade-in relative z-10 font-bold">
-        Predict. Compete. Glory awaits.
+      <p className="mt-8 text-[10px] uppercase tracking-[0.3em] text-center font-bold animate-fade-in" style={{ color: '#2a3347' }}>
+        Predict · Compete · Glory
       </p>
     </div>
   );

@@ -254,7 +254,7 @@ export default function HomePage() {
   const matchPages = chunkMatches(filteredMatches, chunkSize);
 
   return (
-    <div className="min-h-dvh flex flex-col bg-transparent">
+    <div className="min-h-dvh flex flex-col" style={{ background: '#141921' }}>
       <Navbar 
         view={view} 
         setView={setView} 
@@ -267,20 +267,20 @@ export default function HomePage() {
 
         {/* Error state */}
         {error && (
-          <div className="mx-4 mb-4 p-4 rounded-none text-red-400 text-xs font-bold animate-fade-in uppercase tracking-widest bg-red-500/10 border border-red-500/20">
+          <div className="mx-4 mb-4 p-3 text-xs font-bold animate-fade-in uppercase tracking-widest" style={{ background: 'rgba(239,68,68,0.12)', border: '1px solid rgba(239,68,68,0.25)', color: '#f87171' }}>
             {error}
           </div>
         )}
 
-        {/* Correct Prediction Notification Toast */}
+        {/* Correct Prediction Toast */}
         {notification && (
           <div className="fixed top-20 left-1/2 -translate-x-1/2 z-50 animate-slide-up w-[90%] max-w-sm">
-            <div className="glass-card bg-[#0B0F19]/90 border border-emerald-500/50 p-4 text-center shadow-[0_10px_40px_rgba(16,185,129,0.2)] relative overflow-hidden rounded-none">
-              <button onClick={() => setNotification(null)} className="absolute top-2 right-3 text-emerald-400 hover:text-white font-bold text-lg">✕</button>
-              <h3 className="font-display font-bold tracking-[0.2em] uppercase text-emerald-400 text-base mb-1 mt-2">SPOT ON!</h3>
-              <p className="text-[10px] font-bold text-white/60 mb-3 tracking-widest uppercase">You perfectly predicted:</p>
-              <div className="text-sm font-bold text-white border border-white/10 bg-white/5 rounded-none py-3 shadow-inner">
-                {notification.homeTeam} <span className="text-white/40 mx-1 font-normal">vs</span> {notification.awayTeam} <br/>
+            <div className="relative overflow-hidden p-4 text-center" style={{ background: '#1e2636', border: '1px solid #22c55e', borderLeft: '4px solid #22c55e' }}>
+              <button onClick={() => setNotification(null)} className="absolute top-2 right-3 font-bold text-lg" style={{ color: '#22c55e' }}>✕</button>
+              <h3 className="font-display font-black tracking-[0.2em] uppercase text-base mb-1 mt-2" style={{ color: '#22c55e' }}>SPOT ON!</h3>
+              <p className="text-[10px] font-bold mb-3 tracking-widest uppercase" style={{ color: '#6b7280' }}>You perfectly predicted:</p>
+              <div className="text-sm font-bold py-3" style={{ background: '#141921', color: '#f0f0f0' }}>
+                {notification.homeTeam} <span className="font-normal" style={{ color: '#6b7280' }}>vs</span> {notification.awayTeam}<br/>
                 <span className="text-2xl tracking-widest mt-2 inline-block font-black">{notification.score}</span>
               </div>
             </div>
@@ -304,27 +304,26 @@ export default function HomePage() {
               </div>
             )}
 
-            {/* Loading animation */}
+            {/* Loading */}
             {isLoading && (
-              <div className="flex flex-col items-center justify-center py-20 mx-4">
-                <div className="relative w-16 h-16 flex items-center justify-center">
-                  <div className="absolute inset-0 rounded-full border-4 border-white/10 border-t-emerald-500 animate-spin"></div>
-                  <div className="w-8 h-8 bg-emerald-500 rounded-full animate-pulse shadow-[0_0_15px_rgba(16,185,129,0.5)]"></div>
+              <div className="flex flex-col items-center justify-center py-24">
+                <div className="relative w-12 h-12">
+                  <div className="absolute inset-0 border-4 border-[#2a3347] border-t-[#F26522] animate-spin" style={{ borderRadius: 0 }}></div>
                 </div>
-                <div className="mt-4 text-[10px] font-bold text-emerald-400 tracking-widest uppercase animate-pulse">
-                  LOADING MATCHES...
+                <div className="mt-5 text-[10px] font-black tracking-widest uppercase animate-pulse" style={{ color: '#F26522' }}>
+                  Loading Matches...
                 </div>
               </div>
             )}
 
-            {/* Matches list empty state */}
+            {/* Empty state */}
             {!isLoading && matches.length === 0 && (
-              <div className="text-center py-16 text-white/50 font-bold uppercase tracking-widest">
-                <div className="text-4xl mb-4 opacity-30 text-white/40 font-display">0</div>
-                <p className="font-display text-xl text-white tracking-[0.2em] mb-2 uppercase">NO MATCHES</p>
-                <p className="text-[10px]">Run the seed script to add matches.</p>
-                <code className="mt-3 block text-[10px] text-white/80 bg-white/10 px-4 py-2 rounded-none mx-auto max-w-xs border border-white/20">
-                  cd server && npm run seed
+              <div className="text-center py-16 font-bold uppercase tracking-widest">
+                <div className="text-5xl mb-4 opacity-20 font-display" style={{ color: '#6b7280' }}>0</div>
+                <p className="font-display text-xl tracking-[0.2em] mb-2 uppercase" style={{ color: '#f0f0f0' }}>No Matches</p>
+                <p className="text-[10px] mb-4" style={{ color: '#6b7280' }}>Run the seed script to add matches.</p>
+                <code className="mt-3 block text-[10px] px-4 py-2 mx-auto max-w-xs" style={{ background: '#1e2636', color: '#F26522', border: '1px solid #2a3347' }}>
+                  cd server &amp;&amp; npm run seed
                 </code>
               </div>
             )}
@@ -332,28 +331,28 @@ export default function HomePage() {
             {!isLoading && matches.length > 0 && (
               <div className="flex flex-col">
                 {/* Filter and Sort Row */}
-                <div className="mx-4 mb-4 flex flex-col sm:flex-row items-center justify-between gap-3 bg-white/95 border border-emerald-200 p-3 rounded-none animate-fade-in shadow-md backdrop-blur-md">
-                  <span className="text-[10px] text-gray-600 uppercase tracking-[0.2em] font-bold w-full sm:w-auto text-center sm:text-left">
-                    {view === 'global' ? 'COMMUNITY FEED' : 'YOUR PREDICTIONS'} — {filteredMatches.length} MATCHES
+                <div className="mx-4 mb-4 flex flex-col sm:flex-row items-center justify-between gap-2 p-3 animate-fade-in" style={{ background: '#1e2636', border: '1px solid #2a3347' }}>
+                  <span className="text-[10px] uppercase tracking-[0.2em] font-bold w-full sm:w-auto text-center sm:text-left" style={{ color: '#6b7280' }}>
+                    {view === 'global' ? 'Community' : 'Your Predictions'} — {filteredMatches.length} matches
                   </span>
-                  
+
                   <div className="flex items-center gap-2 w-full sm:w-auto">
                     <div className="relative flex-1 sm:flex-none">
                       <select
                         value={teamFilter}
                         onChange={(e) => {
                           setTeamFilter(e.target.value);
-                          // Reset scroll when filter changes
                           if (scrollContainerRef.current) scrollContainerRef.current.scrollLeft = 0;
                         }}
-                        className="w-full bg-white text-[10px] font-bold text-emerald-600 uppercase tracking-widest border border-emerald-200 rounded-none px-4 py-2.5 outline-none focus:border-emerald-500/50 appearance-none text-center sm:text-left cursor-pointer shadow-sm"
+                        className="w-full text-[10px] font-bold uppercase tracking-widest px-4 py-2.5 outline-none appearance-none cursor-pointer"
+                        style={{ background: '#141921', border: '1px solid #2a3347', color: '#F26522' }}
                       >
-                        <option value="All">ALL TEAMS</option>
+                        <option value="All">All Teams</option>
                         {uniqueTeams.map(t => (
                           <option key={t} value={t}>{t}</option>
                         ))}
                       </select>
-                      <span className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400 text-[10px]">▼</span>
+                      <span className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-[10px]" style={{ color: '#6b7280' }}>▼</span>
                     </div>
 
                     <button
@@ -361,18 +360,20 @@ export default function HomePage() {
                         setDateSort(prev => prev === 'earliest' ? 'latest' : 'earliest');
                         if (scrollContainerRef.current) scrollContainerRef.current.scrollLeft = 0;
                       }}
-                      className="flex-1 sm:flex-none bg-white text-[10px] font-bold text-gray-700 uppercase tracking-widest border border-emerald-200 rounded-none px-4 py-2.5 hover:bg-gray-50 hover:text-black active:scale-95 transition-all text-center flex items-center justify-center gap-2 cursor-pointer shadow-sm"
+                      className="flex-1 sm:flex-none text-[10px] font-bold uppercase tracking-widest px-4 py-2.5 active:scale-95 transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+                      style={{ background: '#141921', border: '1px solid #2a3347', color: '#f0f0f0' }}
                     >
-                      DATE <span className="text-emerald-600 text-xs">{dateSort === 'earliest' ? '↑' : '↓'}</span>
+                      Date <span style={{ color: '#F26522' }}>{dateSort === 'earliest' ? '↑' : '↓'}</span>
                     </button>
                   </div>
                 </div>
 
                 {filteredMatches.length > 0 ? (
                   <div className="relative group">
-                    <button 
+                    <button
                       onClick={scrollLeft}
-                      className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-6 z-10 w-12 h-12 items-center justify-center bg-white border border-emerald-200 rounded-full shadow-md text-gray-900 hover:scale-110 active:scale-95 transition-all opacity-0 group-hover:opacity-100 font-bold text-xl"
+                      className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-6 z-10 w-10 h-10 items-center justify-center font-bold text-xl opacity-0 group-hover:opacity-100 transition-all active:scale-95"
+                      style={{ background: '#1e2636', border: '1px solid #2a3347', color: '#f0f0f0' }}
                     >
                       ❮
                     </button>
@@ -394,16 +395,17 @@ export default function HomePage() {
                         </div>
                       ))}
                     </div>
-                    <button 
+                    <button
                       onClick={scrollRight}
-                      className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-6 z-10 w-12 h-12 items-center justify-center bg-white border border-emerald-200 rounded-full shadow-md text-gray-900 hover:scale-110 active:scale-95 transition-all opacity-0 group-hover:opacity-100 font-bold text-xl"
+                      className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-6 z-10 w-10 h-10 items-center justify-center font-bold text-xl opacity-0 group-hover:opacity-100 transition-all active:scale-95"
+                      style={{ background: '#1e2636', border: '1px solid #2a3347', color: '#f0f0f0' }}
                     >
                       ❯
                     </button>
                   </div>
                 ) : (
-                  <div className="text-center py-16 text-gray-500 text-[10px] mx-4 bg-white/90 rounded-none border border-emerald-200 animate-fade-in uppercase tracking-widest font-bold">
-                    {view === 'my' ? 'NO PREDICTIONS MADE YET.' : 'NO MATCHES OPEN IN THIS SECTION.'}
+                  <div className="text-center py-16 text-[10px] mx-4 animate-fade-in uppercase tracking-widest font-bold" style={{ color: '#6b7280', background: '#1e2636', border: '1px solid #2a3347' }}>
+                    {view === 'my' ? 'No predictions made yet.' : 'No matches open in this section.'}
                   </div>
                 )}
               </div>

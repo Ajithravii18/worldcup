@@ -7,77 +7,70 @@ export default {
   theme: {
     extend: {
       colors: {
-        'wc-navy': '#0a0e1a',
-        'wc-deep': '#0d1530',
-        'wc-blue': '#1a2a6c',
-        'wc-gold': '#FFD700',
-        'wc-gold-light': '#FFE44D',
-        'wc-red': '#E63946',
-        'wc-red-dark': '#c1121f',
-        'wc-green': '#2d6a4f',
-        'wc-surface': '#111827',
-        'wc-card': '#1f2937',
-        'wc-border': '#374151',
-        'wc-muted': '#6b7280',
-        'wc-text': '#f9fafb',
-        'theme-bg': '#F9FAFB',
-        'theme-deep': '#111827',
-        'theme-primary': '#2563EB',
-        'theme-secondary': '#10B981',
-        'theme-highlight': '#8B5CF6',
-        'theme-soft': '#DBEAFE',
+        // FotMob-inspired palette
+        'fm-bg':       '#141921',   // page background
+        'fm-surface':  '#1e2636',   // card surface
+        'fm-surface2': '#253049',   // card hover / elevated
+        'fm-border':   '#2a3347',   // border
+        'fm-muted':    '#6b7280',   // muted text
+        'fm-text':     '#f0f0f0',   // primary text
+        'fm-orange':   '#F26522',   // primary accent (FotMob orange)
+        'fm-orange2':  '#e05a14',   // darker orange for hover
+        'fm-green':    '#22c55e',   // success / correct prediction
+        'fm-red':      '#ef4444',   // live / danger
+        'fm-gold':     '#f59e0b',   // top scorer / trophy
+        // Legacy aliases kept for existing components
+        'wc-navy':     '#141921',
+        'wc-deep':     '#1e2636',
+        'wc-gold':     '#f59e0b',
+        'theme-primary': '#F26522',
+        'theme-secondary': '#22c55e',
+        'theme-bg':    '#141921',
+        'theme-deep':  '#1e2636',
       },
       fontFamily: {
         'display': ['Outfit', 'sans-serif'],
-        'body': ['Inter', 'sans-serif'],
+        'body':    ['Inter', 'sans-serif'],
       },
-      backgroundImage: {
-        'wc-gradient': 'linear-gradient(135deg, #1a2a6c 0%, #b21f1f 50%, #fdbb2d 100%)',
-        'wc-gradient-dark': 'linear-gradient(135deg, #0a0e1a 0%, #1a2a6c 50%, #0a0e1a 100%)',
-        'gold-gradient': 'linear-gradient(135deg, #FFD700 0%, #FF8C00 100%)',
-        'card-gradient': 'linear-gradient(180deg, #1f2937 0%, #111827 100%)',
+      borderRadius: {
+        'none': '0px',
+        'sm':   '2px',   // max allowed — keeps FotMob feel
+        DEFAULT: '2px',
+        'md':   '2px',
+        'lg':   '2px',
+        'xl':   '2px',
+        '2xl':  '2px',
+        'full': '9999px', // only for avatars / pills where explicitly needed
       },
       animation: {
-        'pulse-slow': 'pulse 3s ease-in-out infinite',
-        'slide-up': 'slideUp 0.4s ease-out',
-        'fade-in': 'fadeIn 0.3s ease-out',
-        'glow': 'glow 2s ease-in-out infinite alternate',
-        'shimmer': 'shimmer 1.5s infinite',
+        'pulse-slow':    'pulse 3s ease-in-out infinite',
+        'slide-up':      'slideUp 0.3s ease-out',
+        'fade-in':       'fadeIn 0.25s ease-out',
+        'shimmer':       'shimmer 1.5s infinite',
         'bounce-subtle': 'bounceSubtle 0.3s ease-out',
-        'float': 'float 15s ease-in-out infinite',
+        'spin':          'spin 0.8s linear infinite',
       },
       keyframes: {
-        float: {
-          '0%': { transform: 'translateY(0) scale(1)', opacity: '0.2' },
-          '50%': { transform: 'translateY(-30px) scale(1.2)', opacity: '0.8' },
-          '100%': { transform: 'translateY(0) scale(1)', opacity: '0.2' },
-        },
         slideUp: {
-          '0%': { transform: 'translateY(20px)', opacity: '0' },
-          '100%': { transform: 'translateY(0)', opacity: '1' },
+          '0%':   { transform: 'translateY(16px)', opacity: '0' },
+          '100%': { transform: 'translateY(0)',    opacity: '1' },
         },
         fadeIn: {
-          '0%': { opacity: '0' },
+          '0%':   { opacity: '0' },
           '100%': { opacity: '1' },
         },
-        glow: {
-          '0%': { boxShadow: '0 0 5px #FFD700, 0 0 10px #FFD700' },
-          '100%': { boxShadow: '0 0 20px #FFD700, 0 0 40px #FFD700, 0 0 80px #FFD700' },
-        },
         shimmer: {
-          '0%': { backgroundPosition: '-200% 0' },
+          '0%':   { backgroundPosition: '-200% 0' },
           '100%': { backgroundPosition: '200% 0' },
         },
         bounceSubtle: {
           '0%, 100%': { transform: 'scale(1)' },
-          '50%': { transform: 'scale(0.95)' },
+          '50%':      { transform: 'scale(0.96)' },
         },
       },
       boxShadow: {
-        'gold': '0 0 20px rgba(255, 215, 0, 0.3)',
-        'gold-lg': '0 0 40px rgba(255, 215, 0, 0.5)',
-        'card': '0 4px 24px rgba(0, 0, 0, 0.4)',
-        'card-hover': '0 8px 40px rgba(0, 0, 0, 0.6)',
+        'orange': '0 0 0 1px #F26522',
+        'card':   '0 2px 12px rgba(0,0,0,0.4)',
       },
     },
   },
