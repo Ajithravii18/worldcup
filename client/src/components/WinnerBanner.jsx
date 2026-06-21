@@ -42,18 +42,28 @@ export default function WinnerBanner({ matches, predictions = [], currentTime = 
 
   (matchToDisplay.events || []).forEach(e => {
     if (!e.player) return;
+    
+    const isOwnGoal = e.detail && e.detail.toLowerCase().includes('own');
     const timeStr = e.extra ? `${e.time}+${e.extra}'` : `${e.time}'`;
+    const playerStr = isOwnGoal ? `${e.player} (OG)` : e.player;
     
     // Check which team scored (support partial match in case API string differs slightly)
-    const isHome = e.team?.toLowerCase() === matchToDisplay.homeTeam.toLowerCase();
-    const isAway = e.team?.toLowerCase() === matchToDisplay.awayTeam.toLowerCase();
+    let isHome = e.team?.toLowerCase() === matchToDisplay.homeTeam.toLowerCase();
+    let isAway = e.team?.toLowerCase() === matchToDisplay.awayTeam.toLowerCase();
+    
+    // If it's an own goal, it should be listed under the team that benefited (the OTHER team)
+    if (isOwnGoal) {
+      const temp = isHome;
+      isHome = isAway;
+      isAway = temp;
+    }
     
     if (isHome) {
-      if (!homeScorersMap[e.player]) homeScorersMap[e.player] = [];
-      homeScorersMap[e.player].push(timeStr);
+      if (!homeScorersMap[playerStr]) homeScorersMap[playerStr] = [];
+      homeScorersMap[playerStr].push(timeStr);
     } else if (isAway) {
-      if (!awayScorersMap[e.player]) awayScorersMap[e.player] = [];
-      awayScorersMap[e.player].push(timeStr);
+      if (!awayScorersMap[playerStr]) awayScorersMap[playerStr] = [];
+      awayScorersMap[playerStr].push(timeStr);
     }
   });
 
