@@ -69,13 +69,28 @@ export default function AdminDashboard() {
             ← Back to App
           </button>
         </div>
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 gap-4">
           <div>
             <h1 className="text-3xl font-black text-gray-900 tracking-tight uppercase">Admin Panel</h1>
             <p className="text-sm text-gray-500 font-bold uppercase tracking-widest mt-1">Manage Users & Accounts</p>
           </div>
-          <div className="bg-theme-primary/10 text-theme-primary px-4 py-2 rounded-full font-bold text-xs uppercase tracking-widest border border-theme-primary/20">
-            Total Users: {users.length}
+          <div className="flex items-center gap-3">
+            <button
+              onClick={async () => {
+                try {
+                  const res = await api.put('/admin/evaluate');
+                  alert(res.data.message);
+                } catch (err) {
+                  alert(err.response?.data?.message || 'Failed to evaluate matches');
+                }
+              }}
+              className="bg-blue-50 hover:bg-blue-100 text-blue-600 px-4 py-2 rounded-full font-bold text-xs uppercase tracking-widest border border-blue-200 transition-colors shadow-sm"
+            >
+              Evaluate Points
+            </button>
+            <div className="bg-theme-primary/10 text-theme-primary px-4 py-2 rounded-full font-bold text-xs uppercase tracking-widest border border-theme-primary/20">
+              Total Users: {users.length}
+            </div>
           </div>
         </div>
 
