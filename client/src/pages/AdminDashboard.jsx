@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import api from '../api/axios';
 import { useAuth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 export default function AdminDashboard() {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -59,6 +61,14 @@ export default function AdminDashboard() {
   return (
     <div className="flex-1 pt-24 pb-36 px-4 max-w-7xl mx-auto w-full">
       <div className="bg-white/80 backdrop-blur-md rounded-3xl p-6 md:p-10 shadow-xl border border-white/20">
+        <div className="mb-6">
+          <button 
+            onClick={() => navigate('/app')}
+            className="flex items-center gap-2 text-xs font-bold text-gray-500 hover:text-theme-primary transition-colors uppercase tracking-widest"
+          >
+            ← Back to App
+          </button>
+        </div>
         <div className="flex items-center justify-between mb-8">
           <div>
             <h1 className="text-3xl font-black text-gray-900 tracking-tight uppercase">Admin Panel</h1>
