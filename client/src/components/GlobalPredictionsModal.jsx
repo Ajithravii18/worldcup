@@ -37,12 +37,12 @@ export default function GlobalPredictionsModal({ isOpen, onClose, match, predict
   return (
     <div
       onClick={(e) => { if (e.target === e.currentTarget) { setAnimate(false); setTimeout(onClose, 250); } }}
-      className={`fixed inset-0 z-50 flex items-end justify-center bg-black/80 backdrop-blur-md transition-opacity duration-300 ${animate ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+      className={`fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-sm transition-opacity duration-300 ${animate ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
     >
       <div
-        className={`w-full max-w-xl rounded-t-3xl border-t border-outline-variant/50 p-6 relative overflow-hidden transition-transform duration-300 glass-panel-heavy shadow-2xl ${animate ? 'translate-y-0' : 'translate-y-full'}`}
+        className={`w-full max-w-xl max-h-[90vh] overflow-y-auto scrollbar-none rounded-2xl border border-outline-variant/30 p-6 relative transition-all duration-300 glass-panel shadow-xl ${animate ? 'translate-y-0 scale-100' : 'translate-y-4 scale-95'}`}
       >
-        <div className="w-16 h-1.5 bg-outline-variant/50 rounded-full mx-auto mb-6" />
+
 
         <button
           onClick={() => { setAnimate(false); setTimeout(onClose, 250); }}

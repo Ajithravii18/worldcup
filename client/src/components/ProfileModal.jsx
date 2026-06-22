@@ -139,13 +139,13 @@ export default function ProfileModal({ isOpen, onClose }) {
   return (
     <div
       onClick={(e) => { if (e.target === e.currentTarget) handleClose(); }}
-      className={`fixed inset-0 z-50 flex items-end justify-center bg-black/80 backdrop-blur-md transition-opacity duration-300 ${animate ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+      className={`fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-sm transition-opacity duration-300 ${animate ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
     >
       <div
-        className={`w-full max-w-lg rounded-t-[2rem] p-8 relative overflow-hidden transition-transform duration-300 glass-panel-heavy shadow-2xl border-t border-outline-variant/50 ${animate ? 'translate-y-0' : 'translate-y-full'}`}
+        className={`w-full max-w-lg max-h-[90vh] overflow-y-auto scrollbar-none rounded-2xl p-6 sm:p-8 relative transition-all duration-300 glass-panel shadow-xl border border-outline-variant/30 ${animate ? 'translate-y-0 scale-100' : 'translate-y-4 scale-95'}`}
       >
         <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-50"></div>
-        <div className="w-16 h-1.5 bg-outline-variant/50 rounded-full mx-auto mb-6" />
+
 
         <button
           onClick={handleClose}

@@ -194,16 +194,15 @@ export default function MatchDetailModal({
   return (
     <div
       onClick={handleBackdropClick}
-      className={`fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/80 backdrop-blur-md transition-opacity duration-300 px-4 ${
+      className={`fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-sm transition-opacity duration-300 ${
         animate ? 'opacity-100' : 'opacity-0 pointer-events-none'
       }`}
     >
       <div
-        className={`w-full max-w-xl rounded-t-3xl sm:rounded-2xl p-6 relative overflow-hidden transition-all duration-300 glass-panel-heavy shadow-2xl border-t border-outline-variant/50 ${
-          animate ? 'translate-y-0 sm:scale-100' : 'translate-y-full sm:translate-y-0 sm:scale-95'
+        className={`w-full max-w-xl max-h-[90vh] overflow-y-auto scrollbar-none rounded-2xl p-6 relative transition-all duration-300 glass-panel shadow-xl border border-outline-variant/30 ${
+          animate ? 'translate-y-0 scale-100' : 'translate-y-4 scale-95'
         }`}
       >
-        <div className="sm:hidden w-16 h-1.5 bg-outline-variant/50 rounded-full mx-auto mb-6" />
 
         <button
           onClick={handleClose}

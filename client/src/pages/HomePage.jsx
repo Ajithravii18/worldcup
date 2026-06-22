@@ -391,7 +391,7 @@ export default function HomePage() {
                       onWheel={handleWheelScroll}
                     >
                       {matchPages.map((pageMatches, pageIndex) => (
-                        <div key={pageIndex} className="min-w-full flex-shrink-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 px-1 snap-start">
+                        <div key={pageIndex} className="min-w-full flex-shrink-0 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-5 px-1 snap-start">
                           {pageMatches.map((match) => (
                             <MatchCard
                               key={match._id}
