@@ -111,7 +111,7 @@ export default function HomePage() {
         particleCount: 200,
         spread: 100,
         origin: { y: 0.3 },
-        colors: ['#2e7d32', '#0020b2', '#ff5a00']
+        colors: ['#00ff87', '#ffd700', '#ff3d00']
       });
       
       setTimeout(() => setNotification(null), 6000);
@@ -237,7 +237,7 @@ export default function HomePage() {
   const matchPages = chunkMatches(filteredMatches, chunkSize);
 
   return (
-    <div className="min-h-screen flex flex-col bg-background text-on-background">
+    <div className="min-h-screen flex flex-col bg-background text-on-background relative">
       <Navbar 
         view={view} 
         setView={setView} 
@@ -245,27 +245,27 @@ export default function HomePage() {
         setStatusFilter={setStatusFilter} 
       />
 
-      <main className="flex-1 pt-4 pb-36 max-w-container-max mx-auto w-full flex flex-col px-margin-mobile md:px-margin-desktop mt-16">
+      <main className="flex-1 pt-4 pb-36 max-w-7xl mx-auto w-full flex flex-col px-4 md:px-8 mt-20 relative z-10">
 
         {/* Error state */}
         {error && (
-          <div className="mb-4 p-3 font-label-md text-label-md uppercase tracking-widest bg-error-container text-error rounded-lg border border-error">
+          <div className="mb-4 p-4 font-label-md text-sm uppercase tracking-widest bg-error-container/20 text-error rounded-lg border border-error/50 shadow-neon-accent">
             {error}
           </div>
         )}
 
         {/* Correct Prediction Toast */}
         {notification && (
-          <div className="fixed top-24 left-1/2 -translate-x-1/2 z-50 animate-slide-up w-[90%] max-w-sm">
-            <div className="relative overflow-hidden p-6 text-center stadium-card border-l-4 border-l-secondary bg-surface-container-lowest">
-              <button onClick={() => setNotification(null)} className="absolute top-3 right-4 font-bold text-lg text-secondary">
+          <div className="fixed top-28 left-1/2 -translate-x-1/2 z-50 animate-slide-up w-[90%] max-w-sm">
+            <div className="relative overflow-hidden p-6 text-center glass-panel-heavy border-l-4 border-l-primary shadow-neon-primary rounded-xl">
+              <button onClick={() => setNotification(null)} className="absolute top-3 right-4 font-bold text-lg text-primary hover:text-white">
                 <span className="material-symbols-outlined">close</span>
               </button>
-              <h3 className="font-headline-md text-headline-md font-bold uppercase tracking-widest text-secondary mb-2 mt-1">SPOT ON!</h3>
-              <p className="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant mb-4">You perfectly predicted:</p>
-              <div className="p-4 bg-surface rounded-lg border border-outline-variant text-on-surface text-center">
-                <div className="font-headline-md font-bold text-sm mb-2">{notification.homeTeam} <span className="text-on-surface-variant mx-1 italic text-xs font-body-md">VS</span> {notification.awayTeam}</div>
-                <div className="text-3xl font-display-lg tracking-tighter text-secondary">{notification.score}</div>
+              <h3 className="font-headline-md text-2xl font-bold uppercase tracking-widest text-primary mb-2 mt-1 drop-shadow-[0_0_8px_rgba(0,255,135,0.8)]">SPOT ON!</h3>
+              <p className="font-label-sm text-sm uppercase tracking-widest text-on-surface-variant mb-4">You perfectly predicted:</p>
+              <div className="p-4 bg-black/40 rounded-lg border border-outline-variant/50 text-on-surface text-center shadow-inner">
+                <div className="font-headline-md font-bold text-xl mb-2">{notification.homeTeam} <span className="text-on-surface-variant mx-1 italic text-base font-body-md">VS</span> {notification.awayTeam}</div>
+                <div className="text-4xl font-display-lg tracking-widest text-primary drop-shadow-[0_0_10px_rgba(0,255,135,0.5)]">{notification.score}</div>
               </div>
             </div>
           </div>
@@ -283,30 +283,30 @@ export default function HomePage() {
 
             {/* Winner Banner */}
             {!isLoading && matches.length > 0 && (
-              <div className="mb-8">
+              <div className="mb-10">
                 <WinnerBanner matches={matches} predictions={globalPredictions} currentTime={currentTime} onClick={setSelectedMatch} />
               </div>
             )}
 
             {/* Loading */}
             {isLoading && (
-              <div className="flex flex-col items-center justify-center py-24">
-                <div className="relative w-12 h-12">
-                  <div className="absolute inset-0 border-4 border-surface-container-high border-t-[#ff5a00] animate-spin rounded-full"></div>
+              <div className="flex flex-col items-center justify-center py-32">
+                <div className="relative w-16 h-16 mb-6">
+                  <div className="absolute inset-0 border-4 border-outline-variant border-t-primary animate-spin rounded-full shadow-neon-primary"></div>
                 </div>
-                <div className="mt-5 font-label-md text-label-md uppercase tracking-widest animate-pulse text-on-surface-variant">
-                  Loading Matches...
+                <div className="font-label-md text-lg uppercase tracking-widest animate-pulse text-on-surface-variant">
+                  Loading the Arena...
                 </div>
               </div>
             )}
 
             {/* Empty state */}
             {!isLoading && matches.length === 0 && (
-              <div className="text-center py-16 font-label-md uppercase tracking-widest text-on-surface-variant">
-                <div className="text-5xl mb-4 font-display-lg text-outline-variant">0</div>
-                <p className="font-headline-lg text-xl tracking-wide mb-2 uppercase text-on-surface">No Matches</p>
-                <p className="font-label-sm text-label-sm mb-4">Run the seed script to add matches.</p>
-                <code className="mt-3 block font-body-md text-sm px-4 py-2 mx-auto max-w-xs bg-surface-container border border-outline-variant text-on-surface rounded">
+              <div className="text-center py-20 font-label-md uppercase tracking-widest text-on-surface-variant glass-panel rounded-2xl">
+                <div className="text-6xl mb-6 font-display-lg text-outline-variant opacity-50">0</div>
+                <p className="font-headline-lg text-3xl tracking-wide mb-3 uppercase text-on-surface">No Matches</p>
+                <p className="font-label-sm text-base mb-6">Run the seed script to add matches.</p>
+                <code className="mt-3 block font-body-md text-sm px-5 py-3 mx-auto max-w-xs bg-black/50 border border-outline-variant text-on-surface rounded-lg shadow-inner">
                   cd server &amp;&amp; npm run seed
                 </code>
               </div>
@@ -315,51 +315,54 @@ export default function HomePage() {
             {!isLoading && matches.length > 0 && (
               <div className="flex flex-col">
                 {/* Filter and Sort Row */}
-                <div className="mb-4 flex flex-col sm:flex-row items-center justify-between gap-4 p-4 animate-fade-in bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm">
-                  <span className="font-label-md text-label-sm uppercase tracking-widest w-full sm:w-auto text-center sm:text-left text-on-surface-variant">
-                    {view === 'global' ? 'Community' : 'Your Predictions'} — {filteredMatches.length} matches
-                  </span>
+                <div className="mb-6 flex flex-col md:flex-row items-center justify-between gap-4 p-4 animate-fade-in glass-panel rounded-xl shadow-subtle-card">
+                  <div className="flex items-center gap-2 w-full md:w-auto">
+                    <span className="material-symbols-outlined text-primary">sensors</span>
+                    <span className="font-label-md text-base uppercase tracking-widest text-on-surface">
+                      {view === 'global' ? 'Global Match Feed' : 'Your Predictions'} <span className="text-on-surface-variant ml-2 text-sm">({filteredMatches.length})</span>
+                    </span>
+                  </div>
 
-                  <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
+                  <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
                     {/* Desktop filter pills */}
-                    <div className="hidden md:flex items-center gap-0 border border-outline-variant rounded-md overflow-hidden bg-surface">
+                    <div className="hidden md:flex items-center gap-0 border border-outline-variant/50 rounded-lg overflow-hidden bg-black/30 p-1">
                       <button
                         onClick={() => setStatusFilter('upcoming')}
-                        className={`px-4 py-2 font-label-sm text-[10px] uppercase tracking-widest transition-colors duration-150 ${
+                        className={`px-6 py-2 font-label-sm text-sm uppercase tracking-widest transition-all duration-200 rounded-md ${
                           statusFilter === 'upcoming'
-                            ? 'text-on-primary bg-primary'
-                            : 'text-on-surface-variant bg-transparent hover:text-primary hover:bg-surface-container-high'
+                            ? 'text-on-background bg-primary shadow-neon-primary'
+                            : 'text-on-surface-variant bg-transparent hover:text-on-surface hover:bg-white/5'
                         }`}
                       >
                         Open
                       </button>
                       <button
                         onClick={() => setStatusFilter('completed')}
-                        className={`px-4 py-2 font-label-sm text-[10px] uppercase tracking-widest transition-colors duration-150 border-l border-outline-variant ${
+                        className={`px-6 py-2 font-label-sm text-sm uppercase tracking-widest transition-all duration-200 rounded-md ${
                           statusFilter === 'completed'
-                            ? 'text-on-primary bg-primary'
-                            : 'text-on-surface-variant bg-transparent hover:text-primary hover:bg-surface-container-high'
+                            ? 'text-on-background bg-primary shadow-neon-primary'
+                            : 'text-on-surface-variant bg-transparent hover:text-on-surface hover:bg-white/5'
                         }`}
                       >
                         Results
                       </button>
                     </div>
 
-                    <div className="relative flex-1 sm:flex-none">
+                    <div className="relative w-full sm:w-48">
                       <select
                         value={teamFilter}
                         onChange={(e) => {
                           setTeamFilter(e.target.value);
                           if (scrollContainerRef.current) scrollContainerRef.current.scrollLeft = 0;
                         }}
-                        className="w-full font-label-sm text-[10px] uppercase tracking-widest px-4 py-2.5 outline-none appearance-none cursor-pointer bg-surface border border-outline-variant text-on-surface rounded-md transition-colors hover:bg-surface-container focus:border-primary"
+                        className="w-full font-label-sm text-sm uppercase tracking-widest px-4 py-3 outline-none appearance-none cursor-pointer bg-black/40 border border-outline-variant/50 text-on-surface rounded-lg transition-colors hover:border-primary focus:border-primary focus:ring-1 focus:ring-primary shadow-inner"
                       >
                         <option value="All">All Teams</option>
                         {uniqueTeams.map(t => (
                           <option key={t} value={t}>{t}</option>
                         ))}
                       </select>
-                      <span className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-[10px] text-on-surface-variant material-symbols-outlined">expand_more</span>
+                      <span className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant material-symbols-outlined text-[18px]">expand_more</span>
                     </div>
 
                     <button
@@ -367,9 +370,9 @@ export default function HomePage() {
                         setDateSort(prev => prev === 'earliest' ? 'latest' : 'earliest');
                         if (scrollContainerRef.current) scrollContainerRef.current.scrollLeft = 0;
                       }}
-                      className="flex-1 sm:flex-none font-label-sm text-[10px] uppercase tracking-widest px-4 py-2.5 active:scale-95 transition-all flex items-center justify-center gap-1.5 cursor-pointer bg-surface border border-outline-variant text-on-surface rounded-md hover:bg-surface-container hover:text-primary"
+                      className="w-full sm:w-auto font-label-sm text-sm uppercase tracking-widest px-5 py-3 active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer bg-black/40 border border-outline-variant/50 text-on-surface rounded-lg hover:border-primary hover:text-primary shadow-inner"
                     >
-                      Date <span className="material-symbols-outlined text-[14px] text-primary">{dateSort === 'earliest' ? 'arrow_upward' : 'arrow_downward'}</span>
+                      Date <span className="material-symbols-outlined text-[16px] text-primary">{dateSort === 'earliest' ? 'arrow_downward' : 'arrow_upward'}</span>
                     </button>
                   </div>
                 </div>
@@ -378,17 +381,17 @@ export default function HomePage() {
                   <div className="relative group mt-2">
                     <button
                       onClick={scrollLeft}
-                      className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-6 z-10 w-10 h-10 items-center justify-center opacity-0 group-hover:opacity-100 transition-all active:scale-95 bg-surface-container-lowest border border-outline-variant text-primary rounded-full hover:bg-surface-container-low shadow-sm"
+                      className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-5 z-20 w-12 h-12 items-center justify-center opacity-0 group-hover:opacity-100 transition-all active:scale-95 bg-surface-container-lowest border border-outline-variant text-primary rounded-full hover:bg-primary hover:text-black shadow-neon-primary"
                     >
-                      <span className="material-symbols-outlined">chevron_left</span>
+                      <span className="material-symbols-outlined text-[28px]">chevron_left</span>
                     </button>
                     <div 
                       ref={scrollContainerRef}
-                      className="flex overflow-x-auto snap-x snap-mandatory scrollbar-none pb-2"
+                      className="flex overflow-x-auto snap-x snap-mandatory scrollbar-none pb-6"
                       onWheel={handleWheelScroll}
                     >
                       {matchPages.map((pageMatches, pageIndex) => (
-                        <div key={pageIndex} className="min-w-full flex-shrink-0 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid-rows-2 auto-rows-max gap-4 px-1 snap-start">
+                        <div key={pageIndex} className="min-w-full flex-shrink-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 px-1 snap-start">
                           {pageMatches.map((match) => (
                             <MatchCard
                               key={match._id}
@@ -402,14 +405,14 @@ export default function HomePage() {
                     </div>
                     <button
                       onClick={scrollRight}
-                      className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-6 z-10 w-10 h-10 items-center justify-center opacity-0 group-hover:opacity-100 transition-all active:scale-95 bg-surface-container-lowest border border-outline-variant text-primary rounded-full hover:bg-surface-container-low shadow-sm"
+                      className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 z-20 w-12 h-12 items-center justify-center opacity-0 group-hover:opacity-100 transition-all active:scale-95 bg-surface-container-lowest border border-outline-variant text-primary rounded-full hover:bg-primary hover:text-black shadow-neon-primary"
                     >
-                      <span className="material-symbols-outlined">chevron_right</span>
+                      <span className="material-symbols-outlined text-[28px]">chevron_right</span>
                     </button>
                   </div>
                 ) : (
-                  <div className="text-center py-16 font-label-sm text-[10px] animate-fade-in uppercase tracking-widest bg-surface border border-dashed border-outline-variant text-on-surface-variant rounded-xl">
-                    {view === 'my' ? 'No predictions made yet.' : 'No matches open in this section.'}
+                  <div className="text-center py-24 font-label-sm text-base animate-fade-in uppercase tracking-widest glass-panel border-dashed rounded-xl text-on-surface-variant">
+                    {view === 'my' ? 'No predictions made yet. Time to enter the arena.' : 'No matches available in this filter.'}
                   </div>
                 )}
               </div>

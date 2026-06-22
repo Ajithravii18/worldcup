@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Global Leaderboard - Stadium Pro</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@500;600;700&amp;family=Inter:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#bcc3ff",
+                        "tertiary-fixed-dim": "#ffb5a0",
+                        "secondary-fixed-dim": "#88d982",
+                        "primary-fixed": "#dfe0ff",
+                        "outline-variant": "#c5c5d7",
+                        "primary-container": "#0020b2",
+                        "surface-bright": "#fcf9f8",
+                        "surface-container-lowest": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "inverse-on-surface": "#f3f0ef",
+                        "surface-container": "#f0edec",
+                        "on-primary-fixed-variant": "#1b32be",
+                        "surface-variant": "#e5e2e1",
+                        "tertiary-fixed": "#ffdbd1",
+                        "on-primary-container": "#8f9dff",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed": "#3b0900",
+                        "surface-container-low": "#f6f3f2",
+                        "inverse-primary": "#bcc3ff",
+                        "on-secondary-fixed": "#002204",
+                        "on-error": "#ffffff",
+                        "surface": "#fcf9f8",
+                        "surface-container-highest": "#e5e2e1",
+                        "surface-tint": "#3a4ed5",
+                        "inverse-surface": "#313030",
+                        "on-background": "#1c1b1b",
+                        "on-tertiary-fixed-variant": "#862200",
+                        "on-primary-fixed": "#000d60",
+                        "on-error-container": "#93000a",
+                        "primary": "#001278",
+                        "background": "#fcf9f8",
+                        "secondary": "#1b6d24",
+                        "surface-container-high": "#ebe7e7",
+                        "secondary-container": "#a0f399",
+                        "on-secondary-container": "#217128",
+                        "on-surface": "#1c1b1b",
+                        "secondary-fixed": "#a3f69c",
+                        "surface-dim": "#dcd9d9",
+                        "on-surface-variant": "#454654",
+                        "tertiary-container": "#701b00",
+                        "on-tertiary": "#ffffff",
+                        "outline": "#757686",
+                        "on-tertiary-container": "#ff7f59",
+                        "on-secondary-fixed-variant": "#005312",
+                        "tertiary": "#4a0f00"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "container-max": "1440px",
+                        "margin-desktop": "48px",
+                        "gutter": "24px",
+                        "unit": "4px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Archivo Narrow"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Archivo Narrow"],
+                        "label-md": ["Archivo Narrow"],
+                        "headline-lg-mobile": ["Archivo Narrow"],
+                        "display-lg": ["Archivo Narrow"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Archivo Narrow"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "34px", "fontWeight": "700" }],
+                        "display-lg": ["48px", { "lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .podium-shadow {
+            box-shadow: 0 8px 24px rgba(0, 32, 178, 0.08);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md min-h-screen pt-16 pb-20 md:pb-0">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-surface-dim border-b border-outline-variant dark:border-outline shadow-sm fixed top-0 w-full z-50">
+<div class="flex items-center justify-between px-margin-mobile md:px-margin-desktop h-16 w-full max-w-container-max mx-auto">
+<button class="text-primary dark:text-primary-fixed-dim hover:bg-surface-container-low transition-colors p-2 rounded-full active:opacity-80 transition-opacity">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold uppercase tracking-tighter text-primary dark:text-primary-fixed-dim">LUCKY STAR FC</h1>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A small circular avatar portrait of a professional sports manager in a high-end corporate athletic setting. Light mode lighting, clean and modern. The background is a subtle stadium blur." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGTpjeLv6dk_XzfvIPHzqqk4GuvH3ekgkaaN5NlZ6lTbRiC6GvkRu1lRrV8J5U-jqBRTr6Tuv0ISiLzorwxLGyRv8pNM_QINE5ei_eM6-aZ5p4Xna1pn1Frzyd-zwn6t5wYuHCgNyUs776havY-zYwqhUEYV_UtMalfhSMySnC6VbUIcoF5mm5AwD9gSnH_CsAFamMvvLQHUe8RuT1Akbi5PTjNGANFQQhL9re0NEbDNbITYpxMtvpGGGmvmnUThEh-r8VliPwWxec"/>
+</div>
+</div>
+</header>
+<main class="w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-8">
+<div class="mb-10 text-center">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary uppercase mb-2">Global Leaderboard</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Top performers across all arenas</p>
+</div>
+<!-- Podium Section -->
+<section class="mb-12 flex justify-center items-end gap-2 md:gap-4 h-64 md:h-80">
+<!-- Rank 2 -->
+<div class="flex flex-col items-center w-24 md:w-32 z-10 group">
+<div class="relative w-16 h-16 md:w-20 md:h-20 mb-3 rounded-full overflow-hidden border-2 border-outline-variant bg-surface-container-lowest podium-shadow transition-transform group-hover:-translate-y-1">
+<img alt="Sarah J" class="w-full h-full object-cover" data-alt="A portrait of a confident female esports athlete or data analyst in a bright, modern corporate athletic environment. Soft natural light on a crisp light background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_S3iIE4sMoC-aUQ7FWG4A6R2J918D62_dFKA4q0vPLU_QuahmDyPhxdSm6ErL3-hMbx8UyPicBXHFpAKW8FVPcdQMQwjtqberiZbd3qi5YTTeL-9qbOo5YQr7dMhz4BUAM9jKWF1W0oD9W3uoROfDDqZpr26miv0BtN3iEfhd3lVW8aFDYSojDJbw9OUBEj5xG0aoRbRbF9v7NNbzNxRE0nYsrf9Ci7WZKSTbKTjPnvSjEMWmwcUE7dY2DAga-xbGUPq3IKiDrfxh"/>
+<div class="absolute -bottom-1 -right-1 bg-surface-variant rounded-full w-6 h-6 flex items-center justify-center font-label-sm text-label-sm font-bold text-on-surface">2</div>
+</div>
+<p class="font-label-md text-label-md text-on-surface mb-1 truncate w-full text-center">Sarah J</p>
+<p class="font-body-md text-body-md text-primary font-bold">14,250</p>
+<div class="w-full bg-surface-container h-24 md:h-32 rounded-t-lg border-t border-x border-outline-variant flex justify-center pt-4 mt-2">
+<span class="material-symbols-outlined text-outline" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<!-- Rank 1 -->
+<div class="flex flex-col items-center w-28 md:w-36 z-20 group">
+<div class="relative w-20 h-20 md:w-24 md:h-24 mb-4 rounded-full overflow-hidden border-4 border-primary bg-surface-container-lowest podium-shadow transition-transform group-hover:-translate-y-2">
+<img alt="Ajith Kumar" class="w-full h-full object-cover" data-alt="A portrait of a dynamic male sports strategist in a brightly lit, high-tech stadium control room. Sharp focus, professional modern athletic aesthetic, light theme." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLhCsk8afZ0QqlMuTMQNhdVxJ3nCJCwdf1-BmiY0OuLcejsXD8DMoLcb3RH2zuZBnVNEfSdfVtnOVFdLmk4kFBP3ZE0W2iYsGTVMKMY9r6ouJ_OS2QP6pVkayLu91KrOMG11yERJ5NgjWEaHkSOWRryjOiC-2gl_iVJlJm0aCe8QOgDOxtEifcC21QYD5VOK-0nn98vEvC1xmjYHhjXSc1Mss_VhzTe8DYK1AkoqBa-zpjpg6rNpcBcb5ecZ3wERYOzACLBuwcGE3z"/>
+<div class="absolute -bottom-1 -right-1 bg-primary text-on-primary rounded-full w-8 h-8 flex items-center justify-center font-label-md text-label-md font-bold shadow-md">1</div>
+</div>
+<p class="font-label-md text-label-md text-on-surface mb-1 truncate w-full text-center">Ajith Kumar</p>
+<p class="font-body-lg text-body-lg text-primary font-bold">15,890</p>
+<div class="w-full bg-primary-container h-32 md:h-48 rounded-t-lg border-t border-x border-primary-container flex justify-center pt-4 mt-2">
+<span class="material-symbols-outlined text-on-primary-container" data-icon="emoji_events" data-weight="fill" style="font-variation-settings: 'FILL' 1;">emoji_events</span>
+</div>
+</div>
+<!-- Rank 3 -->
+<div class="flex flex-col items-center w-24 md:w-32 z-10 group">
+<div class="relative w-16 h-16 md:w-20 md:h-20 mb-3 rounded-full overflow-hidden border-2 border-outline-variant bg-surface-container-lowest podium-shadow transition-transform group-hover:-translate-y-1">
+<img alt="Mike T" class="w-full h-full object-cover" data-alt="A portrait of an intense male tactical analyst in a corporate modern sports setting. Crisp light grey background, sharp lighting highlighting focus and expertise." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJSCFZjG_TmCH2NP0RjjSZYIHHIvFqqM8Usi7QRG3qJnwaslH7u2_Le0pd4WtApi_SYJXJMirb5DH_5R561VSbqbaV2ZMyQOnCeztHcsJJDlkHl_keM0TEmW8iSOIq6U14sNzqaY6KzAH9ZVrfgr5wWMIL5y7pldOu730vW3y3Zv_8pTT-wKPmpIpKpa1VYbkQxTv0_r615MuK8eD6djAa27OrwOySycXseYksPVO5OS4gTV4ty7ntdZrx9p8cNKpUjopGBOTRtrnf"/>
+<div class="absolute -bottom-1 -right-1 bg-surface-variant rounded-full w-6 h-6 flex items-center justify-center font-label-sm text-label-sm font-bold text-on-surface">3</div>
+</div>
+<p class="font-label-md text-label-md text-on-surface mb-1 truncate w-full text-center">Mike T</p>
+<p class="font-body-md text-body-md text-primary font-bold">13,900</p>
+<div class="w-full bg-surface-container h-20 md:h-24 rounded-t-lg border-t border-x border-outline-variant flex justify-center pt-4 mt-2">
+<span class="material-symbols-outlined text-outline" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+</section>
+<!-- List Section -->
+<section class="max-w-3xl mx-auto bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+<div class="px-6 py-4 border-b border-outline-variant bg-surface flex justify-between items-center">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Rank</span>
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Score</span>
+</div>
+<ul class="flex flex-col">
+<!-- Rank 4 -->
+<li class="flex items-center justify-between px-6 py-4 border-b border-outline-variant bg-surface-container-lowest hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-4">
+<span class="font-headline-md text-headline-md text-outline-variant w-6 text-center">4</span>
+<div class="w-10 h-10 rounded-full bg-surface-container overflow-hidden">
+<span class="material-symbols-outlined w-full h-full flex items-center justify-center text-outline">person</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface font-medium">Elena R.</span>
+</div>
+<span class="font-body-md text-body-md text-primary font-semibold">12,450</span>
+</li>
+<!-- Rank 5 -->
+<li class="flex items-center justify-between px-6 py-4 border-b border-outline-variant bg-[#F1F3F5] hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-4">
+<span class="font-headline-md text-headline-md text-outline-variant w-6 text-center">5</span>
+<div class="w-10 h-10 rounded-full bg-surface-container overflow-hidden">
+<span class="material-symbols-outlined w-full h-full flex items-center justify-center text-outline">person</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface font-medium">David K.</span>
+</div>
+<span class="font-body-md text-body-md text-primary font-semibold">11,800</span>
+</li>
+<!-- Rank 6 -->
+<li class="flex items-center justify-between px-6 py-4 border-b border-outline-variant bg-surface-container-lowest hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-4">
+<span class="font-headline-md text-headline-md text-outline-variant w-6 text-center">6</span>
+<div class="w-10 h-10 rounded-full bg-surface-container overflow-hidden">
+<span class="material-symbols-outlined w-full h-full flex items-center justify-center text-outline">person</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface font-medium">Sam L.</span>
+</div>
+<span class="font-body-md text-body-md text-primary font-semibold">10,950</span>
+</li>
+<!-- Rank 7 -->
+<li class="flex items-center justify-between px-6 py-4 border-b border-outline-variant bg-[#F1F3F5] hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-4">
+<span class="font-headline-md text-headline-md text-outline-variant w-6 text-center">7</span>
+<div class="w-10 h-10 rounded-full bg-surface-container overflow-hidden">
+<span class="material-symbols-outlined w-full h-full flex items-center justify-center text-outline">person</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface font-medium">Priya M.</span>
+</div>
+<span class="font-body-md text-body-md text-primary font-semibold">10,200</span>
+</li>
+<!-- Rank 8 -->
+<li class="flex items-center justify-between px-6 py-4 bg-surface-container-lowest hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-4">
+<span class="font-headline-md text-headline-md text-outline-variant w-6 text-center">8</span>
+<div class="w-10 h-10 rounded-full bg-surface-container overflow-hidden">
+<span class="material-symbols-outlined w-full h-full flex items-center justify-center text-outline">person</span>
+</div>
+<span class="font-body-md text-body-md text-on-surface font-medium">Marcus W.</span>
+</div>
+<span class="font-body-md text-body-md text-primary font-semibold">9,850</span>
+</li>
+</ul>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center h-20 px-2 pb-safe bg-surface border-t border-outline-variant dark:border-outline shadow-lg md:hidden">
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-95 transition-transform duration-150 w-16">
+<span class="material-symbols-outlined mb-1" data-icon="stadium">stadium</span>
+<span class="font-label-sm text-label-sm uppercase">Arena</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-95 transition-transform duration-150 w-16">
+<span class="material-symbols-outlined mb-1" data-icon="event_note">event_note</span>
+<span class="font-label-sm text-label-sm uppercase">Matches</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 active:scale-95 transition-transform duration-150 min-w-16">
+<span class="material-symbols-outlined mb-1" data-icon="analytics" data-weight="fill" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<span class="font-label-sm text-label-sm uppercase">My Preds</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-95 transition-transform duration-150 w-16">
+<span class="material-symbols-outlined mb-1" data-icon="groups">groups</span>
+<span class="font-label-sm text-label-sm uppercase">Players</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-95 transition-transform duration-150 w-16">
+<span class="material-symbols-outlined mb-1" data-icon="person">person</span>
+<span class="font-label-sm text-label-sm uppercase">Profile</span>
+</button>
+</nav>
+</body></html>

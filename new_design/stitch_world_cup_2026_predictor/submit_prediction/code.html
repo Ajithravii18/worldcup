@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Submit Prediction - Lucky Star FC</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&amp;family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#bcc3ff",
+                        "tertiary-fixed-dim": "#ffb5a0",
+                        "secondary-fixed-dim": "#88d982",
+                        "primary-fixed": "#dfe0ff",
+                        "outline-variant": "#c5c5d7",
+                        "primary-container": "#0020b2",
+                        "surface-bright": "#fcf9f8",
+                        "surface-container-lowest": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "inverse-on-surface": "#f3f0ef",
+                        "surface-container": "#f0edec",
+                        "on-primary-fixed-variant": "#1b32be",
+                        "surface-variant": "#e5e2e1",
+                        "tertiary-fixed": "#ffdbd1",
+                        "on-primary-container": "#8f9dff",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed": "#3b0900",
+                        "surface-container-low": "#f6f3f2",
+                        "inverse-primary": "#bcc3ff",
+                        "on-secondary-fixed": "#002204",
+                        "on-error": "#ffffff",
+                        "surface": "#fcf9f8",
+                        "surface-container-highest": "#e5e2e1",
+                        "surface-tint": "#3a4ed5",
+                        "inverse-surface": "#313030",
+                        "on-background": "#1c1b1b",
+                        "on-tertiary-fixed-variant": "#862200",
+                        "on-primary-fixed": "#000d60",
+                        "on-error-container": "#93000a",
+                        "primary": "#001278",
+                        "background": "#fcf9f8",
+                        "secondary": "#1b6d24",
+                        "surface-container-high": "#ebe7e7",
+                        "secondary-container": "#a0f399",
+                        "on-secondary-container": "#217128",
+                        "on-surface": "#1c1b1b",
+                        "secondary-fixed": "#a3f69c",
+                        "surface-dim": "#dcd9d9",
+                        "on-surface-variant": "#454654",
+                        "tertiary-container": "#701b00",
+                        "on-tertiary": "#ffffff",
+                        "outline": "#757686",
+                        "on-tertiary-container": "#ff7f59",
+                        "on-secondary-fixed-variant": "#005312",
+                        "tertiary": "#4a0f00"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "container-max": "1440px",
+                        "margin-desktop": "48px",
+                        "gutter": "24px",
+                        "unit": "4px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Archivo Narrow"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Archivo Narrow"],
+                        "label-md": ["Archivo Narrow"],
+                        "headline-lg-mobile": ["Archivo Narrow"],
+                        "display-lg": ["Archivo Narrow"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Archivo Narrow"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "34px", "fontWeight": "700" }],
+                        "display-lg": ["48px", { "lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Custom scrollbar to match theme */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background-color: #c5c5d7; border-radius: 10px; }
+        
+        /* Disable number input arrows */
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+            -webkit-appearance: none; 
+            margin: 0; 
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md antialiased overflow-x-hidden selection:bg-primary selection:text-on-primary">
+<!-- TopAppBar -->
+<header class="bg-surface fixed top-0 w-full z-50 border-b border-outline-variant shadow-sm transition-all duration-200">
+<div class="flex items-center justify-between px-margin-mobile md:px-margin-desktop h-16 w-full max-w-container-max mx-auto">
+<!-- Leading Icon -->
+<button aria-label="Menu" class="flex items-center justify-center p-2 rounded-full hover:bg-surface-container-low transition-colors active:opacity-80">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 0;">menu</span>
+</button>
+<!-- Headline/Brand -->
+<h1 class="font-headline-md text-headline-md font-bold uppercase tracking-tighter text-primary">
+                LUCKY STAR FC
+            </h1>
+<!-- Trailing Avatar -->
+<button class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant hover:opacity-80 transition-opacity focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-surface">
+<img alt="User profile avatar" class="w-full h-full object-cover" data-alt="A close-up, high-quality profile picture of a sports professional with a confident expression, set against a bright, minimalist white background. The lighting is crisp and even, evoking a premium, modern light-mode application aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgmD7Xw0KvEXThWuzfYPLdtUKZnRXGgYFlD3GQwn288a1lewvtccQr5ZA520GCsW5kI06PwZ24gABQvdz8FgAUoyGKmMyZIjzUZxs4oF2B38FxXxGm3cIU-E4IPROfjom_zQ95YWDo_YnVb2mR6ljUAh6qJ6u5Xm_RjrcR4WLOERO9sgoo8qmbxqx590nQd1i2Xh8gZ6LpO5NBDwg8_-sG_vt8FcEUfxxiqKZ-DsSj7gkJPGD_M9lF7t2Fd9AervyBUQok6FiTVvm2"/>
+</button>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="pt-[80px] pb-[100px] px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto flex flex-col gap-6 min-h-screen">
+<!-- Page Title & Context -->
+<div class="flex flex-col gap-1 mt-4">
+<span class="font-label-sm text-label-sm uppercase text-primary tracking-widest flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">public</span> International Friendly
+            </span>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">Predict the Outcome</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Lock in your score prediction before kickoff to earn points.</p>
+</div>
+<!-- Score Selector Card (Bento Style) -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-[0_4px_12px_rgba(0,18,120,0.02)] relative overflow-hidden flex flex-col gap-8">
+<!-- Subtle Background accent -->
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-20"></div>
+<div class="flex items-center justify-between w-full">
+<!-- Home Team (NZL) -->
+<div class="flex flex-col items-center gap-4 flex-1">
+<div class="w-16 h-16 rounded-full bg-surface-container border border-outline-variant flex items-center justify-center overflow-hidden shadow-sm">
+<img class="w-10 h-10 object-contain" data-alt="A stylized, clean vector logo of a fern leaf inside a shield, representing New Zealand sports. The design uses stark black and pristine white to maintain a highly professional, modern athletic aesthetic suitable for a high-end data dashboard." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0C1O43hXGR735I2CP0FN05QQOJDeHoeybRys7Z5rmV1_N1QYZSdpbB1Wp2EJi7-XTz4ByQUXv4Rtre6vHuBvuzdWjYKzhnNWH93I3Awf4K-EgtNYHOjQBJ1xwNb76XUxpPenC_39XUxKG1ytzccnTUwiwdTmWmmohKQXf_29nRdpUAA9f2C2v-6ouHtGFHRfWt99lNVqquZrs0a3ES1wCHk6a23XUd4ViJWD_wGtoYanKaXqb1sl47mgIaR2xw6JxjaHL6J37eMIl"/>
+</div>
+<span class="font-label-md text-label-md uppercase text-on-surface tracking-wider">New Zealand</span>
+<!-- Score Dial -->
+<div class="flex flex-col items-center gap-3 w-full max-w-[100px]">
+<div class="relative w-full aspect-[3/4] bg-surface border border-outline-variant rounded-lg flex items-center justify-center focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/10 transition-all">
+<input class="w-full h-full bg-transparent border-none text-center font-display-lg text-display-lg text-primary focus:ring-0 cursor-pointer p-0" id="score-home" max="9" min="0" readonly="" type="number" value="0"/>
+</div>
+<div class="flex items-center justify-between w-full px-1">
+<button class="w-8 h-8 flex items-center justify-center rounded-full bg-surface hover:bg-surface-container-high border border-outline-variant text-on-surface-variant hover:text-primary transition-colors active:scale-95" onclick="updateScore('score-home', -1)">
+<span class="material-symbols-outlined text-sm">remove</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-full bg-surface hover:bg-surface-container-high border border-outline-variant text-on-surface-variant hover:text-primary transition-colors active:scale-95" onclick="updateScore('score-home', 1)">
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- VS Divider -->
+<div class="flex flex-col items-center justify-center px-4">
+<span class="font-headline-md text-headline-md text-outline-variant font-light">vs</span>
+</div>
+<!-- Away Team (EGY) -->
+<div class="flex flex-col items-center gap-4 flex-1">
+<div class="w-16 h-16 rounded-full bg-surface-container border border-outline-variant flex items-center justify-center overflow-hidden shadow-sm">
+<img class="w-10 h-10 object-contain" data-alt="A stylized, clean vector logo featuring an eagle crest in deep red and black, representing Egyptian sports. The graphic is minimal and sharp, fitting perfectly into a corporate modern light-mode analytics interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxnDNYVqNUgRhyxqmbx-i6nFFFAxInfgHEgp6CCymveKrWKaCOypL8jZ3YXoUhDRYMF1gClu4iQf8WtyAo3tj9CMLsNYFHJaN0TxCIVefx3tPsaRpav9yZz8JbCm0DPzdV3WhRy628mIkRyA-mpfWc8zGQmfc8gk0gG98RZdFuDfkw0HSDHSKgGE2e1zY8mMcBQRa5Z7c8WcKUKemeFGTy8Th8bahq8A3PgN0WTsw8t1tMrrQNCnSCN209UG2LP2XnrqKwKorOVZaH"/>
+</div>
+<span class="font-label-md text-label-md uppercase text-on-surface tracking-wider">Egypt</span>
+<!-- Score Dial -->
+<div class="flex flex-col items-center gap-3 w-full max-w-[100px]">
+<div class="relative w-full aspect-[3/4] bg-surface border border-outline-variant rounded-lg flex items-center justify-center focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/10 transition-all">
+<input class="w-full h-full bg-transparent border-none text-center font-display-lg text-display-lg text-primary focus:ring-0 cursor-pointer p-0" id="score-away" max="9" min="0" readonly="" type="number" value="0"/>
+</div>
+<div class="flex items-center justify-between w-full px-1">
+<button class="w-8 h-8 flex items-center justify-center rounded-full bg-surface hover:bg-surface-container-high border border-outline-variant text-on-surface-variant hover:text-primary transition-colors active:scale-95" onclick="updateScore('score-away', -1)">
+<span class="material-symbols-outlined text-sm">remove</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-full bg-surface hover:bg-surface-container-high border border-outline-variant text-on-surface-variant hover:text-primary transition-colors active:scale-95" onclick="updateScore('score-away', 1)">
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Submit Action -->
+<div class="mt-4 w-full">
+<button class="w-full py-4 bg-primary text-on-primary font-label-md text-label-md uppercase tracking-wider rounded-lg shadow-md hover:bg-on-primary-fixed-variant active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+                    Submit Prediction
+                    <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</button>
+</div>
+</section>
+<!-- Community Predictions (Bento Grid Style) -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-5 shadow-[0_4px_12px_rgba(0,18,120,0.02)] flex flex-col gap-4">
+<div class="flex items-center justify-between border-b border-surface-container-high pb-3">
+<h3 class="font-label-md text-label-md uppercase text-outline tracking-wider flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">bar_chart</span> Community Stats
+                </h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant bg-surface-container px-2 py-1 rounded">12,408 Votes</span>
+</div>
+<!-- Stats Bars -->
+<div class="flex flex-col gap-4 mt-2">
+<!-- NZL Win -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<span class="font-body-md text-body-md text-on-surface text-sm">NZL Win</span>
+<span class="font-label-md text-label-md text-primary">62%</span>
+</div>
+<div class="w-full h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 62%;"></div>
+</div>
+</div>
+<!-- Draw -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<span class="font-body-md text-body-md text-on-surface text-sm">Draw</span>
+<span class="font-label-md text-label-md text-outline">15%</span>
+</div>
+<div class="w-full h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-outline rounded-full" style="width: 15%;"></div>
+</div>
+</div>
+<!-- EGY Win -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<span class="font-body-md text-body-md text-on-surface text-sm">EGY Win</span>
+<span class="font-label-md text-label-md text-secondary">23%</span>
+</div>
+<div class="w-full h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 23%;"></div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Mobile Only based on guidelines, but rendered as requested) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 flex justify-around items-center h-20 px-2 pb-safe bg-surface-container-lowest border-t border-outline-variant shadow-lg">
+<!-- Arena (Inactive) -->
+<button class="flex flex-col items-center justify-center w-16 h-12 text-on-surface-variant hover:text-primary transition-all active:scale-95">
+<span class="material-symbols-outlined text-[24px] mb-1" style="font-variation-settings: 'FILL' 0;">stadium</span>
+<span class="font-label-sm text-[10px] uppercase tracking-wider">Arena</span>
+</button>
+<!-- Matches (Inactive) -->
+<button class="flex flex-col items-center justify-center w-16 h-12 text-on-surface-variant hover:text-primary transition-all active:scale-95">
+<span class="material-symbols-outlined text-[24px] mb-1" style="font-variation-settings: 'FILL' 0;">event_note</span>
+<span class="font-label-sm text-[10px] uppercase tracking-wider">Matches</span>
+</button>
+<!-- My Preds (Active - Based on exact string match priority from JSON) -->
+<button class="flex flex-col items-center justify-center w-20 h-14 bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined text-[24px] mb-0.5" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<span class="font-label-sm text-[10px] uppercase tracking-wider font-bold">My Preds</span>
+</button>
+<!-- Players (Inactive) -->
+<button class="flex flex-col items-center justify-center w-16 h-12 text-on-surface-variant hover:text-primary transition-all active:scale-95">
+<span class="material-symbols-outlined text-[24px] mb-1" style="font-variation-settings: 'FILL' 0;">groups</span>
+<span class="font-label-sm text-[10px] uppercase tracking-wider">Players</span>
+</button>
+<!-- Profile (Inactive) -->
+<button class="flex flex-col items-center justify-center w-16 h-12 text-on-surface-variant hover:text-primary transition-all active:scale-95">
+<span class="material-symbols-outlined text-[24px] mb-1" style="font-variation-settings: 'FILL' 0;">person</span>
+<span class="font-label-sm text-[10px] uppercase tracking-wider">Profile</span>
+</button>
+</nav>
+<!-- Lightweight JS for score interaction -->
+<script>
+        function updateScore(inputId, change) {
+            const input = document.getElementById(inputId);
+            let currentValue = parseInt(input.value);
+            let newValue = currentValue + change;
+            
+            // Constrain between 0 and 9
+            if(newValue >= 0 && newValue <= 9) {
+                input.value = newValue;
+            }
+        }
+    </script>
+</body></html>

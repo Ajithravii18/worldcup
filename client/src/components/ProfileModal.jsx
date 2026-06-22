@@ -62,7 +62,7 @@ export default function ProfileModal({ isOpen, onClose }) {
         particleCount: 150,
         spread: 80,
         origin: { y: 0.5 },
-        colors: ['#001278', '#1b6d24', '#ff5a00']
+        colors: ['#00ff87', '#ffd700', '#ff3d00']
       });
 
       setTimeout(() => {
@@ -136,52 +136,43 @@ export default function ProfileModal({ isOpen, onClose }) {
     if (e.key === 'Backspace' && !pwOtp[i] && i > 0) pwOtpRefs[i - 1].current?.focus();
   };
 
-  const handleBackdropClick = (e) => {
-    if (e.target === e.currentTarget) {
-      handleClose();
-    }
-  };
-
   return (
     <div
-      onClick={handleBackdropClick}
-      className={`fixed inset-0 z-50 flex items-end justify-center bg-black/60 backdrop-blur-sm transition-opacity duration-300 ${
-        animate ? 'opacity-100' : 'opacity-0 pointer-events-none'
-      }`}
+      onClick={(e) => { if (e.target === e.currentTarget) handleClose(); }}
+      className={`fixed inset-0 z-50 flex items-end justify-center bg-black/80 backdrop-blur-md transition-opacity duration-300 ${animate ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
     >
       <div
-        className={`w-full max-w-lg rounded-t-[1.5rem] p-6 relative overflow-hidden transition-transform duration-300 bg-surface-container-lowest subtle-card-shadow border-t border-outline-variant ${
-          animate ? 'translate-y-0' : 'translate-y-full'
-        }`}
+        className={`w-full max-w-lg rounded-t-[2rem] p-8 relative overflow-hidden transition-transform duration-300 glass-panel-heavy shadow-2xl border-t border-outline-variant/50 ${animate ? 'translate-y-0' : 'translate-y-full'}`}
       >
-        <div className="w-12 h-1 bg-outline-variant rounded-full mx-auto mb-5" />
+        <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-50"></div>
+        <div className="w-16 h-1.5 bg-outline-variant/50 rounded-full mx-auto mb-6" />
 
         <button
           onClick={handleClose}
-          className="absolute right-5 top-5 w-8 h-8 rounded border border-outline-variant bg-surface hover:bg-surface-container-high flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors text-sm font-bold"
+          className="absolute right-6 top-6 w-10 h-10 rounded-full border border-outline-variant/30 bg-black/40 hover:bg-white/10 flex items-center justify-center text-on-surface-variant hover:text-white transition-colors text-sm font-bold z-10"
         >
-          <span className="material-symbols-outlined text-[18px]">close</span>
+          <span className="material-symbols-outlined text-[20px]">close</span>
         </button>
 
-        <h2 className="font-headline-md text-headline-md text-primary mb-6 text-center font-bold uppercase">
-          CUSTOMIZE PROFILE
+        <h2 className="font-display-lg text-4xl text-on-surface mb-8 text-center font-bold uppercase tracking-wide drop-shadow-md">
+          PLAYER <span className="text-primary">PROFILE</span>
         </h2>
 
         {error && (
-          <div className="mb-4 p-3 rounded font-label-sm text-label-sm uppercase tracking-widest text-error bg-error-container border border-error">
-            {error}
+          <div className="mb-6 p-3 rounded font-label-md text-xs uppercase tracking-widest text-error bg-error/10 border border-error/30 shadow-neon-accent">
+            ⚠️ {error}
           </div>
         )}
 
         {success && (
-          <div className="mb-4 p-3 rounded font-label-sm text-label-sm uppercase tracking-widest text-secondary bg-secondary-container border border-secondary text-center">
-            PROFILE UPDATED
+          <div className="mb-6 p-3 rounded font-label-md text-xs uppercase tracking-widest text-primary bg-primary/10 border border-primary/30 text-center shadow-neon-primary">
+            ✓ PROFILE UPDATED
           </div>
         )}
 
         <form onSubmit={handleSave} className="space-y-6">
           <div>
-            <label className="block font-label-sm text-[10px] uppercase tracking-widest text-on-surface-variant mb-2">
+            <label className="block font-label-md text-xs uppercase tracking-[0.2em] text-on-surface-variant mb-2 ml-1">
               Display Name
             </label>
             <input
@@ -191,16 +182,16 @@ export default function ProfileModal({ isOpen, onClose }) {
               placeholder="Your display name"
               required
               maxLength={50}
-              className="w-full bg-surface border border-outline-variant text-on-surface rounded-lg px-4 py-3 outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all font-body-md"
+              className="w-full bg-black/40 border border-outline-variant/50 text-on-surface rounded-xl px-5 py-4 outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all font-body-md shadow-inner"
             />
           </div>
 
           <div>
-            <label className="block font-label-sm text-[10px] uppercase tracking-widest text-on-surface-variant mb-3">
-              Choose Avatar
+            <label className="block font-label-md text-xs uppercase tracking-[0.2em] text-on-surface-variant mb-3 ml-1">
+              Select Avatar
             </label>
             
-            <div className="grid grid-cols-4 gap-3 max-h-48 overflow-y-auto p-2 scrollbar-none border border-outline-variant rounded-lg bg-surface">
+            <div className="grid grid-cols-4 gap-3 max-h-48 overflow-y-auto p-2 scrollbar-none border border-outline-variant/30 rounded-xl bg-black/20 shadow-inner">
               {AVATARS.map((av) => {
                 const isSelected = selectedAvatar === av.id;
                 return (
@@ -208,14 +199,14 @@ export default function ProfileModal({ isOpen, onClose }) {
                     key={av.id}
                     type="button"
                     onClick={() => setSelectedAvatar(av.id)}
-                    className={`flex flex-col items-center justify-center p-2 rounded-lg transition-all duration-200 border active:scale-95 ${
+                    className={`flex flex-col items-center justify-center p-3 rounded-xl transition-all duration-200 border active:scale-95 ${
                       isSelected 
-                        ? 'border-primary bg-primary-fixed shadow-sm scale-105 z-10' 
-                        : 'border-transparent bg-surface hover:border-outline-variant hover:bg-surface-container'
+                        ? 'border-primary bg-primary/10 shadow-neon-primary scale-[1.02] z-10' 
+                        : 'border-transparent bg-transparent hover:border-outline-variant/50 hover:bg-white/5'
                     }`}
                   >
-                    <UserAvatar avatarId={av.id} className={`w-10 h-10 object-cover rounded-full border-2 ${isSelected ? 'border-primary' : 'border-surface-variant'}`} />
-                    <span className={`font-label-sm text-[9px] mt-1.5 truncate max-w-full text-center uppercase tracking-widest ${isSelected ? 'text-primary' : 'text-on-surface-variant'}`}>
+                    <UserAvatar avatarId={av.id} className={`w-12 h-12 object-cover rounded-full border-2 ${isSelected ? 'border-primary drop-shadow-[0_0_8px_rgba(0,255,135,0.8)]' : 'border-outline-variant/50'}`} />
+                    <span className={`font-label-md text-[10px] mt-2 truncate max-w-full text-center uppercase tracking-widest ${isSelected ? 'text-primary' : 'text-on-surface-variant'}`}>
                       {av.name.split(' ')[0]}
                     </span>
                   </button>
@@ -224,66 +215,69 @@ export default function ProfileModal({ isOpen, onClose }) {
             </div>
           </div>
 
-          <button type="submit" disabled={saving} className="w-full py-4 bg-primary text-on-primary font-label-md text-label-md uppercase tracking-wider rounded-lg shadow-md hover:bg-on-primary-fixed-variant active:scale-[0.98] transition-all mt-4">
-            {saving ? 'SAVING PROFILE...' : 'SAVE & SYNC'}
+          <button type="submit" disabled={saving} className="w-full py-4 mt-8 btn-primary text-base">
+            {saving ? 'UPDATING...' : 'SAVE CHANGES'}
           </button>
         </form>
 
-        <div className="mt-6 border-t border-outline-variant pt-4">
+        <div className="mt-8 border-t border-outline-variant/30 pt-6">
           <button
             onClick={() => { setPwSection(v => !v); setPwStep('idle'); setPwError(''); setPwOtp(['','','','','','']); }}
-            className="w-full font-label-sm text-[10px] text-on-surface-variant uppercase tracking-widest hover:text-primary transition-colors py-2 flex items-center justify-center gap-2"
+            className="w-full font-label-md text-xs text-on-surface-variant uppercase tracking-[0.2em] hover:text-primary transition-colors py-2 flex items-center justify-center gap-2"
           >
-            <span className="material-symbols-outlined text-[16px]">{pwSection ? 'visibility_off' : 'lock'}</span> {pwSection ? 'Hide' : 'Change Password'}
+            <span className="material-symbols-outlined text-[18px]">{pwSection ? 'visibility_off' : 'lock'}</span> {pwSection ? 'HIDE SECURITY' : 'CHANGE PASSWORD'}
           </button>
 
           {pwSection && (
-            <div className="mt-4 animate-fade-in">
+            <div className="mt-6 animate-fade-in bg-black/30 p-5 rounded-xl border border-outline-variant/20 shadow-inner">
               {pwError && (
-                <div className="mb-3 p-2 rounded font-label-sm text-[10px] text-error uppercase tracking-widest bg-error-container border border-error">
+                <div className="mb-4 p-3 rounded font-label-md text-xs text-error uppercase tracking-widest bg-error/10 border border-error/30 shadow-neon-accent">
                   ⚠️ {pwError}
                 </div>
               )}
 
               {pwStep === 'done' ? (
-                <div className="text-center py-4 text-secondary font-label-sm text-[10px] uppercase tracking-widest animate-fade-in">
-                  ✓ Password Changed Successfully!
+                <div className="text-center py-6 text-primary font-label-md text-sm uppercase tracking-[0.2em] animate-fade-in flex flex-col items-center gap-3">
+                  <span className="material-symbols-outlined text-4xl">check_circle</span>
+                  PASSWORD CHANGED SUCCESSFULLY
                 </div>
               ) : pwStep === 'idle' ? (
                 <div className="space-y-4">
-                  <div className="relative">
+                  <div>
                     <input
                       type="password"
                       value={newPassword}
                       onChange={(e) => setNewPassword(e.target.value)}
                       placeholder="New Password (min 6 chars)"
-                      className="w-full bg-surface border border-outline-variant text-on-surface rounded-lg px-4 py-3 outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all font-body-md"
+                      className="w-full bg-black/60 border border-outline-variant/50 text-on-surface rounded-lg px-5 py-4 outline-none focus:border-primary transition-all font-body-md"
                     />
                   </div>
                   <button onClick={handleSendPwOtp} disabled={pwLoading}
-                    className="w-full py-3 bg-surface text-primary border border-outline-variant hover:bg-surface-container-low rounded-lg font-label-sm text-label-sm uppercase tracking-widest transition-colors">
-                    {pwLoading ? 'Sending...' : 'Send OTP to Email'}
+                    className="w-full py-4 btn-ghost flex items-center justify-center gap-2">
+                    {pwLoading ? 'SENDING...' : 'SEND OTP TO EMAIL'}
+                    {!pwLoading && <span className="material-symbols-outlined text-[18px]">mail</span>}
                   </button>
                 </div>
               ) : (
-                <form onSubmit={handleVerifyPwOtp} className="space-y-4">
-                  <p className="font-label-sm text-[10px] text-on-surface-variant text-center uppercase tracking-widest">Enter the 6-digit code sent to your email</p>
-                  <div className="flex justify-center gap-2">
+                <form onSubmit={handleVerifyPwOtp} className="space-y-5">
+                  <p className="font-label-md text-xs text-on-surface-variant text-center uppercase tracking-[0.1em]">ENTER 6-DIGIT VERIFICATION CODE</p>
+                  <div className="flex justify-center gap-3">
                     {pwOtp.map((d, i) => (
                       <input key={i} ref={pwOtpRefs[i]} type="text" inputMode="numeric" maxLength={1} value={d}
                         onChange={(e) => handlePwOtpInput(i, e.target.value)}
                         onKeyDown={(e) => handlePwOtpKeyDown(i, e)}
-                        className={`w-10 h-12 text-center text-xl font-display-lg bg-surface rounded-md border-b-2 outline-none transition-all ${d ? 'border-primary text-primary' : 'border-outline-variant text-on-surface focus:border-primary'}`}
+                        className={`w-12 h-14 text-center text-3xl font-display-lg bg-black/60 rounded-lg border-2 outline-none transition-all shadow-inner ${d ? 'border-primary text-primary drop-shadow-[0_0_5px_rgba(0,255,135,0.5)]' : 'border-outline-variant/30 text-on-surface focus:border-primary/50'}`}
                       />
                     ))}
                   </div>
                   <button type="submit" disabled={pwLoading}
-                    className="w-full py-3 bg-primary text-on-primary font-label-sm text-label-sm uppercase tracking-wider rounded-lg shadow-md hover:bg-on-primary-fixed-variant transition-all mt-2">
-                    {pwLoading ? 'Verifying...' : 'Confirm New Password'}
+                    className="w-full py-4 btn-primary mt-2 flex items-center justify-center gap-2">
+                    {pwLoading ? 'VERIFYING...' : 'CONFIRM NEW PASSWORD'}
+                    {!pwLoading && <span className="material-symbols-outlined text-[18px]">lock_open</span>}
                   </button>
                   <button type="button" onClick={() => { setPwStep('idle'); setPwOtp(['','','','','','']); }}
-                    className="w-full font-label-sm text-[10px] text-on-surface-variant hover:text-primary uppercase tracking-widest transition-colors mt-2">
-                    {pwCooldown > 0 ? `Resend in ${pwCooldown}s` : 'Resend Code'}
+                    className="w-full font-label-md text-[10px] text-on-surface-variant hover:text-primary uppercase tracking-[0.2em] transition-colors mt-2">
+                    {pwCooldown > 0 ? `RESEND IN ${pwCooldown}s` : 'RESEND CODE'}
                   </button>
                 </form>
               )}

@@ -50,19 +50,33 @@ export default function LeaderboardView({ predictions = [] }) {
   });
 
   return (
-    <div className="w-full max-w-4xl mx-auto px-4 py-8">
+    <div className="w-full max-w-5xl mx-auto py-8">
       {/* Header */}
-      <div className="mb-6 border-b border-surface-variant pb-4 flex justify-between items-end">
+      <div className="mb-8 border-b border-outline-variant/50 pb-6 flex flex-col md:flex-row md:justify-between md:items-end gap-4 glass-panel p-6 rounded-2xl">
         <div>
-          <h1 className="text-3xl font-headline-lg font-bold text-on-surface uppercase tracking-tight">Leaderboard</h1>
-          <p className="text-on-surface-variant mt-2 text-sm font-label-md uppercase tracking-widest">Total Players: {leaderboard.length}</p>
+          <div className="flex items-center gap-3 mb-2">
+            <span className="material-symbols-outlined text-secondary text-[32px]">emoji_events</span>
+            <h1 className="text-4xl md:text-5xl font-headline-lg font-bold text-on-surface uppercase tracking-wide">Global Rankings</h1>
+          </div>
+          <p className="text-on-surface-variant text-sm font-body-md max-w-lg">The ultimate test of football knowledge. Predict exact scores to maximize your points and climb to the top of the leaderboard.</p>
+        </div>
+        <div className="bg-black/40 border border-outline-variant/30 px-5 py-3 rounded-lg flex items-center gap-4">
+          <div className="text-center">
+            <div className="text-2xl font-display-lg font-bold text-primary">{leaderboard.length}</div>
+            <div className="text-[10px] font-label-sm uppercase tracking-widest text-on-surface-variant">Players</div>
+          </div>
+          <div className="w-[1px] h-8 bg-outline-variant/30"></div>
+          <div className="text-center">
+            <div className="text-2xl font-display-lg font-bold text-secondary">{predictions.length}</div>
+            <div className="text-[10px] font-label-sm uppercase tracking-widest text-on-surface-variant">Predictions</div>
+          </div>
         </div>
       </div>
 
       {/* List */}
-      <div className="space-y-3">
+      <div className="space-y-4 relative z-10">
         {leaderboard.length === 0 ? (
-          <div className="text-center py-16 text-on-surface-variant text-sm bg-surface-container border border-outline-variant rounded-xl uppercase tracking-widest font-label-md">
+          <div className="text-center py-20 text-on-surface-variant text-base glass-panel rounded-2xl uppercase tracking-widest font-label-md">
             No predictions have been made yet.
           </div>
         ) : (
@@ -72,14 +86,23 @@ export default function LeaderboardView({ predictions = [] }) {
               : 0;
 
             let rankColor = "text-primary";
-            let rankHighlight = "";
+            let rankBorder = "border-outline-variant/30";
+            let rankBg = "bg-black/20";
+            let rankGlow = "";
+
             if (index === 0) {
-              rankColor = "text-[#ff5a00]"; // Striker orange for #1
-              rankHighlight = "border-l-[4px] border-l-[#ff5a00]";
+              rankColor = "text-secondary"; // Gold
+              rankBorder = "border-secondary/50";
+              rankBg = "bg-gradient-to-r from-secondary/10 to-transparent";
+              rankGlow = "drop-shadow-[0_0_10px_rgba(255,215,0,0.6)]";
             } else if (index === 1) {
-              rankColor = "text-on-surface"; 
+              rankColor = "text-[#c0c0c0]"; // Silver
+              rankBorder = "border-[#c0c0c0]/50";
+              rankBg = "bg-gradient-to-r from-[#c0c0c0]/10 to-transparent";
             } else if (index === 2) {
-              rankColor = "text-on-surface"; 
+              rankColor = "text-[#cd7f32]"; // Bronze
+              rankBorder = "border-[#cd7f32]/50";
+              rankBg = "bg-gradient-to-r from-[#cd7f32]/10 to-transparent";
             } else {
               rankColor = "text-on-surface-variant";
             }
@@ -87,28 +110,32 @@ export default function LeaderboardView({ predictions = [] }) {
             const isExpanded = expandedPlayer === player.id;
 
             return (
-              <div key={player.id} className={`bg-surface-container-lowest border border-outline-variant rounded-xl subtle-card-shadow overflow-hidden transition-all duration-300 ${rankHighlight} ${isExpanded ? 'bg-surface-container-low' : ''}`}>
-                {/* Minimal Row - Always Visible */}
+              <div key={player.id} className={`glass-panel overflow-hidden transition-all duration-300 rounded-xl border ${rankBorder} ${isExpanded ? 'shadow-neon-primary scale-[1.01]' : 'hover:border-primary/50'}`}>
+                {/* Row - Always Visible */}
                 <button
                   onClick={() => setExpandedPlayer(isExpanded ? null : player.id)}
-                  className="w-full p-4 flex items-center justify-between gap-4 text-left hover:bg-surface-container-low transition-colors"
+                  className={`w-full p-5 flex items-center justify-between gap-4 text-left transition-colors ${rankBg} hover:bg-white/5`}
                 >
-                  <div className="flex items-center gap-4 flex-1 min-w-0">
-                    <div className={`text-2xl font-bold font-headline-md w-8 text-center flex-shrink-0 ${rankColor}`}>
-                      #{index + 1}
+                  <div className="flex items-center gap-5 flex-1 min-w-0">
+                    <div className={`text-4xl md:text-5xl font-bold font-display-lg w-12 md:w-16 text-center flex-shrink-0 ${rankColor} ${rankGlow}`}>
+                      {index + 1}
                     </div>
                     <div className="min-w-0 flex-1">
-                      <h2 className="text-base font-bold text-on-surface truncate font-headline-md tracking-wide">{player.name}</h2>
-                      <p className="text-[10px] text-on-surface-variant font-label-sm uppercase tracking-widest mt-1">{player.totalPlayed} preds</p>
+                      <h2 className="text-xl md:text-2xl font-bold text-on-surface truncate font-headline-md tracking-wide">{player.name}</h2>
+                      <div className="flex items-center gap-3 mt-1">
+                        <span className="text-xs text-on-surface-variant font-label-sm uppercase tracking-widest">{player.totalPlayed} PREDS</span>
+                        <span className="w-1 h-1 rounded-full bg-outline-variant/50"></span>
+                        <span className="text-xs text-primary font-label-sm uppercase tracking-widest">{accuracy}% ACCURACY</span>
+                      </div>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-4 flex-shrink-0">
+                  <div className="flex items-center gap-6 flex-shrink-0">
                     <div className="flex flex-col items-end justify-center">
-                      <span className="text-lg font-display-lg font-bold text-primary tracking-tighter">{player.points} pts</span>
-                      <span className="text-[10px] font-label-sm font-medium text-on-surface-variant uppercase">{player.exactWins} perfect</span>
+                      <span className={`text-3xl md:text-4xl font-display-lg font-bold tracking-tighter ${index === 0 ? 'text-secondary drop-shadow-[0_0_8px_rgba(255,215,0,0.5)]' : 'text-primary'}`}>{player.points} <span className="text-lg text-on-surface-variant ml-1 font-headline-md">PTS</span></span>
+                      <span className="text-[10px] font-label-sm font-medium text-on-surface-variant uppercase bg-black/40 px-2 py-0.5 rounded border border-outline-variant/30">{player.exactWins} EXACT</span>
                     </div>
-                    <span className={`text-on-surface-variant transition-transform material-symbols-outlined text-[20px] ${isExpanded ? 'rotate-180' : ''}`}>
+                    <span className={`text-on-surface-variant transition-transform material-symbols-outlined text-[24px] ${isExpanded ? 'rotate-180 text-primary' : ''}`}>
                       expand_more
                     </span>
                   </div>
@@ -116,21 +143,21 @@ export default function LeaderboardView({ predictions = [] }) {
 
                 {/* Expanded Details */}
                 {isExpanded && (
-                  <div className="border-t border-surface-variant p-4 bg-surface-container-lowest animate-fade-in">
-                    <h3 className="text-[10px] font-label-sm font-medium text-on-surface-variant uppercase tracking-widest mb-3">
-                      Perfect Predictions ({player.perfectMatches.length})
+                  <div className="border-t border-outline-variant/30 p-6 bg-black/50 animate-fade-in">
+                    <h3 className="text-xs font-label-sm text-on-surface-variant uppercase tracking-widest mb-4 flex items-center gap-2">
+                      <span className="material-symbols-outlined text-[16px]">stars</span> Perfect Predictions ({player.perfectMatches.length})
                     </h3>
                     
                     {player.perfectMatches.length === 0 ? (
-                      <p className="text-[10px] text-on-surface-variant font-label-sm uppercase tracking-widest">No exact score predictions yet.</p>
+                      <p className="text-sm text-on-surface-variant font-body-md italic bg-black/40 p-4 rounded-lg border border-outline-variant/20 text-center">No exact score predictions yet. They need to step up their game.</p>
                     ) : (
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                         {player.perfectMatches.map((match, i) => (
-                          <div key={i} className="flex items-center justify-between bg-surface border border-outline-variant p-2.5 rounded-md shadow-sm">
-                            <span className="text-on-surface font-bold font-headline-md text-sm truncate mr-2 tracking-wide">
-                              {match.home} vs {match.away}
+                          <div key={i} className="flex items-center justify-between glass-panel p-3 rounded-lg shadow-sm">
+                            <span className="text-on-surface font-bold font-headline-md text-base truncate mr-3 tracking-wide">
+                              {match.home} <span className="text-outline-variant mx-1 italic text-sm">vs</span> {match.away}
                             </span>
-                            <span className="bg-[#e6f4ea] text-[#1e4620] border border-[#a3f69c] font-display-lg font-bold px-2 py-0.5 rounded text-xs flex-shrink-0">
+                            <span className="bg-primary/10 text-primary border border-primary/30 font-display-lg font-bold px-3 py-1 rounded text-xl flex-shrink-0 tracking-tighter shadow-[inset_0_0_8px_rgba(0,255,135,0.2)]">
                               {match.score}
                             </span>
                           </div>

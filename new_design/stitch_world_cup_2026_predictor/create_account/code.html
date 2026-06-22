@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Lucky Star FC - Create Account</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "error": "#ba1a1a",
+                      "on-primary": "#ffffff",
+                      "primary-fixed-dim": "#bcc3ff",
+                      "tertiary-fixed-dim": "#ffb5a0",
+                      "secondary-fixed-dim": "#88d982",
+                      "primary-fixed": "#dfe0ff",
+                      "outline-variant": "#c5c5d7",
+                      "primary-container": "#0020b2",
+                      "surface-bright": "#fcf9f8",
+                      "surface-container-lowest": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "inverse-on-surface": "#f3f0ef",
+                      "surface-container": "#f0edec",
+                      "on-primary-fixed-variant": "#1b32be",
+                      "surface-variant": "#e5e2e1",
+                      "tertiary-fixed": "#ffdbd1",
+                      "on-primary-container": "#8f9dff",
+                      "on-secondary": "#ffffff",
+                      "on-tertiary-fixed": "#3b0900",
+                      "surface-container-low": "#f6f3f2",
+                      "inverse-primary": "#bcc3ff",
+                      "on-secondary-fixed": "#002204",
+                      "on-error": "#ffffff",
+                      "surface": "#fcf9f8",
+                      "surface-container-highest": "#e5e2e1",
+                      "surface-tint": "#3a4ed5",
+                      "inverse-surface": "#313030",
+                      "on-background": "#1c1b1b",
+                      "on-tertiary-fixed-variant": "#862200",
+                      "on-primary-fixed": "#000d60",
+                      "on-error-container": "#93000a",
+                      "primary": "#001278",
+                      "background": "#fcf9f8",
+                      "secondary": "#1b6d24",
+                      "surface-container-high": "#ebe7e7",
+                      "secondary-container": "#a0f399",
+                      "on-secondary-container": "#217128",
+                      "on-surface": "#1c1b1b",
+                      "secondary-fixed": "#a3f69c",
+                      "surface-dim": "#dcd9d9",
+                      "on-surface-variant": "#454654",
+                      "tertiary-container": "#701b00",
+                      "on-tertiary": "#ffffff",
+                      "outline": "#757686",
+                      "on-tertiary-container": "#ff7f59",
+                      "on-secondary-fixed-variant": "#005312",
+                      "tertiary": "#4a0f00"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "margin-mobile": "16px",
+                      "container-max": "1440px",
+                      "margin-desktop": "48px",
+                      "gutter": "24px",
+                      "unit": "4px"
+              },
+              "fontFamily": {
+                      "label-sm": [
+                              "Archivo Narrow"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Archivo Narrow"
+                      ],
+                      "label-md": [
+                              "Archivo Narrow"
+                      ],
+                      "headline-lg-mobile": [
+                              "Archivo Narrow"
+                      ],
+                      "display-lg": [
+                              "Archivo Narrow"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Archivo Narrow"
+                      ]
+              },
+              "fontSize": {
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "28px",
+                              {
+                                      "lineHeight": "34px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "52px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface antialiased min-h-screen flex flex-col items-center justify-center p-4">
+<!-- Main Container -->
+<main class="w-full max-w-md bg-surface-container-lowest rounded-xl shadow-lg border border-outline-variant overflow-hidden relative z-10">
+<!-- Header Image Area -->
+<div class="h-48 relative w-full bg-surface-container flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center w-full h-full opacity-60" data-alt="A brightly lit, modern football stadium interior during daytime, focusing on clean architectural lines and pristine green pitch, shot from a low dynamic angle. Professional sports photography, sharp focus, vibrant natural light." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBSxeiGVP9Nk4RKVJ22wU3oZYL32IS5z0Zqu2Bdkqq8PQ-LZAaEgrQMNfNzEKJc6B797ZG1_MkkgXXl7TKEjODAh--Bp4GyXjvBUaL2XKr36g2fGVCKvFm8CFZbrchm8XjX7w2ugzsvKThvIKPjpYI1QUZGXHm8UjorA4YupMLp7UDXxSG29NBWg9Jsrj0fEcrV-uXWQLdW-WjiVB0k6eHJlxK-Mo0WIY_Zg1Ma6Qd2TF-Y8_vhzHozrq4XxhhrtT0ByEq7qFxJRV_w')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest to-transparent"></div>
+<div class="relative z-10 flex flex-col items-center">
+<span class="material-symbols-outlined text-display-lg text-primary mb-2" style="font-variation-settings: 'FILL' 1;">sports_soccer</span>
+<h1 class="font-headline-lg md:font-headline-lg text-headline-lg md:text-headline-lg text-primary tracking-tighter uppercase">Lucky Star FC</h1>
+</div>
+</div>
+<!-- Form Content -->
+<div class="px-8 pb-10 pt-6">
+<div class="mb-8 text-center">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-2">Join the Squad</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Create your account to access exclusive team stats and match day features.</p>
+</div>
+<form action="#" class="space-y-6" method="POST">
+<!-- Name Field -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface uppercase mb-1" for="fullName">Full Name</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline">person</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-3 font-body-md text-body-md text-on-surface bg-surface-container-lowest border border-outline rounded-DEFAULT focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none transition-all placeholder:text-outline-variant" id="fullName" name="fullName" placeholder="John Doe" required="" type="text"/>
+</div>
+</div>
+<!-- Email Field -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface uppercase mb-1" for="email">Email Address</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline">mail</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-3 font-body-md text-body-md text-on-surface bg-surface-container-lowest border border-outline rounded-DEFAULT focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none transition-all placeholder:text-outline-variant" id="email" name="email" placeholder="manager@luckystarfc.com" required="" type="email"/>
+</div>
+</div>
+<!-- Password Field -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface uppercase mb-1" for="password">Password</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline">lock</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-3 font-body-md text-body-md text-on-surface bg-surface-container-lowest border border-outline rounded-DEFAULT focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none transition-all placeholder:text-outline-variant" id="password" name="password" placeholder="••••••••" required="" type="password"/>
+</div>
+<p class="mt-2 font-label-sm text-label-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">info</span> Must be at least 8 characters long.
+                    </p>
+</div>
+<!-- Submit Button -->
+<button class="w-full flex justify-center py-4 px-4 border border-transparent rounded-DEFAULT shadow-sm font-label-md text-label-md uppercase text-on-tertiary-container bg-tertiary-container hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-tertiary-container transition-colors items-center gap-2 mt-8" type="submit">
+                    SEND VERIFICATION CODE
+                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">arrow_forward</span>
+</button>
+</form>
+<!-- Login Link -->
+<div class="mt-8 text-center border-t border-outline-variant pt-6">
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    Already have an account? 
+                    <a class="font-label-md text-label-md text-primary hover:text-primary-container uppercase transition-colors" href="#">Sign in</a>
+</p>
+</div>
+</div>
+</main>
+<!-- Background Decoration -->
+<div class="fixed inset-0 z-0 pointer-events-none overflow-hidden opacity-20">
+<div class="absolute -top-[20%] -left-[10%] w-[60%] h-[60%] rounded-full bg-gradient-to-br from-primary-fixed to-transparent blur-[100px]"></div>
+<div class="absolute -bottom-[20%] -right-[10%] w-[60%] h-[60%] rounded-full bg-gradient-to-tl from-tertiary-fixed to-transparent blur-[100px]"></div>
+</div>
+</body></html>

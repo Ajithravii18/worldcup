@@ -17,24 +17,24 @@ export default function GoalSelector({
     >
       {/* Team info */}
       <div className={`flex flex-col items-center gap-3 w-full text-center`}>
-        <div className="w-16 h-16 rounded-full bg-surface-container border border-outline-variant flex items-center justify-center overflow-hidden shadow-sm">
-          <TeamFlag teamName={teamName} fallbackEmoji={teamFlag} className="w-10 h-10 object-contain" />
+        <div className="w-20 h-14 rounded shadow-md border border-outline-variant/50 bg-black/40 flex items-center justify-center overflow-hidden">
+          <TeamFlag teamName={teamName} fallbackEmoji={teamFlag} className="w-full h-full object-cover" />
         </div>
-        <span className="font-label-md text-label-md uppercase text-on-surface tracking-wider line-clamp-1">
+        <span className="font-headline-md text-lg uppercase text-on-surface tracking-wide line-clamp-1 drop-shadow-sm font-bold">
           {teamName}
         </span>
       </div>
 
       {/* Goal controls */}
-      <div className="flex flex-col items-center gap-3 w-full max-w-[100px] mt-2">
+      <div className="flex flex-col items-center gap-4 w-full max-w-[120px] mt-2">
         {/* Goal input/display */}
-        <div className={`relative w-full aspect-[3/4] rounded-lg flex items-center justify-center transition-all ${
+        <div className={`relative w-full aspect-[4/5] rounded-xl flex items-center justify-center transition-all shadow-inner border-2 ${
           disabled 
-            ? 'bg-surface-container border border-outline-variant opacity-70' 
-            : 'bg-surface border border-outline-variant focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/10 shadow-sm'
+            ? 'bg-black/60 border-outline-variant/30 opacity-70' 
+            : 'bg-black/80 border-outline-variant/50 focus-within:border-primary shadow-[inset_0_0_15px_rgba(0,0,0,0.8)]'
         }`}>
           <input 
-            className="w-full h-full bg-transparent border-none text-center font-display-lg text-display-lg text-primary focus:ring-0 cursor-pointer p-0"
+            className="w-full h-full bg-transparent border-none text-center font-display-lg text-6xl sm:text-7xl text-primary focus:ring-0 cursor-pointer p-0 drop-shadow-[0_0_8px_rgba(0,255,135,0.6)]"
             max="9" 
             min="0" 
             readOnly 
@@ -44,30 +44,30 @@ export default function GoalSelector({
         </div>
         
         {/* Stepper buttons */}
-        <div className="flex items-center justify-between w-full px-1">
+        <div className="flex items-center justify-between w-full px-1 gap-2">
           <button
             onClick={onDecrease}
             disabled={disabled || goals === 0}
-            className={`w-8 h-8 flex items-center justify-center rounded-full bg-surface border transition-colors active:scale-95 ${
+            className={`w-12 h-10 flex flex-1 items-center justify-center rounded-lg border transition-all active:scale-95 ${
               disabled || goals === 0
-                ? 'border-surface-variant text-outline opacity-50 cursor-not-allowed'
-                : 'border-outline-variant text-on-surface-variant hover:bg-surface-container-high hover:text-primary'
+                ? 'bg-black/40 border-outline-variant/30 text-outline-variant opacity-50 cursor-not-allowed'
+                : 'bg-surface border-outline-variant/50 text-on-surface hover:bg-white/10 hover:border-white/30 hover:text-white shadow-sm'
             }`}
             aria-label="Decrease goals"
           >
-            <span className="material-symbols-outlined text-sm">remove</span>
+            <span className="material-symbols-outlined text-[20px]">remove</span>
           </button>
           <button
             onClick={onIncrease}
             disabled={disabled}
-            className={`w-8 h-8 flex items-center justify-center rounded-full bg-surface border transition-colors active:scale-95 ${
+            className={`w-12 h-10 flex flex-1 items-center justify-center rounded-lg border transition-all active:scale-95 ${
               disabled
-                ? 'border-surface-variant text-outline opacity-50 cursor-not-allowed'
-                : 'border-outline-variant text-on-surface-variant hover:bg-surface-container-high hover:text-primary'
+                ? 'bg-black/40 border-outline-variant/30 text-outline-variant opacity-50 cursor-not-allowed'
+                : 'bg-surface border-outline-variant/50 text-on-surface hover:bg-white/10 hover:border-white/30 hover:text-white shadow-sm'
             }`}
             aria-label="Increase goals"
           >
-            <span className="material-symbols-outlined text-sm">add</span>
+            <span className="material-symbols-outlined text-[20px]">add</span>
           </button>
         </div>
       </div>
