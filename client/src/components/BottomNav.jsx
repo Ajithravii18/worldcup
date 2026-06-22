@@ -3,9 +3,9 @@ import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 const tabs = [
-  { id: 'global',      emoji: '🌍', label: 'MATCHES' },
-  { id: 'my',          emoji: '⚽', label: 'MY PREDS' },
-  { id: 'leaderboard', emoji: '🏆', label: 'PLAYERS' },
+  { id: 'global',      icon: 'public', label: 'Matches' },
+  { id: 'my',          icon: 'analytics', label: 'My Preds' },
+  { id: 'leaderboard', icon: 'groups', label: 'Players' },
 ];
 
 export default function BottomNav({ view, setView, statusFilter, setStatusFilter }) {
@@ -14,52 +14,62 @@ export default function BottomNav({ view, setView, statusFilter, setStatusFilter
   const isMatchesView = view === 'global' || view === 'my';
 
   return (
-    <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 safe-bottom" style={{ background: 'rgba(5, 20, 36, 0.85)', backdropFilter: 'blur(24px)', WebkitBackdropFilter: 'blur(24px)', borderTop: '1px solid rgba(255, 255, 255, 0.1)' }}>
+    <nav className="md:hidden fixed bottom-0 w-full z-50 bg-surface-container-lowest border-t border-outline-variant shadow-lg">
 
       {/* Secondary filter bar — shown only in match views */}
       {isMatchesView && (
-        <div className="flex border-b border-white/10">
+        <div className="flex border-b border-surface-container-high bg-surface">
           <button
             onClick={() => setStatusFilter('upcoming')}
-            className="flex-1 py-2.5 text-[10px] font-mono font-bold uppercase tracking-widest transition-colors duration-150 border-b-2"
-            style={statusFilter === 'upcoming'
-              ? { color: '#ec6a06', borderColor: '#ec6a06' }
-              : { color: '#bccbb9', borderColor: 'transparent' }
-            }
+            className={`flex-1 py-2 font-label-sm text-label-sm uppercase tracking-wider transition-colors duration-150 border-b-2 ${
+              statusFilter === 'upcoming'
+                ? 'text-primary border-primary'
+                : 'text-on-surface-variant border-transparent'
+            }`}
           >
             Predict / Open
           </button>
-          <div style={{ width: '1px', background: 'rgba(255,255,255,0.1)' }} />
+          <div className="w-[1px] bg-surface-container-high my-1" />
           <button
             onClick={() => setStatusFilter('completed')}
-            className="flex-1 py-2.5 text-[10px] font-mono font-bold uppercase tracking-widest transition-colors duration-150 border-b-2"
-            style={statusFilter === 'completed'
-              ? { color: '#ec6a06', borderColor: '#ec6a06' }
-              : { color: '#bccbb9', borderColor: 'transparent' }
-            }
+            className={`flex-1 py-2 font-label-sm text-label-sm uppercase tracking-wider transition-colors duration-150 border-b-2 ${
+              statusFilter === 'completed'
+                ? 'text-primary border-primary'
+                : 'text-on-surface-variant border-transparent'
+            }`}
           >
-            🏆 Results
+            Results
           </button>
         </div>
       )}
 
       {/* Main tab bar */}
-      <div className="flex">
-        {tabs.map((tab, i) => (
-          <button
-            key={tab.id}
-            onClick={() => setView(tab.id)}
-            className="flex-1 flex flex-col items-center justify-center pt-2.5 pb-3 gap-0.5 transition-colors duration-150"
-            style={view === tab.id
-              ? { color: '#ec6a06' }
-              : { color: '#bccbb9' }
-            }
-          >
-            <span className="text-lg leading-tight drop-shadow-sm">{tab.emoji}</span>
-            <span className="text-[8px] font-mono font-black tracking-widest leading-normal">{tab.label}</span>
-          </button>
-        ))}
+      <div className="flex justify-around items-center h-20 px-2 pb-safe">
+        {tabs.map((tab, i) => {
+          const isActive = view === tab.id;
+          return (
+            <button
+              key={tab.id}
+              onClick={() => setView(tab.id)}
+              className={`flex flex-col items-center justify-center transition-all active:scale-95 duration-150 ${
+                isActive 
+                  ? 'w-20 h-14 bg-secondary-container text-on-secondary-container rounded-full px-4 py-1' 
+                  : 'w-16 h-12 text-on-surface-variant hover:text-primary'
+              }`}
+            >
+              <span 
+                className="material-symbols-outlined text-[24px] mb-1" 
+                style={{ fontVariationSettings: isActive ? "'FILL' 1" : "'FILL' 0" }}
+              >
+                {tab.icon}
+              </span>
+              <span className={`font-label-sm text-[10px] uppercase tracking-wider ${isActive ? 'font-bold' : ''}`}>
+                {tab.label}
+              </span>
+            </button>
+          );
+        })}
       </div>
-    </div>
+    </nav>
   );
 }

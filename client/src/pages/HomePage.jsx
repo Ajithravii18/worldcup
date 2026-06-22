@@ -10,11 +10,10 @@ import api from '../api/axios';
 import confetti from 'canvas-confetti';
 
 export default function HomePage() {
-  // Default view: 'global' as specified
   const [view, setView] = useState('global');
-  const [statusFilter, setStatusFilter] = useState('upcoming'); // 'upcoming' vs 'completed'
+  const [statusFilter, setStatusFilter] = useState('upcoming');
   const [teamFilter, setTeamFilter] = useState('All');
-  const [dateSort, setDateSort] = useState('earliest'); // 'earliest' vs 'latest'
+  const [dateSort, setDateSort] = useState('earliest');
   const [selectedMatch, setSelectedMatch] = useState(null);
   
   const [currentTime, setCurrentTime] = useState(Date.now());
@@ -22,7 +21,7 @@ export default function HomePage() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentTime(Date.now());
-    }, 10000); // Check and tick match states every 10 seconds
+    }, 10000); 
     return () => clearInterval(timer);
   }, []);
   
@@ -36,7 +35,6 @@ export default function HomePage() {
   const [loadingPredictions, setLoadingPredictions] = useState(true);
   const [error, setError] = useState('');
 
-  // Fetch all matches
   const fetchMatches = useCallback(async () => {
     try {
       const res = await api.get('/matches');
@@ -48,7 +46,6 @@ export default function HomePage() {
     }
   }, []);
 
-  // Fetch global predictions
   const fetchGlobalPredictions = useCallback(async () => {
     try {
       const res = await api.get('/predictions/global');
@@ -58,7 +55,6 @@ export default function HomePage() {
     }
   }, []);
 
-  // Fetch my predictions
   const fetchMyPredictions = useCallback(async () => {
     try {
       const res = await api.get('/predictions/my');
@@ -75,7 +71,6 @@ export default function HomePage() {
     fetchGlobalPredictions();
     fetchMyPredictions();
 
-    // Auto-refresh every 15 seconds to keep matches "live"
     const intervalId = setInterval(() => {
       fetchMatches();
     }, 15000);
@@ -83,7 +78,6 @@ export default function HomePage() {
     return () => clearInterval(intervalId);
   }, [fetchMatches, fetchGlobalPredictions, fetchMyPredictions]);
 
-  // Correct Prediction Notification Logic
   const [notification, setNotification] = useState(null);
 
   useEffect(() => {
@@ -117,21 +111,19 @@ export default function HomePage() {
         particleCount: 200,
         spread: 100,
         origin: { y: 0.3 },
-        colors: ['#4be277', '#ffffff', '#ec6a06']
+        colors: ['#2e7d32', '#0020b2', '#ff5a00']
       });
       
       setTimeout(() => setNotification(null), 6000);
     }
   }, [myPredictions, matches]);
 
-  // Refresh after prediction submit or match simulation
   const handlePredicted = useCallback(() => {
     fetchMatches();
     fetchMyPredictions();
     fetchGlobalPredictions();
   }, [fetchMatches, fetchMyPredictions, fetchGlobalPredictions]);
 
-  // Helper: get my prediction for a match
   const getMyPrediction = (matchId) => {
     const found = myPredictions.find(
       (p) => p.match?._id === matchId || p.match === matchId
@@ -139,23 +131,17 @@ export default function HomePage() {
     return found || null;
   };
 
-  // Helper: get global predictions for a match
   const getGlobalPredsForMatch = (matchId) => {
     return globalPredictions.filter(
       (p) => p.match?._id === matchId || p.match === matchId
     );
   };
 
-  // Helper: detect fixture codes / TBD placeholders — anything that isn't a real country name
   const isTBDName = (name) => {
     if (!name) return true;
-    // Known TBD keywords
     if (/^(TBD|Winner|Runner-up|Loser|#\d+)/i.test(name)) return true;
-    // Starts with a digit (e.g. "1A", "1A/3CEFHI", "2B")
     if (/^\d/.test(name)) return true;
-    // Contains a slash (compound qualifier codes like "1A/3CEFHI")
     if (name.includes('/')) return true;
-    // Short all-caps codes (e.g. "TBA", "W49")
     if (/^[A-Z0-9]{1,5}$/.test(name)) return true;
     return false;
   };
@@ -180,7 +166,6 @@ export default function HomePage() {
     }
 
     if (view === 'my') {
-      // Only show matches where the user has submitted a prediction
       filtered = filtered.filter((m) => {
         const pred = getMyPrediction(m._id);
         return pred !== null;
@@ -205,7 +190,6 @@ export default function HomePage() {
 
   const isLoading = loadingMatches || loadingPredictions;
 
-  // Custom wheel handler for horizontal scrolling on desktop
   const handleWheelScroll = (e) => {
     if (e.deltaY !== 0) {
       if (scrollContainerRef.current) {
@@ -226,7 +210,6 @@ export default function HomePage() {
     }
   };
 
-  // Group matches into pages of 4 on mobile, 6 on tablet, 8 on desktop
   const getChunkSize = () => {
     if (typeof window === 'undefined') return 4;
     if (window.innerWidth >= 1024) return 8; // lg
@@ -254,7 +237,7 @@ export default function HomePage() {
   const matchPages = chunkMatches(filteredMatches, chunkSize);
 
   return (
-    <div className="min-h-dvh flex flex-col bg-transparent text-white">
+    <div className="min-h-screen flex flex-col bg-background text-on-background">
       <Navbar 
         view={view} 
         setView={setView} 
@@ -262,26 +245,27 @@ export default function HomePage() {
         setStatusFilter={setStatusFilter} 
       />
 
-      {/* Page content */}
-      <main className="flex-1 pt-4 pb-36 max-w-7xl mx-auto w-full flex flex-col">
+      <main className="flex-1 pt-4 pb-36 max-w-container-max mx-auto w-full flex flex-col px-margin-mobile md:px-margin-desktop mt-16">
 
         {/* Error state */}
         {error && (
-          <div className="mx-4 mb-4 p-3 text-[10px] font-mono font-bold animate-fade-in uppercase tracking-widest bg-fm-red/10 border border-fm-red/20 text-fm-red rounded">
+          <div className="mb-4 p-3 font-label-md text-label-md uppercase tracking-widest bg-error-container text-error rounded-lg border border-error">
             {error}
           </div>
         )}
 
         {/* Correct Prediction Toast */}
         {notification && (
-          <div className="fixed top-20 left-1/2 -translate-x-1/2 z-50 animate-slide-up w-[90%] max-w-sm">
-            <div className="relative overflow-hidden p-4 text-center glass-card border-l-4 border-l-fm-green">
-              <button onClick={() => setNotification(null)} className="absolute top-2 right-3 font-bold text-lg text-fm-green">✕</button>
-              <h3 className="font-display font-black tracking-[0.2em] uppercase text-base mb-1 mt-2 text-fm-green drop-shadow-[0_0_8px_rgba(75,226,119,0.5)]">SPOT ON!</h3>
-              <p className="text-[10px] font-mono font-bold mb-3 tracking-widest uppercase text-fm-muted">You perfectly predicted:</p>
-              <div className="text-sm font-display font-bold py-3 bg-black/40 rounded border border-white/5 text-white">
-                {notification.homeTeam} <span className="font-mono text-white/50 italic text-xs mx-1">VS</span> {notification.awayTeam}<br/>
-                <span className="text-3xl font-mono tracking-widest mt-2 inline-block font-black text-fm-green">{notification.score}</span>
+          <div className="fixed top-24 left-1/2 -translate-x-1/2 z-50 animate-slide-up w-[90%] max-w-sm">
+            <div className="relative overflow-hidden p-6 text-center stadium-card border-l-4 border-l-secondary bg-surface-container-lowest">
+              <button onClick={() => setNotification(null)} className="absolute top-3 right-4 font-bold text-lg text-secondary">
+                <span className="material-symbols-outlined">close</span>
+              </button>
+              <h3 className="font-headline-md text-headline-md font-bold uppercase tracking-widest text-secondary mb-2 mt-1">SPOT ON!</h3>
+              <p className="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant mb-4">You perfectly predicted:</p>
+              <div className="p-4 bg-surface rounded-lg border border-outline-variant text-on-surface text-center">
+                <div className="font-headline-md font-bold text-sm mb-2">{notification.homeTeam} <span className="text-on-surface-variant mx-1 italic text-xs font-body-md">VS</span> {notification.awayTeam}</div>
+                <div className="text-3xl font-display-lg tracking-tighter text-secondary">{notification.score}</div>
               </div>
             </div>
           </div>
@@ -291,13 +275,13 @@ export default function HomePage() {
         {view === 'leaderboard' ? (
           <Leaderboard predictions={globalPredictions} />
         ) : (
-          <div className="flex-1 flex flex-col mx-4 md:mx-0">
-            {/* Hero Landing Animation - Only in global view */}
+          <div className="flex-1 flex flex-col">
+            {/* Hero Landing Animation */}
             {view === 'global' && !isLoading && (
               <HeroLanding />
             )}
 
-            {/* Winner Banner — only in global/my view */}
+            {/* Winner Banner */}
             {!isLoading && matches.length > 0 && (
               <div className="mb-8">
                 <WinnerBanner matches={matches} predictions={globalPredictions} currentTime={currentTime} onClick={setSelectedMatch} />
@@ -308,9 +292,9 @@ export default function HomePage() {
             {isLoading && (
               <div className="flex flex-col items-center justify-center py-24">
                 <div className="relative w-12 h-12">
-                  <div className="absolute inset-0 border-4 border-white/10 border-t-fm-orange animate-spin rounded-full shadow-[0_0_15px_rgba(236,106,6,0.5)]"></div>
+                  <div className="absolute inset-0 border-4 border-surface-container-high border-t-[#ff5a00] animate-spin rounded-full"></div>
                 </div>
-                <div className="mt-5 text-[10px] font-mono font-black tracking-widest uppercase animate-pulse text-fm-orange">
+                <div className="mt-5 font-label-md text-label-md uppercase tracking-widest animate-pulse text-on-surface-variant">
                   Loading Matches...
                 </div>
               </div>
@@ -318,11 +302,11 @@ export default function HomePage() {
 
             {/* Empty state */}
             {!isLoading && matches.length === 0 && (
-              <div className="text-center py-16 font-bold uppercase tracking-widest">
-                <div className="text-5xl mb-4 opacity-20 font-mono text-fm-muted">0</div>
-                <p className="font-display text-xl tracking-[0.2em] mb-2 uppercase text-white drop-shadow-sm">No Matches</p>
-                <p className="text-[10px] font-mono mb-4 text-fm-muted">Run the seed script to add matches.</p>
-                <code className="mt-3 block text-[10px] font-mono px-4 py-2 mx-auto max-w-xs bg-black/40 border border-white/10 text-fm-orange rounded">
+              <div className="text-center py-16 font-label-md uppercase tracking-widest text-on-surface-variant">
+                <div className="text-5xl mb-4 font-display-lg text-outline-variant">0</div>
+                <p className="font-headline-lg text-xl tracking-wide mb-2 uppercase text-on-surface">No Matches</p>
+                <p className="font-label-sm text-label-sm mb-4">Run the seed script to add matches.</p>
+                <code className="mt-3 block font-body-md text-sm px-4 py-2 mx-auto max-w-xs bg-surface-container border border-outline-variant text-on-surface rounded">
                   cd server &amp;&amp; npm run seed
                 </code>
               </div>
@@ -331,30 +315,30 @@ export default function HomePage() {
             {!isLoading && matches.length > 0 && (
               <div className="flex flex-col">
                 {/* Filter and Sort Row */}
-                <div className="mx-4 mb-4 flex flex-col sm:flex-row items-center justify-between gap-2 p-3 animate-fade-in bg-black/40 border border-white/10 rounded backdrop-blur-md">
-                  <span className="text-[10px] uppercase tracking-[0.2em] font-mono font-bold w-full sm:w-auto text-center sm:text-left text-fm-muted">
+                <div className="mb-4 flex flex-col sm:flex-row items-center justify-between gap-4 p-4 animate-fade-in bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm">
+                  <span className="font-label-md text-label-sm uppercase tracking-widest w-full sm:w-auto text-center sm:text-left text-on-surface-variant">
                     {view === 'global' ? 'Community' : 'Your Predictions'} — {filteredMatches.length} matches
                   </span>
 
-                  <div className="flex flex-col sm:flex-row items-center gap-2 w-full sm:w-auto">
-                    {/* Desktop filter pills moved here */}
-                    <div className="hidden md:flex items-center gap-0 border border-white/10 rounded overflow-hidden">
+                  <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
+                    {/* Desktop filter pills */}
+                    <div className="hidden md:flex items-center gap-0 border border-outline-variant rounded-md overflow-hidden bg-surface">
                       <button
                         onClick={() => setStatusFilter('upcoming')}
-                        className={`px-4 py-2 text-[10px] font-mono font-bold uppercase tracking-widest transition-colors duration-150 ${
+                        className={`px-4 py-2 font-label-sm text-[10px] uppercase tracking-widest transition-colors duration-150 ${
                           statusFilter === 'upcoming'
-                            ? 'text-white bg-fm-orange'
-                            : 'text-fm-muted bg-transparent hover:text-white hover:bg-white/5'
+                            ? 'text-on-primary bg-primary'
+                            : 'text-on-surface-variant bg-transparent hover:text-primary hover:bg-surface-container-high'
                         }`}
                       >
                         Open
                       </button>
                       <button
                         onClick={() => setStatusFilter('completed')}
-                        className={`px-4 py-2 text-[10px] font-mono font-bold uppercase tracking-widest transition-colors duration-150 border-l border-white/10 ${
+                        className={`px-4 py-2 font-label-sm text-[10px] uppercase tracking-widest transition-colors duration-150 border-l border-outline-variant ${
                           statusFilter === 'completed'
-                            ? 'text-white bg-fm-orange'
-                            : 'text-fm-muted bg-transparent hover:text-white hover:bg-white/5'
+                            ? 'text-on-primary bg-primary'
+                            : 'text-on-surface-variant bg-transparent hover:text-primary hover:bg-surface-container-high'
                         }`}
                       >
                         Results
@@ -368,14 +352,14 @@ export default function HomePage() {
                           setTeamFilter(e.target.value);
                           if (scrollContainerRef.current) scrollContainerRef.current.scrollLeft = 0;
                         }}
-                        className="w-full text-[10px] font-mono font-bold uppercase tracking-widest px-4 py-2.5 outline-none appearance-none cursor-pointer bg-white/5 border border-white/10 text-white rounded transition-colors hover:bg-white/10 focus:border-fm-orange"
+                        className="w-full font-label-sm text-[10px] uppercase tracking-widest px-4 py-2.5 outline-none appearance-none cursor-pointer bg-surface border border-outline-variant text-on-surface rounded-md transition-colors hover:bg-surface-container focus:border-primary"
                       >
-                        <option value="All" className="bg-[#051424]">All Teams</option>
+                        <option value="All">All Teams</option>
                         {uniqueTeams.map(t => (
-                          <option key={t} value={t} className="bg-[#051424]">{t}</option>
+                          <option key={t} value={t}>{t}</option>
                         ))}
                       </select>
-                      <span className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-[10px] text-fm-muted">▼</span>
+                      <span className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-[10px] text-on-surface-variant material-symbols-outlined">expand_more</span>
                     </div>
 
                     <button
@@ -383,20 +367,20 @@ export default function HomePage() {
                         setDateSort(prev => prev === 'earliest' ? 'latest' : 'earliest');
                         if (scrollContainerRef.current) scrollContainerRef.current.scrollLeft = 0;
                       }}
-                      className="flex-1 sm:flex-none text-[10px] font-mono font-bold uppercase tracking-widest px-4 py-2.5 active:scale-95 transition-all flex items-center justify-center gap-1.5 cursor-pointer bg-white/5 border border-white/10 text-white rounded hover:bg-white/10"
+                      className="flex-1 sm:flex-none font-label-sm text-[10px] uppercase tracking-widest px-4 py-2.5 active:scale-95 transition-all flex items-center justify-center gap-1.5 cursor-pointer bg-surface border border-outline-variant text-on-surface rounded-md hover:bg-surface-container hover:text-primary"
                     >
-                      Date <span className="text-fm-orange">{dateSort === 'earliest' ? '↑' : '↓'}</span>
+                      Date <span className="material-symbols-outlined text-[14px] text-primary">{dateSort === 'earliest' ? 'arrow_upward' : 'arrow_downward'}</span>
                     </button>
                   </div>
                 </div>
 
                 {filteredMatches.length > 0 ? (
-                  <div className="relative group">
+                  <div className="relative group mt-2">
                     <button
                       onClick={scrollLeft}
-                      className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-6 z-10 w-10 h-10 items-center justify-center font-bold text-xl opacity-0 group-hover:opacity-100 transition-all active:scale-95 bg-black/60 border border-white/10 text-white rounded-full hover:bg-white/10 backdrop-blur-md"
+                      className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-6 z-10 w-10 h-10 items-center justify-center opacity-0 group-hover:opacity-100 transition-all active:scale-95 bg-surface-container-lowest border border-outline-variant text-primary rounded-full hover:bg-surface-container-low shadow-sm"
                     >
-                      ❮
+                      <span className="material-symbols-outlined">chevron_left</span>
                     </button>
                     <div 
                       ref={scrollContainerRef}
@@ -404,7 +388,7 @@ export default function HomePage() {
                       onWheel={handleWheelScroll}
                     >
                       {matchPages.map((pageMatches, pageIndex) => (
-                        <div key={pageIndex} className="min-w-full flex-shrink-0 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid-rows-2 auto-rows-max gap-3 px-4 snap-start">
+                        <div key={pageIndex} className="min-w-full flex-shrink-0 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid-rows-2 auto-rows-max gap-4 px-1 snap-start">
                           {pageMatches.map((match) => (
                             <MatchCard
                               key={match._id}
@@ -418,13 +402,13 @@ export default function HomePage() {
                     </div>
                     <button
                       onClick={scrollRight}
-                      className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-6 z-10 w-10 h-10 items-center justify-center font-bold text-xl opacity-0 group-hover:opacity-100 transition-all active:scale-95 bg-black/60 border border-white/10 text-white rounded-full hover:bg-white/10 backdrop-blur-md"
+                      className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-6 z-10 w-10 h-10 items-center justify-center opacity-0 group-hover:opacity-100 transition-all active:scale-95 bg-surface-container-lowest border border-outline-variant text-primary rounded-full hover:bg-surface-container-low shadow-sm"
                     >
-                      ❯
+                      <span className="material-symbols-outlined">chevron_right</span>
                     </button>
                   </div>
                 ) : (
-                  <div className="text-center py-16 text-[10px] mx-4 animate-fade-in uppercase tracking-widest font-mono font-bold bg-white/5 border border-dashed border-white/20 text-fm-muted rounded">
+                  <div className="text-center py-16 font-label-sm text-[10px] animate-fade-in uppercase tracking-widest bg-surface border border-dashed border-outline-variant text-on-surface-variant rounded-xl">
                     {view === 'my' ? 'No predictions made yet.' : 'No matches open in this section.'}
                   </div>
                 )}
@@ -432,8 +416,6 @@ export default function HomePage() {
             )}
           </div>
         )}
-
-        {/* Padding removed from here, moved to main */}
       </main>
 
       <MatchDetailModal 

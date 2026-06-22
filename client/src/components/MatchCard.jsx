@@ -38,12 +38,17 @@ export default function MatchCard({ match, prediction = null, onClick }) {
       } else if (match.elapsed) {
         liveText = `${match.elapsed}'`;
       }
-      return <span className="badge-live animate-pulse">{liveText}</span>;
+      return (
+        <div className="inline-flex items-center px-2 py-0.5 rounded-full bg-[#e6f4ea] text-[#1e4620] font-label-sm text-[10px] uppercase tracking-wider">
+          <span className="w-1.5 h-1.5 rounded-full bg-secondary mr-1.5 animate-pulse"></span>
+          {liveText}
+        </div>
+      );
     }
-    if (match.status === 'completed')  return <span className="badge-completed">FT</span>;
-    if (isEarly)  return <span className="badge-soon">Soon</span>;
-    if (isOpen)   return <span className="badge-open">Open</span>;
-    if (isLocked) return <span className="badge-locked">Locked</span>;
+    if (match.status === 'completed')  return <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-[10px] uppercase tracking-wider">FT</span>;
+    if (isEarly)  return <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-[10px] uppercase tracking-wider">Soon</span>;
+    if (isOpen)   return <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm text-[10px] uppercase tracking-wider border border-primary-fixed-dim">Open</span>;
+    if (isLocked) return <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-[10px] uppercase tracking-wider">Locked</span>;
     return null;
   };
 
@@ -60,45 +65,43 @@ export default function MatchCard({ match, prediction = null, onClick }) {
     return (
       <article
         onClick={() => onClick && onClick(match)}
-        className="flex flex-col cursor-pointer transition-colors duration-150 min-h-[140px] relative overflow-hidden glass-card"
+        className="stadium-card flex flex-col cursor-pointer transition-all duration-150 min-h-[140px] hover:border-primary hover:shadow-md"
         style={{
-          borderLeft: isPerfect ? '3px solid #4be277' : undefined,
+          borderLeft: isPerfect ? '3px solid #1b6d24' : undefined,
         }}
-        onMouseEnter={e => e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.3)'}
-        onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)'}
       >
         {/* Header row */}
-        <div className="flex items-center justify-between px-3 pt-2.5 pb-1.5 fm-divider">
-          <span className="text-[10px] font-mono uppercase tracking-widest text-fm-muted">
+        <div className="flex items-center justify-between px-4 pt-3 pb-2 border-b border-surface-container-high">
+          <span className="font-label-sm text-[10px] uppercase tracking-widest text-on-surface-variant">
             {formattedTime}
           </span>
-          <span className="badge-completed">FT</span>
+          <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-[10px] uppercase tracking-wider">FT</span>
         </div>
 
         {/* Teams + Score */}
-        <div className="flex items-center justify-between gap-2 px-3 py-3 flex-1">
-          <div className={`flex-1 flex flex-col items-center gap-1.5 ${!homeWin && !draw ? 'opacity-40' : ''}`}>
+        <div className="flex items-center justify-between gap-2 px-4 py-4 flex-1">
+          <div className={`flex-1 flex flex-col items-center gap-1.5 ${!homeWin && !draw ? 'opacity-50' : ''}`}>
             {isTBD(match.homeTeam)
-              ? <span className="text-xl opacity-20">?</span>
-              : <TeamFlag teamName={match.homeTeam} fallbackEmoji={match.homeFlag} className="w-8 h-6" />
+              ? <span className="text-xl opacity-30 text-on-surface">?</span>
+              : <TeamFlag teamName={match.homeTeam} fallbackEmoji={match.homeFlag} className="w-10 h-8" />
             }
-            <span className={`font-display text-[12px] font-bold text-center truncate w-full px-1 ${homeWin ? 'text-white' : 'text-fm-muted'}`}>
+            <span className={`font-headline-md text-sm text-center truncate w-full px-1 ${homeWin ? 'text-on-surface' : 'text-on-surface-variant'}`}>
               {displayTeam(match.homeTeam)}
             </span>
           </div>
 
-          <div className="flex items-center gap-1 px-3 py-1.5 min-w-[64px] justify-center bg-black/20 rounded">
-            <span className={`font-mono text-xl font-bold ${homeWin ? 'text-white' : 'text-fm-muted'}`}>{match.homeScore}</span>
-            <span className="text-fm-muted text-sm mx-0.5">–</span>
-            <span className={`font-mono text-xl font-bold ${awayWin ? 'text-white' : 'text-fm-muted'}`}>{match.awayScore}</span>
+          <div className="flex items-center gap-1 px-3 py-1.5 min-w-[64px] justify-center bg-surface-container-low rounded-lg border border-outline-variant">
+            <span className={`font-display-lg text-xl tracking-tighter ${homeWin ? 'text-on-surface' : 'text-on-surface-variant'}`}>{match.homeScore}</span>
+            <span className="text-on-surface-variant text-sm mx-1">–</span>
+            <span className={`font-display-lg text-xl tracking-tighter ${awayWin ? 'text-on-surface' : 'text-on-surface-variant'}`}>{match.awayScore}</span>
           </div>
 
-          <div className={`flex-1 flex flex-col items-center gap-1.5 ${!awayWin && !draw ? 'opacity-40' : ''}`}>
+          <div className={`flex-1 flex flex-col items-center gap-1.5 ${!awayWin && !draw ? 'opacity-50' : ''}`}>
             {isTBD(match.awayTeam)
-              ? <span className="text-xl opacity-20">?</span>
-              : <TeamFlag teamName={match.awayTeam} fallbackEmoji={match.awayFlag} className="w-8 h-6" />
+              ? <span className="text-xl opacity-30 text-on-surface">?</span>
+              : <TeamFlag teamName={match.awayTeam} fallbackEmoji={match.awayFlag} className="w-10 h-8" />
             }
-            <span className={`font-display text-[12px] font-bold text-center truncate w-full px-1 ${awayWin ? 'text-white' : 'text-fm-muted'}`}>
+            <span className={`font-headline-md text-sm text-center truncate w-full px-1 ${awayWin ? 'text-on-surface' : 'text-on-surface-variant'}`}>
               {displayTeam(match.awayTeam)}
             </span>
           </div>
@@ -106,14 +109,14 @@ export default function MatchCard({ match, prediction = null, onClick }) {
 
         {/* Prediction row */}
         {prediction && (
-          <div className="px-3 py-2 text-center fm-divider">
+          <div className="px-4 py-2 text-center bg-surface-container-lowest border-t border-surface-container-high">
             {isPerfect ? (
-              <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-fm-green drop-shadow-[0_0_4px_rgba(75,226,119,0.5)]">
-                🏆 Perfect Prediction
+              <span className="font-label-sm text-[10px] uppercase tracking-widest text-secondary flex items-center justify-center gap-1">
+                <span className="material-symbols-outlined text-[12px]" style={{ fontVariationSettings: "'FILL' 1" }}>trophy</span> Perfect Prediction
               </span>
             ) : (
-              <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-fm-muted">
-                Predicted: <span className="text-white">{prediction.homeGoals} – {prediction.awayGoals}</span>
+              <span className="font-label-sm text-[10px] uppercase tracking-widest text-on-surface-variant">
+                Predicted: <span className="text-on-surface">{prediction.homeGoals} – {prediction.awayGoals}</span>
               </span>
             )}
           </div>
@@ -126,38 +129,36 @@ export default function MatchCard({ match, prediction = null, onClick }) {
   return (
     <article
       onClick={() => onClick && onClick(match)}
-      className="flex flex-col cursor-pointer transition-colors duration-150 min-h-[140px] relative glass-card"
+      className="stadium-card flex flex-col cursor-pointer transition-all duration-150 min-h-[140px] hover:border-primary hover:shadow-md"
       style={{
-        borderColor: isOpen && !prediction ? '#ec6a06' : undefined,
-        borderLeft: isOpen && !prediction ? '3px solid #ec6a06' : undefined,
-        opacity: isLocked ? 0.6 : 1,
+        borderColor: isOpen && !prediction ? '#001278' : undefined,
+        borderLeft: isOpen && !prediction ? '3px solid #001278' : undefined,
+        opacity: isLocked ? 0.7 : 1,
       }}
-      onMouseEnter={e => { if (!isLocked) e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)'; }}
-      onMouseLeave={e => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)'}
     >
       {/* Header */}
-      <div className="flex items-center justify-between px-3 pt-2.5 pb-1.5 fm-divider">
-        <span className="text-[10px] font-mono uppercase tracking-widest text-fm-muted">
+      <div className="flex items-center justify-between px-4 pt-3 pb-2 border-b border-surface-container-high bg-surface-container-lowest">
+        <span className="font-label-sm text-[10px] uppercase tracking-widest text-on-surface-variant">
           {formattedTime}
         </span>
         <StatusBadge />
       </div>
 
       {/* Teams */}
-      <div className="flex flex-col gap-2.5 px-3 py-3 flex-1">
+      <div className="flex flex-col gap-3 px-4 py-4 flex-1">
         {/* Home */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             {isTBD(match.homeTeam)
-              ? <span className="text-lg opacity-30 text-white">?</span>
-              : <TeamFlag teamName={match.homeTeam} fallbackEmoji={match.homeFlag} />
+              ? <span className="text-lg opacity-30 text-on-surface">?</span>
+              : <div className="w-8 h-6 rounded border border-outline-variant bg-surface overflow-hidden"><TeamFlag teamName={match.homeTeam} fallbackEmoji={match.homeFlag} className="w-full h-full object-cover" /></div>
             }
-            <span className={`font-display text-base font-bold truncate max-w-[120px] sm:max-w-[150px] ${isTBD(match.homeTeam) ? 'italic text-sm text-fm-muted' : 'text-white'}`}>
+            <span className={`font-headline-md text-base truncate max-w-[120px] sm:max-w-[150px] ${isTBD(match.homeTeam) ? 'italic text-sm text-on-surface-variant font-body-md' : 'text-on-surface'}`}>
               {displayTeam(match.homeTeam)}
             </span>
           </div>
           {prediction && (
-            <span className="font-mono text-lg font-bold text-fm-green">
+            <span className="font-display-lg text-xl text-primary tracking-tighter">
               {prediction.homeGoals}
             </span>
           )}
@@ -167,15 +168,15 @@ export default function MatchCard({ match, prediction = null, onClick }) {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             {isTBD(match.awayTeam)
-              ? <span className="text-lg opacity-30 text-white">?</span>
-              : <TeamFlag teamName={match.awayTeam} fallbackEmoji={match.awayFlag} />
+              ? <span className="text-lg opacity-30 text-on-surface">?</span>
+              : <div className="w-8 h-6 rounded border border-outline-variant bg-surface overflow-hidden"><TeamFlag teamName={match.awayTeam} fallbackEmoji={match.awayFlag} className="w-full h-full object-cover" /></div>
             }
-            <span className={`font-display text-base font-bold truncate max-w-[120px] sm:max-w-[150px] ${isTBD(match.awayTeam) ? 'italic text-sm text-fm-muted' : 'text-white'}`}>
+            <span className={`font-headline-md text-base truncate max-w-[120px] sm:max-w-[150px] ${isTBD(match.awayTeam) ? 'italic text-sm text-on-surface-variant font-body-md' : 'text-on-surface'}`}>
               {displayTeam(match.awayTeam)}
             </span>
           </div>
           {prediction && (
-            <span className="font-mono text-lg font-bold text-fm-green">
+            <span className="font-display-lg text-xl text-primary tracking-tighter">
               {prediction.awayGoals}
             </span>
           )}
@@ -184,9 +185,9 @@ export default function MatchCard({ match, prediction = null, onClick }) {
 
       {/* Predicted footer */}
       {prediction && (
-        <div className="px-3 py-1.5 text-center fm-divider">
-          <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-fm-green">
-            ✓ Predicted
+        <div className="px-4 py-2 text-center bg-surface-container-low border-t border-surface-container-high">
+          <span className="font-label-sm text-[10px] uppercase tracking-widest text-secondary flex items-center justify-center gap-1">
+            <span className="material-symbols-outlined text-[12px]" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span> Predicted
           </span>
         </div>
       )}

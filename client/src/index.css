@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&family=Inter:wght@100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&family=Inter:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -26,237 +27,58 @@
   }
 
   body {
-    @apply font-body;
-    background: linear-gradient(135deg, #020617 0%, #0F172A 100%);
-    background-attachment: fixed;
-    color: #FFFFFF;
+    @apply font-body-md antialiased;
+    background-color: theme('colors.background');
+    color: theme('colors.on-background');
     min-height: 100dvh;
     overscroll-behavior: none;
   }
 
-  ::-webkit-scrollbar {
-    width: 3px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: rgba(255,255,255,0.15);
-    border-radius: 9999px;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: rgba(255,255,255,0.3);
-  }
-
-  select option {
-    background: #122131;
-    color: #FFFFFF;
+  /* Custom scrollbar to match theme */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background-color: theme('colors.outline-variant'); border-radius: 10px; }
+  
+  /* Disable number input arrows */
+  input[type=number]::-webkit-inner-spin-button, 
+  input[type=number]::-webkit-outer-spin-button { 
+      -webkit-appearance: none; 
+      margin: 0; 
   }
 }
 
 /* ===== COMPONENTS ===== */
 @layer components {
 
-  /* Stadium Pro - Glass Card */
-  .fm-card, .glass-card {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 0.5rem; /* 8px */
-    color: #d4e4fa;
+  /* Stadium Pro Light - Suble Card Shadow */
+  .subtle-card-shadow {
+    box-shadow: 0 4px 12px rgba(0, 32, 178, 0.04);
   }
 
-  .fm-card-hover {
-    @apply fm-card transition-all duration-150;
+  .stadium-card {
+    @apply bg-surface-container-lowest border border-outline-variant rounded-xl subtle-card-shadow overflow-hidden relative;
   }
 
-  .fm-card-hover:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.2);
+  /* Material Symbols Font Setup */
+  .material-symbols-outlined {
+    font-family: 'Material Symbols Outlined', sans-serif;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
   }
 
-  /* Primary Button — Stadium Pro */
-  .btn-primary {
-    @apply font-display font-bold uppercase text-[#003915] transition-all duration-150 active:scale-95;
-    background: #4be277; /* Pitch Green */
-    border-radius: 0.25rem;
-    border: none;
-    border-top: 1px solid rgba(255, 255, 255, 0.3); /* tactile feel */
+  .material-symbols-outlined[data-weight="fill"] {
+      font-variation-settings: 'FILL' 1;
   }
 
-  .btn-primary:hover:not(:disabled) {
-    background: #6bff8f;
-    box-shadow: 0 0 12px rgba(75, 226, 119, 0.4);
-  }
-
-  .btn-primary:disabled {
-    background: rgba(255, 255, 255, 0.1);
-    color: rgba(255, 255, 255, 0.3);
-    border-top: none;
-    cursor: not-allowed;
-    transform: none;
-    box-shadow: none;
-  }
-
-  /* Outline / Secondary Button */
-  .btn-outline, .btn-secondary {
-    @apply font-display font-bold uppercase transition-all duration-150 active:scale-95;
-    background: transparent;
-    color: #ffb690;
-    border: 1px solid #ec6a06; /* Striker Orange */
-    border-radius: 0.25rem;
-  }
-
-  .btn-outline:hover:not(:disabled), .btn-secondary:hover:not(:disabled) {
-    background: rgba(236, 106, 6, 0.15);
-  }
-
-  .btn-outline:disabled, .btn-secondary:disabled {
-    opacity: 0.35;
-    cursor: not-allowed;
-    transform: none;
-  }
-
-  /* Ghost button */
-  .btn-ghost {
-    @apply font-display font-bold transition-all duration-150 active:scale-95;
-    background: rgba(255, 255, 255, 0.05);
-    color: #bccbb9;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 0.25rem;
-  }
-
-  .btn-ghost:hover:not(:disabled) {
-    background: rgba(255, 255, 255, 0.1);
-    color: #ffffff;
-  }
-
-  /* Goal arrow button (steppers) */
-  .goal-btn {
-    @apply flex items-center justify-center w-10 h-10 text-xl transition-all duration-150 active:scale-90 select-none;
-    border-radius: 0.25rem;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #bccbb9;
-  }
-
-  .goal-btn-up:hover:not(:disabled) {
-    border-color: #4be277;
-    color: #4be277;
-    background: rgba(75, 226, 119, 0.1);
-  }
-
-  .goal-btn-down:hover:not(:disabled) {
-    border-color: #ec6a06;
-    color: #ec6a06;
-    background: rgba(236, 106, 6, 0.1);
-  }
-
-  .goal-btn:disabled {
-    opacity: 0.25;
-    cursor: not-allowed;
-  }
-
-  /* Text input */
-  .input-fm {
-    @apply w-full font-body transition-all duration-150;
-    background: rgba(255, 255, 255, 0.05);
-    border: none;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-    border-radius: 0.25rem 0.25rem 0 0;
-    color: #ffffff;
-    padding: 0.65rem 1rem;
-    outline: none;
-  }
-
-  .input-fm::placeholder {
-    color: #bccbb9;
-  }
-
-  .input-fm:focus {
-    border-bottom-color: #4be277;
-    background: rgba(255, 255, 255, 0.08);
-  }
-
-  /* Status badges — pill, mono */
-  .badge-live {
-    background: rgba(255, 180, 171, 0.15); /* error */
-    color: #ffb4ab;
-    border: 1px solid rgba(255, 180, 171, 0.3);
-    @apply inline-flex items-center px-2 py-0.5 text-[10px] font-mono font-medium uppercase tracking-wider rounded-full;
-  }
-
-  .badge-open {
-    background: rgba(75, 226, 119, 0.15); /* primary */
-    color: #4be277;
-    border: 1px solid rgba(75, 226, 119, 0.35);
-    @apply inline-flex items-center px-2 py-0.5 text-[10px] font-mono font-medium uppercase tracking-wider rounded-full;
-  }
-
-  .badge-locked, .badge-completed, .badge-soon {
-    background: rgba(255, 255, 255, 0.05);
-    color: #bccbb9;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    @apply inline-flex items-center px-2 py-0.5 text-[10px] font-mono font-medium uppercase tracking-wider rounded-full;
-  }
-
-  /* Divider */
-  .fm-divider {
-    border: none;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-  }
-}
-
-/* ===== UTILITIES ===== */
-@layer utilities {
-  .no-tap-highlight {
-    -webkit-tap-highlight-color: transparent;
-  }
-
-  .safe-bottom {
-    padding-bottom: env(safe-area-inset-bottom, 0px);
-  }
-
-  .text-fm-orange {
-    color: #ec6a06;
-  }
-
-  .bg-fm-orange {
-    background: #ec6a06;
-  }
-
-  .border-fm-orange {
-    border-color: #ec6a06;
-  }
-
-  .bg-fm-dark {
-    background: transparent;
-  }
-
-  .bg-fm-card {
-    @apply fm-card;
-  }
-
-  .bg-fm-card-hover {
-    @apply fm-card-hover;
-  }
-
-  .border-fm {
-    border-color: rgba(255, 255, 255, 0.1);
-  }
-
-  /* Tab underline indicator — Stadium Pro style */
-  .fm-tab-active {
-    color: #4be277;
-    border-bottom: 2px solid #4be277;
-  }
-
-  .fm-tab-inactive {
-    color: #bccbb9;
-    border-bottom: 2px solid transparent;
-  }
 }
