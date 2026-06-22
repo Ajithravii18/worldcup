@@ -117,7 +117,7 @@ export default function MatchDetailModal({
         particleCount: 150,
         spread: 80,
         origin: { y: 0.6 },
-        colors: ['#00BFFF', '#1E90FF', '#87CEFA']
+        colors: ['#4be277', '#22c55e', '#6bff8f']
       });
       onPredicted && onPredicted();
       setTimeout(() => {
@@ -138,7 +138,7 @@ export default function MatchDetailModal({
         awayScore: match.awayScore ?? 0,
         status: 'completed'
       });
-      onPredicted && onPredicted(); // This will refresh matches in HomePage
+      onPredicted && onPredicted(); // Refresh matches
       handleClose();
     } catch (err) {
       console.error('Failed to simulate match end:', err);
@@ -155,14 +155,13 @@ export default function MatchDetailModal({
         awayScore: aScore,
         status: 'live'
       });
-      onPredicted && onPredicted(); // Refresh match lists
+      onPredicted && onPredicted();
     } catch (err) {
       console.error('Failed to update live score:', err);
       alert('Failed to update live score');
     }
   };
 
-  // Compute time until prediction window opens (for early state)
   const timeUntilWindow = () => {
     const windowOpen = new Date(match.kickoffTime).getTime() - 5 * 60 * 60 * 1000;
     const diff = windowOpen - currentTime;
@@ -197,29 +196,36 @@ export default function MatchDetailModal({
   return (
     <div
       onClick={handleBackdropClick}
-      className={`fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/70 backdrop-blur-sm transition-opacity duration-300 px-4 ${
+      className={`fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/80 backdrop-blur-sm transition-opacity duration-300 px-4 ${
         animate ? 'opacity-100' : 'opacity-0 pointer-events-none'
       }`}
     >
       <div
-        className={`w-full max-w-lg rounded-t-[2.5rem] sm:rounded-[2.5rem] p-6 shadow-2xl relative overflow-hidden transition-all duration-300 bg-white border-t sm:border border-gray-200 ${
+        className={`w-full max-w-lg rounded-t-[1.5rem] sm:rounded-xl p-6 relative overflow-hidden transition-all duration-300 ${
           animate ? 'translate-y-0 sm:scale-100' : 'translate-y-full sm:translate-y-0 sm:scale-95'
         }`}
+        style={{
+          background: 'rgba(5, 20, 36, 0.95)',
+          backdropFilter: 'blur(24px)',
+          WebkitBackdropFilter: 'blur(24px)',
+          border: '1px solid rgba(255,255,255,0.1)',
+          boxShadow: '0 -10px 40px rgba(0, 0, 0, 0.5)',
+        }}
       >
-        <div className="sm:hidden w-12 h-1 bg-gray-300 rounded-full mx-auto mb-5" />
+        <div className="sm:hidden w-12 h-1 bg-white/20 rounded-full mx-auto mb-5" />
 
         <button
           onClick={handleClose}
-          className="absolute right-5 top-5 w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-500 hover:text-black transition-colors text-sm font-bold border border-gray-200"
+          className="absolute right-5 top-5 w-8 h-8 rounded border border-white/10 bg-white/5 hover:bg-white/10 flex items-center justify-center text-fm-muted hover:text-white transition-colors text-sm font-bold"
         >
           ✕
         </button>
 
         <div className="flex flex-col items-center mb-6 mt-2">
-          <span className="text-[11px] font-bold text-theme-secondary uppercase tracking-widest bg-theme-primary/10 px-3 py-1 rounded-full border border-theme-primary/20 mb-2">
+          <span className="text-[10px] font-mono font-bold text-fm-gold uppercase tracking-widest bg-fm-gold/10 px-3 py-1 rounded border border-fm-gold/20 mb-2">
             {match.group}
           </span>
-          <span className="text-[10px] text-gray-500 font-semibold">{match.venue}</span>
+          <span className="text-[10px] text-fm-muted font-mono tracking-widest">{match.venue}</span>
         </div>
 
         {/* ===== COMPLETED MATCH ===== */}
@@ -227,59 +233,58 @@ export default function MatchDetailModal({
           <div className="px-2 pb-4">
             <div className="flex items-center justify-center gap-2 sm:gap-4 py-3">
               <div className="flex-1 text-center flex flex-col items-center max-w-[90px]">
-                <div className="flex items-center justify-center h-10 mb-2">
+                <div className="flex items-center justify-center h-10 mb-2 drop-shadow-md">
                   <TeamFlag teamName={match.homeTeam} fallbackEmoji={match.homeFlag} className="w-12 h-9 flex-shrink-0" />
                 </div>
-                <div className="font-display text-sm text-gray-900 font-bold tracking-wide truncate w-full">{match.homeTeam}</div>
+                <div className="font-display text-sm text-white font-bold tracking-wide truncate w-full">{match.homeTeam}</div>
               </div>
               <div className="px-2 text-center flex-shrink-0">
-                <div className="font-display text-4xl text-gray-900 px-4 py-2 rounded-xl bg-gray-50 border border-gray-200 shadow-sm whitespace-nowrap">
+                <div className="font-mono text-4xl text-white px-4 py-2 rounded bg-white/5 border border-white/10 shadow-sm whitespace-nowrap font-bold">
                   {match.homeScore} – {match.awayScore}
                 </div>
                 {match.winner && (
-                  <div className="mt-3 text-[11px] font-bold text-gray-500 tracking-widest uppercase">
+                  <div className="mt-3 text-[10px] font-mono font-bold text-fm-gold tracking-widest uppercase">
                     {match.winner === 'Draw' ? 'DRAW' : `WINNER: ${match.winner}`}
                   </div>
                 )}
               </div>
               <div className="flex-1 text-center flex flex-col items-center max-w-[90px]">
-                <div className="flex items-center justify-center h-10 mb-2">
+                <div className="flex items-center justify-center h-10 mb-2 drop-shadow-md">
                   <TeamFlag teamName={match.awayTeam} fallbackEmoji={match.awayFlag} className="w-12 h-9 flex-shrink-0" />
                 </div>
-                <div className="font-display text-sm text-gray-900 font-bold tracking-wide truncate w-full">{match.awayTeam}</div>
+                <div className="font-display text-sm text-white font-bold tracking-wide truncate w-full">{match.awayTeam}</div>
               </div>
             </div>
             
             {/* Global predictions for completed matches */}
             {globalPreds.length > 0 && (
-              <div className="mt-6 border-t border-gray-200 pt-4">
-                <div className="text-[10px] text-gray-500 uppercase tracking-widest mb-3 font-bold text-center">
+              <div className="mt-6 border-t border-white/10 pt-4">
+                <div className="text-[10px] text-fm-muted font-mono uppercase tracking-widest mb-3 font-bold text-center">
                   COMMUNITY PREDICTIONS
                 </div>
 
-                {/* Prediction Bar */}
                 <div className="mb-4 px-2">
-                  <div className="flex items-center justify-between text-[9px] font-bold text-gray-500 uppercase tracking-widest mb-1.5">
-                    <span className="text-theme-secondary">{match.homeTeam} {homePct}%</span>
-                    <span className="text-gray-400">DRAW {drawPct}%</span>
-                    <span className="text-theme-primary">{match.awayTeam} {awayPct}%</span>
+                  <div className="flex items-center justify-between text-[9px] font-bold text-fm-muted font-mono uppercase tracking-widest mb-1.5">
+                    <span className="text-fm-green">{match.homeTeam} {homePct}%</span>
+                    <span className="text-white/50">DRAW {drawPct}%</span>
+                    <span className="text-fm-orange">{match.awayTeam} {awayPct}%</span>
                   </div>
-                  <div className="h-1.5 w-full flex rounded-full overflow-hidden bg-gray-100">
-                    {homePct > 0 && <div className="bg-theme-secondary transition-all duration-500" style={{ width: `${homePct}%` }} />}
-                    {drawPct > 0 && <div className="bg-gray-300 transition-all duration-500" style={{ width: `${drawPct}%` }} />}
-                    {awayPct > 0 && <div className="bg-theme-primary transition-all duration-500" style={{ width: `${awayPct}%` }} />}
+                  <div className="h-2 w-full flex rounded overflow-hidden bg-black/40 border border-white/5">
+                    {homePct > 0 && <div className="bg-fm-green transition-all duration-500" style={{ width: `${homePct}%` }} />}
+                    {drawPct > 0 && <div className="bg-white/20 transition-all duration-500" style={{ width: `${drawPct}%` }} />}
+                    {awayPct > 0 && <div className="bg-fm-orange transition-all duration-500" style={{ width: `${awayPct}%` }} />}
                   </div>
                 </div>
-                <div className="max-h-48 overflow-y-auto space-y-2 pr-1 custom-scrollbar">
+                <div className="max-h-48 overflow-y-auto space-y-2 pr-1 scrollbar-none">
                   {globalPreds.map((pred) => (
-                    <div key={pred._id} className="flex items-center justify-between bg-white border border-gray-200 rounded-xl px-4 py-3 shadow-sm">
+                    <div key={pred._id} className="flex items-center justify-between glass-card px-4 py-3">
                       <div className="flex items-center gap-3">
-                        <UserAvatar avatarId={pred.user?.avatar} className="w-8 h-8 flex-shrink-0 text-xs border border-gray-300" />
-                        <span className="text-sm text-gray-900 font-bold truncate max-w-[150px]">
+                        <UserAvatar avatarId={pred.user?.avatar} className="w-8 h-8 flex-shrink-0 text-xs border border-white/20 rounded-full" />
+                        <span className="text-sm text-white font-display font-bold truncate max-w-[150px]">
                           {pred.user?.name || 'Unknown'}
                         </span>
                       </div>
-                      <div className="font-display text-xl text-gray-900 font-black">
+                      <div className="font-mono text-xl text-white font-black bg-black/30 px-3 py-1 rounded border border-white/10">
                         {pred.homeGoals} – {pred.awayGoals}
                       </div>
                     </div>
@@ -299,13 +304,13 @@ export default function MatchDetailModal({
             {isOpen && !prediction ? (
               <>
                 <div className="py-2 mb-3 flex items-center justify-center gap-2">
-                  <span className="inline-block w-2.5 h-2.5 rounded-full bg-theme-primary animate-pulse shadow-[0_0_8px_rgba(0,191,255,0.6)]" />
-                  <span className="text-xs text-theme-secondary font-black uppercase tracking-widest">
+                  <span className="inline-block w-2.5 h-2.5 rounded-full bg-fm-green drop-shadow-[0_0_6px_rgba(75,226,119,0.8)] animate-pulse" />
+                  <span className="text-[10px] text-fm-green font-mono font-bold uppercase tracking-widest">
                     PREDICTION OPEN · {timeUntilKickoff()}
                   </span>
                 </div>
 
-                <div className="flex items-start justify-between gap-3 py-4 bg-white rounded-xl border border-gray-200 mb-6 shadow-sm">
+                <div className="flex items-start justify-between gap-3 py-4 bg-white/5 rounded border border-white/10 mb-6 shadow-sm">
                   <GoalSelector
                     teamName={match.homeTeam}
                     teamFlag={match.homeFlag}
@@ -317,7 +322,7 @@ export default function MatchDetailModal({
                   />
 
                   <div className="flex flex-col items-center justify-center gap-1 pt-10">
-                    <div className="font-display text-2xl text-gray-300 font-black">VS</div>
+                    <div className="font-display text-2xl text-white/30 font-black tracking-widest italic">VS</div>
                   </div>
 
                   <GoalSelector
@@ -332,12 +337,12 @@ export default function MatchDetailModal({
                 </div>
 
                 {submitError && (
-                  <div className="text-red-600 text-xs text-center mb-3 px-2 font-bold uppercase tracking-widest bg-red-50 py-2 rounded-lg border border-red-200">
+                  <div className="text-fm-red text-xs text-center mb-3 px-2 font-mono font-bold uppercase tracking-widest bg-fm-red/10 py-2 rounded border border-fm-red/20">
                     ⚠️ {submitError}
                   </div>
                 )}
                 {submitSuccess && (
-                  <div className="text-green-700 text-xs text-center mb-3 font-bold animate-fade-in uppercase tracking-widest bg-green-50 py-2 rounded-lg border border-green-200">
+                  <div className="text-fm-green text-xs text-center mb-3 font-mono font-bold animate-fade-in uppercase tracking-widest bg-fm-green/10 py-2 rounded border border-fm-green/20">
                     PREDICTION SAVED
                   </div>
                 )}
@@ -345,7 +350,7 @@ export default function MatchDetailModal({
                 <button
                   onClick={handleSubmit}
                   disabled={submitting}
-                  className="w-full py-4 bg-theme-primary hover:bg-blue-700 text-white rounded-xl font-black tracking-[0.2em] text-sm uppercase transition-all shadow-md active:scale-95"
+                  className="btn-primary w-full py-4 text-sm tracking-[0.2em]"
                 >
                   {submitting ? 'SAVING...' : 'SUBMIT PREDICTION'}
                 </button>
@@ -356,64 +361,63 @@ export default function MatchDetailModal({
               // Global Mode / Viewing others
               <>
                 {prediction && (
-                  <div className="mb-6 bg-blue-50 border border-blue-200 rounded-xl p-4 flex flex-col justify-center items-center shadow-sm">
-                    <span className="text-[10px] text-theme-primary uppercase tracking-[0.2em] font-black mb-2">YOUR LOCKED PREDICTION</span>
+                  <div className="mb-6 bg-fm-green/10 border border-fm-green/30 rounded p-4 flex flex-col justify-center items-center shadow-sm">
+                    <span className="text-[10px] text-fm-green uppercase font-mono tracking-[0.2em] font-bold mb-2">YOUR LOCKED PREDICTION</span>
                     <div className="flex items-center gap-4">
-                       <span className="text-theme-secondary font-display text-4xl tracking-widest font-black">{prediction.homeGoals} – {prediction.awayGoals}</span>
+                       <span className="text-white font-mono text-4xl font-bold bg-black/40 px-4 py-2 rounded border border-fm-green/20 drop-shadow-[0_0_8px_rgba(75,226,119,0.3)]">{prediction.homeGoals} – {prediction.awayGoals}</span>
                     </div>
                   </div>
                 )}
 
                 <div className="flex items-center justify-center gap-2 sm:gap-4 py-4">
                   <div className="flex-1 text-center flex flex-col items-center max-w-[90px]">
-                    <div className="flex items-center justify-center h-10 mb-2">
+                    <div className="flex items-center justify-center h-10 mb-2 drop-shadow-md">
                       <TeamFlag teamName={match.homeTeam} fallbackEmoji={match.homeFlag} className="w-12 h-9 flex-shrink-0" />
                     </div>
-                    <div className="font-display text-sm text-gray-900 font-bold tracking-widest uppercase truncate w-full">{match.homeTeam}</div>
+                    <div className="font-display text-sm text-white font-bold tracking-wide uppercase truncate w-full">{match.homeTeam}</div>
                   </div>
                   <div className="px-2 text-center flex-shrink-0">
-                    <div className="font-display text-3xl text-gray-300 font-black">VS</div>
+                    <div className="font-display text-3xl text-white/30 italic font-black">VS</div>
                     {isOpen && (
-                      <div className="text-[10px] font-bold text-gray-500 mt-2 tracking-widest">{timeUntilKickoff()} LEFT</div>
+                      <div className="text-[10px] font-mono font-bold text-fm-muted mt-2 tracking-widest">{timeUntilKickoff()} LEFT</div>
                     )}
                   </div>
                   <div className="flex-1 text-center flex flex-col items-center max-w-[90px]">
-                    <div className="flex items-center justify-center h-10 mb-2">
+                    <div className="flex items-center justify-center h-10 mb-2 drop-shadow-md">
                       <TeamFlag teamName={match.awayTeam} fallbackEmoji={match.awayFlag} className="w-12 h-9 flex-shrink-0" />
                     </div>
-                    <div className="font-display text-sm text-gray-900 font-bold tracking-widest uppercase truncate w-full">{match.awayTeam}</div>
+                    <div className="font-display text-sm text-white font-bold tracking-wide uppercase truncate w-full">{match.awayTeam}</div>
                   </div>
                 </div>
 
                 {globalPreds.length > 0 ? (
-                  <div className="mt-4 border-t border-gray-200 pt-4">
-                    <div className="text-[10px] text-gray-500 uppercase tracking-widest mb-3 font-bold text-center">
+                  <div className="mt-4 border-t border-white/10 pt-4">
+                    <div className="text-[10px] text-fm-muted font-mono uppercase tracking-widest mb-3 font-bold text-center">
                       COMMUNITY PREDICTIONS ({globalPreds.length})
                     </div>
 
-                    {/* Prediction Bar */}
                     <div className="mb-4 px-2">
-                      <div className="flex items-center justify-between text-[9px] font-bold text-gray-500 uppercase tracking-widest mb-1.5">
-                        <span className="text-theme-secondary">{match.homeTeam} {homePct}%</span>
-                        <span className="text-gray-400">DRAW {drawPct}%</span>
-                        <span className="text-theme-primary">{match.awayTeam} {awayPct}%</span>
+                      <div className="flex items-center justify-between text-[9px] font-bold text-fm-muted font-mono uppercase tracking-widest mb-1.5">
+                        <span className="text-fm-green">{match.homeTeam} {homePct}%</span>
+                        <span className="text-white/50">DRAW {drawPct}%</span>
+                        <span className="text-fm-orange">{match.awayTeam} {awayPct}%</span>
                       </div>
-                      <div className="h-1.5 w-full flex rounded-full overflow-hidden bg-gray-100">
-                        {homePct > 0 && <div className="bg-theme-secondary transition-all duration-500" style={{ width: `${homePct}%` }} />}
-                        {drawPct > 0 && <div className="bg-gray-300 transition-all duration-500" style={{ width: `${drawPct}%` }} />}
-                        {awayPct > 0 && <div className="bg-theme-primary transition-all duration-500" style={{ width: `${awayPct}%` }} />}
+                      <div className="h-2 w-full flex rounded overflow-hidden bg-black/40 border border-white/5">
+                        {homePct > 0 && <div className="bg-fm-green transition-all duration-500" style={{ width: `${homePct}%` }} />}
+                        {drawPct > 0 && <div className="bg-white/20 transition-all duration-500" style={{ width: `${drawPct}%` }} />}
+                        {awayPct > 0 && <div className="bg-fm-orange transition-all duration-500" style={{ width: `${awayPct}%` }} />}
                       </div>
                     </div>
-                    <div className="max-h-48 overflow-y-auto space-y-2 pr-1 custom-scrollbar">
+                    <div className="max-h-48 overflow-y-auto space-y-2 pr-1 scrollbar-none">
                       {globalPreds.map((pred) => (
-                        <div key={pred._id} className="flex items-center justify-between bg-white border border-gray-200 rounded-xl px-4 py-3 shadow-sm">
+                        <div key={pred._id} className="flex items-center justify-between glass-card px-4 py-3">
                           <div className="flex items-center gap-3">
-                            <UserAvatar avatarId={pred.user?.avatar} className="w-8 h-8 flex-shrink-0 text-xs border border-gray-300 rounded-full object-cover" />
-                            <span className="text-sm text-gray-900 font-bold truncate max-w-[150px]">
+                            <UserAvatar avatarId={pred.user?.avatar} className="w-8 h-8 flex-shrink-0 text-xs border border-white/20 rounded-full object-cover" />
+                            <span className="text-sm text-white font-display font-bold truncate max-w-[150px]">
                               {pred.user?.name || 'Unknown'}
                             </span>
                           </div>
-                          <div className="font-display text-xl text-gray-900 font-black">
+                          <div className="font-mono text-xl text-white font-black bg-black/30 px-3 py-1 rounded border border-white/10">
                             {pred.homeGoals} – {pred.awayGoals}
                           </div>
                         </div>
@@ -421,7 +425,7 @@ export default function MatchDetailModal({
                     </div>
                   </div>
                 ) : (
-                  <div className="text-center text-gray-500 text-[10px] py-8 uppercase tracking-[0.2em] font-bold bg-white rounded-xl border border-gray-200 mt-4 shadow-sm">
+                  <div className="text-center text-fm-muted text-[10px] py-8 uppercase tracking-[0.2em] font-mono font-bold bg-white/5 border border-dashed border-white/20 rounded mt-4">
                     NO PREDICTIONS YET. BE THE FIRST.
                   </div>
                 )}
@@ -435,22 +439,22 @@ export default function MatchDetailModal({
                   <>
                     <div className="flex items-center justify-center gap-2 sm:gap-4 py-6">
                       <div className="flex-1 text-center flex flex-col items-center opacity-60 max-w-[90px]">
-                        <div className="flex items-center justify-center h-10 mb-2">
+                        <div className="flex items-center justify-center h-10 mb-2 drop-shadow-md">
                           <TeamFlag teamName={match.homeTeam} fallbackEmoji={match.homeFlag} className="w-12 h-9 flex-shrink-0" />
                         </div>
-                        <div className="font-display text-sm text-gray-900 font-bold tracking-widest uppercase truncate w-full">{match.homeTeam}</div>
+                        <div className="font-display text-sm text-white font-bold tracking-wide uppercase truncate w-full">{match.homeTeam}</div>
                       </div>
                       <div className="px-2 text-center opacity-60 flex-shrink-0">
-                        <div className="font-display text-3xl text-gray-300 font-black">VS</div>
+                        <div className="font-display text-3xl text-white/30 italic font-black">VS</div>
                       </div>
                       <div className="flex-1 text-center flex flex-col items-center opacity-60 max-w-[90px]">
-                        <div className="flex items-center justify-center h-10 mb-2">
+                        <div className="flex items-center justify-center h-10 mb-2 drop-shadow-md">
                           <TeamFlag teamName={match.awayTeam} fallbackEmoji={match.awayFlag} className="w-12 h-9 flex-shrink-0" />
                         </div>
-                        <div className="font-display text-sm text-gray-900 font-bold tracking-widest uppercase truncate w-full">{match.awayTeam}</div>
+                        <div className="font-display text-sm text-white font-bold tracking-wide uppercase truncate w-full">{match.awayTeam}</div>
                       </div>
                     </div>
-                    <div className="flex items-center justify-center gap-2 px-6 py-4 rounded-xl text-xs text-gray-500 font-bold uppercase tracking-widest bg-gray-50 border border-gray-200 text-center shadow-sm">
+                    <div className="flex items-center justify-center gap-2 px-6 py-4 rounded text-xs text-fm-muted font-mono font-bold uppercase tracking-widest bg-white/5 border border-white/10 text-center">
                       PREDICTIONS OPEN {timeUntilWindow()} BEFORE KICKOFF
                     </div>
                   </>
@@ -459,39 +463,39 @@ export default function MatchDetailModal({
                 {isOpen && prediction && (
                   <>
                     <div className="py-2 flex items-center justify-center mb-4">
-                      <span className="text-[11px] text-gray-500 font-black uppercase tracking-[0.2em] bg-gray-100 px-4 py-1.5 rounded-full border border-gray-200">
+                      <span className="text-[10px] text-white/60 font-mono font-bold uppercase tracking-[0.2em] bg-white/5 px-4 py-1.5 rounded border border-white/10">
                         PREDICTION LOCKED IN
                       </span>
                     </div>
                     <div className="flex items-center justify-between gap-4 py-4 px-2">
                       <div className="flex-1 text-center">
-                        <div className="font-display text-lg text-gray-900 font-bold uppercase tracking-widest">{match.homeTeam}</div>
+                        <div className="font-display text-lg text-white font-bold uppercase tracking-wide">{match.homeTeam}</div>
                       </div>
-                      <div className="px-6 py-4 bg-white border border-gray-200 rounded-xl shadow-sm text-center min-w-[140px]">
-                        <div className="font-display text-5xl text-gray-900 font-black">
+                      <div className="px-6 py-4 bg-black/40 border border-white/10 rounded shadow-sm text-center min-w-[140px]">
+                        <div className="font-mono text-5xl text-fm-green font-bold drop-shadow-[0_0_12px_rgba(75,226,119,0.3)]">
                           {prediction.homeGoals} – {prediction.awayGoals}
                         </div>
                       </div>
                       <div className="flex-1 text-center">
-                        <div className="font-display text-lg text-gray-900 font-bold uppercase tracking-widest">{match.awayTeam}</div>
+                        <div className="font-display text-lg text-white font-bold uppercase tracking-wide">{match.awayTeam}</div>
                       </div>
                     </div>
                     
                     {globalPreds.length > 0 && (
-                      <div className="mt-6 border-t border-gray-200 pt-4">
-                        <div className="text-[10px] text-gray-500 uppercase tracking-widest mb-3 font-bold text-center">
+                      <div className="mt-6 border-t border-white/10 pt-4">
+                        <div className="text-[10px] text-fm-muted font-mono uppercase tracking-widest mb-3 font-bold text-center">
                           COMMUNITY PREDICTIONS ({globalPreds.length})
                         </div>
                         <div className="mb-4 px-2">
-                          <div className="flex items-center justify-between text-[9px] font-bold text-gray-500 uppercase tracking-widest mb-1.5">
-                            <span className="text-theme-secondary">{match.homeTeam} {homePct}%</span>
-                            <span className="text-gray-400">DRAW {drawPct}%</span>
-                            <span className="text-theme-primary">{match.awayTeam} {awayPct}%</span>
+                          <div className="flex items-center justify-between text-[9px] font-bold text-fm-muted font-mono uppercase tracking-widest mb-1.5">
+                            <span className="text-fm-green">{match.homeTeam} {homePct}%</span>
+                            <span className="text-white/50">DRAW {drawPct}%</span>
+                            <span className="text-fm-orange">{match.awayTeam} {awayPct}%</span>
                           </div>
-                          <div className="h-1.5 w-full flex rounded-full overflow-hidden bg-gray-100">
-                            {homePct > 0 && <div className="bg-theme-secondary transition-all duration-500" style={{ width: `${homePct}%` }} />}
-                            {drawPct > 0 && <div className="bg-gray-300 transition-all duration-500" style={{ width: `${drawPct}%` }} />}
-                            {awayPct > 0 && <div className="bg-theme-primary transition-all duration-500" style={{ width: `${awayPct}%` }} />}
+                          <div className="h-2 w-full flex rounded overflow-hidden bg-black/40 border border-white/5">
+                            {homePct > 0 && <div className="bg-fm-green transition-all duration-500" style={{ width: `${homePct}%` }} />}
+                            {drawPct > 0 && <div className="bg-white/20 transition-all duration-500" style={{ width: `${drawPct}%` }} />}
+                            {awayPct > 0 && <div className="bg-fm-orange transition-all duration-500" style={{ width: `${awayPct}%` }} />}
                           </div>
                         </div>
                       </div>
@@ -502,90 +506,90 @@ export default function MatchDetailModal({
                 {isLocked && (
                   <>
                     <div className="py-2 flex items-center justify-center mb-4">
-                      <span className="text-[11px] text-gray-500 font-black uppercase tracking-[0.2em] bg-gray-100 px-4 py-1.5 rounded-full border border-gray-200">
+                      <span className="text-[10px] text-white/60 font-mono font-bold uppercase tracking-[0.2em] bg-white/5 px-4 py-1.5 rounded border border-white/10">
                         MATCH STARTED — LOCKED
                       </span>
                     </div>
                     <div className="flex items-center justify-center gap-2 sm:gap-4 py-6">
                       <div className="flex-1 text-center flex flex-col items-center opacity-70 max-w-[90px]">
-                        <div className="flex items-center justify-center h-10 mb-2">
+                        <div className="flex items-center justify-center h-10 mb-2 drop-shadow-md">
                           <TeamFlag teamName={match.homeTeam} fallbackEmoji={match.homeFlag} className="w-12 h-9 flex-shrink-0" />
                         </div>
-                        <div className="font-display text-sm text-gray-900 font-bold tracking-widest uppercase truncate w-full">{match.homeTeam}</div>
+                        <div className="font-display text-sm text-white font-bold tracking-wide uppercase truncate w-full">{match.homeTeam}</div>
                       </div>
                       
                       {match.status === 'live' ? (
                         <div className="px-2 text-center flex-shrink-0 flex flex-col items-center">
-                          <div className="font-display text-4xl text-gray-900 px-5 py-2.5 rounded-2xl bg-red-50 border border-red-100 shadow-sm whitespace-nowrap flex items-center gap-2 font-black">
-                            <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse"></span>
+                          <div className="font-mono text-4xl text-white px-5 py-2.5 rounded border border-fm-orange/30 bg-fm-orange/10 flex items-center gap-2 font-bold shadow-[0_0_15px_rgba(236,106,6,0.2)]">
+                            <span className="w-2.5 h-2.5 rounded-full bg-fm-orange animate-pulse shadow-[0_0_6px_rgba(236,106,6,0.8)]"></span>
                             <span>{match.homeScore ?? 0} – {match.awayScore ?? 0}</span>
                           </div>
-                          <span className="text-[9px] font-black uppercase tracking-widest text-red-500 mt-2 animate-pulse">
+                          <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-fm-orange mt-2 animate-pulse">
                             {match.shortStatus && match.shortStatus !== '1H' && match.shortStatus !== '2H' ? match.shortStatus : match.elapsed ? `LIVE ${match.elapsed}'` : 'LIVE NOW'}
                           </span>
                         </div>
                       ) : (
                         <div className="px-2 text-center opacity-70 flex-shrink-0">
-                          <div className="font-display text-3xl text-gray-300 font-black">VS</div>
+                          <div className="font-display text-3xl text-white/30 italic font-black">VS</div>
                         </div>
                       )}
 
                       <div className="flex-1 text-center flex flex-col items-center opacity-70 max-w-[90px]">
-                        <div className="flex items-center justify-center h-10 mb-2">
+                        <div className="flex items-center justify-center h-10 mb-2 drop-shadow-md">
                           <TeamFlag teamName={match.awayTeam} fallbackEmoji={match.awayFlag} className="w-12 h-9 flex-shrink-0" />
                         </div>
-                        <div className="font-display text-sm text-gray-900 font-bold tracking-widest uppercase truncate w-full">{match.awayTeam}</div>
+                        <div className="font-display text-sm text-white font-bold tracking-wide uppercase truncate w-full">{match.awayTeam}</div>
                       </div>
                     </div>
 
                     {user?.role === 'admin' && match.status === 'live' && (
-                      <div className="mt-6 border-t border-gray-200 pt-4 text-center">
-                        <span className="text-[10px] text-gray-500 uppercase tracking-widest font-bold block mb-3">
+                      <div className="mt-6 border-t border-white/10 pt-4 text-center">
+                        <span className="text-[10px] text-fm-muted uppercase tracking-widest font-mono font-bold block mb-3">
                           Live Score Simulator (Admin)
                         </span>
                         <div className="flex items-center justify-center gap-6 mb-4">
                           <div className="flex items-center gap-2">
-                            <span className="text-xs font-bold text-slate-500">{match.homeTeam}</span>
+                            <span className="text-xs font-bold text-fm-muted">{match.homeTeam}</span>
                             <button
                               onClick={() => handleUpdateLiveScore((match.homeScore ?? 0) - 1, match.awayScore ?? 0)}
                               disabled={(match.homeScore ?? 0) <= 0}
-                              className="w-8 h-8 rounded-full border border-gray-300 hover:bg-gray-100 flex items-center justify-center font-bold text-gray-700 active:scale-95 transition-transform"
+                              className="w-8 h-8 rounded border border-white/10 hover:bg-white/5 flex items-center justify-center font-bold text-white active:scale-95 transition-transform"
                             >
                               -
                             </button>
-                            <span className="font-display text-xl font-bold w-6">{match.homeScore ?? 0}</span>
+                            <span className="font-mono text-xl font-bold w-6">{match.homeScore ?? 0}</span>
                             <button
                               onClick={() => handleUpdateLiveScore((match.homeScore ?? 0) + 1, match.awayScore ?? 0)}
-                              className="w-8 h-8 rounded-full border border-gray-300 hover:bg-gray-100 flex items-center justify-center font-bold text-gray-700 active:scale-95 transition-transform"
+                              className="w-8 h-8 rounded border border-white/10 hover:bg-white/5 flex items-center justify-center font-bold text-white active:scale-95 transition-transform"
                             >
                               +
                             </button>
                           </div>
                           
-                          <div className="w-[1px] h-8 bg-gray-200"></div>
+                          <div className="w-[1px] h-8 bg-white/20"></div>
 
                           <div className="flex items-center gap-2">
                             <button
                               onClick={() => handleUpdateLiveScore(match.homeScore ?? 0, (match.awayScore ?? 0) - 1)}
                               disabled={(match.awayScore ?? 0) <= 0}
-                              className="w-8 h-8 rounded-full border border-gray-300 hover:bg-gray-100 flex items-center justify-center font-bold text-gray-700 active:scale-95 transition-transform"
+                              className="w-8 h-8 rounded border border-white/10 hover:bg-white/5 flex items-center justify-center font-bold text-white active:scale-95 transition-transform"
                             >
                               -
                             </button>
-                            <span className="font-display text-xl font-bold w-6">{match.awayScore ?? 0}</span>
+                            <span className="font-mono text-xl font-bold w-6">{match.awayScore ?? 0}</span>
                             <button
                               onClick={() => handleUpdateLiveScore(match.homeScore ?? 0, (match.awayScore ?? 0) + 1)}
-                              className="w-8 h-8 rounded-full border border-gray-300 hover:bg-gray-100 flex items-center justify-center font-bold text-gray-700 active:scale-95 transition-transform"
+                              className="w-8 h-8 rounded border border-white/10 hover:bg-white/5 flex items-center justify-center font-bold text-white active:scale-95 transition-transform"
                             >
                               +
                             </button>
-                            <span className="text-xs font-bold text-slate-500">{match.awayTeam}</span>
+                            <span className="text-xs font-bold text-fm-muted">{match.awayTeam}</span>
                           </div>
                         </div>
 
                         <button
                           onClick={handleSimulateEnd}
-                          className="w-full py-2.5 bg-red-600 hover:bg-red-700 text-white rounded-xl text-xs font-black uppercase tracking-widest transition-colors shadow-sm active:scale-95 mb-4"
+                          className="w-full py-2.5 bg-fm-red/20 border border-fm-red/40 hover:bg-fm-red/30 text-fm-red rounded text-xs font-bold uppercase tracking-widest transition-colors active:scale-95 mb-4"
                         >
                           End Match & Finalize Results
                         </button>
@@ -593,30 +597,30 @@ export default function MatchDetailModal({
                     )}
 
                     {prediction ? (
-                      <div className="text-center text-sm text-gray-500 font-bold py-4 rounded-xl mt-2 bg-white border border-gray-200 uppercase tracking-widest shadow-sm">
-                        YOUR SCORE: <span className="text-gray-900 font-black">{prediction.homeGoals} – {prediction.awayGoals}</span>
+                      <div className="text-center text-sm text-fm-muted font-mono font-bold py-4 rounded mt-2 bg-white/5 border border-white/10 uppercase tracking-widest shadow-sm">
+                        YOUR SCORE: <span className="text-white font-black ml-2">{prediction.homeGoals} – {prediction.awayGoals}</span>
                       </div>
                     ) : (
-                      <div className="text-center text-[10px] text-gray-400 font-bold py-4 rounded-xl mt-2 bg-gray-50 border border-gray-200 uppercase tracking-widest">
+                      <div className="text-center text-[10px] text-fm-muted font-mono font-bold py-4 rounded mt-2 bg-black/40 border border-white/5 uppercase tracking-widest">
                         MISSED THIS MATCH
                       </div>
                     )}
 
                     {globalPreds.length > 0 && (
-                      <div className="mt-6 border-t border-gray-200 pt-4">
-                        <div className="text-[10px] text-gray-500 uppercase tracking-widest mb-3 font-bold text-center">
+                      <div className="mt-6 border-t border-white/10 pt-4">
+                        <div className="text-[10px] text-fm-muted font-mono uppercase tracking-widest mb-3 font-bold text-center">
                           COMMUNITY PREDICTIONS ({globalPreds.length})
                         </div>
                         <div className="mb-4 px-2">
-                          <div className="flex items-center justify-between text-[9px] font-bold text-gray-500 uppercase tracking-widest mb-1.5">
-                            <span className="text-theme-secondary">{match.homeTeam} {homePct}%</span>
-                            <span className="text-gray-400">DRAW {drawPct}%</span>
-                            <span className="text-theme-primary">{match.awayTeam} {awayPct}%</span>
+                          <div className="flex items-center justify-between text-[9px] font-bold text-fm-muted font-mono uppercase tracking-widest mb-1.5">
+                            <span className="text-fm-green">{match.homeTeam} {homePct}%</span>
+                            <span className="text-white/50">DRAW {drawPct}%</span>
+                            <span className="text-fm-orange">{match.awayTeam} {awayPct}%</span>
                           </div>
-                          <div className="h-1.5 w-full flex rounded-full overflow-hidden bg-gray-100">
-                            {homePct > 0 && <div className="bg-theme-secondary transition-all duration-500" style={{ width: `${homePct}%` }} />}
-                            {drawPct > 0 && <div className="bg-gray-300 transition-all duration-500" style={{ width: `${drawPct}%` }} />}
-                            {awayPct > 0 && <div className="bg-theme-primary transition-all duration-500" style={{ width: `${awayPct}%` }} />}
+                          <div className="h-2 w-full flex rounded overflow-hidden bg-black/40 border border-white/5">
+                            {homePct > 0 && <div className="bg-fm-green transition-all duration-500" style={{ width: `${homePct}%` }} />}
+                            {drawPct > 0 && <div className="bg-white/20 transition-all duration-500" style={{ width: `${drawPct}%` }} />}
+                            {awayPct > 0 && <div className="bg-fm-orange transition-all duration-500" style={{ width: `${awayPct}%` }} />}
                           </div>
                         </div>
                       </div>

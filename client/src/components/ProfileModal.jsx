@@ -67,7 +67,7 @@ export default function ProfileModal({ isOpen, onClose }) {
         particleCount: 150,
         spread: 80,
         origin: { y: 0.5 },
-        colors: ['#5ce6c6', '#FFD700', '#FF8C00', '#ffffff']
+        colors: ['#4be277', '#22c55e', '#6bff8f']
       });
 
       setTimeout(() => {
@@ -150,41 +150,46 @@ export default function ProfileModal({ isOpen, onClose }) {
   return (
     <div
       onClick={handleBackdropClick}
-      className={`fixed inset-0 z-50 flex items-end justify-center bg-black/70 backdrop-blur-sm transition-opacity duration-300 ${
+      className={`fixed inset-0 z-50 flex items-end justify-center bg-black/80 backdrop-blur-md transition-opacity duration-300 ${
         animate ? 'opacity-100' : 'opacity-0 pointer-events-none'
       }`}
     >
       {/* Bottom Sheet Card */}
       <div
-        className={`w-full max-w-lg rounded-t-[2.5rem] p-6 shadow-[0_-10px_40px_rgba(16,185,129,0.15)] relative overflow-hidden transition-transform duration-300 bg-white border-t-4 border-emerald-500 ${
+        className={`w-full max-w-lg rounded-t-[1.5rem] p-6 relative overflow-hidden transition-transform duration-300 ${
           animate ? 'translate-y-0' : 'translate-y-full'
         }`}
+        style={{
+          background: 'rgba(5, 20, 36, 0.95)',
+          backdropFilter: 'blur(24px)',
+          WebkitBackdropFilter: 'blur(24px)',
+          borderTop: '1px solid rgba(255, 255, 255, 0.1)',
+          boxShadow: '0 -10px 40px rgba(0, 0, 0, 0.5)',
+        }}
       >
         {/* Drag handle decoration */}
-        <div className="w-12 h-1 bg-gray-300 rounded-full mx-auto mb-5 opacity-80" />
+        <div className="w-12 h-1 bg-white/20 rounded-full mx-auto mb-5" />
 
         {/* Close Button */}
         <button
           onClick={handleClose}
-          className="absolute right-5 top-5 w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-gray-500 hover:text-gray-900 transition-colors text-sm font-bold"
+          className="absolute right-5 top-5 w-8 h-8 rounded border border-white/10 bg-white/5 hover:bg-white/10 flex items-center justify-center text-fm-muted hover:text-white transition-colors text-sm font-bold"
         >
           ✕
         </button>
 
-        <h2 className="font-display text-xl tracking-[0.2em] text-emerald-600 mb-6 text-center font-black uppercase drop-shadow-sm">
+        <h2 className="font-display text-xl tracking-[0.2em] text-fm-green mb-6 text-center font-black uppercase drop-shadow-[0_0_8px_rgba(75,226,119,0.5)]">
           CUSTOMIZE PROFILE
         </h2>
 
         {error && (
-          <div className="mb-4 p-3 rounded-none text-xs uppercase tracking-widest text-red-300 font-bold animate-fade-in"
-            style={{ background: 'rgba(220, 38, 38, 0.15)', border: '1px solid rgba(220, 38, 38, 0.3)' }}>
+          <div className="mb-4 p-3 rounded text-[10px] font-mono uppercase tracking-widest text-fm-red font-bold animate-fade-in bg-fm-red/10 border border-fm-red/20">
             {error}
           </div>
         )}
 
         {success && (
-          <div className="mb-4 p-3 rounded-none text-xs uppercase tracking-widest text-green-300 font-bold animate-fade-in text-center"
-            style={{ background: 'rgba(45, 106, 79, 0.2)', border: '1px solid rgba(45, 106, 79, 0.4)' }}>
+          <div className="mb-4 p-3 rounded text-[10px] font-mono uppercase tracking-widest text-fm-green font-bold animate-fade-in text-center bg-fm-green/10 border border-fm-green/20">
             PROFILE UPDATED. SYNCHRONIZING...
           </div>
         )}
@@ -192,28 +197,28 @@ export default function ProfileModal({ isOpen, onClose }) {
         <form onSubmit={handleSave} className="space-y-6">
           {/* Display Name */}
           <div>
-            <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">
+            <label className="block text-[10px] font-mono font-bold text-fm-muted uppercase tracking-widest mb-2">
               Display Name
             </label>
-              <input
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Your display name"
-                required
-                maxLength={50}
-                className="w-full bg-gray-50 border border-gray-200 rounded-none px-4 py-3 text-sm text-black outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-colors font-bold"
-              />
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Your display name"
+              required
+              maxLength={50}
+              className="input-fm"
+            />
           </div>
 
           {/* Avatar Selector */}
           <div>
-            <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">
+            <label className="block text-[10px] font-mono font-bold text-fm-muted uppercase tracking-widest mb-3">
               Choose Jersey Avatar
             </label>
             
             {/* Avatar Selection Grid */}
-            <div className="grid grid-cols-4 gap-3 max-h-48 overflow-y-auto p-1.5 custom-scrollbar border border-gray-200 rounded-none bg-gray-50">
+            <div className="grid grid-cols-4 gap-3 max-h-48 overflow-y-auto p-2 scrollbar-none border border-white/10 rounded bg-black/40 shadow-inner">
               {AVATARS.map((av) => {
                 const isSelected = selectedAvatar === av.id;
                 return (
@@ -221,14 +226,14 @@ export default function ProfileModal({ isOpen, onClose }) {
                     key={av.id}
                     type="button"
                     onClick={() => setSelectedAvatar(av.id)}
-                    className={`flex flex-col items-center justify-center p-2 rounded-none transition-all duration-200 border-[2px] active:scale-95 ${
+                    className={`flex flex-col items-center justify-center p-2 rounded transition-all duration-200 border active:scale-95 ${
                       isSelected 
-                        ? 'border-emerald-500 bg-emerald-50 shadow-[0_4px_10px_rgba(16,185,129,0.2)] scale-105 z-10' 
-                        : 'border-transparent bg-gray-50 hover:border-emerald-200 hover:bg-white'
+                        ? 'border-fm-green bg-fm-green/10 shadow-[0_0_12px_rgba(75,226,119,0.3)] scale-105 z-10' 
+                        : 'border-transparent bg-white/5 hover:border-white/20 hover:bg-white/10'
                     }`}
                   >
-                    <UserAvatar avatarId={av.id} className={`w-10 h-10 text-xl border-2 ${isSelected ? 'border-emerald-400' : 'border-gray-200'}`} />
-                    <span className={`text-[9px] mt-1.5 truncate max-w-full text-center font-bold uppercase tracking-widest ${isSelected ? 'text-emerald-600' : 'text-gray-400'}`}>
+                    <UserAvatar avatarId={av.id} className={`w-10 h-10 text-xl border ${isSelected ? 'border-fm-green' : 'border-white/10'}`} />
+                    <span className={`text-[9px] mt-1.5 truncate max-w-full text-center font-mono font-bold uppercase tracking-widest ${isSelected ? 'text-fm-green' : 'text-fm-muted'}`}>
                       {av.name.split(' ')[0]}
                     </span>
                   </button>
@@ -238,17 +243,16 @@ export default function ProfileModal({ isOpen, onClose }) {
           </div>
 
           {/* Submit Action */}
-          <button type="submit" disabled={saving}
-            className="w-full py-4 bg-emerald-500 hover:bg-emerald-600 text-white rounded-none font-black tracking-[0.2em] text-sm uppercase transition-all shadow-[0_8px_20px_rgba(16,185,129,0.3)] active:scale-95 mt-4">
+          <button type="submit" disabled={saving} className="btn-primary w-full py-4 text-sm tracking-[0.2em] mt-4">
             {saving ? 'SAVING PROFILE...' : 'SAVE & SYNC'}
           </button>
         </form>
 
         {/* ── Change Password Section ── */}
-        <div className="mt-6 border-t border-gray-200 pt-4">
+        <div className="mt-6 border-t border-white/10 pt-4">
           <button
             onClick={() => { setPwSection(v => !v); setPwStep('idle'); setPwError(''); setPwOtp(['','','','','','']); }}
-            className="w-full text-xs font-bold text-gray-400 uppercase tracking-widest hover:text-emerald-500 transition-colors py-2 flex items-center justify-center gap-2"
+            className="w-full text-[10px] font-mono font-bold text-fm-muted uppercase tracking-widest hover:text-white transition-colors py-2 flex items-center justify-center gap-2"
           >
             🔐 {pwSection ? 'Hide' : 'Change Password'}
           </button>
@@ -256,13 +260,13 @@ export default function ProfileModal({ isOpen, onClose }) {
           {pwSection && (
             <div className="mt-4 animate-fade-in">
               {pwError && (
-                <div className="mb-3 p-2 rounded-none text-xs text-red-400 font-bold uppercase tracking-widest" style={{ background: 'rgba(220,38,38,0.1)', border: '1px solid rgba(220,38,38,0.25)' }}>
+                <div className="mb-3 p-2 rounded text-[10px] text-fm-red font-mono font-bold uppercase tracking-widest bg-fm-red/10 border border-fm-red/20">
                   ⚠️ {pwError}
                 </div>
               )}
 
               {pwStep === 'done' ? (
-                <div className="text-center py-4 text-emerald-600 font-bold text-sm uppercase tracking-widest animate-fade-in">
+                <div className="text-center py-4 text-fm-green font-mono font-bold text-[10px] uppercase tracking-widest animate-fade-in">
                   ✓ Password Changed Successfully!
                 </div>
               ) : pwStep === 'idle' ? (
@@ -273,32 +277,32 @@ export default function ProfileModal({ isOpen, onClose }) {
                       value={newPassword}
                       onChange={(e) => setNewPassword(e.target.value)}
                       placeholder="New Password (min 6 chars)"
-                      className="w-full bg-gray-50 border border-gray-200 rounded-none px-4 py-3 text-sm text-black outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-colors font-bold"
+                      className="input-fm"
                     />
                   </div>
                   <button onClick={handleSendPwOtp} disabled={pwLoading}
-                    className="w-full py-3 text-xs font-bold uppercase tracking-widest bg-gray-900 text-white rounded-none hover:bg-emerald-600 transition-all active:scale-95 disabled:opacity-50">
+                    className="btn-ghost w-full py-3 text-[10px] tracking-widest">
                     {pwLoading ? 'Sending...' : 'Send OTP to Email'}
                   </button>
                 </div>
               ) : (
                 <form onSubmit={handleVerifyPwOtp} className="space-y-4">
-                  <p className="text-xs text-gray-500 text-center uppercase tracking-widest">Enter the 6-digit code sent to your email</p>
+                  <p className="text-[10px] text-fm-muted text-center font-mono uppercase tracking-widest">Enter the 6-digit code sent to your email</p>
                   <div className="flex justify-center gap-2">
                     {pwOtp.map((d, i) => (
                       <input key={i} ref={pwOtpRefs[i]} type="text" inputMode="numeric" maxLength={1} value={d}
                         onChange={(e) => handlePwOtpInput(i, e.target.value)}
                         onKeyDown={(e) => handlePwOtpKeyDown(i, e)}
-                        className={`w-10 h-12 text-center text-xl font-black bg-transparent border-b-2 outline-none transition-all ${d ? 'border-emerald-500 text-emerald-600' : 'border-gray-300 focus:border-emerald-400'}`}
+                        className={`w-10 h-12 text-center text-xl font-mono font-black bg-white/5 rounded border-b-2 outline-none transition-all ${d ? 'border-fm-green text-fm-green' : 'border-white/20 text-white focus:border-fm-green'}`}
                       />
                     ))}
                   </div>
                   <button type="submit" disabled={pwLoading}
-                    className="w-full py-3 text-xs font-bold uppercase tracking-widest bg-gray-900 text-white rounded-none hover:bg-emerald-600 transition-all active:scale-95 disabled:opacity-50">
+                    className="btn-primary w-full py-3 text-[10px] tracking-widest mt-2">
                     {pwLoading ? 'Verifying...' : 'Confirm New Password'}
                   </button>
                   <button type="button" onClick={() => { setPwStep('idle'); setPwOtp(['','','','','','']); }}
-                    className="w-full text-xs text-gray-400 hover:text-emerald-500 uppercase tracking-widest transition-colors font-bold">
+                    className="w-full text-[10px] text-fm-muted hover:text-white font-mono uppercase tracking-widest transition-colors font-bold mt-2">
                     {pwCooldown > 0 ? `Resend in ${pwCooldown}s` : 'Resend Code'}
                   </button>
                 </form>

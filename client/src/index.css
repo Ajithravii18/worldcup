@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&family=Inter:wght@100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -27,8 +27,9 @@
 
   body {
     @apply font-body;
-    background-color: #f8fafc;
-    color: #0f172a;
+    background: linear-gradient(135deg, #020617 0%, #0F172A 100%);
+    background-attachment: fixed;
+    color: #FFFFFF;
     min-height: 100dvh;
     overscroll-behavior: none;
   }
@@ -42,105 +43,117 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: rgba(15,23,42,0.15);
-    border-radius: 0;
+    background: rgba(255,255,255,0.15);
+    border-radius: 9999px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: rgba(15,23,42,0.3);
+    background: rgba(255,255,255,0.3);
   }
 
   select option {
-    background: #ffffff;
-    color: #0f172a;
+    background: #122131;
+    color: #FFFFFF;
   }
 }
 
 /* ===== COMPONENTS ===== */
 @layer components {
 
-  /* FotMob-style card */
-  .fm-card {
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 0;
+  /* Stadium Pro - Glass Card */
+  .fm-card, .glass-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5rem; /* 8px */
+    color: #d4e4fa;
   }
 
   .fm-card-hover {
-    @apply fm-card transition-colors duration-150;
+    @apply fm-card transition-all duration-150;
   }
 
   .fm-card-hover:hover {
-    background: #f8fafc;
-    border-color: #F26522;
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
   }
 
-  /* Primary orange button — FotMob style */
+  /* Primary Button — Stadium Pro */
   .btn-primary {
-    @apply font-body font-bold text-white transition-all duration-150 active:scale-95;
-    background: #F26522;
-    border-radius: 0;
+    @apply font-display font-bold uppercase text-[#003915] transition-all duration-150 active:scale-95;
+    background: #4be277; /* Pitch Green */
+    border-radius: 0.25rem;
     border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.3); /* tactile feel */
   }
 
   .btn-primary:hover:not(:disabled) {
-    background: #e05a14;
+    background: #6bff8f;
+    box-shadow: 0 0 12px rgba(75, 226, 119, 0.4);
   }
 
   .btn-primary:disabled {
-    background: #e2e8f0;
-    color: #94a3b8;
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.3);
+    border-top: none;
     cursor: not-allowed;
     transform: none;
+    box-shadow: none;
   }
 
-  /* Outline button */
-  .btn-outline {
-    @apply font-body font-bold transition-all duration-150 active:scale-95;
+  /* Outline / Secondary Button */
+  .btn-outline, .btn-secondary {
+    @apply font-display font-bold uppercase transition-all duration-150 active:scale-95;
     background: transparent;
-    color: #F26522;
-    border: 1.5px solid #F26522;
-    border-radius: 0;
+    color: #ffb690;
+    border: 1px solid #ec6a06; /* Striker Orange */
+    border-radius: 0.25rem;
   }
 
-  .btn-outline:hover:not(:disabled) {
-    background: rgba(242, 101, 34, 0.12);
+  .btn-outline:hover:not(:disabled), .btn-secondary:hover:not(:disabled) {
+    background: rgba(236, 106, 6, 0.15);
   }
 
-  .btn-outline:disabled {
+  .btn-outline:disabled, .btn-secondary:disabled {
     opacity: 0.35;
     cursor: not-allowed;
     transform: none;
   }
 
-  /* Ghost / secondary button */
+  /* Ghost button */
   .btn-ghost {
-    @apply font-body font-bold transition-all duration-150 active:scale-95;
-    background: #f1f5f9;
-    color: #64748b;
-    border: 1px solid #e2e8f0;
-    border-radius: 0;
+    @apply font-display font-bold transition-all duration-150 active:scale-95;
+    background: rgba(255, 255, 255, 0.05);
+    color: #bccbb9;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.25rem;
   }
 
   .btn-ghost:hover:not(:disabled) {
-    background: #e2e8f0;
-    color: #0f172a;
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
   }
 
-  /* Goal arrow button */
+  /* Goal arrow button (steppers) */
   .goal-btn {
-    @apply flex items-center justify-center w-10 h-10 text-xl transition-all duration-150 active:scale-90 select-none border;
-    border-radius: 0;
-    background: transparent;
-    border-color: #e2e8f0;
-    color: #64748b;
+    @apply flex items-center justify-center w-10 h-10 text-xl transition-all duration-150 active:scale-90 select-none;
+    border-radius: 0.25rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #bccbb9;
   }
 
-  .goal-btn-up:hover:not(:disabled),
+  .goal-btn-up:hover:not(:disabled) {
+    border-color: #4be277;
+    color: #4be277;
+    background: rgba(75, 226, 119, 0.1);
+  }
+
   .goal-btn-down:hover:not(:disabled) {
-    border-color: #F26522;
-    color: #F26522;
-    background: rgba(242, 101, 34, 0.1);
+    border-color: #ec6a06;
+    color: #ec6a06;
+    background: rgba(236, 106, 6, 0.1);
   }
 
   .goal-btn:disabled {
@@ -151,67 +164,50 @@
   /* Text input */
   .input-fm {
     @apply w-full font-body transition-all duration-150;
-    background: #ffffff;
-    border: 1.5px solid #e2e8f0;
-    border-radius: 0;
-    color: #0f172a;
+    background: rgba(255, 255, 255, 0.05);
+    border: none;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.25rem 0.25rem 0 0;
+    color: #ffffff;
     padding: 0.65rem 1rem;
     outline: none;
   }
 
   .input-fm::placeholder {
-    color: #94a3b8;
+    color: #bccbb9;
   }
 
   .input-fm:focus {
-    border-color: #F26522;
+    border-bottom-color: #4be277;
+    background: rgba(255, 255, 255, 0.08);
   }
 
-  /* Status badges — flat, square */
+  /* Status badges — pill, mono */
   .badge-live {
-    background: rgba(239,68,68,0.15);
-    color: #ef4444;
-    border: 1px solid rgba(239,68,68,0.3);
-    @apply inline-flex items-center px-1.5 py-0.5 text-[8px] font-black uppercase tracking-widest;
-    border-radius: 0;
+    background: rgba(255, 180, 171, 0.15); /* error */
+    color: #ffb4ab;
+    border: 1px solid rgba(255, 180, 171, 0.3);
+    @apply inline-flex items-center px-2 py-0.5 text-[10px] font-mono font-medium uppercase tracking-wider rounded-full;
   }
 
   .badge-open {
-    background: rgba(242,101,34,0.15);
-    color: #F26522;
-    border: 1px solid rgba(242,101,34,0.35);
-    @apply inline-flex items-center px-1.5 py-0.5 text-[8px] font-black uppercase tracking-widest;
-    border-radius: 0;
+    background: rgba(75, 226, 119, 0.15); /* primary */
+    color: #4be277;
+    border: 1px solid rgba(75, 226, 119, 0.35);
+    @apply inline-flex items-center px-2 py-0.5 text-[10px] font-mono font-medium uppercase tracking-wider rounded-full;
   }
 
-  .badge-locked {
-    background: rgba(15,23,42,0.05);
-    color: #64748b;
-    border: 1px solid rgba(15,23,42,0.1);
-    @apply inline-flex items-center px-1.5 py-0.5 text-[8px] font-black uppercase tracking-widest;
-    border-radius: 0;
-  }
-
-  .badge-completed {
-    background: rgba(15,23,42,0.05);
-    color: #64748b;
-    border: 1px solid rgba(15,23,42,0.1);
-    @apply inline-flex items-center px-1.5 py-0.5 text-[8px] font-black uppercase tracking-widest;
-    border-radius: 0;
-  }
-
-  .badge-soon {
-    background: rgba(15,23,42,0.05);
-    color: #64748b;
-    border: 1px solid rgba(15,23,42,0.1);
-    @apply inline-flex items-center px-1.5 py-0.5 text-[8px] font-black uppercase tracking-widest;
-    border-radius: 0;
+  .badge-locked, .badge-completed, .badge-soon {
+    background: rgba(255, 255, 255, 0.05);
+    color: #bccbb9;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    @apply inline-flex items-center px-2 py-0.5 text-[10px] font-mono font-medium uppercase tracking-wider rounded-full;
   }
 
   /* Divider */
   .fm-divider {
     border: none;
-    border-top: 1px solid #e2e8f0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
 }
 
@@ -226,41 +222,41 @@
   }
 
   .text-fm-orange {
-    color: #F26522;
+    color: #ec6a06;
   }
 
   .bg-fm-orange {
-    background: #F26522;
+    background: #ec6a06;
   }
 
   .border-fm-orange {
-    border-color: #F26522;
+    border-color: #ec6a06;
   }
 
   .bg-fm-dark {
-    background: #f8fafc;
+    background: transparent;
   }
 
   .bg-fm-card {
-    background: #ffffff;
+    @apply fm-card;
   }
 
   .bg-fm-card-hover {
-    background: #f1f5f9;
+    @apply fm-card-hover;
   }
 
   .border-fm {
-    border-color: #e2e8f0;
+    border-color: rgba(255, 255, 255, 0.1);
   }
 
-  /* Tab underline indicator — FotMob style */
+  /* Tab underline indicator — Stadium Pro style */
   .fm-tab-active {
-    color: #F26522;
-    border-bottom: 2px solid #F26522;
+    color: #4be277;
+    border-bottom: 2px solid #4be277;
   }
 
   .fm-tab-inactive {
-    color: #64748b;
+    color: #bccbb9;
     border-bottom: 2px solid transparent;
   }
 }

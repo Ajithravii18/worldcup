@@ -52,17 +52,17 @@ export default function LeaderboardView({ predictions = [] }) {
   return (
     <div className="w-full max-w-4xl mx-auto px-4 py-8">
       {/* Header */}
-      <div className="mb-6 border-b border-gray-200 pb-4 flex justify-between items-end">
+      <div className="mb-6 border-b border-white/10 pb-4 flex justify-between items-end">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 uppercase tracking-wider font-display">Players & Predictions</h1>
-          <p className="text-gray-500 mt-2 text-sm font-bold uppercase tracking-widest">Total Players: {leaderboard.length}</p>
+          <h1 className="text-3xl font-bold text-white uppercase tracking-wider font-display drop-shadow">Players & Predictions</h1>
+          <p className="text-fm-muted mt-2 text-sm font-bold uppercase tracking-widest font-mono">Total Players: {leaderboard.length}</p>
         </div>
       </div>
 
       {/* List */}
-      <div className="space-y-2">
+      <div className="space-y-3">
         {leaderboard.length === 0 ? (
-          <div className="text-center py-16 text-gray-500 text-[10px] bg-white rounded-xl border border-gray-200 uppercase tracking-widest font-bold">
+          <div className="text-center py-16 text-fm-muted text-xs glass-card uppercase tracking-widest font-bold">
             No predictions have been made yet.
           </div>
         ) : (
@@ -71,41 +71,46 @@ export default function LeaderboardView({ predictions = [] }) {
               ? Math.round((player.exactWins / player.totalPlayed) * 100) 
               : 0;
 
-            let rankColor = "text-yellow-500";
-            if (index === 0) rankColor = "text-yellow-500 drop-shadow-sm"; // Gold
-            else if (index === 1) rankColor = "text-gray-400 drop-shadow-sm"; // Silver
-            else if (index === 2) rankColor = "text-orange-500 drop-shadow-sm"; // Bronze
-            else rankColor = "text-theme-primary/50";
+            let rankColor = "text-fm-gold";
+            let rankGlow = "";
+            let rankHighlight = "";
+            if (index === 0) {
+              rankColor = "text-fm-orange"; // Striker orange for #1
+              rankGlow = "drop-shadow-[0_0_8px_rgba(236,106,6,0.6)]";
+              rankHighlight = "border-l-[4px] border-l-fm-orange";
+            } else if (index === 1) {
+              rankColor = "text-[#e2e8f0]"; // Silver
+            } else if (index === 2) {
+              rankColor = "text-[#b45309]"; // Bronze
+            } else {
+              rankColor = "text-fm-muted";
+            }
 
             const isExpanded = expandedPlayer === player.id;
 
             return (
-              <div key={player.id} className={`border rounded-xl overflow-hidden hover:shadow-md transition-all duration-300 ${
-                index === 0 
-                  ? 'bg-gradient-to-r from-yellow-50 to-amber-50/80 border-yellow-300 shadow-sm' 
-                  : 'bg-white border-gray-200'
-              }`}>
+              <div key={player.id} className={`glass-card overflow-hidden transition-all duration-300 ${rankHighlight} ${isExpanded ? 'bg-white/10' : ''}`}>
                 {/* Minimal Row - Always Visible */}
                 <button
                   onClick={() => setExpandedPlayer(isExpanded ? null : player.id)}
                   className="w-full p-4 flex items-center justify-between gap-4 text-left"
                 >
                   <div className="flex items-center gap-4 flex-1 min-w-0">
-                    <div className={`text-lg font-black font-display w-8 text-center flex-shrink-0 ${rankColor}`}>
+                    <div className={`text-2xl font-black font-display w-8 text-center flex-shrink-0 ${rankColor} ${rankGlow}`}>
                       #{index + 1}
                     </div>
                     <div className="min-w-0 flex-1">
-                      <h2 className="text-sm font-bold text-gray-900 truncate font-display uppercase">{player.name}</h2>
-                      <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest">{player.totalPlayed} preds</p>
+                      <h2 className="text-base font-bold text-white truncate font-display tracking-wide">{player.name}</h2>
+                      <p className="text-[10px] text-fm-muted font-mono uppercase tracking-widest mt-1">{player.totalPlayed} preds</p>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-3 flex-shrink-0">
-                    <div className="flex flex-col items-end justify-center pr-2">
-                      <span className="text-sm font-black text-theme-secondary drop-shadow-sm">{player.points} pts</span>
-                      <span className="text-[10px] font-bold text-gray-500 uppercase">{player.exactWins} perfect</span>
+                  <div className="flex items-center gap-4 flex-shrink-0">
+                    <div className="flex flex-col items-end justify-center">
+                      <span className="text-lg font-mono font-bold text-fm-green drop-shadow-[0_0_2px_rgba(75,226,119,0.5)]">{player.points} pts</span>
+                      <span className="text-[10px] font-mono font-medium text-fm-muted uppercase">{player.exactWins} perfect</span>
                     </div>
-                    <span className={`text-theme-secondary transition-transform ${isExpanded ? 'rotate-180' : ''}`}>
+                    <span className={`text-fm-muted transition-transform ${isExpanded ? 'rotate-180' : ''}`}>
                       ▼
                     </span>
                   </div>
@@ -113,23 +118,21 @@ export default function LeaderboardView({ predictions = [] }) {
 
                 {/* Expanded Details */}
                 {isExpanded && (
-                  <div className={`border-t p-4 animate-fade-in ${
-                    index === 0 ? 'border-yellow-200 bg-yellow-50/50' : 'border-gray-100 bg-gray-50'
-                  }`}>
-                    <h3 className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-3">
+                  <div className="border-t border-white/10 p-4 bg-black/20 animate-fade-in">
+                    <h3 className="text-[10px] font-mono font-medium text-fm-muted uppercase tracking-widest mb-3">
                       Perfect Predictions ({player.perfectMatches.length})
                     </h3>
                     
                     {player.perfectMatches.length === 0 ? (
-                      <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">No exact score predictions yet.</p>
+                      <p className="text-[10px] text-fm-muted font-mono uppercase tracking-widest">No exact score predictions yet.</p>
                     ) : (
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         {player.perfectMatches.map((match, i) => (
-                          <div key={i} className="flex items-center justify-between bg-white border border-gray-200 p-2 rounded-lg text-xs shadow-sm">
-                            <span className="text-gray-800 font-bold font-display uppercase text-[10px] truncate mr-2 tracking-wider">
+                          <div key={i} className="flex items-center justify-between bg-white/5 border border-white/10 p-2.5 rounded-md shadow-sm">
+                            <span className="text-white font-bold font-display text-sm truncate mr-2 tracking-wide">
                               {match.home} vs {match.away}
                             </span>
-                            <span className="bg-blue-50 text-theme-primary font-black px-2 py-0.5 rounded-full text-[10px] flex-shrink-0">
+                            <span className="bg-fm-green/10 text-fm-green border border-fm-green/30 font-mono font-bold px-2 py-0.5 rounded text-xs flex-shrink-0">
                               {match.score}
                             </span>
                           </div>

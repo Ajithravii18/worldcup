@@ -60,18 +60,16 @@ export default function MatchCard({ match, prediction = null, onClick }) {
     return (
       <article
         onClick={() => onClick && onClick(match)}
-        className="flex flex-col cursor-pointer transition-colors duration-150 min-h-[140px] relative overflow-hidden"
+        className="flex flex-col cursor-pointer transition-colors duration-150 min-h-[140px] relative overflow-hidden glass-card"
         style={{
-          background: '#ffffff',
-          border: '1px solid #e2e8f0',
-          borderLeft: isPerfect ? '3px solid #22c55e' : '3px solid #e2e8f0',
+          borderLeft: isPerfect ? '3px solid #4be277' : undefined,
         }}
-        onMouseEnter={e => e.currentTarget.style.borderColor = '#F26522'}
-        onMouseLeave={e => e.currentTarget.style.borderColor = isPerfect ? '#22c55e' : '#e2e8f0'}
+        onMouseEnter={e => e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.3)'}
+        onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)'}
       >
         {/* Header row */}
-        <div className="flex items-center justify-between px-3 pt-2.5 pb-1.5" style={{ borderBottom: '1px solid #e2e8f0' }}>
-          <span className="text-[8px] font-bold uppercase tracking-widest" style={{ color: '#64748b' }}>
+        <div className="flex items-center justify-between px-3 pt-2.5 pb-1.5 fm-divider">
+          <span className="text-[10px] font-mono uppercase tracking-widest text-fm-muted">
             {formattedTime}
           </span>
           <span className="badge-completed">FT</span>
@@ -84,15 +82,15 @@ export default function MatchCard({ match, prediction = null, onClick }) {
               ? <span className="text-xl opacity-20">?</span>
               : <TeamFlag teamName={match.homeTeam} fallbackEmoji={match.homeFlag} className="w-8 h-6" />
             }
-            <span className={`font-display text-[10px] font-bold text-center truncate w-full px-1 ${homeWin ? 'text-slate-900' : 'text-[#6b7280]'}`}>
+            <span className={`font-display text-[12px] font-bold text-center truncate w-full px-1 ${homeWin ? 'text-white' : 'text-fm-muted'}`}>
               {displayTeam(match.homeTeam)}
             </span>
           </div>
 
-          <div className="flex items-center gap-1 px-3 py-1.5 min-w-[64px] justify-center" style={{ background: '#f1f5f9' }}>
-            <span className={`font-display text-2xl font-black ${homeWin ? 'text-slate-900' : 'text-slate-400'}`}>{match.homeScore}</span>
-            <span className="text-[#cbd5e1] text-sm mx-0.5">–</span>
-            <span className={`font-display text-2xl font-black ${awayWin ? 'text-slate-900' : 'text-slate-400'}`}>{match.awayScore}</span>
+          <div className="flex items-center gap-1 px-3 py-1.5 min-w-[64px] justify-center bg-black/20 rounded">
+            <span className={`font-mono text-xl font-bold ${homeWin ? 'text-white' : 'text-fm-muted'}`}>{match.homeScore}</span>
+            <span className="text-fm-muted text-sm mx-0.5">–</span>
+            <span className={`font-mono text-xl font-bold ${awayWin ? 'text-white' : 'text-fm-muted'}`}>{match.awayScore}</span>
           </div>
 
           <div className={`flex-1 flex flex-col items-center gap-1.5 ${!awayWin && !draw ? 'opacity-40' : ''}`}>
@@ -100,7 +98,7 @@ export default function MatchCard({ match, prediction = null, onClick }) {
               ? <span className="text-xl opacity-20">?</span>
               : <TeamFlag teamName={match.awayTeam} fallbackEmoji={match.awayFlag} className="w-8 h-6" />
             }
-            <span className={`font-display text-[10px] font-bold text-center truncate w-full px-1 ${awayWin ? 'text-slate-900' : 'text-[#6b7280]'}`}>
+            <span className={`font-display text-[12px] font-bold text-center truncate w-full px-1 ${awayWin ? 'text-white' : 'text-fm-muted'}`}>
               {displayTeam(match.awayTeam)}
             </span>
           </div>
@@ -108,14 +106,14 @@ export default function MatchCard({ match, prediction = null, onClick }) {
 
         {/* Prediction row */}
         {prediction && (
-          <div className="px-3 py-2 text-center" style={{ borderTop: '1px solid #e2e8f0' }}>
+          <div className="px-3 py-2 text-center fm-divider">
             {isPerfect ? (
-              <span className="text-[8px] font-black uppercase tracking-widest" style={{ color: '#22c55e' }}>
+              <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-fm-green drop-shadow-[0_0_4px_rgba(75,226,119,0.5)]">
                 🏆 Perfect Prediction
               </span>
             ) : (
-              <span className="text-[8px] font-bold uppercase tracking-widest" style={{ color: '#64748b' }}>
-                Predicted: <span style={{ color: '#0f172a' }}>{prediction.homeGoals} – {prediction.awayGoals}</span>
+              <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-fm-muted">
+                Predicted: <span className="text-white">{prediction.homeGoals} – {prediction.awayGoals}</span>
               </span>
             )}
           </div>
@@ -128,20 +126,18 @@ export default function MatchCard({ match, prediction = null, onClick }) {
   return (
     <article
       onClick={() => onClick && onClick(match)}
-      className="flex flex-col cursor-pointer transition-colors duration-150 min-h-[140px] relative"
+      className="flex flex-col cursor-pointer transition-colors duration-150 min-h-[140px] relative glass-card"
       style={{
-        background: isLocked || isEarly ? '#f1f5f9' : '#ffffff',
-        border: '1px solid',
-        borderColor: isOpen && !prediction ? '#F26522' : '#e2e8f0',
-        borderLeft: isOpen && !prediction ? '3px solid #F26522' : '3px solid #e2e8f0',
-        opacity: isLocked ? 0.75 : 1,
+        borderColor: isOpen && !prediction ? '#ec6a06' : undefined,
+        borderLeft: isOpen && !prediction ? '3px solid #ec6a06' : undefined,
+        opacity: isLocked ? 0.6 : 1,
       }}
-      onMouseEnter={e => { if (!isLocked) e.currentTarget.style.background = '#f8fafc'; }}
-      onMouseLeave={e => e.currentTarget.style.background = isLocked || isEarly ? '#f1f5f9' : '#ffffff'}
+      onMouseEnter={e => { if (!isLocked) e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)'; }}
+      onMouseLeave={e => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)'}
     >
       {/* Header */}
-      <div className="flex items-center justify-between px-3 pt-2.5 pb-1.5" style={{ borderBottom: '1px solid #e2e8f0' }}>
-        <span className="text-[8px] font-bold uppercase tracking-widest" style={{ color: '#64748b' }}>
+      <div className="flex items-center justify-between px-3 pt-2.5 pb-1.5 fm-divider">
+        <span className="text-[10px] font-mono uppercase tracking-widest text-fm-muted">
           {formattedTime}
         </span>
         <StatusBadge />
@@ -151,18 +147,17 @@ export default function MatchCard({ match, prediction = null, onClick }) {
       <div className="flex flex-col gap-2.5 px-3 py-3 flex-1">
         {/* Home */}
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             {isTBD(match.homeTeam)
-              ? <span className="text-lg opacity-30">?</span>
+              ? <span className="text-lg opacity-30 text-white">?</span>
               : <TeamFlag teamName={match.homeTeam} fallbackEmoji={match.homeFlag} />
             }
-            <span className={`font-display text-sm font-bold truncate max-w-[90px] sm:max-w-[120px] ${isTBD(match.homeTeam) ? 'italic text-[10px]' : 'text-[#0f172a]'}`}
-              style={{ color: isTBD(match.homeTeam) ? '#64748b' : undefined }}>
+            <span className={`font-display text-base font-bold truncate max-w-[120px] sm:max-w-[150px] ${isTBD(match.homeTeam) ? 'italic text-sm text-fm-muted' : 'text-white'}`}>
               {displayTeam(match.homeTeam)}
             </span>
           </div>
           {prediction && (
-            <span className="font-display text-sm font-black" style={{ color: '#F26522' }}>
+            <span className="font-mono text-lg font-bold text-fm-green">
               {prediction.homeGoals}
             </span>
           )}
@@ -170,18 +165,17 @@ export default function MatchCard({ match, prediction = null, onClick }) {
 
         {/* Away */}
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             {isTBD(match.awayTeam)
-              ? <span className="text-lg opacity-30">?</span>
+              ? <span className="text-lg opacity-30 text-white">?</span>
               : <TeamFlag teamName={match.awayTeam} fallbackEmoji={match.awayFlag} />
             }
-            <span className={`font-display text-sm font-bold truncate max-w-[90px] sm:max-w-[120px]`}
-              style={{ color: isTBD(match.awayTeam) ? '#64748b' : '#0f172a' }}>
+            <span className={`font-display text-base font-bold truncate max-w-[120px] sm:max-w-[150px] ${isTBD(match.awayTeam) ? 'italic text-sm text-fm-muted' : 'text-white'}`}>
               {displayTeam(match.awayTeam)}
             </span>
           </div>
           {prediction && (
-            <span className="font-display text-sm font-black" style={{ color: '#F26522' }}>
+            <span className="font-mono text-lg font-bold text-fm-green">
               {prediction.awayGoals}
             </span>
           )}
@@ -190,8 +184,8 @@ export default function MatchCard({ match, prediction = null, onClick }) {
 
       {/* Predicted footer */}
       {prediction && (
-        <div className="px-3 py-1.5 text-center" style={{ borderTop: '1px solid #e2e8f0' }}>
-          <span className="text-[8px] font-black uppercase tracking-widest" style={{ color: '#F26522' }}>
+        <div className="px-3 py-1.5 text-center fm-divider">
+          <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-fm-green">
             ✓ Predicted
           </span>
         </div>
