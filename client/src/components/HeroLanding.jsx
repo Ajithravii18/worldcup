@@ -102,28 +102,28 @@ export default function HeroLanding({ predictions = [] }) {
           </div>
         </div>
 
-        {/* Center: Global Arena Status (Fills the empty space) */}
-        <div className="hidden lg:flex flex-col items-center justify-center flex-1 px-4 relative z-20">
+        {/* Center: Player Performance (Fills the empty space & fits profile theme) */}
+        <div className="flex flex-col items-center justify-center w-full lg:flex-1 lg:px-4 relative z-20">
           <motion.div 
             whileHover={{ scale: 1.02 }}
             className="w-full max-w-sm bg-gradient-to-b from-primary/20 via-primary/5 to-transparent p-[1px] rounded-2xl shadow-[0_0_30px_rgba(0,255,135,0.15)] group"
           >
-            <div className="bg-[#0A0A0A]/80 backdrop-blur-xl rounded-2xl p-5 flex flex-col items-center justify-center border border-white/5 h-full">
-               <div className="flex items-center gap-2 mb-3 bg-white/5 px-3 py-1.5 rounded-full border border-white/10">
-                 <Icon name="public" className="text-primary text-sm" />
-                 <h3 className="text-white font-display uppercase tracking-widest font-black text-[10px]">Global Arena</h3>
+            <div className="bg-[#0A0A0A]/80 backdrop-blur-xl rounded-2xl p-4 sm:p-5 flex flex-col items-center justify-center border border-white/5 h-full">
+               <div className="flex items-center gap-2 mb-2 sm:mb-3 bg-white/5 px-3 py-1.5 rounded-full border border-white/10">
+                 <Icon name="radar" className="text-primary text-sm" />
+                 <h3 className="text-white font-display uppercase tracking-widest font-black text-[10px]">Prediction Accuracy</h3>
                </div>
                
-               <div className="flex items-end gap-2">
-                 <p className="text-5xl font-display font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-primary to-secondary drop-shadow-[0_0_15px_rgba(0,255,135,0.4)]">
-                   {predictions?.length || 0}
+               <div className="flex items-end gap-1 sm:gap-2">
+                 <p className="text-4xl sm:text-5xl font-display font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-primary to-secondary drop-shadow-[0_0_15px_rgba(0,255,135,0.4)]">
+                   {matchesPlayed > 0 ? Math.round((exactWins / matchesPlayed) * 100) : 0}<span className="text-2xl sm:text-3xl">%</span>
                  </p>
                </div>
                
-               <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent my-3" />
+               <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent my-2 sm:my-3" />
                
-               <p className="text-[10px] text-outline-variant font-display uppercase tracking-[0.2em] font-bold text-center">
-                 Predictions Submitted <br/> Worldwide
+               <p className="text-[9px] sm:text-[10px] text-outline-variant font-display uppercase tracking-[0.2em] font-bold text-center">
+                 Based on {matchesPlayed} Completed <br className="hidden sm:block" /> Matches
                </p>
             </div>
           </motion.div>
