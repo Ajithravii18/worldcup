@@ -18,10 +18,20 @@ export default function VideoBackground() {
         <motion.div
           key={bgImage}
           initial={{ opacity: 0, scale: 1.05 }}
-          animate={{ opacity: 1, scale: 1 }}
+          animate={{ 
+            opacity: 1, 
+            scale: [1.05, 1.15, 1.05],
+            x: ['0%', '-1%', '0%'],
+            y: ['0%', '1%', '0%']
+          }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
-          className="absolute inset-0 z-0 blur-[2px]"
+          transition={{ 
+            opacity: { duration: 1.5, ease: "easeOut" },
+            scale: { duration: 45, repeat: Infinity, ease: "linear" },
+            x: { duration: 45, repeat: Infinity, ease: "linear" },
+            y: { duration: 45, repeat: Infinity, ease: "linear" }
+          }}
+          className="absolute inset-[calc(-5%)] z-0 blur-[2px]"
           style={{
             backgroundImage: `url('${bgImage}')`,
             backgroundSize: 'cover',

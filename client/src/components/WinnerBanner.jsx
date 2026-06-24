@@ -79,6 +79,11 @@ export default function WinnerBanner({ matches, predictions = [], currentTime = 
   const homeScorers = Object.entries(homeScorersMap).map(([player, times]) => ({ player, times }));
   const awayScorers = Object.entries(awayScorersMap).map(([player, times]) => ({ player, times }));
 
+  // Hardcode fallback for Colombia vs DR Congo as requested
+  if (matchToDisplay.homeTeam === 'Colombia' && matchToDisplay.awayTeam === 'DR Congo' && homeScorers.length === 0) {
+    homeScorers.push({ player: 'L. Díaz', times: ["34'"] });
+  }
+
   const correctPredictions = !isLive ? predictions.filter(
     (p) =>
       (p.match?._id === matchToDisplay._id || p.match === matchToDisplay._id) &&

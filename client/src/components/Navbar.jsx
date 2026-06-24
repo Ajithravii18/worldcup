@@ -1,13 +1,15 @@
+import { useState } from 'react';
 import Icon from './Icon';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import UserAvatar from './UserAvatar';
 import NotificationBell from './NotificationBell';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Navbar({ view, setView, statusFilter, setStatusFilter, onProfileClick }) {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleLogout = () => {
     logout();
@@ -90,53 +92,119 @@ export default function Navbar({ view, setView, statusFilter, setStatusFilter, o
 
         {/* Right side: user controls */}
         {user && (
-          <div className="flex items-center gap-5 ml-auto">
+          <div className="flex items-center gap-4 sm:gap-5 ml-auto">
+            {/* Desktop Admin */}
             {user?.role === 'admin' && (
               <button
                 onClick={() => navigate('/admin')}
-                className="md:hidden flex items-center justify-center p-2 text-outline-variant hover:text-white transition-colors"
+                className="hidden md:flex items-center justify-center p-2 text-outline-variant hover:text-white transition-colors"
                 title="Admin Dashboard"
               >
                 <Icon name="settings" className="text-[24px]" />
               </button>
             )}
 
+            {/* Notification Bell (Always Visible) */}
             <div className="text-outline-variant hover:text-primary transition-colors cursor-pointer">
               <NotificationBell />
             </div>
 
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={onProfileClick}
-              className="w-10 h-10 rounded-full overflow-hidden border-2 border-white/20 hover:border-primary transition-colors shadow-lg"
-              title="Profile"
-            >
-              <UserAvatar
-                avatarId={user.avatar}
-                className="w-full h-full object-cover"
-              />
-            </motion.button>
+            {/* Desktop Profile & Logout */}
+            <div className="hidden md:flex items-center gap-4">
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={onProfileClick}
+                className="w-10 h-10 rounded-full overflow-hidden border-2 border-white/20 hover:border-primary transition-colors shadow-lg"
+                title="Profile"
+              >
+                <UserAvatar
+                  avatarId={user.avatar}
+                  className="w-full h-full object-cover"
+                />
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={onLogoutClick}
+                className="flex items-center justify-center h-10 px-5 rounded-xl transition-all duration-150 text-error border border-error/50 hover:bg-error/20 font-bold uppercase tracking-widest text-xs"
+                title="Logout"
+              >
+                Logout
+              </motion.button>
+            </div>
 
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              id="logout-btn"
-              onClick={onLogoutClick}
-              className="hidden sm:flex items-center justify-center h-10 px-5 rounded-xl transition-all duration-150 text-error border border-error/50 hover:bg-error/20 font-bold uppercase tracking-widest text-xs"
-              title="Logout"
-            >
-              Logout
-            </motion.button>
+            {/* Mobile Hamburger Button */}
             <button
-              onClick={onLogoutClick}
-              className="sm:hidden text-error hover:text-red-400 p-2"
+              onClick={() => setMobileMenuOpen(true)}
+              className="md:hidden flex items-center justify-center text-white hover:text-primary transition-colors"
             >
-              <Icon name="logout" className="text-[24px]" />
+              <Icon name="menu" className="text-[32px]" />
             </button>
           </div>
         )}
       </div>
+
+      {/* Mobile Slide-out Menu */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setMobileMenuOpen(false)}
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] md:hidden"
+            />
+            <motion.div
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              className="fixed top-0 right-0 h-dvh w-64 bg-[#0a0f18] border-l border-white/10 shadow-2xl z-[70] md:hidden flex flex-col p-6"
+            >
+              <div className="flex justify-between items-center mb-10">
+                <h2 className="font-display text-lg font-black uppercase tracking-widest text-white">Menu</h2>
+                <button onClick={() => setMobileMenuOpen(false)} className="text-white/50 hover:text-white transition-colors">
+                  <Icon name="close" className="text-[28px]" />
+                </button>
+              </div>
+
+              <div className="flex flex-col gap-6">
+                <button
+                  onClick={() => { setMobileMenuOpen(false); onProfileClick(); }}
+                  className="flex items-center gap-4 text-white hover:text-primary transition-colors text-left"
+                >
+                  <div className="w-12 h-12 rounded-full overflow-hidden border border-white/20">
+                    <UserAvatar avatarId={user?.avatar} className="w-full h-full object-cover" />
+                  </div>
+                  <span className="font-display font-bold tracking-widest uppercase">My Profile</span>
+                </button>
+
+                {user?.role === 'admin' && (
+                  <button
+                    onClick={() => { setMobileMenuOpen(false); navigate('/admin'); }}
+                    className="flex items-center gap-4 text-white hover:text-primary transition-colors text-left"
+                  >
+                    <Icon name="settings" className="text-[24px]" />
+                    <span className="font-display font-bold tracking-widest uppercase">Admin Board</span>
+                  </button>
+                )}
+
+                <div className="w-full h-[1px] bg-white/10 my-4" />
+
+                <button
+                  onClick={() => { setMobileMenuOpen(false); onLogoutClick(); }}
+                  className="flex items-center gap-4 text-error hover:text-red-400 transition-colors text-left"
+                >
+                  <Icon name="logout" className="text-[24px]" />
+                  <span className="font-display font-bold tracking-widest uppercase">Sign Out</span>
+                </button>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </motion.header>
   );
 }

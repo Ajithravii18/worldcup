@@ -28,6 +28,7 @@ const itemVariants = {
 export default function HomePage() {
   const [view, setView] = useState('global');
   const [statusFilter, setStatusFilter] = useState('upcoming');
+  const [predictionFilter, setPredictionFilter] = useState('all');
   const [teamFilter, setTeamFilter] = useState('All');
   const [dateSort, setDateSort] = useState('earliest');
   const [selectedMatch, setSelectedMatch] = useState(null);
@@ -176,17 +177,21 @@ export default function HomePage() {
   const getFilteredMatches = () => {
     let filtered = matches.map(getMatchWithTimeState);
 
-    if (statusFilter === 'completed') {
-      filtered = filtered.filter((m) => m.status === 'completed');
-    } else {
-      filtered = filtered.filter((m) => m.status !== 'completed');
-    }
-
     if (view === 'my') {
       filtered = filtered.filter((m) => {
         const pred = getMyPrediction(m._id);
-        return pred !== null;
+        if (!pred) return false;
+        if (predictionFilter === 'correct') {
+          return pred.points > 0;
+        }
+        return true;
       });
+    } else {
+      if (statusFilter === 'completed') {
+        filtered = filtered.filter((m) => m.status === 'completed');
+      } else {
+        filtered = filtered.filter((m) => m.status !== 'completed');
+      }
     }
     if (teamFilter !== 'All') {
       filtered = filtered.filter(m => m.homeTeam === teamFilter || m.awayTeam === teamFilter);
@@ -340,31 +345,62 @@ export default function HomePage() {
                   </div>
 
                   <div className="flex flex-row items-center gap-2 w-full md:w-auto">
-                    <div className="hidden md:flex items-center gap-1 border border-white/10 rounded-xl overflow-hidden bg-black/40 p-1 backdrop-blur-md">
-                      <button
-                        onClick={() => {
-                          setStatusFilter('upcoming');
-                          window.scrollTo({ top: 0, behavior: 'smooth' });
-                        }}
-                        className={`relative px-6 py-2.5 font-display text-xs uppercase tracking-widest transition-all duration-300 rounded-lg font-bold z-10 ${
-                          statusFilter === 'upcoming' ? 'text-black' : 'text-outline-variant hover:text-white'
-                        }`}
-                      >
-                        {statusFilter === 'upcoming' && <motion.div layoutId="filter-tab" className="absolute inset-0 bg-primary rounded-lg -z-10 shadow-neon-primary" transition={{ type: "spring", bounce: 0.2, duration: 0.6 }} />}
-                        Open
-                      </button>
-                      <button
-                        onClick={() => {
-                          setStatusFilter('completed');
-                          window.scrollTo({ top: 0, behavior: 'smooth' });
-                        }}
-                        className={`relative px-6 py-2.5 font-display text-xs uppercase tracking-widest transition-all duration-300 rounded-lg font-bold z-10 ${
-                          statusFilter === 'completed' ? 'text-black' : 'text-outline-variant hover:text-white'
-                        }`}
-                      >
-                        {statusFilter === 'completed' && <motion.div layoutId="filter-tab" className="absolute inset-0 bg-primary rounded-lg -z-10 shadow-neon-primary" transition={{ type: "spring", bounce: 0.2, duration: 0.6 }} />}
-                        Results
-                      </button>
+                    <div className="flex items-center gap-1 border border-white/10 rounded-xl overflow-hidden bg-black/40 p-1 backdrop-blur-md w-full md:w-auto">
+                      {view === 'my' ? (
+                        <>
+                          <button
+                            onClick={() => {
+                              setPredictionFilter('all');
+                              window.scrollTo({ top: 0, behavior: 'smooth' });
+                            }}
+                            className={`relative flex-1 md:flex-none px-4 py-2.5 font-display text-[10px] sm:text-xs uppercase tracking-widest transition-all duration-300 rounded-lg font-bold z-10 ${
+                              predictionFilter === 'all' ? 'text-black' : 'text-outline-variant hover:text-white'
+                            }`}
+                          >
+                            {predictionFilter === 'all' && <motion.div layoutId="filter-tab" className="absolute inset-0 bg-primary rounded-lg -z-10 shadow-neon-primary" transition={{ type: "spring", bounce: 0.2, duration: 0.6 }} />}
+                            All
+                          </button>
+                          <button
+                            onClick={() => {
+                              setPredictionFilter('correct');
+                              window.scrollTo({ top: 0, behavior: 'smooth' });
+                            }}
+                            className={`relative flex-1 md:flex-none px-4 py-2.5 font-display text-[10px] sm:text-xs uppercase tracking-widest transition-all duration-300 rounded-lg font-bold z-10 ${
+                              predictionFilter === 'correct' ? 'text-black' : 'text-outline-variant hover:text-white'
+                            }`}
+                          >
+                            {predictionFilter === 'correct' && <motion.div layoutId="filter-tab" className="absolute inset-0 bg-primary rounded-lg -z-10 shadow-neon-primary" transition={{ type: "spring", bounce: 0.2, duration: 0.6 }} />}
+                            Correct
+                          </button>
+                        </>
+                      ) : (
+                        <>
+                          <button
+                            onClick={() => {
+                              setStatusFilter('upcoming');
+                              window.scrollTo({ top: 0, behavior: 'smooth' });
+                            }}
+                            className={`relative flex-1 md:flex-none px-4 py-2.5 font-display text-[10px] sm:text-xs uppercase tracking-widest transition-all duration-300 rounded-lg font-bold z-10 ${
+                              statusFilter === 'upcoming' ? 'text-black' : 'text-outline-variant hover:text-white'
+                            }`}
+                          >
+                            {statusFilter === 'upcoming' && <motion.div layoutId="filter-tab" className="absolute inset-0 bg-primary rounded-lg -z-10 shadow-neon-primary" transition={{ type: "spring", bounce: 0.2, duration: 0.6 }} />}
+                            Open
+                          </button>
+                          <button
+                            onClick={() => {
+                              setStatusFilter('completed');
+                              window.scrollTo({ top: 0, behavior: 'smooth' });
+                            }}
+                            className={`relative flex-1 md:flex-none px-4 py-2.5 font-display text-[10px] sm:text-xs uppercase tracking-widest transition-all duration-300 rounded-lg font-bold z-10 ${
+                              statusFilter === 'completed' ? 'text-black' : 'text-outline-variant hover:text-white'
+                            }`}
+                          >
+                            {statusFilter === 'completed' && <motion.div layoutId="filter-tab" className="absolute inset-0 bg-primary rounded-lg -z-10 shadow-neon-primary" transition={{ type: "spring", bounce: 0.2, duration: 0.6 }} />}
+                            Results
+                          </button>
+                        </>
+                      )}
                     </div>
 
                     <div className="relative flex-1 sm:w-48">
