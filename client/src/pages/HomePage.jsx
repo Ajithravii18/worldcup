@@ -378,6 +378,7 @@ export default function HomePage() {
                           <button
                             onClick={() => {
                               setStatusFilter('upcoming');
+                              setDateSort('earliest');
                               if (scrollContainerRef.current) scrollContainerRef.current.scrollLeft = 0;
                             }}
                             className={`relative flex-1 md:flex-none px-4 py-2.5 font-display text-[10px] sm:text-xs uppercase tracking-widest transition-all duration-300 rounded-lg font-bold z-10 ${
@@ -390,6 +391,7 @@ export default function HomePage() {
                           <button
                             onClick={() => {
                               setStatusFilter('completed');
+                              setDateSort('latest');
                               if (scrollContainerRef.current) scrollContainerRef.current.scrollLeft = 0;
                             }}
                             className={`relative flex-1 md:flex-none px-4 py-2.5 font-display text-[10px] sm:text-xs uppercase tracking-widest transition-all duration-300 rounded-lg font-bold z-10 ${

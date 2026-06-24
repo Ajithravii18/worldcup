@@ -77,7 +77,7 @@ export default function MatchCard({ match, prediction = null, onClick }) {
         whileHover="hover"
         whileTap="tap"
         onClick={() => onClick && onClick(match)}
-        className={`relative flex flex-col cursor-pointer min-h-[140px] rounded-2xl overflow-hidden backdrop-blur-xl ${isPerfect ? 'bg-primary/5 border border-primary/50 shadow-neon-primary' : 'bg-white/5 border border-white/10 hover:border-white/30 hover:bg-white/10 shadow-xl'}`}
+        className={`relative flex flex-col cursor-pointer h-[160px] sm:h-[180px] rounded-2xl overflow-hidden backdrop-blur-xl ${isPerfect ? 'bg-primary/5 border border-primary/50 shadow-neon-primary' : 'bg-white/5 border border-white/10 hover:border-white/30 hover:bg-white/10 shadow-xl'}`}
       >
         {/* Header row */}
         <div className="flex items-center justify-between px-4 pt-3 pb-2 border-b border-white/10 bg-black/20">
@@ -141,7 +141,7 @@ export default function MatchCard({ match, prediction = null, onClick }) {
       whileHover="hover"
       whileTap="tap"
       onClick={() => onClick && onClick(match)}
-      className="relative flex flex-col cursor-pointer min-h-[140px] rounded-2xl overflow-hidden backdrop-blur-xl bg-white/5 border border-white/10 hover:border-primary/50 shadow-xl group"
+      className="relative flex flex-col cursor-pointer h-[160px] sm:h-[180px] rounded-2xl overflow-hidden backdrop-blur-xl bg-white/5 border border-white/10 hover:border-primary/50 shadow-xl group"
       style={{
         opacity: isLocked ? 0.5 : 1,
       }}
