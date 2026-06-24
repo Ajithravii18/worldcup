@@ -146,20 +146,20 @@ export default function ProfileModal({ isOpen, onClose }) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={handleBackdropClick}
-          className="fixed inset-0 z-[100] flex justify-center items-start sm:pt-10 sm:pb-10 overflow-y-auto sm:px-6 bg-black/80 backdrop-blur-md scrollbar-none"
+          className="fixed inset-0 z-[100] flex justify-center items-start sm:pt-10 sm:pb-10 overflow-y-auto sm:px-6 bg-background/90 scrollbar-none"
         >
           <motion.div
             initial={{ scale: 0.95, y: 20, opacity: 0 }}
             animate={{ scale: 1, y: 0, opacity: 1 }}
             exit={{ scale: 0.95, y: 20, opacity: 0 }}
             transition={{ type: "spring", stiffness: 300, damping: 25 }}
-            className="w-full h-full min-h-dvh sm:h-auto sm:min-h-0 max-w-lg sm:rounded-3xl p-4 sm:p-8 pt-8 sm:pt-8 pb-12 sm:pb-8 relative bg-[#0a0f18] sm:bg-black/80 sm:backdrop-blur-2xl shadow-2xl sm:border border-white/20 sm:my-auto"
+            className="w-full h-full min-h-dvh sm:h-auto sm:min-h-0 max-w-lg sm:rounded-3xl p-4 sm:p-8 pt-8 sm:pt-8 pb-12 sm:pb-8 relative bg-surface shadow-2xl sm:border border-surface-variant sm:my-auto"
           >
             <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-80 shadow-neon-primary"></div>
 
             <button
               onClick={handleClose}
-              className="fixed sm:absolute right-6 top-6 w-10 h-10 rounded-full border border-white/10 bg-black/60 sm:bg-white/5 hover:bg-white/20 flex items-center justify-center text-outline-variant hover:text-white transition-colors text-sm font-bold z-50 backdrop-blur-xl shadow-lg"
+              className="fixed sm:absolute right-6 top-6 w-10 h-10 rounded-full border border-outline-variant/20 bg-surface-variant hover:bg-surface-container-highest flex items-center justify-center text-outline-variant hover:text-white transition-colors text-sm font-bold z-50 shadow-lg"
             >
               <span className="material-symbols-outlined text-[20px]">close</span>
             </button>
@@ -192,7 +192,7 @@ export default function ProfileModal({ isOpen, onClose }) {
                   placeholder="Your display name"
                   required
                   maxLength={50}
-                  className="w-full bg-black/50 border border-white/20 text-white rounded-xl px-5 py-4 outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all font-body-md shadow-inner backdrop-blur-sm"
+                  className="w-full bg-surface-variant border border-outline-variant/20 text-white rounded-xl px-5 py-4 outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all font-body-md shadow-inner"
                 />
               </div>
 
@@ -201,7 +201,7 @@ export default function ProfileModal({ isOpen, onClose }) {
                   Select Avatar
                 </label>
                 
-                <div className="grid grid-cols-4 gap-3 max-h-48 overflow-y-auto p-3 scrollbar-none border border-white/10 rounded-xl bg-white/5 shadow-inner backdrop-blur-sm">
+                <div className="grid grid-cols-4 gap-3 max-h-48 overflow-y-auto p-3 scrollbar-none border border-outline-variant/20 rounded-xl bg-surface-variant shadow-inner">
                   {AVATARS.map((av) => {
                     const isSelected = selectedAvatar === av.id;
                     return (
@@ -254,7 +254,7 @@ export default function ProfileModal({ isOpen, onClose }) {
                     exit={{ height: 0, opacity: 0 }}
                     className="overflow-hidden"
                   >
-                    <div className="mt-6 bg-white/5 p-6 rounded-2xl border border-white/10 shadow-inner backdrop-blur-md">
+                    <div className="mt-6 bg-surface-variant p-6 rounded-2xl border border-outline-variant/20 shadow-inner">
                       {pwError && (
                         <div className="mb-4 p-3 rounded-xl font-display font-bold text-[10px] text-error uppercase tracking-widest bg-error/20 border border-error/50 shadow-neon-accent text-center">
                           ⚠️ {pwError}

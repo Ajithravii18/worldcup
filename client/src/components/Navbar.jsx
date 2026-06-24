@@ -33,7 +33,7 @@ export default function Navbar({ view, setView, statusFilter, setStatusFilter, o
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ type: "spring", stiffness: 300, damping: 30 }}
-      className="fixed top-0 w-full z-50 bg-black/50 backdrop-blur-xl border-b border-white/10 shadow-2xl"
+      className="fixed top-0 w-full z-50 bg-surface border-b border-surface-variant shadow-lg"
     >
       <div className="flex items-center justify-between px-4 md:px-8 h-20 w-full max-w-[1600px] mx-auto">
         
@@ -153,7 +153,7 @@ export default function Navbar({ view, setView, statusFilter, setStatusFilter, o
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setMobileMenuOpen(false)}
-              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] md:hidden"
+              className="fixed inset-0 bg-background/90 z-[60] md:hidden"
             />
             <motion.div
               initial={{ x: '100%' }}

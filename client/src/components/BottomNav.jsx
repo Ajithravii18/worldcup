@@ -20,7 +20,7 @@ export default function BottomNav({ view, setView, statusFilter, setStatusFilter
       initial={{ y: 100 }}
       animate={{ y: 0 }}
       transition={{ type: "spring", stiffness: 300, damping: 30 }}
-      className="md:hidden fixed bottom-0 w-full z-50 bg-black/60 backdrop-blur-xl border-t border-white/10 shadow-[0_-10px_40px_rgba(0,0,0,0.5)]"
+      className="md:hidden fixed bottom-0 w-full z-50 bg-surface border-t border-surface-variant shadow-lg"
     >
 
 

@@ -87,15 +87,15 @@ export default function HeroLanding({ predictions = [] }) {
 
           {/* Player Stats Dashboard */}
           <div className="grid grid-cols-3 gap-3 w-full mt-1">
-            <div className="bg-white/5 border border-white/10 rounded-xl p-3 flex flex-col items-center justify-center backdrop-blur-md shadow-inner hover:bg-white/10 transition-colors">
+            <div className="bg-surface-variant border border-outline-variant/20 rounded-xl p-3 flex flex-col items-center justify-center shadow-inner hover:bg-surface-container-highest transition-colors">
               <span className="font-display text-2xl sm:text-3xl font-black text-primary drop-shadow-md">{totalPoints}</span>
               <span className="text-[9px] sm:text-[10px] font-display uppercase tracking-widest text-outline-variant font-bold mt-1 text-center">Total Pts</span>
             </div>
-            <div className="bg-white/5 border border-white/10 rounded-xl p-3 flex flex-col items-center justify-center backdrop-blur-md shadow-inner hover:bg-white/10 transition-colors">
+            <div className="bg-surface-variant border border-outline-variant/20 rounded-xl p-3 flex flex-col items-center justify-center shadow-inner hover:bg-surface-container-highest transition-colors">
               <span className="font-display text-2xl sm:text-3xl font-black text-white drop-shadow-md">{exactWins}</span>
               <span className="text-[9px] sm:text-[10px] font-display uppercase tracking-widest text-outline-variant font-bold mt-1 text-center">Exact Wins</span>
             </div>
-            <div className="bg-white/5 border border-white/10 rounded-xl p-3 flex flex-col items-center justify-center backdrop-blur-md shadow-inner hover:bg-white/10 transition-colors">
+            <div className="bg-surface-variant border border-outline-variant/20 rounded-xl p-3 flex flex-col items-center justify-center shadow-inner hover:bg-surface-container-highest transition-colors">
               <span className="font-display text-2xl sm:text-3xl font-black text-secondary drop-shadow-md">{matchesPlayed}</span>
               <span className="text-[9px] sm:text-[10px] font-display uppercase tracking-widest text-outline-variant font-bold mt-1 text-center">Played</span>
             </div>
@@ -108,8 +108,8 @@ export default function HeroLanding({ predictions = [] }) {
             whileHover={{ scale: 1.02 }}
             className="w-full max-w-sm bg-gradient-to-b from-primary/20 via-primary/5 to-transparent p-[1px] rounded-2xl shadow-[0_0_30px_rgba(0,255,135,0.15)] group"
           >
-            <div className="bg-[#0A0A0A]/80 backdrop-blur-xl rounded-2xl p-4 sm:p-5 flex flex-col items-center justify-center border border-white/5 h-full">
-               <div className="flex items-center gap-2 mb-2 sm:mb-3 bg-white/5 px-3 py-1.5 rounded-full border border-white/10">
+            <div className="bg-surface rounded-2xl p-4 sm:p-5 flex flex-col items-center justify-center border border-surface-variant h-full">
+               <div className="flex items-center gap-2 mb-2 sm:mb-3 bg-surface-variant px-3 py-1.5 rounded-full border border-outline-variant/20">
                  <Icon name="radar" className="text-primary text-sm" />
                  <h3 className="text-white font-display uppercase tracking-widest font-black text-[10px]">Prediction Accuracy</h3>
                </div>
@@ -130,7 +130,7 @@ export default function HeroLanding({ predictions = [] }) {
         </div>
 
         {/* Right Side: FIFA 2026 Info Card & Live Indicator */}
-        <div className="flex flex-row md:flex-row items-center gap-4 sm:gap-6 bg-white/5 border border-white/10 rounded-2xl p-4 sm:p-5 backdrop-blur-xl w-full lg:w-[35%] justify-between lg:justify-end shrink-0 shadow-inner">
+        <div className="flex flex-row md:flex-row items-center gap-4 sm:gap-6 bg-surface-variant border border-outline-variant/20 rounded-2xl p-4 sm:p-5 w-full lg:w-[35%] justify-between lg:justify-end shrink-0 shadow-inner">
           <div className="flex items-center gap-3">
             <motion.img 
               whileHover={{ scale: 1.1, rotate: 360 }}

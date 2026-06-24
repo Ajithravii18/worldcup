@@ -195,18 +195,18 @@ export default function MatchDetailModal({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={handleBackdropClick}
-          className="fixed inset-0 z-[100] flex items-center justify-center sm:p-6 bg-black/60 backdrop-blur-md"
+          className="fixed inset-0 z-[100] flex items-center justify-center sm:p-6 bg-background/90"
         >
           <motion.div
             initial={{ scale: 0.95, y: 20, opacity: 0 }}
             animate={{ scale: 1, y: 0, opacity: 1 }}
             exit={{ scale: 0.95, y: 20, opacity: 0 }}
             transition={{ type: "spring", stiffness: 300, damping: 25 }}
-            className="w-full h-full sm:h-auto max-w-xl sm:max-h-[90vh] overflow-y-auto scrollbar-none sm:rounded-3xl p-4 sm:p-6 pt-8 sm:pt-6 pb-12 sm:pb-6 relative bg-[#0a0f18] sm:bg-black/80 sm:backdrop-blur-2xl shadow-2xl sm:border border-white/20"
+            className="w-full h-full sm:h-auto max-w-xl sm:max-h-[90vh] overflow-y-auto scrollbar-none sm:rounded-3xl p-4 sm:p-6 pt-8 sm:pt-6 pb-12 sm:pb-6 relative bg-surface shadow-2xl sm:border border-surface-variant"
           >
             <button
               onClick={handleClose}
-              className="fixed sm:absolute right-5 top-5 w-10 h-10 rounded-full border border-white/10 bg-black/60 sm:bg-white/5 hover:bg-white/20 flex items-center justify-center text-outline-variant hover:text-white transition-colors text-sm font-bold z-50 backdrop-blur-xl shadow-lg"
+              className="fixed sm:absolute right-5 top-5 w-10 h-10 rounded-full border border-outline-variant/20 bg-surface-variant hover:bg-surface-container-highest flex items-center justify-center text-outline-variant hover:text-white transition-colors text-sm font-bold z-50 shadow-lg"
             >
               <span className="material-symbols-outlined text-[20px]">close</span>
             </button>
@@ -219,7 +219,7 @@ export default function MatchDetailModal({
             </div>
 
             {/* ===== COMPLETED MATCH ===== */}
-            {match.status === 'completed' && (
+            {hasMatchEnded && (
               <div className="px-2 pb-4">
                 <div className="flex items-center justify-center gap-4 sm:gap-6 py-4">
                   <div className="flex-1 text-center flex flex-col items-center">
@@ -288,7 +288,7 @@ export default function MatchDetailModal({
             )}
 
             {/* ===== NOT COMPLETED MATCH ===== */}
-            {match.status !== 'completed' && (
+            {!hasMatchEnded && (
               <div className="px-2 pb-4">
                 {/* If open and predicting */}
                 {isOpen && !prediction ? (
@@ -300,7 +300,7 @@ export default function MatchDetailModal({
                       </span>
                     </div>
 
-                    <div className="flex items-start justify-between gap-4 py-6 bg-white/5 rounded-3xl border border-white/10 mb-8 shadow-inner relative overflow-hidden px-6 backdrop-blur-md">
+                    <div className="flex items-start justify-between gap-4 py-6 bg-surface-variant rounded-3xl border border-outline-variant/20 mb-8 shadow-inner relative overflow-hidden px-6">
                       <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-80 shadow-neon-primary"></div>
                       
                       <GoalSelector
@@ -356,7 +356,7 @@ export default function MatchDetailModal({
                   // Global Mode / Viewing others
                   <>
                     {prediction && (
-                      <div className="mb-8 bg-primary/10 border border-primary/30 rounded-2xl p-6 flex flex-col justify-center items-center shadow-inner relative overflow-hidden backdrop-blur-md">
+                      <div className="mb-8 bg-primary/10 border border-primary/30 rounded-2xl p-6 flex flex-col justify-center items-center shadow-inner relative overflow-hidden">
                         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/10 to-transparent opacity-80 animate-pulse-fast"></div>
                         <span className="font-display text-[10px] font-black text-primary uppercase tracking-[0.2em] mb-4 flex items-center gap-2 drop-shadow-md">
                           <span className="material-symbols-outlined text-[16px]">lock</span> LOCKED IN PREDICTION
@@ -423,7 +423,7 @@ export default function MatchDetailModal({
                         </div>
                       </div>
                     ) : (
-                      <div className="text-center text-outline-variant text-[10px] sm:text-xs py-10 uppercase tracking-[0.2em] font-display font-bold bg-white/5 border border-dashed border-white/20 rounded-2xl mt-6 backdrop-blur-md">
+                      <div className="text-center text-outline-variant text-[10px] sm:text-xs py-10 uppercase tracking-[0.2em] font-display font-bold bg-surface-variant border border-dashed border-outline-variant/20 rounded-2xl mt-6">
                         NO PREDICTIONS YET. BE THE FIRST.
                       </div>
                     )}
@@ -452,16 +452,18 @@ export default function MatchDetailModal({
                             <div className="font-display text-sm sm:text-base text-white font-black tracking-widest uppercase w-full line-clamp-2">{match.awayTeam}</div>
                           </div>
                         </div>
-                        <div className="flex items-center justify-center gap-2 px-6 py-5 rounded-2xl text-[10px] sm:text-xs text-outline-variant font-display font-bold uppercase tracking-[0.2em] bg-white/5 border border-white/10 text-center mb-4 shadow-inner backdrop-blur-md">
+                        {hasStarted && (
+                        <div className="flex items-center justify-center gap-2 px-6 py-5 rounded-2xl text-[10px] sm:text-xs text-outline-variant font-display font-bold uppercase tracking-[0.2em] bg-surface-variant border border-outline-variant/20 text-center mb-4 shadow-inner">
                           PREDICTIONS OPEN {timeUntilWindow()} BEFORE KICKOFF
                         </div>
+                        )}
                       </>
                     )}
 
                     {isOpen && prediction && (
                       <>
                         <div className="py-2 flex items-center justify-center mb-6">
-                          <span className="font-display text-[10px] sm:text-xs text-primary uppercase tracking-[0.2em] bg-primary/20 border border-primary/50 px-5 py-2.5 rounded shadow-neon-primary font-black backdrop-blur-md">
+                          <span className="font-display text-[10px] sm:text-xs text-primary uppercase tracking-[0.2em] bg-primary/20 border border-primary/50 px-5 py-2.5 rounded shadow-neon-primary font-black">
                             PREDICTION LOCKED IN
                           </span>
                         </div>
@@ -469,7 +471,7 @@ export default function MatchDetailModal({
                           <div className="flex-1 text-center">
                             <div className="font-display text-lg text-white font-black uppercase tracking-widest">{match.homeTeam}</div>
                           </div>
-                          <div className="px-8 py-5 bg-black/60 border border-white/20 rounded-2xl shadow-inner text-center min-w-[140px] backdrop-blur-md">
+                          <div className="px-8 py-5 bg-surface border border-outline-variant/20 rounded-2xl shadow-inner text-center min-w-[140px]">
                             <div className="font-display text-6xl tracking-widest text-primary font-black drop-shadow-[0_0_15px_rgba(0,255,135,0.6)]">
                               {prediction.homeGoals} - {prediction.awayGoals}
                             </div>
@@ -504,7 +506,7 @@ export default function MatchDetailModal({
                     {isLocked && (
                       <>
                         <div className="py-2 flex items-center justify-center mb-6">
-                          <span className="font-display text-[10px] sm:text-xs text-error uppercase tracking-[0.2em] bg-error/20 px-5 py-2.5 rounded border border-error/50 font-black shadow-inner backdrop-blur-md">
+                          <span className="font-display text-[10px] sm:text-xs text-error uppercase tracking-[0.2em] bg-error/20 px-5 py-2.5 rounded border border-error/50 font-black shadow-inner">
                             MATCH STARTED — LOCKED
                           </span>
                         </div>
@@ -517,8 +519,8 @@ export default function MatchDetailModal({
                           </div>
                           
                           {match.status === 'live' ? (
-                            <div className="px-4 text-center flex-shrink-0 flex flex-col items-center">
-                              <div className="font-display tracking-widest text-5xl text-primary px-6 py-4 rounded-2xl border border-primary/50 bg-primary/10 flex items-center gap-4 font-black shadow-neon-primary drop-shadow-[0_0_15px_rgba(0,255,135,0.6)] backdrop-blur-md">
+                            <div className="w-full flex justify-center mb-3">
+                              <div className="font-display tracking-widest text-5xl text-primary px-6 py-4 rounded-2xl border border-primary/50 bg-primary/10 flex items-center gap-4 font-black shadow-neon-primary drop-shadow-[0_0_15px_rgba(0,255,135,0.6)]">
                                 <span className="w-3 h-3 rounded-full bg-primary animate-pulse shadow-[0_0_8px_#00ff87]"></span>
                                 <span>{match.homeScore ?? 0} - {match.awayScore ?? 0}</span>
                               </div>
@@ -540,8 +542,8 @@ export default function MatchDetailModal({
                           </div>
                         </div>
 
-                        {user?.role === 'admin' && match.status === 'live' && (
-                          <div className="mt-8 border-t border-white/10 pt-6 text-center bg-white/5 p-6 rounded-2xl backdrop-blur-md">
+                        {user?.role === 'admin' && !hasMatchEnded && (
+                          <div className="mt-8 border-t border-surface-variant pt-6 text-center bg-surface-variant p-6 rounded-2xl">
                             <span className="font-display text-[10px] sm:text-xs text-error uppercase tracking-[0.2em] font-black block mb-6 drop-shadow-[0_0_5px_rgba(255,61,0,0.8)]">
                               Simulate Live Events (Admin)
                             </span>
@@ -595,11 +597,11 @@ export default function MatchDetailModal({
                         )}
 
                         {prediction ? (
-                          <div className="text-center font-display text-sm sm:text-base text-outline-variant py-6 rounded-2xl mt-6 bg-white/5 border border-white/10 uppercase tracking-[0.2em] shadow-inner backdrop-blur-md font-bold">
+                          <div className="text-center font-display text-sm sm:text-base text-outline-variant py-6 rounded-2xl mt-6 bg-surface-variant border border-outline-variant/20 uppercase tracking-[0.2em] shadow-inner font-bold">
                             YOUR SCORE: <span className="text-primary font-black ml-3 text-2xl drop-shadow-[0_0_10px_rgba(0,255,135,0.6)]">{prediction.homeGoals} - {prediction.awayGoals}</span>
                           </div>
                         ) : (
-                          <div className="text-center text-[10px] sm:text-xs text-outline-variant font-display py-8 rounded-2xl mt-6 bg-white/5 border border-dashed border-white/20 uppercase tracking-[0.2em] font-bold backdrop-blur-md">
+                          <div className="text-center text-[10px] sm:text-xs text-outline-variant font-display py-8 rounded-2xl mt-6 bg-surface-variant border border-dashed border-outline-variant/20 uppercase tracking-[0.2em] font-bold">
                             MISSED THIS MATCH
                           </div>
                         )}

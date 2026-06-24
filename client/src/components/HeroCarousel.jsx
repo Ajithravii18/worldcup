@@ -53,7 +53,7 @@ export default function HeroCarousel({ matches, globalPredictions, currentTime, 
       {/* Ambient background glow for Pro Max feel */}
       <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-transparent to-secondary/20 rounded-[3rem] blur-3xl opacity-0 group-hover:opacity-40 transition-opacity duration-700 pointer-events-none" />
 
-      <div className="relative rounded-[2.5rem] bg-[#0A0A0A]/40 backdrop-blur-3xl border border-white/10 shadow-2xl overflow-hidden p-1 md:p-2">
+      <div className="relative rounded-[2.5rem] bg-surface border border-surface-variant shadow-2xl overflow-hidden p-1 md:p-2">
         <div 
           ref={scrollRef}
           onScroll={handleScroll}
@@ -76,7 +76,7 @@ export default function HeroCarousel({ matches, globalPredictions, currentTime, 
         <div className="absolute inset-y-0 left-2 md:left-4 flex items-center opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none z-20">
           <button 
             onClick={() => scrollToIndex(activeIndex === 0 ? 1 : 0)}
-            className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-black/60 backdrop-blur-xl border border-white/20 flex items-center justify-center text-white hover:bg-white/20 hover:scale-110 transition-all duration-300 pointer-events-auto shadow-[0_0_30px_rgba(0,0,0,0.8)]"
+            className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-surface-variant border border-outline-variant/20 flex items-center justify-center text-white hover:bg-surface-container-highest hover:scale-110 transition-all duration-300 pointer-events-auto shadow-[0_0_30px_rgba(0,0,0,0.8)]"
             aria-label="Previous Slide"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 md:h-6 md:w-6 ml-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -87,7 +87,7 @@ export default function HeroCarousel({ matches, globalPredictions, currentTime, 
         <div className="absolute inset-y-0 right-2 md:right-4 flex items-center opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none z-20">
           <button 
             onClick={() => scrollToIndex(activeIndex === 0 ? 1 : 0)}
-            className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-black/60 backdrop-blur-xl border border-white/20 flex items-center justify-center text-white hover:bg-white/20 hover:scale-110 transition-all duration-300 pointer-events-auto shadow-[0_0_30px_rgba(0,0,0,0.8)]"
+            className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-surface-variant border border-outline-variant/20 flex items-center justify-center text-white hover:bg-surface-container-highest hover:scale-110 transition-all duration-300 pointer-events-auto shadow-[0_0_30px_rgba(0,0,0,0.8)]"
             aria-label="Next Slide"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 md:h-6 md:w-6 mr-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>

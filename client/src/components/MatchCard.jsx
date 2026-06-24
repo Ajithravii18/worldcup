@@ -76,11 +76,11 @@ export default function MatchCard({ match, prediction = null, onClick }) {
         variants={cardVariants}
         whileHover="hover"
         whileTap="tap"
-        onClick={() => onClick && onClick(match)}
-        className={`relative flex flex-col cursor-pointer h-[160px] sm:h-[180px] rounded-2xl overflow-hidden backdrop-blur-xl ${isPerfect ? 'bg-primary/5 border border-primary/50 shadow-neon-primary' : 'bg-white/5 border border-white/10 hover:border-white/30 hover:bg-white/10 shadow-xl'}`}
+        onClick={() => onClick(match._id)}
+        className={`relative flex flex-col cursor-pointer h-[160px] sm:h-[180px] rounded-2xl overflow-hidden ${isPerfect ? 'bg-primary/5 border border-primary/50 shadow-neon-primary' : 'bg-surface border border-surface-variant hover:border-outline-variant/30 hover:bg-surface-container-highest shadow-xl'}`}
       >
         {/* Header row */}
-        <div className="flex items-center justify-between px-4 pt-3 pb-2 border-b border-white/10 bg-black/20">
+        <div className="flex items-center justify-between px-4 pt-3 pb-2 border-b border-surface-variant bg-surface-container">
           <span className="font-display text-[10px] uppercase tracking-widest text-outline-variant font-bold">
             {formattedTime}
           </span>
@@ -88,29 +88,29 @@ export default function MatchCard({ match, prediction = null, onClick }) {
         </div>
 
         {/* Teams + Score */}
-        <div className="flex items-center justify-between gap-1 px-3 py-4 flex-1 relative z-10">
+        <div className="flex items-center justify-between gap-1 px-3 py-4 flex-1">
           <div className={`flex-1 flex flex-col items-center gap-2 ${!homeWin && !draw ? 'opacity-40 grayscale' : ''}`}>
             {isTBD(match.homeTeam)
-              ? <span className="text-xl opacity-30 text-white font-display font-black">?</span>
-              : <div className="w-10 h-7 sm:w-12 sm:h-8 bg-black rounded shadow-md overflow-hidden border border-white/20 -skew-x-6"><TeamFlag teamName={match.homeTeam} fallbackEmoji={match.homeFlag} className="w-full h-full object-cover skew-x-6" /></div>
+              ? <span className="text-xl opacity-30 text-on-surface font-display font-black">?</span>
+              : <div className="w-10 h-7 sm:w-12 sm:h-8 bg-black rounded shadow-md overflow-hidden border border-outline-variant/20 -skew-x-6"><TeamFlag teamName={match.homeTeam} fallbackEmoji={match.homeFlag} className="w-full h-full object-cover skew-x-6" /></div>
             }
-            <span className={`font-display text-xs sm:text-sm text-center truncate w-full px-1 uppercase tracking-widest font-black ${homeWin ? 'text-white drop-shadow-md' : 'text-outline-variant'}`}>
+            <span className={`font-display text-xs sm:text-sm text-center truncate w-full px-1 uppercase tracking-widest font-black ${homeWin ? 'text-on-surface' : 'text-outline-variant'}`}>
               {displayTeam(match.homeTeam)}
             </span>
           </div>
 
-          <div className="flex items-center justify-center bg-black/50 rounded-xl border border-white/10 px-3 py-2 shrink-0 shadow-inner backdrop-blur-md min-w-[70px]">
-            <span className={`font-display text-2xl sm:text-3xl font-black ${homeWin ? 'text-primary' : draw ? 'text-white' : 'text-outline-variant'}`}>{match.homeScore}</span>
-            <span className="text-white/30 text-sm mx-1.5 font-light">-</span>
-            <span className={`font-display text-2xl sm:text-3xl font-black ${awayWin ? 'text-primary' : draw ? 'text-white' : 'text-outline-variant'}`}>{match.awayScore}</span>
+          <div className="flex items-center justify-center bg-surface-variant rounded-xl border border-outline-variant/20 px-3 py-2 shrink-0 shadow-inner min-w-[70px]">
+            <span className={`font-display text-2xl sm:text-3xl font-black ${homeWin ? 'text-primary' : draw ? 'text-on-surface' : 'text-outline-variant'}`}>{match.homeScore}</span>
+            <span className="text-on-surface/30 text-sm mx-1.5 font-light">-</span>
+            <span className={`font-display text-2xl sm:text-3xl font-black ${awayWin ? 'text-primary' : draw ? 'text-on-surface' : 'text-outline-variant'}`}>{match.awayScore}</span>
           </div>
 
           <div className={`flex-1 flex flex-col items-center gap-2 ${!awayWin && !draw ? 'opacity-40 grayscale' : ''}`}>
             {isTBD(match.awayTeam)
-              ? <span className="text-xl opacity-30 text-white font-display font-black">?</span>
-              : <div className="w-10 h-7 sm:w-12 sm:h-8 bg-black rounded shadow-md overflow-hidden border border-white/20 -skew-x-6"><TeamFlag teamName={match.awayTeam} fallbackEmoji={match.awayFlag} className="w-full h-full object-cover skew-x-6" /></div>
+              ? <span className="text-xl opacity-30 text-on-surface font-display font-black">?</span>
+              : <div className="w-10 h-7 sm:w-12 sm:h-8 bg-black rounded shadow-md overflow-hidden border border-outline-variant/20 -skew-x-6"><TeamFlag teamName={match.awayTeam} fallbackEmoji={match.awayFlag} className="w-full h-full object-cover skew-x-6" /></div>
             }
-            <span className={`font-display text-xs sm:text-sm text-center truncate w-full px-1 uppercase tracking-widest font-black ${awayWin ? 'text-white drop-shadow-md' : 'text-outline-variant'}`}>
+            <span className={`font-display text-xs sm:text-sm text-center truncate w-full px-1 uppercase tracking-widest font-black ${awayWin ? 'text-on-surface' : 'text-outline-variant'}`}>
               {displayTeam(match.awayTeam)}
             </span>
           </div>
@@ -118,14 +118,14 @@ export default function MatchCard({ match, prediction = null, onClick }) {
 
         {/* Prediction row */}
         {prediction && (
-          <div className={`px-3 py-2.5 text-center border-t border-white/10 ${isPerfect ? 'bg-primary/20 backdrop-blur-md' : 'bg-black/30'}`}>
+          <div className={`px-3 py-2.5 text-center border-t border-surface-variant ${isPerfect ? 'bg-primary/20' : 'bg-surface-variant'}`}>
             {isPerfect ? (
-              <span className="font-display text-[10px] sm:text-xs font-black uppercase tracking-[0.2em] text-primary flex items-center justify-center gap-1.5 drop-shadow-[0_0_8px_rgba(0,255,135,0.8)]">
+              <span className="font-display text-[10px] sm:text-xs font-black uppercase tracking-[0.2em] text-primary flex items-center justify-center gap-1.5">
                 <span className="material-symbols-outlined text-[14px]">stars</span> Perfect Prediction
               </span>
             ) : (
               <span className="font-display text-[10px] sm:text-xs font-bold uppercase tracking-widest text-outline-variant">
-                Pred: <span className="text-white ml-1 font-black">{prediction.homeGoals} - {prediction.awayGoals}</span>
+                Pred: <span className="text-on-surface ml-1 font-black">{prediction.homeGoals} - {prediction.awayGoals}</span>
               </span>
             )}
           </div>
@@ -140,59 +140,57 @@ export default function MatchCard({ match, prediction = null, onClick }) {
       variants={cardVariants}
       whileHover="hover"
       whileTap="tap"
-      onClick={() => onClick && onClick(match)}
-      className="relative flex flex-col cursor-pointer h-[160px] sm:h-[180px] rounded-2xl overflow-hidden backdrop-blur-xl bg-white/5 border border-white/10 hover:border-primary/50 shadow-xl group"
+      onClick={() => onClick(match._id)}
+      className="relative flex flex-col cursor-pointer h-[160px] sm:h-[180px] rounded-2xl overflow-hidden bg-surface border border-surface-variant hover:border-primary/50 shadow-xl group"
       style={{
         opacity: isLocked ? 0.5 : 1,
       }}
     >
       {/* Active Top Border Glow */}
-      {isOpen && !prediction && <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-transparent via-primary to-transparent opacity-80 shadow-neon-primary" />}
+      {isOpen && !prediction && <div className="absolute top-0 left-0 w-full h-1.5 bg-primary" />}
 
       {/* Header */}
-      <div className="flex items-center justify-between px-4 pt-3 pb-2 border-b border-white/10 bg-black/20">
-        <span className="font-display text-[10px] uppercase tracking-widest text-outline-variant font-bold group-hover:text-white transition-colors">
+      <div className="flex items-center justify-between px-4 pt-3 pb-2 border-b border-surface-variant bg-surface-container">
+        <span className="font-display text-[10px] uppercase tracking-widest text-outline-variant font-bold group-hover:text-on-surface transition-colors">
           {formattedTime}
         </span>
         <StatusBadge />
       </div>
 
       {/* Teams */}
-      <div className="flex flex-col gap-3 px-4 py-4 flex-1 relative z-10">
-        {/* Home */}
+      <div className="flex flex-col gap-3 px-4 py-4 flex-1">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3 overflow-hidden">
             {isTBD(match.homeTeam)
-              ? <span className="text-xl opacity-30 text-white font-display font-black w-10 text-center">?</span>
-              : <div className="w-10 h-7 sm:w-12 sm:h-8 rounded shadow-md overflow-hidden shrink-0 border border-white/20 bg-black -skew-x-6"><TeamFlag teamName={match.homeTeam} fallbackEmoji={match.homeFlag} className="w-full h-full object-cover skew-x-6" /></div>
+              ? <span className="text-xl opacity-30 text-on-surface font-display font-black w-10 text-center">?</span>
+              : <div className="w-10 h-7 sm:w-12 sm:h-8 rounded shadow-md overflow-hidden shrink-0 border border-outline-variant/20 bg-black -skew-x-6"><TeamFlag teamName={match.homeTeam} fallbackEmoji={match.homeFlag} className="w-full h-full object-cover skew-x-6" /></div>
             }
-            <span className={`font-display text-sm sm:text-base uppercase tracking-widest font-black truncate ${isTBD(match.homeTeam) ? 'text-outline-variant opacity-50' : 'text-white'}`}>
+            <span className={`font-display text-sm sm:text-base uppercase tracking-widest font-black truncate ${isTBD(match.homeTeam) ? 'text-outline-variant opacity-50' : 'text-on-surface'}`}>
               {displayTeam(match.homeTeam)}
             </span>
           </div>
           {prediction && (
-            <div className="bg-black/50 border border-white/20 w-8 h-10 sm:w-10 sm:h-12 rounded-xl flex items-center justify-center shrink-0 ml-2 shadow-inner backdrop-blur-md">
-              <span className="font-display text-xl sm:text-2xl font-black text-primary drop-shadow-md">
+            <div className="bg-surface-variant border border-outline-variant/20 w-8 h-10 sm:w-10 sm:h-12 rounded-xl flex items-center justify-center shrink-0 ml-2 shadow-inner">
+              <span className="font-display text-xl sm:text-2xl font-black text-primary">
                 {prediction.homeGoals}
               </span>
             </div>
           )}
         </div>
 
-        {/* Away */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3 overflow-hidden">
             {isTBD(match.awayTeam)
-              ? <span className="text-xl opacity-30 text-white font-display font-black w-10 text-center">?</span>
-              : <div className="w-10 h-7 sm:w-12 sm:h-8 rounded shadow-md overflow-hidden shrink-0 border border-white/20 bg-black -skew-x-6"><TeamFlag teamName={match.awayTeam} fallbackEmoji={match.awayFlag} className="w-full h-full object-cover skew-x-6" /></div>
+              ? <span className="text-xl opacity-30 text-on-surface font-display font-black w-10 text-center">?</span>
+              : <div className="w-10 h-7 sm:w-12 sm:h-8 rounded shadow-md overflow-hidden shrink-0 border border-outline-variant/20 bg-black -skew-x-6"><TeamFlag teamName={match.awayTeam} fallbackEmoji={match.awayFlag} className="w-full h-full object-cover skew-x-6" /></div>
             }
-            <span className={`font-display text-sm sm:text-base uppercase tracking-widest font-black truncate ${isTBD(match.awayTeam) ? 'text-outline-variant opacity-50' : 'text-white'}`}>
+            <span className={`font-display text-sm sm:text-base uppercase tracking-widest font-black truncate ${isTBD(match.awayTeam) ? 'text-outline-variant opacity-50' : 'text-on-surface'}`}>
               {displayTeam(match.awayTeam)}
             </span>
           </div>
           {prediction && (
-            <div className="bg-black/50 border border-white/20 w-8 h-10 sm:w-10 sm:h-12 rounded-xl flex items-center justify-center shrink-0 ml-2 shadow-inner backdrop-blur-md">
-              <span className="font-display text-xl sm:text-2xl font-black text-primary drop-shadow-md">
+            <div className="bg-surface-variant border border-outline-variant/20 w-8 h-10 sm:w-10 sm:h-12 rounded-xl flex items-center justify-center shrink-0 ml-2 shadow-inner">
+              <span className="font-display text-xl sm:text-2xl font-black text-primary">
                 {prediction.awayGoals}
               </span>
             </div>
@@ -202,8 +200,8 @@ export default function MatchCard({ match, prediction = null, onClick }) {
 
       {/* Predicted footer */}
       {prediction && (
-        <div className="px-3 py-2.5 text-center bg-primary/10 border-t border-primary/20 backdrop-blur-md">
-          <span className="font-display text-[10px] sm:text-xs font-black uppercase tracking-[0.2em] text-primary flex items-center justify-center gap-1.5 shadow-neon-primary drop-shadow-[0_0_8px_rgba(0,255,135,0.8)]">
+        <div className="px-3 py-2.5 text-center bg-primary/10 border-t border-primary/20">
+          <span className="text-[10px] sm:text-xs font-display font-black tracking-widest uppercase text-primary flex items-center justify-center gap-1.5">
             <span className="material-symbols-outlined text-[14px]">check_circle</span> Locked In
           </span>
         </div>

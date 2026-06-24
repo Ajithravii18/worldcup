@@ -95,8 +95,8 @@ export default function WinnerBanner({ matches, predictions = [], currentTime = 
     <motion.div
       whileHover={{ scale: 1.01, y: -5 }}
       whileTap={{ scale: 0.99 }}
-      onClick={() => onClick && onClick(matchToDisplay)}
-      className="relative w-full h-full overflow-hidden rounded-[2rem] cursor-pointer bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.5)] group"
+      onClick={onClick}
+      className="relative w-full h-full overflow-hidden rounded-[2rem] cursor-pointer bg-surface border border-surface-variant shadow-lg group"
     >
       {/* Decorative Background */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
@@ -107,9 +107,9 @@ export default function WinnerBanner({ matches, predictions = [], currentTime = 
       <div className="relative z-10 p-4 sm:p-6">
         
         {/* Header - Stadium and Group */}
-        <div className="flex flex-col items-center justify-center mb-4">
-          <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-md">
-            <span className="w-2 h-2 rounded-full bg-primary animate-pulse shadow-neon-primary" />
+        <div className="absolute top-4 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center">
+          <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-surface border border-surface-variant">
+            <Icon name="military_tech" className="text-tertiary text-sm sm:text-base animate-pulse-fast drop-shadow-md" data-weight="fill" />
             <span className="font-display tracking-widest text-xs text-white font-black uppercase">
               {matchToDisplay.stadium || 'PINETA STADIUM'}
             </span>
@@ -120,16 +120,16 @@ export default function WinnerBanner({ matches, predictions = [], currentTime = 
         </div>
 
         {/* Score display */}
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between mt-12">
           
           {/* Home team */}
           <div className="flex-1 flex flex-col items-center gap-2 sm:gap-4 z-10">
-            <div className="w-14 h-14 sm:w-16 sm:h-16 bg-white/5 rounded-2xl p-2 flex items-center justify-center shadow-lg border border-white/20 backdrop-blur-md -skew-x-6 group-hover:-skew-x-12 transition-transform duration-500">
+            <div className="w-14 h-14 sm:w-16 sm:h-16 bg-surface-variant rounded-2xl p-2 flex items-center justify-center border border-surface-variant -skew-x-6 group-hover:-skew-x-12 transition-transform duration-500">
               <div className="skew-x-6 group-hover:skew-x-12 w-full h-full rounded-xl overflow-hidden transition-transform duration-500">
                 <TeamFlag teamName={matchToDisplay.homeTeam} fallbackEmoji={matchToDisplay.homeFlag} className="w-full h-full object-cover" />
               </div>
             </div>
-            <div className="font-display text-lg sm:text-2xl text-white tracking-widest font-black uppercase text-center mt-2 drop-shadow-lg">
+            <div className="font-display text-lg sm:text-2xl text-white tracking-widest font-black uppercase text-center mt-2">
               {matchToDisplay.homeTeam}
             </div>
             <span className="text-[10px] font-display text-outline-variant tracking-[0.2em] uppercase font-bold">Home</span>
@@ -137,24 +137,24 @@ export default function WinnerBanner({ matches, predictions = [], currentTime = 
 
           {/* Score */}
           <div className="flex flex-col items-center justify-center mx-2 sm:mx-6 z-10 shrink-0">
-            <div className="flex items-center justify-center gap-4 sm:gap-6 font-display text-5xl sm:text-6xl font-black text-white drop-shadow-[0_0_20px_rgba(0,255,135,0.3)]">
+            <div className="flex items-center justify-center gap-4 sm:gap-6 font-display text-5xl sm:text-6xl font-black text-white">
               <span>{matchToDisplay.homeScore ?? 0}</span>
               <span className="text-white/20 text-4xl sm:text-5xl font-light">-</span>
               <span>{matchToDisplay.awayScore ?? 0}</span>
             </div>
-            <div className={`mt-6 text-xs sm:text-sm font-display font-black tracking-widest uppercase px-6 py-2 rounded-xl shadow-inner border border-white/10 ${isLive ? 'bg-primary/20 text-primary border-primary/30 shadow-neon-primary' : 'bg-white/10 text-white backdrop-blur-md'}`}>
+            <div className={`mt-6 text-xs sm:text-sm font-display font-black tracking-widest uppercase px-6 py-2 rounded-xl shadow-inner border border-surface-variant ${isLive ? 'bg-primary/20 text-primary border-primary/30' : 'bg-surface-variant text-white'}`}>
                {isLive ? displayTime : (isDraw ? 'DRAW' : 'FULL TIME')}
             </div>
           </div>
 
           {/* Away team */}
           <div className="flex-1 flex flex-col items-center gap-2 sm:gap-4 z-10">
-            <div className="w-14 h-14 sm:w-16 sm:h-16 bg-white/5 rounded-2xl p-2 flex items-center justify-center shadow-lg border border-white/20 backdrop-blur-md -skew-x-6 group-hover:-skew-x-12 transition-transform duration-500">
+            <div className="w-14 h-14 sm:w-16 sm:h-16 bg-surface-variant rounded-2xl p-2 flex items-center justify-center border border-surface-variant -skew-x-6 group-hover:-skew-x-12 transition-transform duration-500">
               <div className="skew-x-6 group-hover:skew-x-12 w-full h-full rounded-xl overflow-hidden transition-transform duration-500">
                 <TeamFlag teamName={matchToDisplay.awayTeam} fallbackEmoji={matchToDisplay.awayFlag} className="w-full h-full object-cover" />
               </div>
             </div>
-            <div className="font-display text-lg sm:text-2xl text-white tracking-widest font-black uppercase text-center mt-2 drop-shadow-lg">
+            <div className="font-display text-lg sm:text-2xl text-white tracking-widest font-black uppercase text-center mt-2">
               {matchToDisplay.awayTeam}
             </div>
             <span className="text-[10px] font-display text-outline-variant tracking-[0.2em] uppercase font-bold">Away</span>
@@ -163,13 +163,13 @@ export default function WinnerBanner({ matches, predictions = [], currentTime = 
 
         {/* Goal Scorers */}
         {(homeScorers.length > 0 || awayScorers.length > 0) && (
-          <div className="flex justify-between items-start mt-4 px-2 sm:px-6 relative z-10 border-t border-white/10 pt-4">
+          <div className="flex justify-between items-start mt-4 px-2 sm:px-6 relative z-10 border-t border-surface-variant pt-4">
             <div className="flex-1 flex flex-col gap-2 text-white text-xs sm:text-sm font-bold font-display">
               {homeScorers.map(s => (
                 <div key={s.player} className="flex items-center gap-3">
                   <Icon name="sports_soccer" className="text-[12px] text-primary" />
                   <span className="truncate max-w-[100px] sm:max-w-[160px] uppercase tracking-wider">{s.player}</span>
-                  <span className="text-primary tracking-widest text-[10px] sm:text-xs bg-primary/10 px-2 py-0.5 rounded">{s.times.join(', ')}</span>
+                  <span className="text-primary tracking-widest text-[10px] sm:text-xs bg-surface-variant px-2 py-0.5 rounded">{s.times.join(', ')}</span>
                 </div>
               ))}
             </div>
@@ -179,7 +179,7 @@ export default function WinnerBanner({ matches, predictions = [], currentTime = 
             <div className="flex-1 flex flex-col gap-2 text-white text-xs sm:text-sm font-bold font-display items-end text-right">
               {awayScorers.map(s => (
                 <div key={s.player} className="flex items-center gap-3 justify-end">
-                  <span className="text-primary tracking-widest text-[10px] sm:text-xs bg-primary/10 px-2 py-0.5 rounded">{s.times.join(', ')}</span>
+                  <span className="text-primary tracking-widest text-[10px] sm:text-xs bg-surface-variant px-2 py-0.5 rounded">{s.times.join(', ')}</span>
                   <span className="truncate max-w-[100px] sm:max-w-[160px] uppercase tracking-wider">{s.player}</span>
                   <Icon name="sports_soccer" className="text-[12px] text-primary" />
                 </div>
@@ -191,7 +191,7 @@ export default function WinnerBanner({ matches, predictions = [], currentTime = 
         {/* Completed Match Extras */}
         {!isLive && (
           <div className="mt-4 flex flex-col items-center">
-            <div className="w-full pt-4 border-t border-white/10 text-center text-xs">
+            <div className="w-full pt-4 border-t border-surface-variant text-center text-xs">
               <span className="text-outline-variant font-display uppercase tracking-[0.4em] block mb-4 text-[10px] sm:text-xs font-black">
                 CORRECT SCORE PREDICTIONS
               </span>
@@ -200,16 +200,16 @@ export default function WinnerBanner({ matches, predictions = [], currentTime = 
                   {correctPredictions.map((pred) => (
                     <div
                       key={pred._id}
-                      className="flex items-center gap-3 bg-white/5 rounded-xl px-4 py-2 text-white font-bold uppercase tracking-widest shadow-inner border border-white/10 backdrop-blur-md hover:bg-white/10 transition-colors"
+                      className="flex items-center gap-3 bg-surface-variant rounded-xl px-4 py-2 text-white font-bold uppercase tracking-widest border border-outline-variant/20"
                     >
                       <span className="text-primary text-[10px] font-black"><Icon name="military_tech" /></span>
-                      <span className="text-white drop-shadow-sm truncate max-w-[120px]">{pred.user?.name || 'Legend'}</span>
+                      <span className="text-white truncate max-w-[120px]">{pred.user?.name || 'Legend'}</span>
                       <span className="text-primary font-display text-sm font-black bg-primary/10 px-2 py-0.5 rounded">({pred.homeGoals}-{pred.awayGoals})</span>
                     </div>
                   ))}
                 </div>
               ) : (
-                <span className="text-outline-variant uppercase tracking-[0.3em] font-display text-[10px] bg-white/5 border border-white/10 rounded-xl px-6 py-3 inline-block shadow-inner mt-2 font-bold backdrop-blur-md">
+                <span className="text-outline-variant uppercase tracking-[0.3em] font-display text-[10px] bg-surface-variant border border-surface-variant rounded-xl px-6 py-3 inline-block shadow-inner mt-2 font-bold">
                   NO ONE PREDICTED THIS SCORE CORRECTLY
                 </span>
               )}

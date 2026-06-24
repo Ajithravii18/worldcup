@@ -283,20 +283,20 @@ export default function HomePage() {
 
         <AnimatePresence>
           {error && (
-            <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="mb-4 p-4 font-display text-sm font-bold uppercase tracking-widest bg-error/20 text-error-container rounded-xl border border-error/50 shadow-lg backdrop-blur-md">
+            <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="mb-4 p-4 font-display text-sm font-bold uppercase tracking-widest text-error-container rounded-xl border border-error/50 shadow-lg bg-surface">
               {error}
             </motion.div>
           )}
 
           {notification && (
             <motion.div initial={{ opacity: 0, y: 50, scale: 0.9 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 50, scale: 0.9 }} className="fixed top-28 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-sm">
-              <div className="relative overflow-hidden p-6 text-center bg-black/60 backdrop-blur-2xl border border-white/20 border-l-4 border-l-primary shadow-2xl rounded-2xl">
+              <div className="relative overflow-hidden p-6 text-center bg-surface border border-surface-variant border-l-4 border-l-primary shadow-2xl rounded-2xl">
                 <button onClick={() => setNotification(null)} className="absolute top-3 right-4 font-bold text-lg text-primary hover:text-white transition-colors">
                   <Icon name="close" />
                 </button>
                 <h3 className="font-display text-2xl font-black uppercase tracking-widest text-primary mb-2 mt-1 drop-shadow-md">SPOT ON!</h3>
                 <p className="font-display text-xs uppercase tracking-widest text-outline-variant mb-4 font-bold">You perfectly predicted:</p>
-                <div className="p-4 bg-white/10 rounded-xl border border-white/20 text-white text-center shadow-inner backdrop-blur-md">
+                <div className="p-4 bg-surface-variant rounded-xl border border-outline-variant/20 text-white text-center shadow-inner">
                   <div className="font-display font-bold text-xl mb-2">{notification.homeTeam} <span className="text-outline-variant mx-1 italic text-base font-body">VS</span> {notification.awayTeam}</div>
                   <div className="text-4xl font-display tracking-widest text-primary font-black drop-shadow-md">{notification.score}</div>
                 </div>
@@ -336,7 +336,7 @@ export default function HomePage() {
             )}
 
             {!isLoading && matches.length === 0 && (
-              <motion.div variants={itemVariants} className="text-center py-20 font-display uppercase tracking-widest text-outline-variant bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl shadow-2xl">
+              <motion.div variants={itemVariants} className="text-center py-20 font-display uppercase tracking-widest text-outline-variant bg-surface border border-surface-variant rounded-3xl shadow-2xl">
                 <div className="text-6xl mb-6 font-display text-white/20 font-black">0</div>
                 <p className="font-display text-3xl font-black tracking-widest mb-3 uppercase text-white">No Matches</p>
                 <p className="font-display text-sm mb-6 font-bold">Run the seed script to add matches.</p>
@@ -348,7 +348,7 @@ export default function HomePage() {
 
             {!isLoading && matches.length > 0 && (
               <motion.div variants={itemVariants} className="flex flex-col">
-                <div className="mb-5 md:mb-8 flex flex-col md:flex-row items-center justify-between gap-3 p-3.5 sm:p-5 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl">
+                <div className="mb-5 md:mb-8 flex flex-col md:flex-row items-center justify-between gap-3 p-3.5 sm:p-5 bg-surface border border-surface-variant rounded-2xl shadow-2xl">
                   <div className="flex items-center gap-2 sm:gap-3 w-full md:w-auto">
                     <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-primary/20 flex items-center justify-center text-primary border border-primary/30">
                       <Icon name="sensors" className="text-[16px] sm:text-[20px]" />
@@ -359,7 +359,7 @@ export default function HomePage() {
                   </div>
 
                   <div className="flex flex-wrap md:flex-nowrap items-center gap-2 w-full md:w-auto">
-                    <div className="flex items-center gap-1 border border-white/10 rounded-xl overflow-hidden bg-black/40 p-1 backdrop-blur-md w-full md:w-auto">
+                    <div className="flex items-center gap-1 border border-outline-variant/20 rounded-xl overflow-hidden bg-surface-variant p-1 w-full md:w-auto">
                       {view === 'my' ? (
                         <>
                           <button
@@ -425,7 +425,7 @@ export default function HomePage() {
                           setTeamFilter(e.target.value);
                           if (scrollContainerRef.current) scrollContainerRef.current.scrollLeft = 0;
                         }}
-                        className="w-full font-display text-[10px] sm:text-xs font-bold uppercase tracking-widest px-3 py-2.5 sm:px-4 sm:py-3.5 outline-none appearance-none cursor-pointer bg-black/40 border border-white/10 text-white rounded-xl transition-colors hover:border-primary focus:border-primary shadow-inner backdrop-blur-md"
+                        className="w-full font-display text-[10px] sm:text-xs font-bold uppercase tracking-widest px-3 py-2.5 sm:px-4 sm:py-3.5 outline-none appearance-none cursor-pointer bg-surface-variant border border-outline-variant/20 text-white rounded-xl transition-colors hover:border-primary focus:border-primary shadow-inner"
                       >
                         <option value="All">All Teams</option>
                         {uniqueTeams.map(t => (
@@ -442,7 +442,7 @@ export default function HomePage() {
                         setDateSort(prev => prev === 'earliest' ? 'latest' : 'earliest');
                         if (scrollContainerRef.current) scrollContainerRef.current.scrollLeft = 0;
                       }}
-                      className="flex-shrink-0 font-display text-[10px] sm:text-xs font-bold uppercase tracking-widest px-4 py-2.5 sm:px-5 sm:py-3.5 flex items-center justify-center gap-1.5 cursor-pointer bg-black/40 border border-white/10 text-white rounded-xl hover:border-primary hover:text-primary shadow-inner backdrop-blur-md transition-colors"
+                      className="flex-shrink-0 font-display text-[10px] sm:text-xs font-bold uppercase tracking-widest px-4 py-2.5 sm:px-5 sm:py-3.5 flex items-center justify-center gap-1.5 cursor-pointer bg-surface-variant border border-outline-variant/20 text-white rounded-xl hover:border-primary hover:text-primary shadow-inner transition-colors"
                     >
                       Date <Icon name={dateSort === 'earliest' ? 'arrow_downward' : 'arrow_upward'} className="text-[16px] sm:text-[18px] text-primary" />
                     </motion.button>
@@ -455,7 +455,7 @@ export default function HomePage() {
                       whileHover={{ scale: 1.1, backgroundColor: "#22c55e", color: "#000" }}
                       whileTap={{ scale: 0.9 }}
                       onClick={scrollLeft}
-                      className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-5 z-20 w-14 h-14 items-center justify-center opacity-0 group-hover:opacity-100 transition-all bg-black/80 border border-white/20 text-primary rounded-full shadow-2xl backdrop-blur-xl"
+                      className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-5 z-20 w-14 h-14 items-center justify-center opacity-0 group-hover:opacity-100 transition-all bg-surface border border-surface-variant text-primary rounded-full shadow-2xl"
                     >
                       <Icon name="chevron_left" className="text-[32px]" />
                     </motion.button>
@@ -481,13 +481,13 @@ export default function HomePage() {
                       whileHover={{ scale: 1.1, backgroundColor: "#22c55e", color: "#000" }}
                       whileTap={{ scale: 0.9 }}
                       onClick={scrollRight}
-                      className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 z-20 w-14 h-14 items-center justify-center opacity-0 group-hover:opacity-100 transition-all bg-black/80 border border-white/20 text-primary rounded-full shadow-2xl backdrop-blur-xl"
+                      className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 z-20 w-14 h-14 items-center justify-center opacity-0 group-hover:opacity-100 transition-all bg-surface border border-surface-variant text-primary rounded-full shadow-2xl"
                     >
                       <Icon name="chevron_right" className="text-[32px]" />
                     </motion.button>
                   </div>
                 ) : (
-                  <motion.div variants={itemVariants} className="text-center py-24 font-display text-sm font-bold uppercase tracking-widest bg-white/5 backdrop-blur-md border border-dashed border-white/20 rounded-2xl text-outline-variant shadow-inner">
+                  <motion.div variants={itemVariants} className="text-center py-24 font-display text-sm font-bold uppercase tracking-widest bg-surface border border-dashed border-surface-variant rounded-2xl text-outline-variant shadow-inner">
                     {view === 'my' ? 'No predictions made yet. Time to enter the arena.' : 'No matches available in this filter.'}
                   </motion.div>
                 )}

@@ -66,7 +66,7 @@ export default function LeaderboardView({ predictions = [] }) {
   return (
     <div className="w-full max-w-5xl mx-auto py-8">
       {/* Header */}
-      <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="mb-8 border-b border-white/10 pb-6 flex flex-col md:flex-row md:justify-between md:items-end gap-6 bg-black/40 p-8 rounded-3xl backdrop-blur-2xl shadow-2xl border-t border-t-white/20">
+      <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="mb-8 border-b border-surface-variant pb-6 flex flex-col md:flex-row md:justify-between md:items-end gap-6 bg-surface p-8 rounded-3xl shadow-2xl border-t border-t-surface-variant">
         <div>
           <div className="flex items-center gap-4 mb-2">
             <span className="material-symbols-outlined text-primary text-[40px] drop-shadow-[0_0_15px_rgba(0,255,135,0.8)]">emoji_events</span>
@@ -74,7 +74,7 @@ export default function LeaderboardView({ predictions = [] }) {
           </div>
           <p className="text-outline-variant text-sm font-body max-w-lg font-bold">The ultimate test of football knowledge. Predict exact scores to maximize your points and climb to the top of the leaderboard.</p>
         </div>
-        <div className="bg-white/5 border border-white/10 px-6 py-4 rounded-2xl flex items-center gap-6 shadow-inner backdrop-blur-md">
+        <div className="bg-surface-variant border border-outline-variant/20 px-6 py-4 rounded-2xl flex items-center gap-6 shadow-inner">
           <div className="text-center">
             <div className="text-3xl font-display font-black text-primary drop-shadow-md">{leaderboard.length}</div>
             <div className="text-[10px] font-display font-bold uppercase tracking-[0.2em] text-outline-variant">Players</div>
@@ -90,8 +90,8 @@ export default function LeaderboardView({ predictions = [] }) {
       {/* List */}
       <motion.div variants={containerVariants} initial="hidden" animate="visible" className="space-y-4 relative z-10">
         {leaderboard.length === 0 ? (
-          <motion.div variants={itemVariants} className="text-center py-20 text-outline-variant text-base bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl uppercase tracking-widest font-display font-bold">
-            No predictions have been made yet.
+          <motion.div variants={itemVariants} className="text-center py-20 text-outline-variant text-base bg-surface border border-surface-variant rounded-3xl uppercase tracking-widest font-display font-bold">
+            No players ranked yet. Be the first to predict!.
           </motion.div>
         ) : (
           leaderboard.map((player, index) => {
@@ -100,24 +100,24 @@ export default function LeaderboardView({ predictions = [] }) {
               : 0;
 
             let rankColor = "text-primary";
-            let rankBorder = "border-white/10";
-            let rankBg = "bg-white/5";
+            let rankBorder = "border-surface-variant";
+            let rankBg = "bg-surface";
             let rankGlow = "";
 
             if (index === 0) {
               rankColor = "text-[#FFD700]"; // Gold
               rankBorder = "border-[#FFD700]/50";
-              rankBg = "bg-gradient-to-r from-[#FFD700]/10 to-transparent";
+              rankBg = "bg-[#FFD700]/5";
               rankGlow = "drop-shadow-[0_0_15px_rgba(255,215,0,0.8)]";
             } else if (index === 1) {
               rankColor = "text-[#C0C0C0]"; // Silver
               rankBorder = "border-[#C0C0C0]/50";
-              rankBg = "bg-gradient-to-r from-[#C0C0C0]/10 to-transparent";
+              rankBg = "bg-[#C0C0C0]/5";
               rankGlow = "drop-shadow-[0_0_10px_rgba(192,192,192,0.5)]";
             } else if (index === 2) {
               rankColor = "text-[#CD7F32]"; // Bronze
               rankBorder = "border-[#CD7F32]/50";
-              rankBg = "bg-gradient-to-r from-[#CD7F32]/10 to-transparent";
+              rankBg = "bg-[#CD7F32]/5";
               rankGlow = "drop-shadow-[0_0_10px_rgba(205,127,50,0.5)]";
             } else {
               rankColor = "text-outline-variant";
@@ -126,7 +126,7 @@ export default function LeaderboardView({ predictions = [] }) {
             const isExpanded = expandedPlayer === player.id;
 
             return (
-              <motion.div variants={itemVariants} key={player.id} className={`overflow-hidden transition-all duration-300 rounded-2xl border backdrop-blur-xl ${rankBorder} ${isExpanded ? 'shadow-[0_0_30px_rgba(0,255,135,0.15)] bg-white/10 scale-[1.01]' : 'bg-black/40 hover:bg-white/10 hover:border-white/30'}`}>
+              <motion.div variants={itemVariants} key={player.id} className={`overflow-hidden transition-all duration-300 rounded-2xl border ${rankBorder} ${isExpanded ? 'shadow-[0_0_30px_rgba(0,255,135,0.15)] bg-surface-variant scale-[1.01]' : 'bg-surface hover:bg-surface-variant hover:border-outline-variant/30'}`}>
                 {/* Row - Always Visible */}
                 <button
                   onClick={() => setExpandedPlayer(isExpanded ? null : player.id)}
@@ -140,7 +140,7 @@ export default function LeaderboardView({ predictions = [] }) {
                       <h2 className="text-xl md:text-2xl font-black text-white truncate font-display tracking-widest uppercase drop-shadow-md">{player.name}</h2>
                       <div className="flex items-center gap-3 mt-2">
                         <span className="text-xs text-outline-variant font-display font-bold uppercase tracking-[0.2em]">{player.totalPlayed} PREDS</span>
-                        <span className="w-1.5 h-1.5 rounded-full bg-white/20"></span>
+                        <span className="w-1.5 h-1.5 rounded-full bg-outline-variant/20"></span>
                         <span className="text-xs text-primary font-display font-bold uppercase tracking-[0.2em]">{accuracy}% ACCURACY</span>
                       </div>
                     </div>
@@ -164,7 +164,7 @@ export default function LeaderboardView({ predictions = [] }) {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      className="border-t border-white/10 bg-black/60 backdrop-blur-md overflow-hidden"
+                      className="border-t border-surface-variant bg-surface-variant overflow-hidden"
                     >
                       <div className="p-6">
                         <h3 className="text-xs font-display font-black text-outline-variant uppercase tracking-[0.2em] mb-5 flex items-center gap-2">

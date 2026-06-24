@@ -44,19 +44,19 @@ export default function GlobalPredictionsModal({ isOpen, onClose, match, predict
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={handleBackdropClick}
-          className="fixed inset-0 z-[100] flex items-center justify-center sm:p-6 bg-black/60 backdrop-blur-md"
+          className="fixed inset-0 z-[100] flex items-center justify-center sm:p-6 bg-background/90"
         >
           <motion.div
             initial={{ scale: 0.95, y: 20, opacity: 0 }}
             animate={{ scale: 1, y: 0, opacity: 1 }}
             exit={{ scale: 0.95, y: 20, opacity: 0 }}
             transition={{ type: "spring", stiffness: 300, damping: 25 }}
-            className="w-full h-full sm:h-auto max-w-xl sm:max-h-[90vh] overflow-y-auto scrollbar-none sm:rounded-3xl p-4 sm:p-6 pt-8 sm:pt-6 pb-12 sm:pb-6 relative bg-[#0a0f18] sm:bg-black/80 sm:backdrop-blur-2xl shadow-2xl sm:border border-white/20"
+            className="w-full h-full sm:h-auto max-w-xl sm:max-h-[90vh] overflow-y-auto scrollbar-none sm:rounded-3xl p-4 sm:p-6 pt-8 sm:pt-6 pb-12 sm:pb-6 relative bg-surface shadow-2xl sm:border border-surface-variant"
           >
 
             <button
               onClick={onClose}
-              className="fixed sm:absolute right-6 top-6 w-10 h-10 rounded-full border border-white/10 bg-black/60 sm:bg-white/5 hover:bg-white/20 flex items-center justify-center text-outline-variant hover:text-white transition-colors text-sm font-bold z-50 backdrop-blur-xl shadow-lg"
+              className="fixed sm:absolute right-6 top-6 w-10 h-10 rounded-full border border-outline-variant/20 bg-surface-variant hover:bg-surface-container-highest flex items-center justify-center text-outline-variant hover:text-white transition-colors text-sm font-bold z-50 shadow-lg"
             >
               <span className="material-symbols-outlined text-[20px]">close</span>
             </button>
@@ -69,7 +69,8 @@ export default function GlobalPredictionsModal({ isOpen, onClose, match, predict
               <div className="text-xs text-outline-variant font-display tracking-widest mt-1 font-bold">{formattedKickoff}</div>
             </div>
 
-            <div className="flex items-center justify-between bg-white/5 border border-white/10 rounded-3xl p-6 mb-8 relative overflow-hidden shadow-inner backdrop-blur-md">
+            <div className="flex items-center justify-between bg-surface-variant border border-outline-variant/20 rounded-3xl p-6 mb-8 relative overflow-hidden shadow-inner">
+              <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-80 shadow-neon-primary"></div>
               <div className="flex-1 text-center flex flex-col items-center">
                 <div className="w-20 h-14 rounded-xl bg-black border border-white/20 flex items-center justify-center overflow-hidden shadow-md mb-3 -skew-x-6">
                   <TeamFlag teamName={match.homeTeam} fallbackEmoji={match.homeFlag} className="w-full h-full object-cover skew-x-6" />

@@ -20,7 +20,7 @@ const itemVariants = {
 
 export default function LandingPage() {
   return (
-    <div className="min-h-dvh flex flex-col items-center justify-center relative overflow-x-hidden px-4 py-12 bg-transparent">
+    <div className="min-h-dvh flex flex-col items-center justify-center relative overflow-x-hidden px-4 py-12 bg-background bg-[radial-gradient(#ffffff22_1px,transparent_1px)] [background-size:24px_24px]">
       {/* Subtle glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] pointer-events-none bg-gradient-to-b from-primary/20 to-transparent blur-3xl" />
 
@@ -28,7 +28,7 @@ export default function LandingPage() {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="relative z-10 max-w-sm md:max-w-4xl w-full flex flex-col items-center text-center md:bg-white/5 md:backdrop-blur-xl md:p-10 md:rounded-[3rem] md:border md:border-white/10 md:shadow-[0_8px_32px_rgba(0,0,0,0.5)]"
+        className="relative z-10 max-w-sm md:max-w-4xl w-full flex flex-col items-center text-center md:bg-surface md:p-10 md:rounded-[3rem] md:border md:border-surface-variant md:shadow-2xl"
       >
         {/* Logo */}
         <motion.div variants={itemVariants} className="mb-6">
@@ -56,7 +56,7 @@ export default function LandingPage() {
         </motion.div>
 
         {/* Badge */}
-        <motion.div variants={itemVariants} className="mb-8 flex items-center gap-4 px-6 py-3 bg-white/10 border border-white/20 rounded-full shadow-2xl backdrop-blur-md">
+        <motion.div variants={itemVariants} className="mb-8 flex items-center gap-4 px-6 py-3 bg-surface-variant border border-outline-variant/20 rounded-full shadow-lg">
           <span className="text-sm md:text-base font-bold text-white tracking-widest uppercase">World Cup 2026</span>
           <span className="text-outline-variant/50">|</span>
           <div className="flex items-center gap-2 ml-1">
@@ -87,7 +87,7 @@ export default function LandingPage() {
             <motion.div
               whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)" }}
               whileTap={{ scale: 0.95 }}
-              className="w-full text-center tracking-[0.15em] font-display font-bold text-xl py-4 bg-transparent border-2 border-white/30 text-white rounded-2xl backdrop-blur-sm"
+              className="w-full text-center tracking-[0.15em] font-display font-bold text-xl py-4 bg-surface border-2 border-surface-variant text-white rounded-2xl"
             >
               Create Account
             </motion.div>
