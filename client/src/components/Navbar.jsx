@@ -1,16 +1,13 @@
-import { useState } from 'react';
 import Icon from './Icon';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import UserAvatar from './UserAvatar';
-import ProfileModal from './ProfileModal';
 import NotificationBell from './NotificationBell';
 import { motion } from 'framer-motion';
 
-export default function Navbar({ view, setView, statusFilter, setStatusFilter }) {
+export default function Navbar({ view, setView, statusFilter, setStatusFilter, onProfileClick }) {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
-  const [profileOpen, setProfileOpen] = useState(false);
 
   const handleLogout = () => {
     logout();
@@ -108,7 +105,7 @@ export default function Navbar({ view, setView, statusFilter, setStatusFilter })
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              onClick={() => setProfileOpen(true)}
+              onClick={onProfileClick}
               className="w-10 h-10 rounded-full overflow-hidden border-2 border-white/20 hover:border-primary transition-colors shadow-lg"
               title="Profile"
             >
@@ -137,8 +134,6 @@ export default function Navbar({ view, setView, statusFilter, setStatusFilter })
           </div>
         )}
       </div>
-
-      <ProfileModal isOpen={profileOpen} onClose={() => setProfileOpen(false)} />
     </motion.header>
   );
 }

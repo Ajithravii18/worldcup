@@ -17,7 +17,7 @@ export default function MatchCard({ match, prediction = null, onClick }) {
     if (/^(TBD|Winner|Runner-up|Loser|#\d+)/i.test(name)) return true;
     if (/^\d/.test(name)) return true;
     if (name.includes('/')) return true;
-    if (/^[A-Z0-9]{1,5}$/.test(name)) return true;
+    if (/^[A-Z0-9]{1,5}$/.test(name) && name !== 'USA') return true;
     return false;
   };
 

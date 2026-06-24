@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar';
 import WinnerBanner from '../components/WinnerBanner';
 import MatchCard from '../components/MatchCard';
 import MatchDetailModal from '../components/MatchDetailModal';
+import ProfileModal from '../components/ProfileModal';
 import Leaderboard from '../components/Leaderboard';
 import HeroLanding from '../components/HeroLanding';
 import BottomNav from '../components/BottomNav';
@@ -30,6 +31,7 @@ export default function HomePage() {
   const [teamFilter, setTeamFilter] = useState('All');
   const [dateSort, setDateSort] = useState('earliest');
   const [selectedMatch, setSelectedMatch] = useState(null);
+  const [profileOpen, setProfileOpen] = useState(false);
   
   const [currentTime, setCurrentTime] = useState(Date.now());
 
@@ -157,7 +159,7 @@ export default function HomePage() {
     if (/^(TBD|Winner|Runner-up|Loser|#\d+)/i.test(name)) return true;
     if (/^\d/.test(name)) return true;
     if (name.includes('/')) return true;
-    if (/^[A-Z0-9]{1,5}$/.test(name)) return true;
+    if (/^[A-Z0-9]{1,5}$/.test(name) && name !== 'USA') return true;
     return false;
   };
 
@@ -258,6 +260,7 @@ export default function HomePage() {
         setView={setView} 
         statusFilter={statusFilter} 
         setStatusFilter={setStatusFilter} 
+        onProfileClick={() => setProfileOpen(true)}
       />
 
       <main className="flex-1 pt-4 pb-12 max-w-[1600px] mx-auto w-full flex flex-col px-4 md:px-8 mt-20 relative z-10">
@@ -326,17 +329,17 @@ export default function HomePage() {
 
             {!isLoading && matches.length > 0 && (
               <motion.div variants={itemVariants} className="flex flex-col">
-                <div className="mb-8 flex flex-col md:flex-row items-center justify-between gap-4 p-5 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl">
-                  <div className="flex items-center gap-3 w-full md:w-auto">
-                    <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center text-primary border border-primary/30">
-                      <Icon name="sensors" className="text-[20px]" />
+                <div className="mb-5 md:mb-8 flex flex-col md:flex-row items-center justify-between gap-3 p-3.5 sm:p-5 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl">
+                  <div className="flex items-center gap-2 sm:gap-3 w-full md:w-auto">
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-primary/20 flex items-center justify-center text-primary border border-primary/30">
+                      <Icon name="sensors" className="text-[16px] sm:text-[20px]" />
                     </div>
-                    <span className="font-display text-sm sm:text-base uppercase tracking-widest text-white font-bold">
+                    <span className="font-display text-xs sm:text-base uppercase tracking-widest text-white font-bold">
                       {view === 'global' ? 'Global Match Feed' : 'Your Predictions'} <span className="text-primary ml-2">({filteredMatches.length})</span>
                     </span>
                   </div>
 
-                  <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
+                  <div className="flex flex-row items-center gap-2 w-full md:w-auto">
                     <div className="hidden md:flex items-center gap-1 border border-white/10 rounded-xl overflow-hidden bg-black/40 p-1 backdrop-blur-md">
                       <button
                         onClick={() => setStatusFilter('upcoming')}
@@ -358,21 +361,21 @@ export default function HomePage() {
                       </button>
                     </div>
 
-                    <div className="relative w-full sm:w-48">
+                    <div className="relative flex-1 sm:w-48">
                       <select
                         value={teamFilter}
                         onChange={(e) => {
                           setTeamFilter(e.target.value);
                           if (scrollContainerRef.current) scrollContainerRef.current.scrollLeft = 0;
                         }}
-                        className="w-full font-display text-xs font-bold uppercase tracking-widest px-4 py-3.5 outline-none appearance-none cursor-pointer bg-black/40 border border-white/10 text-white rounded-xl transition-colors hover:border-primary focus:border-primary shadow-inner backdrop-blur-md"
+                        className="w-full font-display text-[10px] sm:text-xs font-bold uppercase tracking-widest px-3 py-2.5 sm:px-4 sm:py-3.5 outline-none appearance-none cursor-pointer bg-black/40 border border-white/10 text-white rounded-xl transition-colors hover:border-primary focus:border-primary shadow-inner backdrop-blur-md"
                       >
                         <option value="All">All Teams</option>
                         {uniqueTeams.map(t => (
                           <option key={t} value={t}>{t}</option>
                         ))}
                       </select>
-                      <Icon name="expand_more" className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-outline-variant text-[20px]" />
+                      <Icon name="expand_more" className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 pointer-events-none text-outline-variant text-[16px] sm:text-[20px]" />
                     </div>
 
                     <motion.button
@@ -382,9 +385,9 @@ export default function HomePage() {
                         setDateSort(prev => prev === 'earliest' ? 'latest' : 'earliest');
                         if (scrollContainerRef.current) scrollContainerRef.current.scrollLeft = 0;
                       }}
-                      className="w-full sm:w-auto font-display text-xs font-bold uppercase tracking-widest px-5 py-3.5 flex items-center justify-center gap-2 cursor-pointer bg-black/40 border border-white/10 text-white rounded-xl hover:border-primary hover:text-primary shadow-inner backdrop-blur-md transition-colors"
+                      className="flex-shrink-0 font-display text-[10px] sm:text-xs font-bold uppercase tracking-widest px-4 py-2.5 sm:px-5 sm:py-3.5 flex items-center justify-center gap-1.5 cursor-pointer bg-black/40 border border-white/10 text-white rounded-xl hover:border-primary hover:text-primary shadow-inner backdrop-blur-md transition-colors"
                     >
-                      Date <Icon name={dateSort === 'earliest' ? 'arrow_downward' : 'arrow_upward'} className="text-[18px] text-primary" />
+                      Date <Icon name={dateSort === 'earliest' ? 'arrow_downward' : 'arrow_upward'} className="text-[16px] sm:text-[18px] text-primary" />
                     </motion.button>
                   </div>
                 </div>
@@ -437,7 +440,7 @@ export default function HomePage() {
         )}
       </main>
 
-      <Footer />
+      <Footer setView={setView} />
 
       <MatchDetailModal 
         isOpenModal={!!selectedMatch}
@@ -447,6 +450,11 @@ export default function HomePage() {
         onPredicted={handlePredicted}
         globalMode={view === 'global'}
         globalPreds={selectedMatch ? getGlobalPredsForMatch(selectedMatch._id) : []}
+      />
+
+      <ProfileModal 
+        isOpen={profileOpen}
+        onClose={() => setProfileOpen(false)}
       />
 
       <BottomNav 
