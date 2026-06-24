@@ -18,7 +18,7 @@ export default function HeroLanding() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: loaded ? 1 : 0, y: loaded ? 0 : 20 }}
       transition={{ duration: 0.5 }}
-      className="relative w-full h-full rounded-[2rem] overflow-hidden border border-white/10 shadow-[0_12px_40px_rgba(0,0,0,0.6)] bg-gradient-to-br from-white/5 via-black/60 to-primary/5 hover:border-primary/20 transition-colors duration-500 p-6 md:p-8"
+      className="relative w-full h-full rounded-[2rem] overflow-hidden border border-white/10 shadow-[0_12px_40px_rgba(0,0,0,0.6)] bg-gradient-to-br from-white/5 via-black/60 to-primary/5 hover:border-primary/20 transition-colors duration-500 p-4 md:p-6"
     >
       {/* Decorative Neon Glimmers */}
       <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
@@ -39,7 +39,7 @@ export default function HeroLanding() {
               <div className="bg-black/80 p-2.5 rounded-xl backdrop-blur-2xl">
                 <UserAvatar 
                   avatarId={user.avatar} 
-                  className="w-16 h-16 sm:w-20 sm:h-20 text-3xl" 
+                  className="w-12 h-12 sm:w-16 sm:h-16 text-2xl" 
                 />
               </div>
             </motion.div>
@@ -56,7 +56,7 @@ export default function HeroLanding() {
               </span>
             </div>
             
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black font-display text-white tracking-wider uppercase mt-1.5 drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black font-display text-white tracking-wider uppercase mt-1.5 drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">
               Welcome back, <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">{user?.name || 'Player'}</span>!
             </h1>
             

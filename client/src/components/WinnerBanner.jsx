@@ -104,10 +104,10 @@ export default function WinnerBanner({ matches, predictions = [], currentTime = 
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-gradient-to-b from-primary/20 to-transparent blur-3xl group-hover:from-primary/30 transition-colors duration-500" />
       </div>
 
-      <div className="relative z-10 p-6 sm:p-10">
+      <div className="relative z-10 p-4 sm:p-6">
         
         {/* Header - Stadium and Group */}
-        <div className="flex flex-col items-center justify-center mb-8">
+        <div className="flex flex-col items-center justify-center mb-4">
           <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-md">
             <span className="w-2 h-2 rounded-full bg-primary animate-pulse shadow-neon-primary" />
             <span className="font-display tracking-widest text-xs text-white font-black uppercase">
@@ -123,8 +123,8 @@ export default function WinnerBanner({ matches, predictions = [], currentTime = 
         <div className="flex items-center justify-between">
           
           {/* Home team */}
-          <div className="flex-1 flex flex-col items-center gap-4 z-10">
-            <div className="w-20 h-20 sm:w-28 sm:h-28 bg-white/5 rounded-2xl p-2 flex items-center justify-center shadow-lg border border-white/20 backdrop-blur-md -skew-x-6 group-hover:-skew-x-12 transition-transform duration-500">
+          <div className="flex-1 flex flex-col items-center gap-2 sm:gap-4 z-10">
+            <div className="w-14 h-14 sm:w-16 sm:h-16 bg-white/5 rounded-2xl p-2 flex items-center justify-center shadow-lg border border-white/20 backdrop-blur-md -skew-x-6 group-hover:-skew-x-12 transition-transform duration-500">
               <div className="skew-x-6 group-hover:skew-x-12 w-full h-full rounded-xl overflow-hidden transition-transform duration-500">
                 <TeamFlag teamName={matchToDisplay.homeTeam} fallbackEmoji={matchToDisplay.homeFlag} className="w-full h-full object-cover" />
               </div>
@@ -136,10 +136,10 @@ export default function WinnerBanner({ matches, predictions = [], currentTime = 
           </div>
 
           {/* Score */}
-          <div className="flex flex-col items-center justify-center mx-2 sm:mx-8 z-10 shrink-0">
-            <div className="flex items-center justify-center gap-4 sm:gap-8 font-display text-6xl sm:text-8xl font-black text-white drop-shadow-[0_0_20px_rgba(0,255,135,0.3)]">
+          <div className="flex flex-col items-center justify-center mx-2 sm:mx-6 z-10 shrink-0">
+            <div className="flex items-center justify-center gap-4 sm:gap-6 font-display text-5xl sm:text-6xl font-black text-white drop-shadow-[0_0_20px_rgba(0,255,135,0.3)]">
               <span>{matchToDisplay.homeScore ?? 0}</span>
-              <span className="text-white/20 text-5xl sm:text-7xl font-light">-</span>
+              <span className="text-white/20 text-4xl sm:text-5xl font-light">-</span>
               <span>{matchToDisplay.awayScore ?? 0}</span>
             </div>
             <div className={`mt-6 text-xs sm:text-sm font-display font-black tracking-widest uppercase px-6 py-2 rounded-xl shadow-inner border border-white/10 ${isLive ? 'bg-primary/20 text-primary border-primary/30 shadow-neon-primary' : 'bg-white/10 text-white backdrop-blur-md'}`}>
@@ -148,8 +148,8 @@ export default function WinnerBanner({ matches, predictions = [], currentTime = 
           </div>
 
           {/* Away team */}
-          <div className="flex-1 flex flex-col items-center gap-4 z-10">
-            <div className="w-20 h-20 sm:w-28 sm:h-28 bg-white/5 rounded-2xl p-2 flex items-center justify-center shadow-lg border border-white/20 backdrop-blur-md -skew-x-6 group-hover:-skew-x-12 transition-transform duration-500">
+          <div className="flex-1 flex flex-col items-center gap-2 sm:gap-4 z-10">
+            <div className="w-14 h-14 sm:w-16 sm:h-16 bg-white/5 rounded-2xl p-2 flex items-center justify-center shadow-lg border border-white/20 backdrop-blur-md -skew-x-6 group-hover:-skew-x-12 transition-transform duration-500">
               <div className="skew-x-6 group-hover:skew-x-12 w-full h-full rounded-xl overflow-hidden transition-transform duration-500">
                 <TeamFlag teamName={matchToDisplay.awayTeam} fallbackEmoji={matchToDisplay.awayFlag} className="w-full h-full object-cover" />
               </div>
@@ -163,7 +163,7 @@ export default function WinnerBanner({ matches, predictions = [], currentTime = 
 
         {/* Goal Scorers */}
         {(homeScorers.length > 0 || awayScorers.length > 0) && (
-          <div className="flex justify-between items-start mt-10 px-2 sm:px-6 relative z-10 border-t border-white/10 pt-6">
+          <div className="flex justify-between items-start mt-4 px-2 sm:px-6 relative z-10 border-t border-white/10 pt-4">
             <div className="flex-1 flex flex-col gap-2 text-white text-xs sm:text-sm font-bold font-display">
               {homeScorers.map(s => (
                 <div key={s.player} className="flex items-center gap-3">
@@ -190,8 +190,8 @@ export default function WinnerBanner({ matches, predictions = [], currentTime = 
 
         {/* Completed Match Extras */}
         {!isLive && (
-          <div className="mt-8 flex flex-col items-center">
-            <div className="w-full pt-6 border-t border-white/10 text-center text-xs">
+          <div className="mt-4 flex flex-col items-center">
+            <div className="w-full pt-4 border-t border-white/10 text-center text-xs">
               <span className="text-outline-variant font-display uppercase tracking-[0.4em] block mb-4 text-[10px] sm:text-xs font-black">
                 CORRECT SCORE PREDICTIONS
               </span>
