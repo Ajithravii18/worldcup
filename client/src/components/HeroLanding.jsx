@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import UserAvatar from './UserAvatar';
 import Icon from './Icon';
 
-export default function HeroLanding() {
+export default function HeroLanding({ predictions = [] }) {
   const { user } = useAuth();
   const [loaded, setLoaded] = useState(false);
 
@@ -12,6 +12,23 @@ export default function HeroLanding() {
     const timer = setTimeout(() => setLoaded(true), 100);
     return () => clearTimeout(timer);
   }, []);
+
+  let totalPoints = 0;
+  let exactWins = 0;
+  let matchesPlayed = 0;
+
+  if (user) {
+    predictions.forEach(p => {
+      const pUserId = typeof p.user === 'object' ? p.user._id : p.user;
+      if (pUserId === user._id && p.match?.status === 'completed') {
+        matchesPlayed++;
+        totalPoints += (p.points || 0);
+        if (p.homeGoals === p.match.homeScore && p.awayGoals === p.match.awayScore) {
+          exactWins++;
+        }
+      }
+    });
+  }
 
   return (
     <motion.div 
@@ -30,39 +47,51 @@ export default function HeroLanding() {
       <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-6">
         
         {/* Left Side: Welcome and Player Details */}
-        <div className="flex flex-row items-center text-left gap-4 w-full lg:w-auto">
-          {user && (
-            <motion.div 
-              whileHover={{ scale: 1.05, rotate: 2 }}
-              className="relative p-1 rounded-2xl bg-gradient-to-tr from-primary via-white/10 to-secondary shadow-neon-primary shrink-0"
-            >
-              <div className="bg-black/80 p-2 sm:p-2.5 rounded-xl backdrop-blur-2xl">
+        <div className="flex flex-col text-left gap-4 w-full lg:w-auto">
+          <div className="flex flex-row items-center gap-4">
+            {user && (
+              <motion.div 
+                whileHover={{ scale: 1.05, rotate: 2 }}
+                className="relative shrink-0 drop-shadow-[0_0_15px_rgba(0,255,135,0.5)]"
+              >
                 <UserAvatar 
                   avatarId={user.avatar} 
-                  className="w-10 h-10 sm:w-16 sm:h-16 text-xl sm:text-2xl" 
+                  className="w-14 h-14 sm:w-20 sm:h-20 text-2xl sm:text-4xl" 
                 />
-              </div>
-            </motion.div>
-          )}
+              </motion.div>
+            )}
 
-          <div className="flex flex-col">
-            <div className="flex flex-wrap items-center justify-start gap-2">
-              <span className="font-display text-xs sm:text-sm tracking-[0.2em] text-primary uppercase font-black">
-                Lucky Star FC
-              </span>
-              <span className="text-white/40 text-[10px] sm:text-xs hidden sm:inline">•</span>
-              <span className="font-body text-[9px] sm:text-[10px] uppercase tracking-widest text-outline-variant font-bold bg-white/5 px-2 py-0.5 rounded-full border border-white/5">
-                Arena Host
-              </span>
+            <div className="flex flex-col">
+              <div className="flex flex-wrap items-center justify-start gap-2">
+                <span className="font-display text-xs sm:text-sm tracking-[0.2em] text-primary uppercase font-black">
+                  Lucky Star FC
+                </span>
+                <span className="text-white/40 text-[10px] sm:text-xs hidden sm:inline">•</span>
+                <span className="font-body text-[9px] sm:text-[10px] uppercase tracking-widest text-outline-variant font-bold bg-white/5 px-2 py-0.5 rounded-full border border-white/5">
+                  Arena Host
+                </span>
+              </div>
+              
+              <h1 className="text-xl sm:text-3xl lg:text-4xl font-black font-display text-white tracking-wider uppercase mt-1 drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">
+                Welcome, <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">{user?.name || 'Player'}</span>!
+              </h1>
             </div>
-            
-            <h1 className="text-xl sm:text-3xl lg:text-4xl font-black font-display text-white tracking-wider uppercase mt-1 drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">
-              Welcome, <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">{user?.name || 'Player'}</span>!
-            </h1>
-            
-            <p className="hidden sm:block text-xs sm:text-sm text-outline-variant font-medium mt-2 max-w-md leading-relaxed">
-              Analyze the field, lock in your predictions, and climb the global leaderboard to claim ultimate bragging rights.
-            </p>
+          </div>
+
+          {/* Player Stats Dashboard */}
+          <div className="grid grid-cols-3 gap-3 w-full max-w-sm mt-1">
+            <div className="bg-white/5 border border-white/10 rounded-xl p-3 flex flex-col items-center justify-center backdrop-blur-md shadow-inner hover:bg-white/10 transition-colors">
+              <span className="font-display text-2xl sm:text-3xl font-black text-primary drop-shadow-md">{totalPoints}</span>
+              <span className="text-[9px] sm:text-[10px] font-display uppercase tracking-widest text-outline-variant font-bold mt-1 text-center">Total Pts</span>
+            </div>
+            <div className="bg-white/5 border border-white/10 rounded-xl p-3 flex flex-col items-center justify-center backdrop-blur-md shadow-inner hover:bg-white/10 transition-colors">
+              <span className="font-display text-2xl sm:text-3xl font-black text-white drop-shadow-md">{exactWins}</span>
+              <span className="text-[9px] sm:text-[10px] font-display uppercase tracking-widest text-outline-variant font-bold mt-1 text-center">Exact Wins</span>
+            </div>
+            <div className="bg-white/5 border border-white/10 rounded-xl p-3 flex flex-col items-center justify-center backdrop-blur-md shadow-inner hover:bg-white/10 transition-colors">
+              <span className="font-display text-2xl sm:text-3xl font-black text-secondary drop-shadow-md">{matchesPlayed}</span>
+              <span className="text-[9px] sm:text-[10px] font-display uppercase tracking-widest text-outline-variant font-bold mt-1 text-center">Played</span>
+            </div>
           </div>
         </div>
 
