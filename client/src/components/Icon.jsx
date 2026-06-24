@@ -8,10 +8,12 @@ import {
   IoClose, IoPerson, IoSettings, IoLogOut, IoChevronDown, 
   IoArrowDown, IoArrowUp, IoChevronBack, IoChevronForward, 
   IoStatsChart, IoListOutline, IoCheckmarkCircle, IoLockClosed, 
-  IoLockOpen, IoEyeOff, IoMail, IoRemove, IoAdd, IoStar, IoAnalytics
+  IoLockOpen, IoEyeOff, IoMail, IoRemove, IoAdd, IoStar, IoAnalytics,
+  IoMenu
 } from 'react-icons/io5';
 
 const iconMap = {
+  'menu': IoMenu,
   'sports_soccer': GiSoccerBall,
   'trophy': GiTrophyCup,
   'emoji_events': GiTrophyCup,

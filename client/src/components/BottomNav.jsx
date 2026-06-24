@@ -23,38 +23,7 @@ export default function BottomNav({ view, setView, statusFilter, setStatusFilter
       className="md:hidden fixed bottom-0 w-full z-50 bg-black/60 backdrop-blur-xl border-t border-white/10 shadow-[0_-10px_40px_rgba(0,0,0,0.5)]"
     >
 
-      {/* Secondary filter bar — shown only in match views */}
-      {isMatchesView && (
-        <div className="flex bg-black/40 border-b border-white/5">
-          <button
-            onClick={() => {
-              setStatusFilter('upcoming');
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
-            className={`flex-1 py-3 font-display text-sm uppercase tracking-widest transition-colors duration-150 border-b-2 relative ${
-              statusFilter === 'upcoming'
-                ? 'text-primary border-primary bg-primary/5 font-black'
-                : 'text-outline-variant border-transparent hover:bg-white/5 font-bold'
-            }`}
-          >
-            Open Matches
-          </button>
-          <div className="w-[1px] bg-white/10 my-2" />
-          <button
-            onClick={() => {
-              setStatusFilter('completed');
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
-            className={`flex-1 py-3 font-display text-sm uppercase tracking-widest transition-colors duration-150 border-b-2 relative ${
-              statusFilter === 'completed'
-                ? 'text-primary border-primary bg-primary/5 font-black'
-                : 'text-outline-variant border-transparent hover:bg-white/5 font-bold'
-            }`}
-          >
-            Results
-          </button>
-        </div>
-      )}
+
 
       {/* Main tab bar */}
       <div className="flex justify-around items-center h-20 px-2 pb-safe relative">
