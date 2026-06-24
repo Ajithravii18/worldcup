@@ -20,7 +20,7 @@ const itemVariants = {
 
 export default function LandingPage() {
   return (
-    <div className="min-h-dvh flex flex-col items-center justify-center relative overflow-x-hidden px-4 py-12 bg-background bg-[radial-gradient(#ffffff22_1px,transparent_1px)] [background-size:24px_24px]">
+    <div className="min-h-dvh flex flex-col items-center justify-center relative overflow-x-hidden px-4 py-12 bg-transparent bg-[radial-gradient(#ffffff22_1px,transparent_1px)] [background-size:24px_24px]">
       {/* Subtle glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] pointer-events-none bg-gradient-to-b from-primary/20 to-transparent blur-3xl" />
 

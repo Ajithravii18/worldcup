@@ -135,7 +135,7 @@ export default function RegisterPage() {
 
   if (step === 'success') {
     return (
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="min-h-dvh flex flex-col items-center justify-center text-center p-6 bg-transparent">
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="min-h-dvh flex flex-col items-center justify-center text-center p-6 bg-transparent bg-[radial-gradient(#ffffff22_1px,transparent_1px)] [background-size:24px_24px]">
         <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring', bounce: 0.5 }} className="w-24 h-24 mb-6 flex items-center justify-center bg-primary rounded-3xl shadow-neon-primary">
           <Icon name="emoji_events" className="text-black text-6xl" />
         </motion.div>
@@ -146,7 +146,7 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center relative overflow-x-hidden px-4 py-12 bg-transparent">
+    <div className="min-h-screen flex flex-col items-center justify-center relative overflow-x-hidden px-4 py-12 bg-transparent bg-[radial-gradient(#ffffff22_1px,transparent_1px)] [background-size:24px_24px]">
 
       <Link to="/" className="absolute top-6 left-6 z-50">
         <motion.div whileHover={{ x: -5 }} className="flex items-center gap-2 text-xs tracking-[0.2em] uppercase font-bold text-outline-variant hover:text-white">

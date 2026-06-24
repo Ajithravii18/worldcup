@@ -48,7 +48,7 @@ export default function LoginPage() {
     return (
       <motion.div 
         initial={{ opacity: 0 }} animate={{ opacity: 1 }} 
-        className="min-h-dvh flex flex-col items-center justify-center text-center p-6 bg-transparent"
+        className="min-h-dvh flex flex-col items-center justify-center text-center p-6 bg-transparent bg-[radial-gradient(#ffffff22_1px,transparent_1px)] [background-size:24px_24px]"
       >
         <motion.div 
           initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring', bounce: 0.5 }}
