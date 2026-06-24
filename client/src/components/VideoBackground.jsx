@@ -1,70 +1,71 @@
-import { motion } from 'framer-motion';
+import { useRef, useState, useMemo } from 'react';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { Points, PointMaterial } from '@react-three/drei';
+
+function ParticleCloud() {
+  const ref = useRef();
+  
+  // Generate random points in a sphere
+  const sphere = useMemo(() => {
+    const count = 3000;
+    const positions = new Float32Array(count * 3);
+    for (let i = 0; i < count; i++) {
+      // Random radius between 2 and 15
+      const radius = 2 + Math.random() * 13;
+      const theta = Math.random() * 2 * Math.PI;
+      const phi = Math.acos(Math.random() * 2 - 1);
+      
+      positions[i * 3] = radius * Math.sin(phi) * Math.cos(theta);
+      positions[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
+      positions[i * 3 + 2] = radius * Math.cos(phi);
+    }
+    return positions;
+  }, []);
+
+  useFrame((state, delta) => {
+    if (!ref.current) return;
+    
+    // Slow continuous rotation
+    ref.current.rotation.x -= delta / 15;
+    ref.current.rotation.y -= delta / 20;
+
+    // Mouse parallax effect
+    const targetX = (state.mouse.x * Math.PI) / 10;
+    const targetY = (state.mouse.y * Math.PI) / 10;
+
+    ref.current.rotation.y += 0.05 * (targetX - ref.current.rotation.y);
+    ref.current.rotation.x += 0.05 * (targetY - ref.current.rotation.x);
+  });
+
+  return (
+    <group rotation={[0, 0, Math.PI / 4]}>
+      <Points ref={ref} positions={sphere} stride={3} frustumCulled={false}>
+        <PointMaterial
+          transparent
+          color="#4ade80" // Neon green
+          size={0.05}
+          sizeAttenuation={true}
+          depthWrite={false}
+          opacity={0.8}
+        />
+      </Points>
+    </group>
+  );
+}
 
 export default function VideoBackground() {
   return (
-    <div className="fixed inset-0 -z-10 bg-[#030712] overflow-hidden pointer-events-none">
-      
-      {/* Animated Glowing Orbs */}
-      <motion.div
-        animate={{
-          x: [0, 100, -50, 0],
-          y: [0, -100, 50, 0],
-          scale: [1, 1.2, 0.9, 1],
-          opacity: [0.15, 0.25, 0.15],
-        }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          ease: "linear"
-        }}
-        className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-primary blur-[120px]"
-      />
-      
-      <motion.div
-        animate={{
-          x: [0, -120, 80, 0],
-          y: [0, 150, -60, 0],
-          scale: [1, 1.3, 0.8, 1],
-          opacity: [0.1, 0.2, 0.1],
-        }}
-        transition={{
-          duration: 25,
-          repeat: Infinity,
-          ease: "linear"
-        }}
-        className="absolute bottom-[-20%] right-[-10%] w-[60vw] h-[60vw] rounded-full bg-secondary-fixed-dim blur-[150px]"
-      />
-      
-      <motion.div
-        animate={{
-          x: [0, 50, -80, 0],
-          y: [0, 80, -120, 0],
-          scale: [1, 0.9, 1.1, 1],
-          opacity: [0.05, 0.15, 0.05],
-        }}
-        transition={{
-          duration: 18,
-          repeat: Infinity,
-          ease: "linear"
-        }}
-        className="absolute top-[30%] right-[20%] w-[40vw] h-[40vw] rounded-full bg-tertiary-fixed-dim blur-[100px]"
-      />
+    <div className="fixed inset-0 -z-10 bg-[#030712] overflow-hidden pointer-events-auto">
+      <Canvas camera={{ position: [0, 0, 10], fov: 60 }}>
+        <color attach="background" args={['#030712']} />
+        <ParticleCloud />
+      </Canvas>
 
-      {/* Dotted Pattern Overlay - Animated Pan */}
-      <motion.div 
-        animate={{
-          backgroundPosition: ['0px 0px', '24px 24px']
-        }}
-        transition={{
-          duration: 4,
-          repeat: Infinity,
-          ease: "linear"
-        }}
-        className="absolute inset-0 z-20 bg-[radial-gradient(#4ade80_1px,transparent_1px)] bg-[size:24px_24px] opacity-[0.08]" 
-      />
+      {/* Deep Frosted Glass Overlay for dark aesthetic */}
+      <div className="absolute inset-0 z-10 bg-black/40 backdrop-blur-[2px] pointer-events-none" />
       
       {/* Heavy Vignette for dramatic sports feel */}
-      <div className="absolute inset-0 z-30 bg-gradient-to-b from-black/40 via-transparent to-black/80"></div>
+      <div className="absolute inset-0 z-30 bg-gradient-to-b from-black/40 via-transparent to-black/80 pointer-events-none"></div>
     </div>
   );
 }
