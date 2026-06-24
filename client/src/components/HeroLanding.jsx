@@ -54,7 +54,7 @@ export default function HeroLanding({ predictions = [] }) {
       <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-6 h-full">
         
         {/* Left Side: Welcome and Player Details */}
-        <div className="flex flex-col text-left gap-4 w-full lg:w-auto">
+        <div className="flex flex-col text-left gap-4 w-full lg:w-[35%] shrink-0">
           <div className="flex flex-row items-center gap-4">
             {user && (
               <motion.div 
@@ -86,7 +86,7 @@ export default function HeroLanding({ predictions = [] }) {
           </div>
 
           {/* Player Stats Dashboard */}
-          <div className="grid grid-cols-3 gap-3 w-full max-w-sm mt-1">
+          <div className="grid grid-cols-3 gap-3 w-full mt-1">
             <div className="bg-white/5 border border-white/10 rounded-xl p-3 flex flex-col items-center justify-center backdrop-blur-md shadow-inner hover:bg-white/10 transition-colors">
               <span className="font-display text-2xl sm:text-3xl font-black text-primary drop-shadow-md">{totalPoints}</span>
               <span className="text-[9px] sm:text-[10px] font-display uppercase tracking-widest text-outline-variant font-bold mt-1 text-center">Total Pts</span>
@@ -102,8 +102,35 @@ export default function HeroLanding({ predictions = [] }) {
           </div>
         </div>
 
+        {/* Center: Global Arena Status (Fills the empty space) */}
+        <div className="hidden lg:flex flex-col items-center justify-center flex-1 px-4 relative z-20">
+          <motion.div 
+            whileHover={{ scale: 1.02 }}
+            className="w-full max-w-sm bg-gradient-to-b from-primary/20 via-primary/5 to-transparent p-[1px] rounded-2xl shadow-[0_0_30px_rgba(0,255,135,0.15)] group"
+          >
+            <div className="bg-[#0A0A0A]/80 backdrop-blur-xl rounded-2xl p-5 flex flex-col items-center justify-center border border-white/5 h-full">
+               <div className="flex items-center gap-2 mb-3 bg-white/5 px-3 py-1.5 rounded-full border border-white/10">
+                 <Icon name="public" className="text-primary text-sm" />
+                 <h3 className="text-white font-display uppercase tracking-widest font-black text-[10px]">Global Arena</h3>
+               </div>
+               
+               <div className="flex items-end gap-2">
+                 <p className="text-5xl font-display font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-primary to-secondary drop-shadow-[0_0_15px_rgba(0,255,135,0.4)]">
+                   {predictions?.length || 0}
+                 </p>
+               </div>
+               
+               <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent my-3" />
+               
+               <p className="text-[10px] text-outline-variant font-display uppercase tracking-[0.2em] font-bold text-center">
+                 Predictions Submitted <br/> Worldwide
+               </p>
+            </div>
+          </motion.div>
+        </div>
+
         {/* Right Side: FIFA 2026 Info Card & Live Indicator */}
-        <div className="flex flex-row md:flex-row items-center gap-4 sm:gap-6 bg-white/5 border border-white/10 rounded-2xl p-4 sm:p-5 backdrop-blur-xl w-full lg:w-auto justify-between lg:justify-start shrink-0 shadow-inner">
+        <div className="flex flex-row md:flex-row items-center gap-4 sm:gap-6 bg-white/5 border border-white/10 rounded-2xl p-4 sm:p-5 backdrop-blur-xl w-full lg:w-[35%] justify-between lg:justify-end shrink-0 shadow-inner">
           <div className="flex items-center gap-3">
             <motion.img 
               whileHover={{ scale: 1.1, rotate: 360 }}
@@ -126,7 +153,7 @@ export default function HeroLanding({ predictions = [] }) {
                <span className="w-1.5 h-1.5 rounded-full bg-primary shadow-neon-primary animate-pulse" />
                <span className="text-primary font-display font-black text-[9px] tracking-widest uppercase">Arena Live</span>
             </div>
-            <span className="text-[9px] text-white/40 uppercase tracking-widest font-bold hidden sm:inline">Global Match Feed</span>
+            <span className="text-[9px] text-white/40 uppercase tracking-widest font-bold hidden sm:inline text-right">Global Match Feed</span>
           </div>
         </div>
 
