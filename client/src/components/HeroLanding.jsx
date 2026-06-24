@@ -30,37 +30,37 @@ export default function HeroLanding() {
       <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-6">
         
         {/* Left Side: Welcome and Player Details */}
-        <div className="flex flex-col md:flex-row items-center text-center md:text-left gap-5 w-full lg:w-auto">
+        <div className="flex flex-row items-center text-left gap-4 w-full lg:w-auto">
           {user && (
             <motion.div 
               whileHover={{ scale: 1.05, rotate: 2 }}
-              className="relative p-1 rounded-2xl bg-gradient-to-tr from-primary via-white/10 to-secondary shadow-neon-primary"
+              className="relative p-1 rounded-2xl bg-gradient-to-tr from-primary via-white/10 to-secondary shadow-neon-primary shrink-0"
             >
-              <div className="bg-black/80 p-2.5 rounded-xl backdrop-blur-2xl">
+              <div className="bg-black/80 p-2 sm:p-2.5 rounded-xl backdrop-blur-2xl">
                 <UserAvatar 
                   avatarId={user.avatar} 
-                  className="w-12 h-12 sm:w-16 sm:h-16 text-2xl" 
+                  className="w-10 h-10 sm:w-16 sm:h-16 text-xl sm:text-2xl" 
                 />
               </div>
             </motion.div>
           )}
 
           <div className="flex flex-col">
-            <div className="flex flex-wrap items-center justify-center md:justify-start gap-2">
-              <span className="font-display text-sm tracking-[0.2em] text-primary uppercase font-black">
+            <div className="flex flex-wrap items-center justify-start gap-2">
+              <span className="font-display text-xs sm:text-sm tracking-[0.2em] text-primary uppercase font-black">
                 Lucky Star FC
               </span>
-              <span className="text-white/40 text-xs hidden sm:inline">•</span>
-              <span className="font-body text-[10px] sm:text-xs uppercase tracking-widest text-outline-variant font-bold bg-white/5 px-2.5 py-0.5 rounded-full border border-white/5">
+              <span className="text-white/40 text-[10px] sm:text-xs hidden sm:inline">•</span>
+              <span className="font-body text-[9px] sm:text-[10px] uppercase tracking-widest text-outline-variant font-bold bg-white/5 px-2 py-0.5 rounded-full border border-white/5">
                 Arena Host
               </span>
             </div>
             
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black font-display text-white tracking-wider uppercase mt-1.5 drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">
-              Welcome back, <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">{user?.name || 'Player'}</span>!
+            <h1 className="text-xl sm:text-3xl lg:text-4xl font-black font-display text-white tracking-wider uppercase mt-1 drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">
+              Welcome, <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">{user?.name || 'Player'}</span>!
             </h1>
             
-            <p className="text-xs sm:text-sm text-outline-variant font-medium mt-2 max-w-md leading-relaxed">
+            <p className="hidden sm:block text-xs sm:text-sm text-outline-variant font-medium mt-2 max-w-md leading-relaxed">
               Analyze the field, lock in your predictions, and climb the global leaderboard to claim ultimate bragging rights.
             </p>
           </div>
