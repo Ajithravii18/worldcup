@@ -62,7 +62,6 @@ export default function Navbar({ view, setView, statusFilter, setStatusFilter, o
                   key={tab.id}
                   onClick={() => {
                     setView(tab.id);
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
                   className={`relative px-6 h-12 rounded-xl font-display text-lg uppercase tracking-widest transition-colors flex items-center justify-center z-10 ${
                     isActive ? 'text-white font-black' : 'text-outline-variant hover:text-white font-bold'

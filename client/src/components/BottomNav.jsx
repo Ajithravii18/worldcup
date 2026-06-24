@@ -34,7 +34,6 @@ export default function BottomNav({ view, setView, statusFilter, setStatusFilter
               key={tab.id}
               onClick={() => {
                 setView(tab.id);
-                window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
               className={`flex flex-col items-center justify-center transition-all active:scale-95 duration-200 relative w-24 h-16 z-10 ${
                 isActive ? 'text-white' : 'text-outline-variant hover:text-white'
