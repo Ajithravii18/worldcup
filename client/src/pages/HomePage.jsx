@@ -136,6 +136,17 @@ export default function HomePage() {
     }
   }, [myPredictions, matches]);
 
+  useEffect(() => {
+    if (view === 'global' && statusFilter === 'completed' && dateSort === 'earliest' && scrollContainerRef.current) {
+      // Small timeout to allow DOM to render the new list before scrolling
+      setTimeout(() => {
+        if (scrollContainerRef.current) {
+          scrollContainerRef.current.scrollLeft = scrollContainerRef.current.scrollWidth;
+        }
+      }, 50);
+    }
+  }, [view, statusFilter, dateSort, matches.length]);
+
   const handlePredicted = useCallback(() => {
     fetchMatches();
     fetchMyPredictions();
@@ -394,8 +405,7 @@ export default function HomePage() {
                           <button
                             onClick={() => {
                               setStatusFilter('completed');
-                              setDateSort('latest');
-                              if (scrollContainerRef.current) scrollContainerRef.current.scrollLeft = 0;
+                              setDateSort('earliest');
                             }}
                             className={`relative flex-1 md:flex-none px-4 py-2.5 font-display text-[10px] sm:text-xs uppercase tracking-widest transition-all duration-300 rounded-lg font-bold z-10 ${
                               statusFilter === 'completed' ? 'text-black' : 'text-outline-variant hover:text-white'
