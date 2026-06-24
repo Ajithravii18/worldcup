@@ -6,19 +6,29 @@ import { motion } from 'framer-motion';
  * WinnerBanner — functions as a premium sports broadcast Live Score Card.
  */
 export default function WinnerBanner({ matches, predictions = [], currentTime = Date.now(), onClick }) {
-  // Find live matches first
-  const liveMatches = matches
-    .filter((m) => m.status === 'live')
-    .sort((a, b) => new Date(a.kickoffTime) - new Date(b.kickoffTime));
+  // Find the most relevant match to display:
+  // 1. A live match
+  // 2. The most recently completed match
+  // 3. The closest upcoming match
+  let matchToDisplay = null;
+  if (matches && matches.length > 0) {
+    const liveMatches = matches.filter(m => m.status === 'live');
+    if (liveMatches.length > 0) {
+      matchToDisplay = liveMatches.sort((a, b) => new Date(b.kickoffTime) - new Date(a.kickoffTime))[0];
+    } else {
+      const completedMatches = matches.filter(m => m.status === 'completed');
+      if (completedMatches.length > 0) {
+        matchToDisplay = completedMatches.sort((a, b) => new Date(b.kickoffTime) - new Date(a.kickoffTime))[0];
+      } else {
+        const upcomingMatches = matches.filter(m => m.status === 'upcoming');
+        matchToDisplay = upcomingMatches.sort((a, b) => new Date(a.kickoffTime) - new Date(b.kickoffTime))[0] || matches[0];
+      }
+    }
+  }
 
-  const completedMatches = matches
-    .filter((m) => m.status === 'completed' && m.winner !== null)
-    .sort((a, b) => new Date(b.kickoffTime) - new Date(a.kickoffTime));
+  if (!matchToDisplay) return null;
 
-  if (!liveMatches.length && !completedMatches.length) return null;
-
-  const isLive = liveMatches.length > 0;
-  const matchToDisplay = isLive ? liveMatches[0] : completedMatches[0];
+  const isLive = matchToDisplay.status === 'live';
   const isDraw = !isLive && matchToDisplay.winner === 'Draw';
 
   // Calculate elapsed time for live matches
