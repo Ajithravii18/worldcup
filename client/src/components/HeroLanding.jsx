@@ -1,56 +1,44 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import Icon from './Icon';
+import { motion } from 'framer-motion';
 
 export default function HeroLanding() {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    // Trigger animation shortly after mount
     const timer = setTimeout(() => setLoaded(true), 100);
     return () => clearTimeout(timer);
   }, []);
 
   return (
-    <div className="relative w-full rounded-2xl overflow-hidden mb-8 border border-outline-variant/50 shadow-subtle-card bg-surface-container-lowest">
-      {/* Background decoration */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#001278]/40 to-[#00ff87]/10 z-10 mix-blend-overlay"></div>
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary opacity-[0.15] blur-[100px] rounded-full translate-x-1/2 -translate-y-1/2"></div>
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#ff3d00] opacity-[0.1] blur-[80px] rounded-full -translate-x-1/3 translate-y-1/3"></div>
-      </div>
-
-      <div className="relative z-10 px-6 py-16 md:py-20 flex flex-col items-center text-center">
-        <div className={`transition-all duration-700 transform ${loaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
-          <span className="inline-block py-1 px-4 rounded-full bg-primary/10 border border-primary/30 text-primary font-label-md text-sm tracking-[0.2em] uppercase mb-4 shadow-neon-primary">
-            Welcome to the Arena
-          </span>
-        </div>
-        
-        <h1 className={`text-5xl md:text-7xl lg:text-8xl font-black font-display-lg text-on-surface tracking-wide mb-2 transition-all duration-700 delay-100 transform ${loaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'} drop-shadow-lg`}>
-          LUCKY STAR FC <br className="hidden md:block" />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-[#00a859] drop-shadow-[0_0_15px_rgba(0,255,135,0.4)]">PREDICTIONS</span>
-        </h1>
-        
-        <p className={`text-base md:text-xl text-on-surface-variant font-body-md max-w-2xl mx-auto mb-10 leading-relaxed transition-all duration-700 delay-200 transform ${loaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
-          Experience the definitive football prediction platform. Lock in your scores, outsmart a global community of fans, and rise through the elite ranks to claim victory.
-        </p>
-
-        <div className={`flex flex-wrap items-center justify-center gap-4 md:gap-6 transition-all duration-700 delay-300 transform ${loaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
-          <div className="flex items-center gap-3 bg-surface-container-low/50 backdrop-blur-md px-5 py-3 border border-outline-variant/50 rounded-lg shadow-sm">
-            <Icon name="sports_soccer" className="text-primary text-[28px]" />
-            <span className="font-label-md text-sm text-on-surface uppercase tracking-widest mt-0.5">Predict Scores</span>
-          </div>
-          <div className="flex items-center gap-3 bg-surface-container-low/50 backdrop-blur-md px-5 py-3 border border-outline-variant/50 rounded-lg shadow-sm">
-            <Icon name="trophy" className="text-secondary text-[28px]" />
-            <span className="font-label-md text-sm text-on-surface uppercase tracking-widest mt-0.5">Win Points</span>
-          </div>
-          <div className="flex items-center gap-3 bg-surface-container-low/50 backdrop-blur-md px-5 py-3 border border-outline-variant/50 rounded-lg shadow-sm">
-            <Icon name="social_leaderboard" className="text-[#ff3d00] text-[28px]" />
-            <span className="font-label-md text-sm text-on-surface uppercase tracking-widest mt-0.5">Dominate Rankings</span>
-          </div>
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: loaded ? 1 : 0, y: loaded ? 0 : 20 }}
+      transition={{ duration: 0.5 }}
+      className="relative w-full rounded-[2rem] overflow-hidden mb-8 border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.5)] bg-white/5 backdrop-blur-xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6"
+    >
+      <div className="flex items-center gap-4 sm:gap-6 text-center md:text-left">
+        <motion.img 
+          whileHover={{ scale: 1.05 }}
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/1920px-2026_FIFA_World_Cup_emblem.svg.png" 
+          alt="World Cup 2026 Emblem" 
+          className="w-12 sm:w-16 h-auto drop-shadow-[0_0_15px_rgba(0,255,135,0.4)]" 
+        />
+        <div className="flex flex-col">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-black font-display text-white tracking-widest uppercase drop-shadow-md">
+            Lucky Star FC
+          </h1>
+          <p className="text-xs sm:text-sm font-bold text-outline-variant tracking-[0.2em] uppercase mt-1">
+            The Ultimate Prediction Arena
+          </p>
         </div>
       </div>
-    </div>
+      
+      <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 px-4 py-2 bg-primary/10 border border-primary/30 rounded-xl shadow-inner">
+           <span className="w-2 h-2 rounded-full bg-primary shadow-neon-primary animate-pulse" />
+           <span className="text-primary font-display font-black text-xs uppercase tracking-widest">Global Arena Live</span>
+        </div>
+      </div>
+    </motion.div>
   );
 }

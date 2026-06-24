@@ -57,7 +57,6 @@ export default function LandingPage() {
 
         {/* Badge */}
         <motion.div variants={itemVariants} className="mb-8 flex items-center gap-4 px-6 py-3 bg-white/10 border border-white/20 rounded-full shadow-2xl backdrop-blur-md">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/1920px-2026_FIFA_World_Cup_emblem.svg.png" alt="World Cup Emblem" className="w-6 h-auto drop-shadow-md" />
           <span className="text-sm md:text-base font-bold text-white tracking-widest uppercase">World Cup 2026</span>
           <span className="text-outline-variant/50">|</span>
           <div className="flex items-center gap-2 ml-1">

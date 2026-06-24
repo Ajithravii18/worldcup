@@ -146,14 +146,14 @@ export default function ProfileModal({ isOpen, onClose }) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={handleBackdropClick}
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-md"
+          className="fixed inset-0 z-[100] flex justify-center items-start pt-10 pb-10 overflow-y-auto px-4 sm:px-6 bg-black/80 backdrop-blur-md scrollbar-none"
         >
           <motion.div
             initial={{ scale: 0.95, y: 20, opacity: 0 }}
             animate={{ scale: 1, y: 0, opacity: 1 }}
             exit={{ scale: 0.95, y: 20, opacity: 0 }}
             transition={{ type: "spring", stiffness: 300, damping: 25 }}
-            className="w-full max-w-lg max-h-[90vh] overflow-y-auto scrollbar-none rounded-3xl p-6 sm:p-8 relative bg-black/80 backdrop-blur-2xl shadow-2xl border border-white/20"
+            className="w-full max-w-lg rounded-3xl p-6 sm:p-8 relative bg-black/80 backdrop-blur-2xl shadow-2xl border border-white/20 my-auto"
           >
             <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-80 shadow-neon-primary"></div>
 

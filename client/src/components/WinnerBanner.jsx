@@ -81,15 +81,12 @@ export default function WinnerBanner({ matches, predictions = [], currentTime = 
       whileHover={{ scale: 1.01, y: -5 }}
       whileTap={{ scale: 0.99 }}
       onClick={() => onClick && onClick(matchToDisplay)}
-      className="relative overflow-hidden rounded-[2rem] cursor-pointer bg-black/60 backdrop-blur-3xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] group"
+      className="relative overflow-hidden rounded-[2rem] cursor-pointer bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.5)] group"
     >
       {/* Decorative Background */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        {/* Glow effect */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-primary/20 blur-[100px] rounded-full group-hover:bg-primary/30 transition-colors duration-500" />
-        <div className="absolute inset-0 opacity-[0.05] mix-blend-overlay" style={{ backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)', backgroundSize: '24px 24px' }}></div>
-        {/* Slanted lines */}
-        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 10px, #fff 10px, #fff 20px)' }}></div>
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        {/* Glow effect matching landing page */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-gradient-to-b from-primary/20 to-transparent blur-3xl group-hover:from-primary/30 transition-colors duration-500" />
       </div>
 
       <div className="relative z-10 p-6 sm:p-10">
@@ -112,7 +109,7 @@ export default function WinnerBanner({ matches, predictions = [], currentTime = 
           
           {/* Home team */}
           <div className="flex-1 flex flex-col items-center gap-4 z-10">
-            <div className="w-20 h-20 sm:w-28 sm:h-28 bg-black/50 rounded-2xl p-2 flex items-center justify-center shadow-2xl border border-white/20 backdrop-blur-xl -skew-x-6 group-hover:-skew-x-12 transition-transform duration-500">
+            <div className="w-20 h-20 sm:w-28 sm:h-28 bg-white/5 rounded-2xl p-2 flex items-center justify-center shadow-lg border border-white/20 backdrop-blur-md -skew-x-6 group-hover:-skew-x-12 transition-transform duration-500">
               <div className="skew-x-6 group-hover:skew-x-12 w-full h-full rounded-xl overflow-hidden transition-transform duration-500">
                 <TeamFlag teamName={matchToDisplay.homeTeam} fallbackEmoji={matchToDisplay.homeFlag} className="w-full h-full object-cover" />
               </div>
@@ -137,7 +134,7 @@ export default function WinnerBanner({ matches, predictions = [], currentTime = 
 
           {/* Away team */}
           <div className="flex-1 flex flex-col items-center gap-4 z-10">
-            <div className="w-20 h-20 sm:w-28 sm:h-28 bg-black/50 rounded-2xl p-2 flex items-center justify-center shadow-2xl border border-white/20 backdrop-blur-xl -skew-x-6 group-hover:-skew-x-12 transition-transform duration-500">
+            <div className="w-20 h-20 sm:w-28 sm:h-28 bg-white/5 rounded-2xl p-2 flex items-center justify-center shadow-lg border border-white/20 backdrop-blur-md -skew-x-6 group-hover:-skew-x-12 transition-transform duration-500">
               <div className="skew-x-6 group-hover:skew-x-12 w-full h-full rounded-xl overflow-hidden transition-transform duration-500">
                 <TeamFlag teamName={matchToDisplay.awayTeam} fallbackEmoji={matchToDisplay.awayFlag} className="w-full h-full object-cover" />
               </div>
