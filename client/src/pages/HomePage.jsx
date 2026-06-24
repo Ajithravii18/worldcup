@@ -344,7 +344,7 @@ export default function HomePage() {
                     </span>
                   </div>
 
-                  <div className="flex flex-row items-center gap-2 w-full md:w-auto">
+                  <div className="flex flex-wrap md:flex-nowrap items-center gap-2 w-full md:w-auto">
                     <div className="flex items-center gap-1 border border-white/10 rounded-xl overflow-hidden bg-black/40 p-1 backdrop-blur-md w-full md:w-auto">
                       {view === 'my' ? (
                         <>
@@ -446,11 +446,11 @@ export default function HomePage() {
                     </motion.button>
                     <div 
                       ref={scrollContainerRef}
-                      className="flex flex-col md:flex-row md:overflow-x-auto md:snap-x md:snap-mandatory scrollbar-none pb-8 pt-2 gap-4 md:gap-0"
+                      className="flex overflow-x-auto snap-x snap-mandatory scrollbar-none pb-8 pt-2"
                       onWheel={handleWheelScroll}
                     >
                       {matchPages.map((pageMatches, pageIndex) => (
-                        <div key={pageIndex} className="w-full md:min-w-full flex-shrink-0 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 px-1 md:snap-start">
+                        <div key={pageIndex} className="min-w-full flex-shrink-0 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 px-1 snap-start">
                           {pageMatches.map((match) => (
                             <MatchCard
                               key={match._id}
