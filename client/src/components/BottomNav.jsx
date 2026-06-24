@@ -27,7 +27,10 @@ export default function BottomNav({ view, setView, statusFilter, setStatusFilter
       {isMatchesView && (
         <div className="flex bg-black/40 border-b border-white/5">
           <button
-            onClick={() => setStatusFilter('upcoming')}
+            onClick={() => {
+              setStatusFilter('upcoming');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
             className={`flex-1 py-3 font-display text-sm uppercase tracking-widest transition-colors duration-150 border-b-2 relative ${
               statusFilter === 'upcoming'
                 ? 'text-primary border-primary bg-primary/5 font-black'
@@ -38,7 +41,10 @@ export default function BottomNav({ view, setView, statusFilter, setStatusFilter
           </button>
           <div className="w-[1px] bg-white/10 my-2" />
           <button
-            onClick={() => setStatusFilter('completed')}
+            onClick={() => {
+              setStatusFilter('completed');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
             className={`flex-1 py-3 font-display text-sm uppercase tracking-widest transition-colors duration-150 border-b-2 relative ${
               statusFilter === 'completed'
                 ? 'text-primary border-primary bg-primary/5 font-black'
@@ -57,7 +63,10 @@ export default function BottomNav({ view, setView, statusFilter, setStatusFilter
           return (
             <button
               key={tab.id}
-              onClick={() => setView(tab.id)}
+              onClick={() => {
+                setView(tab.id);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
               className={`flex flex-col items-center justify-center transition-all active:scale-95 duration-200 relative w-24 h-16 z-10 ${
                 isActive ? 'text-white' : 'text-outline-variant hover:text-white'
               }`}

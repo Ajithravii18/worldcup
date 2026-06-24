@@ -342,7 +342,10 @@ export default function HomePage() {
                   <div className="flex flex-row items-center gap-2 w-full md:w-auto">
                     <div className="hidden md:flex items-center gap-1 border border-white/10 rounded-xl overflow-hidden bg-black/40 p-1 backdrop-blur-md">
                       <button
-                        onClick={() => setStatusFilter('upcoming')}
+                        onClick={() => {
+                          setStatusFilter('upcoming');
+                          window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }}
                         className={`relative px-6 py-2.5 font-display text-xs uppercase tracking-widest transition-all duration-300 rounded-lg font-bold z-10 ${
                           statusFilter === 'upcoming' ? 'text-black' : 'text-outline-variant hover:text-white'
                         }`}
@@ -351,7 +354,10 @@ export default function HomePage() {
                         Open
                       </button>
                       <button
-                        onClick={() => setStatusFilter('completed')}
+                        onClick={() => {
+                          setStatusFilter('completed');
+                          window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }}
                         className={`relative px-6 py-2.5 font-display text-xs uppercase tracking-widest transition-all duration-300 rounded-lg font-bold z-10 ${
                           statusFilter === 'completed' ? 'text-black' : 'text-outline-variant hover:text-white'
                         }`}

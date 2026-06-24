@@ -10,14 +10,14 @@ export default function Footer({ setView }) {
   };
 
   return (
-    <footer className="w-full mt-auto pt-16 pb-28 md:pb-16 bg-gradient-to-t from-black via-black/95 to-transparent border-t border-white/10 relative z-10">
+    <footer className="w-full mt-auto pt-8 lg:pt-16 pb-28 md:pb-16 bg-gradient-to-t from-black via-black/95 to-transparent border-t border-white/10 relative z-10">
       <div className="max-w-[1600px] mx-auto px-4 md:px-8">
         
         {/* Main Grid Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-10 lg:gap-10 mb-12">
           
           {/* Column 1: Brand & About */}
-          <div className="flex flex-col text-left gap-4">
+          <div className="col-span-2 lg:col-span-1 flex flex-col text-left gap-4">
             <div className="flex items-center gap-3">
               <div className="w-9 h-9 rounded-xl bg-primary text-white flex items-center justify-center font-display text-xl font-black shadow-neon-primary">
                 <Icon name="sports_soccer" className="text-xl" />
@@ -48,7 +48,7 @@ export default function Footer({ setView }) {
           </div>
 
           {/* Column 2: Quick Links */}
-          <div className="flex flex-col text-left">
+          <div className="col-span-1 flex flex-col text-left">
             <h3 className="font-display text-sm tracking-[0.25em] text-white uppercase font-black mb-4 border-l-2 border-primary pl-3">
               Arena Navigation
             </h3>
@@ -72,7 +72,7 @@ export default function Footer({ setView }) {
           </div>
 
           {/* Column 3: Tournament Details */}
-          <div className="flex flex-col text-left">
+          <div className="col-span-1 flex flex-col text-left">
             <h3 className="font-display text-sm tracking-[0.25em] text-white uppercase font-black mb-4 border-l-2 border-primary pl-3">
               Tournament Info
             </h3>
@@ -97,7 +97,7 @@ export default function Footer({ setView }) {
           </div>
 
           {/* Column 4: Compete & Help */}
-          <div className="flex flex-col text-left gap-4">
+          <div className="col-span-2 lg:col-span-1 flex flex-col text-left gap-4">
             <h3 className="font-display text-sm tracking-[0.25em] text-white uppercase font-black mb-1 border-l-2 border-primary pl-3">
               Join the Arena
             </h3>
