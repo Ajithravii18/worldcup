@@ -44,7 +44,14 @@ export default function HeroLanding({ predictions = [] }) {
       {/* Premium Diagonal Highlight Line */}
       <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-primary/50 to-secondary/50 opacity-50" />
 
-      <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-6">
+      {/* Massive Typography Background Watermark to fill empty space */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden opacity-[0.03] mix-blend-overlay">
+        <h1 className="text-[15rem] sm:text-[20rem] lg:text-[28rem] font-black font-display tracking-tighter leading-none whitespace-nowrap text-white">
+          2026
+        </h1>
+      </div>
+
+      <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-6 h-full">
         
         {/* Left Side: Welcome and Player Details */}
         <div className="flex flex-col text-left gap-4 w-full lg:w-auto">
