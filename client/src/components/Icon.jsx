@@ -1,14 +1,14 @@
 import { 
-  GiSoccerBall, GiTrophyCup, GiSoccerKick, GiRadarSweep
+  GiSoccerBall, GiTrophyCup, GiSoccerKick, GiRadarSweep, GiEarthAmerica
 } from 'react-icons/gi';
 import { 
-  MdOutlineLeaderboard, MdStadium, MdHomeFilled, MdSensors 
+  MdOutlineLeaderboard, MdStadium, MdHomeFilled, MdSensors, MdGroups
 } from 'react-icons/md';
 import { 
   IoClose, IoPerson, IoSettings, IoLogOut, IoChevronDown, 
   IoArrowDown, IoArrowUp, IoChevronBack, IoChevronForward, 
   IoStatsChart, IoListOutline, IoCheckmarkCircle, IoLockClosed, 
-  IoLockOpen, IoEyeOff, IoMail, IoRemove, IoAdd, IoStar 
+  IoLockOpen, IoEyeOff, IoMail, IoRemove, IoAdd, IoStar, IoAnalytics
 } from 'react-icons/io5';
 
 const iconMap = {
@@ -39,7 +39,10 @@ const iconMap = {
   'mail': IoMail,
   'remove': IoRemove,
   'add': IoAdd,
-  'stars': IoStar
+  'stars': IoStar,
+  'public': GiEarthAmerica,
+  'analytics': IoAnalytics,
+  'groups': MdGroups
 };
 
 export default function Icon({ name, className, style }) {

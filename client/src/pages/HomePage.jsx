@@ -8,6 +8,7 @@ import HeroLanding from '../components/HeroLanding';
 import BottomNav from '../components/BottomNav';
 import api from '../api/axios';
 import confetti from 'canvas-confetti';
+import Icon from '../components/Icon';
 
 export default function HomePage() {
   const [view, setView] = useState('global');
@@ -317,7 +318,7 @@ export default function HomePage() {
                 {/* Filter and Sort Row */}
                 <div className="mb-6 flex flex-col md:flex-row items-center justify-between gap-4 p-4 animate-fade-in glass-panel rounded-xl shadow-subtle-card">
                   <div className="flex items-center gap-2 w-full md:w-auto">
-                    <span className="material-symbols-outlined text-primary">sensors</span>
+                    <Icon name="sensors" className="text-primary text-[20px]" />
                     <span className="font-label-md text-base uppercase tracking-widest text-on-surface">
                       {view === 'global' ? 'Global Match Feed' : 'Your Predictions'} <span className="text-on-surface-variant ml-2 text-sm">({filteredMatches.length})</span>
                     </span>
@@ -362,7 +363,7 @@ export default function HomePage() {
                           <option key={t} value={t}>{t}</option>
                         ))}
                       </select>
-                      <span className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant material-symbols-outlined text-[18px]">expand_more</span>
+                      <Icon name="expand_more" className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant text-[18px]" />
                     </div>
 
                     <button
@@ -372,7 +373,7 @@ export default function HomePage() {
                       }}
                       className="w-full sm:w-auto font-label-sm text-sm uppercase tracking-widest px-5 py-3 active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer bg-white border border-outline-variant/50 text-on-surface rounded-lg hover:border-primary hover:text-primary shadow-subtle-card"
                     >
-                      Date <span className="material-symbols-outlined text-[16px] text-primary">{dateSort === 'earliest' ? 'arrow_downward' : 'arrow_upward'}</span>
+                      Date <Icon name={dateSort === 'earliest' ? 'arrow_downward' : 'arrow_upward'} className="text-[16px] text-primary" />
                     </button>
                   </div>
                 </div>
@@ -383,7 +384,7 @@ export default function HomePage() {
                       onClick={scrollLeft}
                       className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-5 z-20 w-12 h-12 items-center justify-center opacity-0 group-hover:opacity-100 transition-all active:scale-95 bg-surface-container-lowest border border-outline-variant text-primary rounded-full hover:bg-primary hover:text-black shadow-neon-primary"
                     >
-                      <span className="material-symbols-outlined text-[28px]">chevron_left</span>
+                      <Icon name="chevron_left" className="text-[28px]" />
                     </button>
                     <div 
                       ref={scrollContainerRef}
@@ -407,7 +408,7 @@ export default function HomePage() {
                       onClick={scrollRight}
                       className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 z-20 w-12 h-12 items-center justify-center opacity-0 group-hover:opacity-100 transition-all active:scale-95 bg-surface-container-lowest border border-outline-variant text-primary rounded-full hover:bg-primary hover:text-black shadow-neon-primary"
                     >
-                      <span className="material-symbols-outlined text-[28px]">chevron_right</span>
+                      <Icon name="chevron_right" className="text-[28px]" />
                     </button>
                   </div>
                 ) : (

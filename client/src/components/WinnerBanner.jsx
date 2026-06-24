@@ -1,4 +1,5 @@
 import TeamFlag from './TeamFlag';
+import Icon from './Icon';
 
 /**
  * WinnerBanner — functions as a premium sports broadcast Live Score Card.
@@ -93,8 +94,8 @@ export default function WinnerBanner({ matches, predictions = [], currentTime = 
         {/* Header row */}
         <div className="flex items-center justify-between mb-6 border-b border-outline-variant/30 pb-4">
           <div className="flex items-center gap-4">
-            <span className="font-display-lg tracking-[0.1em] text-2xl text-on-surface font-bold uppercase drop-shadow-md mr-2 flex items-center gap-2">
-              <span className="material-symbols-outlined text-primary text-[28px]">sports_score</span>
+            <span className="font-display-lg tracking-[0.1em] text-2xl text-on-surface font-bold uppercase drop-shadow-sm mr-2 flex items-center gap-2">
+              <Icon name="sports_score" className="text-primary text-[28px]" />
               MATCH OF THE DAY
             </span>
             {isLive ? (

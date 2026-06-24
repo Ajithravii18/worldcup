@@ -32,8 +32,8 @@ export default function HeroLanding() {
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-[#00a859] drop-shadow-[0_0_15px_rgba(0,255,135,0.4)]">PREDICTIONS</span>
         </h1>
         
-        <p className={`text-on-surface-variant max-w-2xl text-base md:text-lg font-body-md mb-10 transition-all duration-700 delay-200 transform ${loaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
-          Step onto the digital pitch. Predict real match scores, outsmart the community, climb the leaderboard, and claim ultimate glory in the world's biggest tournament.
+        <p className={`text-base md:text-xl text-on-surface-variant font-body-md max-w-2xl mx-auto mb-10 leading-relaxed transition-all duration-700 delay-200 transform ${loaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
+          Experience the definitive football prediction platform. Lock in your scores, outsmart a global community of fans, and rise through the elite ranks to claim victory.
         </p>
 
         <div className={`flex flex-wrap items-center justify-center gap-4 md:gap-6 transition-all duration-700 delay-300 transform ${loaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
