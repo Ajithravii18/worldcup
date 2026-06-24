@@ -351,25 +351,27 @@ export default function HomePage() {
                           <button
                             onClick={() => {
                               setPredictionFilter('all');
+                              if (scrollContainerRef.current) scrollContainerRef.current.scrollLeft = 0;
                               window.scrollTo({ top: 0, behavior: 'smooth' });
                             }}
                             className={`relative flex-1 md:flex-none px-4 py-2.5 font-display text-[10px] sm:text-xs uppercase tracking-widest transition-all duration-300 rounded-lg font-bold z-10 ${
                               predictionFilter === 'all' ? 'text-black' : 'text-outline-variant hover:text-white'
                             }`}
                           >
-                            {predictionFilter === 'all' && <motion.div layoutId="filter-tab" className="absolute inset-0 bg-primary rounded-lg -z-10 shadow-neon-primary" transition={{ type: "spring", bounce: 0.2, duration: 0.6 }} />}
+                            {predictionFilter === 'all' && <motion.div layoutId="my-filter-tab" className="absolute inset-0 bg-primary rounded-lg -z-10 shadow-neon-primary" transition={{ type: "spring", bounce: 0.2, duration: 0.6 }} />}
                             All
                           </button>
                           <button
                             onClick={() => {
                               setPredictionFilter('correct');
+                              if (scrollContainerRef.current) scrollContainerRef.current.scrollLeft = 0;
                               window.scrollTo({ top: 0, behavior: 'smooth' });
                             }}
                             className={`relative flex-1 md:flex-none px-4 py-2.5 font-display text-[10px] sm:text-xs uppercase tracking-widest transition-all duration-300 rounded-lg font-bold z-10 ${
                               predictionFilter === 'correct' ? 'text-black' : 'text-outline-variant hover:text-white'
                             }`}
                           >
-                            {predictionFilter === 'correct' && <motion.div layoutId="filter-tab" className="absolute inset-0 bg-primary rounded-lg -z-10 shadow-neon-primary" transition={{ type: "spring", bounce: 0.2, duration: 0.6 }} />}
+                            {predictionFilter === 'correct' && <motion.div layoutId="my-filter-tab" className="absolute inset-0 bg-primary rounded-lg -z-10 shadow-neon-primary" transition={{ type: "spring", bounce: 0.2, duration: 0.6 }} />}
                             Correct
                           </button>
                         </>
@@ -378,25 +380,27 @@ export default function HomePage() {
                           <button
                             onClick={() => {
                               setStatusFilter('upcoming');
+                              if (scrollContainerRef.current) scrollContainerRef.current.scrollLeft = 0;
                               window.scrollTo({ top: 0, behavior: 'smooth' });
                             }}
                             className={`relative flex-1 md:flex-none px-4 py-2.5 font-display text-[10px] sm:text-xs uppercase tracking-widest transition-all duration-300 rounded-lg font-bold z-10 ${
                               statusFilter === 'upcoming' ? 'text-black' : 'text-outline-variant hover:text-white'
                             }`}
                           >
-                            {statusFilter === 'upcoming' && <motion.div layoutId="filter-tab" className="absolute inset-0 bg-primary rounded-lg -z-10 shadow-neon-primary" transition={{ type: "spring", bounce: 0.2, duration: 0.6 }} />}
+                            {statusFilter === 'upcoming' && <motion.div layoutId="global-filter-tab" className="absolute inset-0 bg-primary rounded-lg -z-10 shadow-neon-primary" transition={{ type: "spring", bounce: 0.2, duration: 0.6 }} />}
                             Open
                           </button>
                           <button
                             onClick={() => {
                               setStatusFilter('completed');
+                              if (scrollContainerRef.current) scrollContainerRef.current.scrollLeft = 0;
                               window.scrollTo({ top: 0, behavior: 'smooth' });
                             }}
                             className={`relative flex-1 md:flex-none px-4 py-2.5 font-display text-[10px] sm:text-xs uppercase tracking-widest transition-all duration-300 rounded-lg font-bold z-10 ${
                               statusFilter === 'completed' ? 'text-black' : 'text-outline-variant hover:text-white'
                             }`}
                           >
-                            {statusFilter === 'completed' && <motion.div layoutId="filter-tab" className="absolute inset-0 bg-primary rounded-lg -z-10 shadow-neon-primary" transition={{ type: "spring", bounce: 0.2, duration: 0.6 }} />}
+                            {statusFilter === 'completed' && <motion.div layoutId="global-filter-tab" className="absolute inset-0 bg-primary rounded-lg -z-10 shadow-neon-primary" transition={{ type: "spring", bounce: 0.2, duration: 0.6 }} />}
                             Results
                           </button>
                         </>
