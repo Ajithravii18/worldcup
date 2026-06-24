@@ -352,7 +352,6 @@ export default function HomePage() {
                             onClick={() => {
                               setPredictionFilter('all');
                               if (scrollContainerRef.current) scrollContainerRef.current.scrollLeft = 0;
-                              window.scrollTo({ top: 0, behavior: 'smooth' });
                             }}
                             className={`relative flex-1 md:flex-none px-4 py-2.5 font-display text-[10px] sm:text-xs uppercase tracking-widest transition-all duration-300 rounded-lg font-bold z-10 ${
                               predictionFilter === 'all' ? 'text-black' : 'text-outline-variant hover:text-white'
@@ -365,7 +364,6 @@ export default function HomePage() {
                             onClick={() => {
                               setPredictionFilter('correct');
                               if (scrollContainerRef.current) scrollContainerRef.current.scrollLeft = 0;
-                              window.scrollTo({ top: 0, behavior: 'smooth' });
                             }}
                             className={`relative flex-1 md:flex-none px-4 py-2.5 font-display text-[10px] sm:text-xs uppercase tracking-widest transition-all duration-300 rounded-lg font-bold z-10 ${
                               predictionFilter === 'correct' ? 'text-black' : 'text-outline-variant hover:text-white'
@@ -381,7 +379,6 @@ export default function HomePage() {
                             onClick={() => {
                               setStatusFilter('upcoming');
                               if (scrollContainerRef.current) scrollContainerRef.current.scrollLeft = 0;
-                              window.scrollTo({ top: 0, behavior: 'smooth' });
                             }}
                             className={`relative flex-1 md:flex-none px-4 py-2.5 font-display text-[10px] sm:text-xs uppercase tracking-widest transition-all duration-300 rounded-lg font-bold z-10 ${
                               statusFilter === 'upcoming' ? 'text-black' : 'text-outline-variant hover:text-white'
@@ -394,7 +391,6 @@ export default function HomePage() {
                             onClick={() => {
                               setStatusFilter('completed');
                               if (scrollContainerRef.current) scrollContainerRef.current.scrollLeft = 0;
-                              window.scrollTo({ top: 0, behavior: 'smooth' });
                             }}
                             className={`relative flex-1 md:flex-none px-4 py-2.5 font-display text-[10px] sm:text-xs uppercase tracking-widest transition-all duration-300 rounded-lg font-bold z-10 ${
                               statusFilter === 'completed' ? 'text-black' : 'text-outline-variant hover:text-white'

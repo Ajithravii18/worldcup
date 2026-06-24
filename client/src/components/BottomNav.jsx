@@ -26,7 +26,7 @@ export default function BottomNav({ view, setView, statusFilter, setStatusFilter
 
 
       {/* Main tab bar */}
-      <div className="flex justify-around items-center h-[90px] px-2 pb-6 pt-1 relative">
+      <div className="flex justify-around items-end pt-3 pb-8 sm:pb-10 px-2 min-h-[90px] relative">
         {tabs.map((tab) => {
           const isActive = view === tab.id;
           return (
