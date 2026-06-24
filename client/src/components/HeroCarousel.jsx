@@ -41,7 +41,7 @@ export default function HeroCarousel({ matches, globalPredictions, currentTime, 
       <div 
         ref={scrollRef}
         onScroll={handleScroll}
-        className="flex overflow-x-auto snap-x snap-mandatory scrollbar-none w-full pb-2 items-center"
+        className="flex overflow-x-auto snap-x snap-mandatory scrollbar-none w-full pb-2 items-stretch"
       >
         <div className="min-w-full flex-shrink-0 snap-center px-1">
           <HeroLanding />

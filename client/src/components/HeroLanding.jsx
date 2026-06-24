@@ -18,7 +18,7 @@ export default function HeroLanding() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: loaded ? 1 : 0, y: loaded ? 0 : 20 }}
       transition={{ duration: 0.5 }}
-      className="relative w-full rounded-[2rem] overflow-hidden mb-8 border border-white/10 shadow-[0_12px_40px_rgba(0,0,0,0.6)] bg-gradient-to-br from-white/5 via-black/60 to-primary/5 hover:border-primary/20 transition-colors duration-500 p-6 md:p-8"
+      className="relative w-full h-full rounded-[2rem] overflow-hidden border border-white/10 shadow-[0_12px_40px_rgba(0,0,0,0.6)] bg-gradient-to-br from-white/5 via-black/60 to-primary/5 hover:border-primary/20 transition-colors duration-500 p-6 md:p-8"
     >
       {/* Decorative Neon Glimmers */}
       <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl pointer-events-none" />

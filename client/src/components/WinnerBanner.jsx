@@ -96,7 +96,7 @@ export default function WinnerBanner({ matches, predictions = [], currentTime = 
       whileHover={{ scale: 1.01, y: -5 }}
       whileTap={{ scale: 0.99 }}
       onClick={() => onClick && onClick(matchToDisplay)}
-      className="relative overflow-hidden rounded-[2rem] cursor-pointer bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.5)] group"
+      className="relative w-full h-full overflow-hidden rounded-[2rem] cursor-pointer bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.5)] group"
     >
       {/* Decorative Background */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
