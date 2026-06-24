@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import Icon from './Icon';
 
 export default function HeroLanding() {
   const [loaded, setLoaded] = useState(false);
@@ -36,15 +38,15 @@ export default function HeroLanding() {
 
         <div className={`flex flex-wrap items-center justify-center gap-4 md:gap-6 transition-all duration-700 delay-300 transform ${loaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
           <div className="flex items-center gap-3 bg-surface-container-low/50 backdrop-blur-md px-5 py-3 border border-outline-variant/50 rounded-lg shadow-sm">
-            <span className="material-symbols-outlined text-primary text-[28px]">sports_soccer</span>
+            <Icon name="sports_soccer" className="text-primary text-[28px]" />
             <span className="font-label-md text-sm text-on-surface uppercase tracking-widest mt-0.5">Predict Scores</span>
           </div>
           <div className="flex items-center gap-3 bg-surface-container-low/50 backdrop-blur-md px-5 py-3 border border-outline-variant/50 rounded-lg shadow-sm">
-            <span className="material-symbols-outlined text-secondary text-[28px]">trophy</span>
+            <Icon name="trophy" className="text-secondary text-[28px]" />
             <span className="font-label-md text-sm text-on-surface uppercase tracking-widest mt-0.5">Win Points</span>
           </div>
           <div className="flex items-center gap-3 bg-surface-container-low/50 backdrop-blur-md px-5 py-3 border border-outline-variant/50 rounded-lg shadow-sm">
-            <span className="material-symbols-outlined text-[#ff3d00] text-[28px]">social_leaderboard</span>
+            <Icon name="social_leaderboard" className="text-[#ff3d00] text-[28px]" />
             <span className="font-label-md text-sm text-on-surface uppercase tracking-widest mt-0.5">Dominate Rankings</span>
           </div>
         </div>

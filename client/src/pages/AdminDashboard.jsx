@@ -60,7 +60,7 @@ export default function AdminDashboard() {
 
   return (
     <div className="flex-1 pt-24 pb-36 px-4 max-w-7xl mx-auto w-full">
-      <div className="bg-white/80 backdrop-blur-md rounded-3xl p-6 md:p-10 shadow-xl border border-white/20">
+      <div className="bg-white/80 backdrop-blur-md rounded-3xl p-6 md:p-10 shadow-xl border border-outline-variant/30">
         <div className="mb-6">
           <button 
             onClick={() => navigate('/app')}

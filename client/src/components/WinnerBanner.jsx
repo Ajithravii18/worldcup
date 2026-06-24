@@ -91,7 +91,7 @@ export default function WinnerBanner({ matches, predictions = [], currentTime = 
 
       <div className="relative z-10 p-5 sm:p-8">
         {/* Header row */}
-        <div className="flex items-center justify-between mb-6 border-b border-white/10 pb-4">
+        <div className="flex items-center justify-between mb-6 border-b border-outline-variant/30 pb-4">
           <div className="flex items-center gap-4">
             <span className="font-display-lg tracking-[0.1em] text-2xl text-on-surface font-bold uppercase drop-shadow-md mr-2 flex items-center gap-2">
               <span className="material-symbols-outlined text-primary text-[28px]">sports_score</span>
@@ -108,20 +108,20 @@ export default function WinnerBanner({ matches, predictions = [], currentTime = 
                 </span>
               </div>
             ) : (
-              <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-1 rounded">
+              <div className="flex items-center gap-2 bg-white/5 border border-outline-variant/30 px-3 py-1 rounded">
                 <span className="font-label-md tracking-widest text-sm text-on-surface font-bold uppercase hidden sm:block">
                   {isDraw ? 'MATCH DRAWN' : 'FINAL SCORE'}
                 </span>
               </div>
             )}
           </div>
-          <span className="text-xs text-on-surface font-label-md uppercase tracking-widest bg-black/40 border border-white/10 px-4 py-1.5 rounded shadow-inner hidden sm:block">
+          <span className="text-xs text-on-surface font-label-md uppercase tracking-widest bg-white border border-outline-variant/30 px-4 py-1.5 rounded shadow-subtle-card hidden sm:block">
             {matchToDisplay.group}
           </span>
         </div>
 
         {/* Stadium Scoreboard Score display */}
-        <div className="flex items-center justify-between bg-black/40 rounded-xl p-4 sm:p-8 relative backdrop-blur-md border border-white/10 shadow-[inset_0_0_20px_rgba(0,0,0,0.8)]">
+        <div className="flex items-center justify-between bg-white rounded-xl p-4 sm:p-8 relative backdrop-blur-md border border-outline-variant/30 shadow-[inset_0_0_20px_rgba(0,0,0,0.8)]">
           
           {/* Home team */}
           <div className="flex-1 flex flex-col items-center gap-3 sm:gap-5 z-10">
@@ -132,7 +132,7 @@ export default function WinnerBanner({ matches, predictions = [], currentTime = 
           </div>
 
           {/* Score */}
-          <div className="flex flex-col items-center justify-center mx-4 sm:mx-8 z-10 bg-black/80 rounded-lg sm:rounded-xl px-5 sm:px-10 py-3 sm:py-5 border-2 border-outline-variant/30 shadow-inner shrink-0">
+          <div className="flex flex-col items-center justify-center mx-4 sm:mx-8 z-10 bg-white rounded-lg sm:rounded-xl px-5 sm:px-10 py-3 sm:py-5 border-2 border-outline-variant/30 shadow-subtle-card shrink-0">
             <div className="flex items-center justify-center gap-3 sm:gap-8">
               <span className={`font-display-lg text-5xl sm:text-8xl font-bold ${isLive ? 'text-primary drop-shadow-[0_0_15px_rgba(0,255,135,0.6)]' : matchToDisplay.homeScore > matchToDisplay.awayScore ? 'text-on-surface' : matchToDisplay.homeScore < matchToDisplay.awayScore ? 'text-on-surface-variant' : 'text-on-surface'}`}>
                 {matchToDisplay.homeScore ?? 0}
@@ -155,7 +155,7 @@ export default function WinnerBanner({ matches, predictions = [], currentTime = 
 
         {/* Goal Scorers */}
         {(homeScorers.length > 0 || awayScorers.length > 0) && (
-          <div className="flex justify-between items-start mt-4 px-2 sm:px-8 relative z-10 border-t border-white/5 pt-4">
+          <div className="flex justify-between items-start mt-4 px-2 sm:px-8 relative z-10 border-t border-outline-variant/30 pt-4">
             <div className="flex-1 flex flex-col gap-1.5 text-on-surface text-sm sm:text-base font-medium">
               {homeScorers.map(s => (
                 <div key={s.player} className="flex items-center gap-2">
@@ -181,7 +181,7 @@ export default function WinnerBanner({ matches, predictions = [], currentTime = 
         {/* Completed Match Extras */}
         {!isLive && (
           <div className="mt-8 flex flex-col items-center">
-            <div className="w-full pt-5 border-t border-white/10 text-center text-xs bg-black/20 rounded-xl p-5 border border-outline-variant/20">
+            <div className="w-full pt-5 border-t border-outline-variant/30 text-center text-xs bg-white rounded-xl p-5 border border-outline-variant/20">
               <span className="text-secondary font-label-md uppercase tracking-[0.2em] block mb-4 text-sm drop-shadow-md">
                 CORRECT SCORE PREDICTIONS
               </span>
@@ -198,7 +198,7 @@ export default function WinnerBanner({ matches, predictions = [], currentTime = 
                   ))}
                 </div>
               ) : (
-                <span className="text-on-surface-variant uppercase tracking-widest font-label-md bg-black/40 rounded px-5 py-3 border border-outline-variant/30 inline-block shadow-inner">
+                <span className="text-on-surface-variant uppercase tracking-widest font-label-md bg-white rounded px-5 py-3 border border-outline-variant/30 inline-block shadow-subtle-card">
                   NO ONE PREDICTED THIS SCORE CORRECTLY
                 </span>
               )}

@@ -139,7 +139,7 @@ export default function ProfileModal({ isOpen, onClose }) {
   return (
     <div
       onClick={(e) => { if (e.target === e.currentTarget) handleClose(); }}
-      className={`fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-sm transition-opacity duration-300 ${animate ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+      className={`fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-white backdrop-blur-sm transition-opacity duration-300 ${animate ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
     >
       <div
         className={`w-full max-w-lg max-h-[90vh] overflow-y-auto scrollbar-none rounded-2xl p-6 sm:p-8 relative transition-all duration-300 glass-panel shadow-xl border border-outline-variant/30 ${animate ? 'translate-y-0 scale-100' : 'translate-y-4 scale-95'}`}
@@ -149,7 +149,7 @@ export default function ProfileModal({ isOpen, onClose }) {
 
         <button
           onClick={handleClose}
-          className="absolute right-6 top-6 w-10 h-10 rounded-full border border-outline-variant/30 bg-black/40 hover:bg-white/10 flex items-center justify-center text-on-surface-variant hover:text-white transition-colors text-sm font-bold z-10"
+          className="absolute right-6 top-6 w-10 h-10 rounded-full border border-outline-variant/30 bg-white hover:bg-surface-variant flex items-center justify-center text-on-surface-variant hover:text-white transition-colors text-sm font-bold z-10"
         >
           <span className="material-symbols-outlined text-[20px]">close</span>
         </button>
@@ -182,7 +182,7 @@ export default function ProfileModal({ isOpen, onClose }) {
               placeholder="Your display name"
               required
               maxLength={50}
-              className="w-full bg-black/40 border border-outline-variant/50 text-on-surface rounded-xl px-5 py-4 outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all font-body-md shadow-inner"
+              className="w-full bg-white border border-outline-variant/50 text-on-surface rounded-xl px-5 py-4 outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all font-body-md shadow-subtle-card"
             />
           </div>
 
@@ -191,7 +191,7 @@ export default function ProfileModal({ isOpen, onClose }) {
               Select Avatar
             </label>
             
-            <div className="grid grid-cols-4 gap-3 max-h-48 overflow-y-auto p-2 scrollbar-none border border-outline-variant/30 rounded-xl bg-black/20 shadow-inner">
+            <div className="grid grid-cols-4 gap-3 max-h-48 overflow-y-auto p-2 scrollbar-none border border-outline-variant/30 rounded-xl bg-white shadow-subtle-card">
               {AVATARS.map((av) => {
                 const isSelected = selectedAvatar === av.id;
                 return (
@@ -202,7 +202,7 @@ export default function ProfileModal({ isOpen, onClose }) {
                     className={`flex flex-col items-center justify-center p-3 rounded-xl transition-all duration-200 border active:scale-95 ${
                       isSelected 
                         ? 'border-primary bg-primary/10 shadow-neon-primary scale-[1.02] z-10' 
-                        : 'border-transparent bg-transparent hover:border-outline-variant/50 hover:bg-white/5'
+                        : 'border-transparent bg-transparent hover:border-outline-variant/50 hover:bg-surface-variant'
                     }`}
                   >
                     <UserAvatar avatarId={av.id} className={`w-12 h-12 object-cover rounded-full border-2 ${isSelected ? 'border-primary drop-shadow-[0_0_8px_rgba(0,255,135,0.8)]' : 'border-outline-variant/50'}`} />
@@ -229,7 +229,7 @@ export default function ProfileModal({ isOpen, onClose }) {
           </button>
 
           {pwSection && (
-            <div className="mt-6 animate-fade-in bg-black/30 p-5 rounded-xl border border-outline-variant/20 shadow-inner">
+            <div className="mt-6 animate-fade-in bg-white p-5 rounded-xl border border-outline-variant/20 shadow-subtle-card">
               {pwError && (
                 <div className="mb-4 p-3 rounded font-label-md text-xs text-error uppercase tracking-widest bg-error/10 border border-error/30 shadow-neon-accent">
                   ⚠️ {pwError}
@@ -249,7 +249,7 @@ export default function ProfileModal({ isOpen, onClose }) {
                       value={newPassword}
                       onChange={(e) => setNewPassword(e.target.value)}
                       placeholder="New Password (min 6 chars)"
-                      className="w-full bg-black/60 border border-outline-variant/50 text-on-surface rounded-lg px-5 py-4 outline-none focus:border-primary transition-all font-body-md"
+                      className="w-full bg-white border border-outline-variant/50 text-on-surface rounded-lg px-5 py-4 outline-none focus:border-primary transition-all font-body-md"
                     />
                   </div>
                   <button onClick={handleSendPwOtp} disabled={pwLoading}
@@ -266,7 +266,7 @@ export default function ProfileModal({ isOpen, onClose }) {
                       <input key={i} ref={pwOtpRefs[i]} type="text" inputMode="numeric" maxLength={1} value={d}
                         onChange={(e) => handlePwOtpInput(i, e.target.value)}
                         onKeyDown={(e) => handlePwOtpKeyDown(i, e)}
-                        className={`w-12 h-14 text-center text-3xl font-display-lg bg-black/60 rounded-lg border-2 outline-none transition-all shadow-inner ${d ? 'border-primary text-primary drop-shadow-[0_0_5px_rgba(0,255,135,0.5)]' : 'border-outline-variant/30 text-on-surface focus:border-primary/50'}`}
+                        className={`w-12 h-14 text-center text-3xl font-display-lg bg-white rounded-lg border-2 outline-none transition-all shadow-subtle-card ${d ? 'border-primary text-primary drop-shadow-[0_0_5px_rgba(0,255,135,0.5)]' : 'border-outline-variant/30 text-on-surface focus:border-primary/50'}`}
                       />
                     ))}
                   </div>

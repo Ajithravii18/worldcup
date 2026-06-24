@@ -12,7 +12,7 @@ export default function TeamFlag({ teamName, fallbackEmoji, className = "w-10 h-
       <img
         src={url}
         alt={teamName}
-        className={`${className} object-cover rounded shadow-md border border-white/20 inline-block`}
+        className={`${className} object-cover rounded shadow-md border border-outline-variant/30 inline-block`}
         onError={(e) => {
           // Fallback to emoji if image fails to load
           e.target.style.display = 'none';

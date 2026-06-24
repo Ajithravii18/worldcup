@@ -194,7 +194,7 @@ export default function MatchDetailModal({
   return (
     <div
       onClick={handleBackdropClick}
-      className={`fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-sm transition-opacity duration-300 ${
+      className={`fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-white backdrop-blur-sm transition-opacity duration-300 ${
         animate ? 'opacity-100' : 'opacity-0 pointer-events-none'
       }`}
     >
@@ -206,7 +206,7 @@ export default function MatchDetailModal({
 
         <button
           onClick={handleClose}
-          className="absolute right-5 top-5 w-10 h-10 rounded-full border border-outline-variant/30 bg-black/40 hover:bg-white/10 flex items-center justify-center text-on-surface-variant hover:text-white transition-colors text-sm font-bold z-10"
+          className="absolute right-5 top-5 w-10 h-10 rounded-full border border-outline-variant/30 bg-white hover:bg-surface-variant flex items-center justify-center text-on-surface-variant hover:text-white transition-colors text-sm font-bold z-10"
         >
           <span className="material-symbols-outlined text-[20px]">close</span>
         </button>
@@ -223,13 +223,13 @@ export default function MatchDetailModal({
           <div className="px-2 pb-4">
             <div className="flex items-center justify-center gap-4 sm:gap-6 py-4">
               <div className="flex-1 text-center flex flex-col items-center">
-                <div className="w-20 h-14 rounded bg-black/40 border border-outline-variant/50 flex items-center justify-center overflow-hidden shadow-md mb-3">
+                <div className="w-20 h-14 rounded bg-white border border-outline-variant/50 flex items-center justify-center overflow-hidden shadow-md mb-3">
                   <TeamFlag teamName={match.homeTeam} fallbackEmoji={match.homeFlag} className="w-full h-full object-cover" />
                 </div>
                 <div className="font-headline-md text-lg text-on-surface font-bold tracking-wide uppercase w-full line-clamp-2">{match.homeTeam}</div>
               </div>
               <div className="px-4 text-center flex-shrink-0">
-                <div className="font-display-lg text-5xl text-on-surface px-6 py-3 rounded-lg bg-black/60 border-2 border-outline-variant/30 shadow-inner tracking-widest min-w-[120px]">
+                <div className="font-display-lg text-5xl text-on-surface px-6 py-3 rounded-lg bg-white border-2 border-outline-variant/30 shadow-subtle-card tracking-widest min-w-[120px]">
                   {match.homeScore} - {match.awayScore}
                 </div>
                 {match.winner && (
@@ -239,7 +239,7 @@ export default function MatchDetailModal({
                 )}
               </div>
               <div className="flex-1 text-center flex flex-col items-center">
-                <div className="w-20 h-14 rounded bg-black/40 border border-outline-variant/50 flex items-center justify-center overflow-hidden shadow-md mb-3">
+                <div className="w-20 h-14 rounded bg-white border border-outline-variant/50 flex items-center justify-center overflow-hidden shadow-md mb-3">
                   <TeamFlag teamName={match.awayTeam} fallbackEmoji={match.awayFlag} className="w-full h-full object-cover" />
                 </div>
                 <div className="font-headline-md text-lg text-on-surface font-bold tracking-wide uppercase w-full line-clamp-2">{match.awayTeam}</div>
@@ -259,7 +259,7 @@ export default function MatchDetailModal({
                     <span className="text-outline-variant">DRAW {drawPct}%</span>
                     <span className="text-[#ff3d00]">{match.awayTeam} {awayPct}%</span>
                   </div>
-                  <div className="h-3 w-full flex rounded overflow-hidden bg-black/40 border border-outline-variant/30 shadow-inner">
+                  <div className="h-3 w-full flex rounded overflow-hidden bg-white border border-outline-variant/30 shadow-subtle-card">
                     {homePct > 0 && <div className="bg-secondary transition-all duration-500 shadow-[0_0_8px_rgba(255,215,0,0.5)]" style={{ width: `${homePct}%` }} />}
                     {drawPct > 0 && <div className="bg-outline-variant transition-all duration-500" style={{ width: `${drawPct}%` }} />}
                     {awayPct > 0 && <div className="bg-[#ff3d00] transition-all duration-500 shadow-[0_0_8px_rgba(255,61,0,0.5)]" style={{ width: `${awayPct}%` }} />}
@@ -267,14 +267,14 @@ export default function MatchDetailModal({
                 </div>
                 <div className="max-h-56 overflow-y-auto space-y-3 pr-2 scrollbar-none">
                   {globalPreds.map((pred) => (
-                    <div key={pred._id} className="flex items-center justify-between glass-panel rounded-lg px-5 py-3 shadow-sm border border-outline-variant/20 hover:border-white/10 transition-colors">
+                    <div key={pred._id} className="flex items-center justify-between glass-panel rounded-lg px-5 py-3 shadow-sm border border-outline-variant/20 hover:border-outline-variant/30 transition-colors">
                       <div className="flex items-center gap-4">
                         <UserAvatar avatarId={pred.user?.avatar} className="w-10 h-10 flex-shrink-0 border-2 border-outline-variant/30 rounded-full object-cover shadow-sm" />
                         <span className="text-base text-on-surface font-headline-md font-bold truncate max-w-[150px]">
                           {pred.user?.name || 'Unknown'}
                         </span>
                       </div>
-                      <div className="font-display-lg text-2xl tracking-widest text-primary bg-black/40 px-4 py-1 rounded border border-outline-variant/30 shadow-inner">
+                      <div className="font-display-lg text-2xl tracking-widest text-primary bg-white px-4 py-1 rounded border border-outline-variant/30 shadow-subtle-card">
                         {pred.homeGoals} - {pred.awayGoals}
                       </div>
                     </div>
@@ -300,7 +300,7 @@ export default function MatchDetailModal({
                   </span>
                 </div>
 
-                <div className="flex items-start justify-between gap-4 py-6 bg-black/20 rounded-2xl border border-outline-variant/30 mb-8 shadow-inner relative overflow-hidden px-6">
+                <div className="flex items-start justify-between gap-4 py-6 bg-white rounded-2xl border border-outline-variant/30 mb-8 shadow-subtle-card relative overflow-hidden px-6">
                   <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-50"></div>
                   
                   <GoalSelector
@@ -354,7 +354,7 @@ export default function MatchDetailModal({
               // Global Mode / Viewing others
               <>
                 {prediction && (
-                  <div className="mb-8 bg-primary/5 border border-primary/30 rounded-2xl p-5 flex flex-col justify-center items-center shadow-inner relative overflow-hidden">
+                  <div className="mb-8 bg-primary/5 border border-primary/30 rounded-2xl p-5 flex flex-col justify-center items-center shadow-subtle-card relative overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent opacity-50 animate-pulse-fast"></div>
                     <span className="font-label-md text-xs text-primary uppercase tracking-[0.2em] mb-3 flex items-center gap-2 drop-shadow-sm">
                       <span className="material-symbols-outlined text-[16px]">lock</span> LOCKED IN PREDICTION
@@ -367,7 +367,7 @@ export default function MatchDetailModal({
 
                 <div className="flex items-center justify-center gap-4 sm:gap-6 py-4">
                   <div className="flex-1 text-center flex flex-col items-center">
-                    <div className="w-20 h-14 rounded bg-black/40 border border-outline-variant/50 flex items-center justify-center overflow-hidden shadow-md mb-3">
+                    <div className="w-20 h-14 rounded bg-white border border-outline-variant/50 flex items-center justify-center overflow-hidden shadow-md mb-3">
                       <TeamFlag teamName={match.homeTeam} fallbackEmoji={match.homeFlag} className="w-full h-full object-cover" />
                     </div>
                     <div className="font-headline-md text-base text-on-surface font-bold tracking-wide uppercase w-full line-clamp-2">{match.homeTeam}</div>
@@ -379,7 +379,7 @@ export default function MatchDetailModal({
                     )}
                   </div>
                   <div className="flex-1 text-center flex flex-col items-center">
-                    <div className="w-20 h-14 rounded bg-black/40 border border-outline-variant/50 flex items-center justify-center overflow-hidden shadow-md mb-3">
+                    <div className="w-20 h-14 rounded bg-white border border-outline-variant/50 flex items-center justify-center overflow-hidden shadow-md mb-3">
                       <TeamFlag teamName={match.awayTeam} fallbackEmoji={match.awayFlag} className="w-full h-full object-cover" />
                     </div>
                     <div className="font-headline-md text-base text-on-surface font-bold tracking-wide uppercase w-full line-clamp-2">{match.awayTeam}</div>
@@ -398,7 +398,7 @@ export default function MatchDetailModal({
                         <span className="text-outline-variant">DRAW {drawPct}%</span>
                         <span className="text-[#ff3d00]">{match.awayTeam} {awayPct}%</span>
                       </div>
-                      <div className="h-3 w-full flex rounded overflow-hidden bg-black/40 border border-outline-variant/30 shadow-inner">
+                      <div className="h-3 w-full flex rounded overflow-hidden bg-white border border-outline-variant/30 shadow-subtle-card">
                         {homePct > 0 && <div className="bg-secondary transition-all duration-500 shadow-[0_0_8px_rgba(255,215,0,0.5)]" style={{ width: `${homePct}%` }} />}
                         {drawPct > 0 && <div className="bg-outline-variant transition-all duration-500" style={{ width: `${drawPct}%` }} />}
                         {awayPct > 0 && <div className="bg-[#ff3d00] transition-all duration-500 shadow-[0_0_8px_rgba(255,61,0,0.5)]" style={{ width: `${awayPct}%` }} />}
@@ -406,14 +406,14 @@ export default function MatchDetailModal({
                     </div>
                     <div className="max-h-56 overflow-y-auto space-y-3 pr-2 scrollbar-none">
                       {globalPreds.map((pred) => (
-                        <div key={pred._id} className="flex items-center justify-between glass-panel rounded-lg px-5 py-3 shadow-sm border border-outline-variant/20 hover:border-white/10 transition-colors">
+                        <div key={pred._id} className="flex items-center justify-between glass-panel rounded-lg px-5 py-3 shadow-sm border border-outline-variant/20 hover:border-outline-variant/30 transition-colors">
                           <div className="flex items-center gap-4">
                             <UserAvatar avatarId={pred.user?.avatar} className="w-10 h-10 flex-shrink-0 border-2 border-outline-variant/30 rounded-full object-cover shadow-sm" />
                             <span className="text-base text-on-surface font-headline-md font-bold truncate max-w-[150px]">
                               {pred.user?.name || 'Unknown'}
                             </span>
                           </div>
-                          <div className="font-display-lg text-2xl tracking-widest text-primary bg-black/40 px-4 py-1 rounded border border-outline-variant/30 shadow-inner">
+                          <div className="font-display-lg text-2xl tracking-widest text-primary bg-white px-4 py-1 rounded border border-outline-variant/30 shadow-subtle-card">
                             {pred.homeGoals} - {pred.awayGoals}
                           </div>
                         </div>
@@ -421,7 +421,7 @@ export default function MatchDetailModal({
                     </div>
                   </div>
                 ) : (
-                  <div className="text-center text-on-surface-variant text-xs py-10 uppercase tracking-[0.2em] font-label-md bg-black/20 border border-dashed border-outline-variant/30 rounded-xl mt-6">
+                  <div className="text-center text-on-surface-variant text-xs py-10 uppercase tracking-[0.2em] font-label-md bg-white border border-dashed border-outline-variant/30 rounded-xl mt-6">
                     NO PREDICTIONS YET. BE THE FIRST.
                   </div>
                 )}
@@ -435,7 +435,7 @@ export default function MatchDetailModal({
                   <>
                     <div className="flex items-center justify-center gap-4 py-8">
                       <div className="flex-1 text-center flex flex-col items-center opacity-50 grayscale-[30%]">
-                        <div className="w-20 h-14 rounded bg-black/40 border border-outline-variant/50 flex items-center justify-center overflow-hidden shadow-md mb-3">
+                        <div className="w-20 h-14 rounded bg-white border border-outline-variant/50 flex items-center justify-center overflow-hidden shadow-md mb-3">
                           <TeamFlag teamName={match.homeTeam} fallbackEmoji={match.homeFlag} className="w-full h-full object-cover" />
                         </div>
                         <div className="font-headline-md text-base text-on-surface font-bold tracking-wide uppercase w-full line-clamp-2">{match.homeTeam}</div>
@@ -444,13 +444,13 @@ export default function MatchDetailModal({
                         <div className="font-headline-md text-3xl text-outline-variant/50 italic font-light">VS</div>
                       </div>
                       <div className="flex-1 text-center flex flex-col items-center opacity-50 grayscale-[30%]">
-                        <div className="w-20 h-14 rounded bg-black/40 border border-outline-variant/50 flex items-center justify-center overflow-hidden shadow-md mb-3">
+                        <div className="w-20 h-14 rounded bg-white border border-outline-variant/50 flex items-center justify-center overflow-hidden shadow-md mb-3">
                           <TeamFlag teamName={match.awayTeam} fallbackEmoji={match.awayFlag} className="w-full h-full object-cover" />
                         </div>
                         <div className="font-headline-md text-base text-on-surface font-bold tracking-wide uppercase w-full line-clamp-2">{match.awayTeam}</div>
                       </div>
                     </div>
-                    <div className="flex items-center justify-center gap-2 px-6 py-4 rounded-lg text-sm text-on-surface-variant font-label-md uppercase tracking-[0.2em] bg-black/30 border border-outline-variant/30 text-center mb-4">
+                    <div className="flex items-center justify-center gap-2 px-6 py-4 rounded-lg text-sm text-on-surface-variant font-label-md uppercase tracking-[0.2em] bg-white border border-outline-variant/30 text-center mb-4">
                       PREDICTIONS OPEN {timeUntilWindow()} BEFORE KICKOFF
                     </div>
                   </>
@@ -467,8 +467,8 @@ export default function MatchDetailModal({
                       <div className="flex-1 text-center">
                         <div className="font-headline-md text-xl text-on-surface font-bold uppercase tracking-wide">{match.homeTeam}</div>
                       </div>
-                      <div className="px-8 py-4 bg-black/60 border border-outline-variant/40 rounded-xl shadow-inner text-center min-w-[140px]">
-                        <div className="font-display-lg text-6xl tracking-widest text-primary font-bold drop-shadow-[0_0_8px_rgba(0,255,135,0.4)]">
+                      <div className="px-8 py-4 bg-white border border-outline-variant/40 rounded-xl shadow-subtle-card text-center min-w-[140px]">
+                        <div className="font-display-lg text-6xl tracking-widest text-primary font-bold drop-shadow-sm">
                           {prediction.homeGoals} - {prediction.awayGoals}
                         </div>
                       </div>
@@ -488,7 +488,7 @@ export default function MatchDetailModal({
                             <span className="text-outline-variant">DRAW {drawPct}%</span>
                             <span className="text-[#ff3d00]">{match.awayTeam} {awayPct}%</span>
                           </div>
-                          <div className="h-3 w-full flex rounded overflow-hidden bg-black/40 border border-outline-variant/30 shadow-inner">
+                          <div className="h-3 w-full flex rounded overflow-hidden bg-white border border-outline-variant/30 shadow-subtle-card">
                             {homePct > 0 && <div className="bg-secondary transition-all duration-500 shadow-[0_0_8px_rgba(255,215,0,0.5)]" style={{ width: `${homePct}%` }} />}
                             {drawPct > 0 && <div className="bg-outline-variant transition-all duration-500" style={{ width: `${drawPct}%` }} />}
                             {awayPct > 0 && <div className="bg-[#ff3d00] transition-all duration-500 shadow-[0_0_8px_rgba(255,61,0,0.5)]" style={{ width: `${awayPct}%` }} />}
@@ -502,13 +502,13 @@ export default function MatchDetailModal({
                 {isLocked && (
                   <>
                     <div className="py-2 flex items-center justify-center mb-6">
-                      <span className="font-label-md text-xs text-on-surface-variant uppercase tracking-[0.2em] bg-black/40 px-5 py-2 rounded border border-outline-variant/30 font-bold">
+                      <span className="font-label-md text-xs text-on-surface-variant uppercase tracking-[0.2em] bg-white px-5 py-2 rounded border border-outline-variant/30 font-bold">
                         MATCH STARTED — LOCKED
                       </span>
                     </div>
                     <div className="flex items-center justify-center gap-4 py-6">
                       <div className="flex-1 text-center flex flex-col items-center opacity-80">
-                        <div className="w-20 h-14 rounded bg-black/40 border border-outline-variant/50 flex items-center justify-center overflow-hidden shadow-md mb-3">
+                        <div className="w-20 h-14 rounded bg-white border border-outline-variant/50 flex items-center justify-center overflow-hidden shadow-md mb-3">
                           <TeamFlag teamName={match.homeTeam} fallbackEmoji={match.homeFlag} className="w-full h-full object-cover" />
                         </div>
                         <div className="font-headline-md text-base text-on-surface font-bold tracking-wide uppercase w-full line-clamp-2">{match.homeTeam}</div>
@@ -516,7 +516,7 @@ export default function MatchDetailModal({
                       
                       {match.status === 'live' ? (
                         <div className="px-4 text-center flex-shrink-0 flex flex-col items-center">
-                          <div className="font-display-lg tracking-widest text-5xl text-primary px-6 py-3 rounded-lg border-2 border-primary/40 bg-black/60 flex items-center gap-4 font-bold shadow-inner drop-shadow-[0_0_10px_rgba(0,255,135,0.4)]">
+                          <div className="font-display-lg tracking-widest text-5xl text-primary px-6 py-3 rounded-lg border-2 border-primary/40 bg-white flex items-center gap-4 font-bold shadow-subtle-card drop-shadow-[0_0_10px_rgba(0,255,135,0.4)]">
                             <span className="w-3 h-3 rounded-full bg-primary animate-pulse shadow-neon-primary"></span>
                             <span>{match.homeScore ?? 0} - {match.awayScore ?? 0}</span>
                           </div>
@@ -531,7 +531,7 @@ export default function MatchDetailModal({
                       )}
 
                       <div className="flex-1 text-center flex flex-col items-center opacity-80">
-                        <div className="w-20 h-14 rounded bg-black/40 border border-outline-variant/50 flex items-center justify-center overflow-hidden shadow-md mb-3">
+                        <div className="w-20 h-14 rounded bg-white border border-outline-variant/50 flex items-center justify-center overflow-hidden shadow-md mb-3">
                           <TeamFlag teamName={match.awayTeam} fallbackEmoji={match.awayFlag} className="w-full h-full object-cover" />
                         </div>
                         <div className="font-headline-md text-base text-on-surface font-bold tracking-wide uppercase w-full line-clamp-2">{match.awayTeam}</div>
@@ -539,7 +539,7 @@ export default function MatchDetailModal({
                     </div>
 
                     {user?.role === 'admin' && match.status === 'live' && (
-                      <div className="mt-8 border-t border-outline-variant/30 pt-6 text-center bg-black/20 p-4 rounded-xl">
+                      <div className="mt-8 border-t border-outline-variant/30 pt-6 text-center bg-white p-4 rounded-xl">
                         <span className="font-label-md text-xs text-[#ff3d00] uppercase tracking-[0.2em] font-bold block mb-4">
                           Simulate Live Events (Admin)
                         </span>
@@ -549,14 +549,14 @@ export default function MatchDetailModal({
                             <button
                               onClick={() => handleUpdateLiveScore((match.homeScore ?? 0) - 1, match.awayScore ?? 0)}
                               disabled={(match.homeScore ?? 0) <= 0}
-                              className="w-10 h-10 rounded border border-outline-variant/50 bg-black/40 hover:bg-white/10 flex items-center justify-center font-bold text-on-surface active:scale-95 transition-all text-xl"
+                              className="w-10 h-10 rounded border border-outline-variant/50 bg-white hover:bg-surface-variant flex items-center justify-center font-bold text-on-surface active:scale-95 transition-all text-xl"
                             >
                               -
                             </button>
                             <span className="font-display-lg text-3xl tracking-tighter w-8 text-primary">{match.homeScore ?? 0}</span>
                             <button
                               onClick={() => handleUpdateLiveScore((match.homeScore ?? 0) + 1, match.awayScore ?? 0)}
-                              className="w-10 h-10 rounded border border-outline-variant/50 bg-black/40 hover:bg-white/10 flex items-center justify-center font-bold text-on-surface active:scale-95 transition-all text-xl"
+                              className="w-10 h-10 rounded border border-outline-variant/50 bg-white hover:bg-surface-variant flex items-center justify-center font-bold text-on-surface active:scale-95 transition-all text-xl"
                             >
                               +
                             </button>
@@ -568,14 +568,14 @@ export default function MatchDetailModal({
                             <button
                               onClick={() => handleUpdateLiveScore(match.homeScore ?? 0, (match.awayScore ?? 0) - 1)}
                               disabled={(match.awayScore ?? 0) <= 0}
-                              className="w-10 h-10 rounded border border-outline-variant/50 bg-black/40 hover:bg-white/10 flex items-center justify-center font-bold text-on-surface active:scale-95 transition-all text-xl"
+                              className="w-10 h-10 rounded border border-outline-variant/50 bg-white hover:bg-surface-variant flex items-center justify-center font-bold text-on-surface active:scale-95 transition-all text-xl"
                             >
                               -
                             </button>
                             <span className="font-display-lg text-3xl tracking-tighter w-8 text-primary">{match.awayScore ?? 0}</span>
                             <button
                               onClick={() => handleUpdateLiveScore(match.homeScore ?? 0, (match.awayScore ?? 0) + 1)}
-                              className="w-10 h-10 rounded border border-outline-variant/50 bg-black/40 hover:bg-white/10 flex items-center justify-center font-bold text-on-surface active:scale-95 transition-all text-xl"
+                              className="w-10 h-10 rounded border border-outline-variant/50 bg-white hover:bg-surface-variant flex items-center justify-center font-bold text-on-surface active:scale-95 transition-all text-xl"
                             >
                               +
                             </button>
@@ -593,11 +593,11 @@ export default function MatchDetailModal({
                     )}
 
                     {prediction ? (
-                      <div className="text-center font-label-md text-base text-on-surface-variant py-5 rounded-lg mt-6 bg-black/40 border border-outline-variant/30 uppercase tracking-[0.1em] shadow-inner">
+                      <div className="text-center font-label-md text-base text-on-surface-variant py-5 rounded-lg mt-6 bg-white border border-outline-variant/30 uppercase tracking-[0.1em] shadow-subtle-card">
                         YOUR SCORE: <span className="text-primary font-bold ml-3 text-xl drop-shadow-[0_0_5px_rgba(0,255,135,0.4)]">{prediction.homeGoals} - {prediction.awayGoals}</span>
                       </div>
                     ) : (
-                      <div className="text-center text-xs text-on-surface-variant font-label-md py-6 rounded-lg mt-6 bg-black/20 border border-dashed border-outline-variant/30 uppercase tracking-[0.2em]">
+                      <div className="text-center text-xs text-on-surface-variant font-label-md py-6 rounded-lg mt-6 bg-white border border-dashed border-outline-variant/30 uppercase tracking-[0.2em]">
                         MISSED THIS MATCH
                       </div>
                     )}
@@ -613,7 +613,7 @@ export default function MatchDetailModal({
                             <span className="text-outline-variant">DRAW {drawPct}%</span>
                             <span className="text-[#ff3d00]">{match.awayTeam} {awayPct}%</span>
                           </div>
-                          <div className="h-3 w-full flex rounded overflow-hidden bg-black/40 border border-outline-variant/30 shadow-inner">
+                          <div className="h-3 w-full flex rounded overflow-hidden bg-white border border-outline-variant/30 shadow-subtle-card">
                             {homePct > 0 && <div className="bg-secondary transition-all duration-500 shadow-[0_0_8px_rgba(255,215,0,0.5)]" style={{ width: `${homePct}%` }} />}
                             {drawPct > 0 && <div className="bg-outline-variant transition-all duration-500" style={{ width: `${drawPct}%` }} />}
                             {awayPct > 0 && <div className="bg-[#ff3d00] transition-all duration-500 shadow-[0_0_8px_rgba(255,61,0,0.5)]" style={{ width: `${awayPct}%` }} />}

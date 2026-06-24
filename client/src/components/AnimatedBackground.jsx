@@ -18,9 +18,9 @@ function SoccerGlobe() {
       <mesh ref={meshRef} scale={2.5}>
         <icosahedronGeometry args={[1, 1]} />
         <meshStandardMaterial 
-          color="#10b981" 
+          color="#4ade80" 
           wireframe 
-          emissive="#10b981"
+          emissive="#4ade80"
           emissiveIntensity={0.8}
           transparent
           opacity={0.4}
@@ -30,7 +30,7 @@ function SoccerGlobe() {
       {/* Inner dark core to prevent seeing completely through */}
       <mesh scale={2.45}>
         <icosahedronGeometry args={[1, 1]} />
-        <meshBasicMaterial color="#050810" />
+        <meshBasicMaterial color="#ffffff" />
       </mesh>
     </Float>
   );
@@ -43,14 +43,12 @@ export default function AnimatedBackground() {
         <ambientLight intensity={0.5} />
         <directionalLight position={[10, 10, 10]} intensity={1} />
         
-        {/* Floating particles/stars in background */}
-        <Stars radius={50} depth={50} count={2000} factor={4} saturation={0} fade speed={1.5} />
         
         <SoccerGlobe />
       </Canvas>
       
-      {/* Dark overlay gradient to blend with the rest of the site */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#050810] via-transparent to-[#050810]/50 pointer-events-none" />
+      {/* Light overlay gradient to blend with the rest of the site */}
+      <div className="absolute inset-0 bg-gradient-to-t from-[#f9fbfc] via-transparent to-[#f9fbfc]/50 pointer-events-none" />
     </div>
   );
 }

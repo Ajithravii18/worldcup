@@ -60,7 +60,7 @@ export default function LeaderboardView({ predictions = [] }) {
           </div>
           <p className="text-on-surface-variant text-sm font-body-md max-w-lg">The ultimate test of football knowledge. Predict exact scores to maximize your points and climb to the top of the leaderboard.</p>
         </div>
-        <div className="bg-black/40 border border-outline-variant/30 px-5 py-3 rounded-lg flex items-center gap-4">
+        <div className="bg-white border border-outline-variant/30 px-5 py-3 rounded-lg flex items-center gap-4">
           <div className="text-center">
             <div className="text-2xl font-display-lg font-bold text-primary">{leaderboard.length}</div>
             <div className="text-[10px] font-label-sm uppercase tracking-widest text-on-surface-variant">Players</div>
@@ -87,7 +87,7 @@ export default function LeaderboardView({ predictions = [] }) {
 
             let rankColor = "text-primary";
             let rankBorder = "border-outline-variant/30";
-            let rankBg = "bg-black/20";
+            let rankBg = "bg-white";
             let rankGlow = "";
 
             if (index === 0) {
@@ -114,7 +114,7 @@ export default function LeaderboardView({ predictions = [] }) {
                 {/* Row - Always Visible */}
                 <button
                   onClick={() => setExpandedPlayer(isExpanded ? null : player.id)}
-                  className={`w-full p-5 flex items-center justify-between gap-4 text-left transition-colors ${rankBg} hover:bg-white/5`}
+                  className={`w-full p-5 flex items-center justify-between gap-4 text-left transition-colors ${rankBg} hover:bg-surface-variant`}
                 >
                   <div className="flex items-center gap-5 flex-1 min-w-0">
                     <div className={`text-4xl md:text-5xl font-bold font-display-lg w-12 md:w-16 text-center flex-shrink-0 ${rankColor} ${rankGlow}`}>
@@ -133,7 +133,7 @@ export default function LeaderboardView({ predictions = [] }) {
                   <div className="flex items-center gap-6 flex-shrink-0">
                     <div className="flex flex-col items-end justify-center">
                       <span className={`text-3xl md:text-4xl font-display-lg font-bold tracking-tighter ${index === 0 ? 'text-secondary drop-shadow-[0_0_8px_rgba(255,215,0,0.5)]' : 'text-primary'}`}>{player.points} <span className="text-lg text-on-surface-variant ml-1 font-headline-md">PTS</span></span>
-                      <span className="text-[10px] font-label-sm font-medium text-on-surface-variant uppercase bg-black/40 px-2 py-0.5 rounded border border-outline-variant/30">{player.exactWins} EXACT</span>
+                      <span className="text-[10px] font-label-sm font-medium text-on-surface-variant uppercase bg-white px-2 py-0.5 rounded border border-outline-variant/30">{player.exactWins} EXACT</span>
                     </div>
                     <span className={`text-on-surface-variant transition-transform material-symbols-outlined text-[24px] ${isExpanded ? 'rotate-180 text-primary' : ''}`}>
                       expand_more
@@ -143,13 +143,13 @@ export default function LeaderboardView({ predictions = [] }) {
 
                 {/* Expanded Details */}
                 {isExpanded && (
-                  <div className="border-t border-outline-variant/30 p-6 bg-black/50 animate-fade-in">
+                  <div className="border-t border-outline-variant/30 p-6 bg-white animate-fade-in">
                     <h3 className="text-xs font-label-sm text-on-surface-variant uppercase tracking-widest mb-4 flex items-center gap-2">
                       <span className="material-symbols-outlined text-[16px]">stars</span> Perfect Predictions ({player.perfectMatches.length})
                     </h3>
                     
                     {player.perfectMatches.length === 0 ? (
-                      <p className="text-sm text-on-surface-variant font-body-md italic bg-black/40 p-4 rounded-lg border border-outline-variant/20 text-center">No exact score predictions yet. They need to step up their game.</p>
+                      <p className="text-sm text-on-surface-variant font-body-md italic bg-white p-4 rounded-lg border border-outline-variant/20 text-center">No exact score predictions yet. They need to step up their game.</p>
                     ) : (
                       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                         {player.perfectMatches.map((match, i) => (

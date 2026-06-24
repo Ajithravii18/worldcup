@@ -58,7 +58,7 @@ export default function MatchComments({ matchId }) {
           value={newComment}
           onChange={(e) => setNewComment(e.target.value)}
           placeholder="Talk trash here..."
-          className="flex-1 bg-surface-variant/50 border border-outline-variant/30 text-sm px-3 py-2 rounded outline-none focus:border-primary transition-colors text-on-surface placeholder:text-on-surface-variant/50"
+          className="flex-1 bg-surface-variant border border-outline-variant/30 text-sm px-3 py-2 rounded outline-none focus:border-primary transition-colors text-on-surface placeholder:text-on-surface-variant/50"
           maxLength={200}
         />
         <button
@@ -74,12 +74,12 @@ export default function MatchComments({ matchId }) {
         {loading ? (
           <div className="text-center text-[10px] text-on-surface-variant font-bold uppercase tracking-widest py-4">Loading...</div>
         ) : comments.length === 0 ? (
-          <div className="text-center text-[10px] text-on-surface-variant font-bold uppercase tracking-widest py-4 bg-surface-variant/30 border border-outline-variant/20 rounded">
+          <div className="text-center text-[10px] text-on-surface-variant font-bold uppercase tracking-widest py-4 bg-surface-variant border border-outline-variant/20 rounded">
             No banter yet. Be the first!
           </div>
         ) : (
           comments.map((c) => (
-            <div key={c._id} className="flex items-start gap-3 bg-surface-variant/50 border border-outline-variant/30 rounded px-3 py-2">
+            <div key={c._id} className="flex items-start gap-3 bg-surface-variant border border-outline-variant/30 rounded px-3 py-2">
               <UserAvatar avatarId={c.user?.avatar} className="w-8 h-8 flex-shrink-0 text-xs border border-outline-variant/50 rounded-full object-cover" />
               <div className="flex-1 min-w-0">
                 <div className="flex items-baseline justify-between mb-0.5">

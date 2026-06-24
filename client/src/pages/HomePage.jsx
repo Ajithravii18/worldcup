@@ -263,7 +263,7 @@ export default function HomePage() {
               </button>
               <h3 className="font-headline-md text-2xl font-bold uppercase tracking-widest text-primary mb-2 mt-1 drop-shadow-[0_0_8px_rgba(0,255,135,0.8)]">SPOT ON!</h3>
               <p className="font-label-sm text-sm uppercase tracking-widest text-on-surface-variant mb-4">You perfectly predicted:</p>
-              <div className="p-4 bg-black/40 rounded-lg border border-outline-variant/50 text-on-surface text-center shadow-inner">
+              <div className="p-4 bg-white rounded-lg border border-outline-variant/50 text-on-surface text-center shadow-subtle-card">
                 <div className="font-headline-md font-bold text-xl mb-2">{notification.homeTeam} <span className="text-on-surface-variant mx-1 italic text-base font-body-md">VS</span> {notification.awayTeam}</div>
                 <div className="text-4xl font-display-lg tracking-widest text-primary drop-shadow-[0_0_10px_rgba(0,255,135,0.5)]">{notification.score}</div>
               </div>
@@ -306,7 +306,7 @@ export default function HomePage() {
                 <div className="text-6xl mb-6 font-display-lg text-outline-variant opacity-50">0</div>
                 <p className="font-headline-lg text-3xl tracking-wide mb-3 uppercase text-on-surface">No Matches</p>
                 <p className="font-label-sm text-base mb-6">Run the seed script to add matches.</p>
-                <code className="mt-3 block font-body-md text-sm px-5 py-3 mx-auto max-w-xs bg-black/50 border border-outline-variant text-on-surface rounded-lg shadow-inner">
+                <code className="mt-3 block font-body-md text-sm px-5 py-3 mx-auto max-w-xs bg-white border border-outline-variant text-on-surface rounded-lg shadow-subtle-card">
                   cd server &amp;&amp; npm run seed
                 </code>
               </div>
@@ -325,13 +325,13 @@ export default function HomePage() {
 
                   <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
                     {/* Desktop filter pills */}
-                    <div className="hidden md:flex items-center gap-0 border border-outline-variant/50 rounded-lg overflow-hidden bg-black/30 p-1">
+                    <div className="hidden md:flex items-center gap-0 border border-outline-variant/50 rounded-lg overflow-hidden bg-white p-1">
                       <button
                         onClick={() => setStatusFilter('upcoming')}
                         className={`px-6 py-2 font-label-sm text-sm uppercase tracking-widest transition-all duration-200 rounded-md ${
                           statusFilter === 'upcoming'
                             ? 'text-on-background bg-primary shadow-neon-primary'
-                            : 'text-on-surface-variant bg-transparent hover:text-on-surface hover:bg-white/5'
+                            : 'text-on-surface-variant bg-transparent hover:text-on-surface hover:bg-surface-variant'
                         }`}
                       >
                         Open
@@ -341,7 +341,7 @@ export default function HomePage() {
                         className={`px-6 py-2 font-label-sm text-sm uppercase tracking-widest transition-all duration-200 rounded-md ${
                           statusFilter === 'completed'
                             ? 'text-on-background bg-primary shadow-neon-primary'
-                            : 'text-on-surface-variant bg-transparent hover:text-on-surface hover:bg-white/5'
+                            : 'text-on-surface-variant bg-transparent hover:text-on-surface hover:bg-surface-variant'
                         }`}
                       >
                         Results
@@ -355,7 +355,7 @@ export default function HomePage() {
                           setTeamFilter(e.target.value);
                           if (scrollContainerRef.current) scrollContainerRef.current.scrollLeft = 0;
                         }}
-                        className="w-full font-label-sm text-sm uppercase tracking-widest px-4 py-3 outline-none appearance-none cursor-pointer bg-black/40 border border-outline-variant/50 text-on-surface rounded-lg transition-colors hover:border-primary focus:border-primary focus:ring-1 focus:ring-primary shadow-inner"
+                        className="w-full font-label-sm text-sm uppercase tracking-widest px-4 py-3 outline-none appearance-none cursor-pointer bg-white border border-outline-variant/50 text-on-surface rounded-lg transition-colors hover:border-primary focus:border-primary focus:ring-1 focus:ring-primary shadow-subtle-card"
                       >
                         <option value="All">All Teams</option>
                         {uniqueTeams.map(t => (
@@ -370,7 +370,7 @@ export default function HomePage() {
                         setDateSort(prev => prev === 'earliest' ? 'latest' : 'earliest');
                         if (scrollContainerRef.current) scrollContainerRef.current.scrollLeft = 0;
                       }}
-                      className="w-full sm:w-auto font-label-sm text-sm uppercase tracking-widest px-5 py-3 active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer bg-black/40 border border-outline-variant/50 text-on-surface rounded-lg hover:border-primary hover:text-primary shadow-inner"
+                      className="w-full sm:w-auto font-label-sm text-sm uppercase tracking-widest px-5 py-3 active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer bg-white border border-outline-variant/50 text-on-surface rounded-lg hover:border-primary hover:text-primary shadow-subtle-card"
                     >
                       Date <span className="material-symbols-outlined text-[16px] text-primary">{dateSort === 'earliest' ? 'arrow_downward' : 'arrow_upward'}</span>
                     </button>

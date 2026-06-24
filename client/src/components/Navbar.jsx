@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Icon from './Icon';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import UserAvatar from './UserAvatar';
@@ -61,7 +62,7 @@ export default function Navbar({ view, setView, statusFilter, setStatusFilter })
                   className={`px-5 h-10 rounded-md font-label-md text-base uppercase tracking-widest transition-all duration-200 flex items-center justify-center ${
                     isActive
                       ? 'bg-primary/10 text-primary border border-primary/30 shadow-[inset_0_0_10px_rgba(0,255,135,0.1)]'
-                      : 'text-on-surface-variant hover:text-on-surface hover:bg-white/5 border border-transparent'
+                      : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-variant border border-transparent'
                   }`}
                 >
                   {tab.label}
@@ -71,7 +72,7 @@ export default function Navbar({ view, setView, statusFilter, setStatusFilter })
             {user?.role === 'admin' && (
               <button
                 onClick={() => navigate('/admin')}
-                className="px-5 h-10 rounded-md font-label-md text-base uppercase tracking-widest text-secondary border border-transparent hover:bg-white/5 transition-all flex items-center justify-center ml-2"
+                className="px-5 h-10 rounded-md font-label-md text-base uppercase tracking-widest text-secondary border border-transparent hover:bg-surface-variant transition-all flex items-center justify-center ml-2"
               >
                 Admin
               </button>
@@ -85,10 +86,10 @@ export default function Navbar({ view, setView, statusFilter, setStatusFilter })
             {user?.role === 'admin' && (
               <button
                 onClick={() => navigate('/admin')}
-                className="md:hidden flex items-center justify-center p-2 text-secondary hover:bg-white/10 transition-colors rounded-full"
+                className="md:hidden flex items-center justify-center p-2 text-secondary hover:bg-surface-variant transition-colors rounded-full"
                 title="Admin Dashboard"
               >
-                <span className="material-symbols-outlined text-[20px]">settings</span>
+                <Icon name="settings" className="text-[20px]" />
               </button>
             )}
 
@@ -117,7 +118,7 @@ export default function Navbar({ view, setView, statusFilter, setStatusFilter })
                 Logout
               </span>
               <span className="sm:hidden flex items-center justify-center">
-                <span className="material-symbols-outlined text-[20px]">logout</span>
+                <Icon name="logout" className="text-[20px]" />
               </span>
             </button>
           </div>

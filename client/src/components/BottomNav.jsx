@@ -1,6 +1,7 @@
 import React from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import Icon from './Icon';
 
 const tabs = [
   { id: 'global',      icon: 'public', label: 'Matches' },
@@ -24,7 +25,7 @@ export default function BottomNav({ view, setView, statusFilter, setStatusFilter
             className={`flex-1 py-3 font-label-md text-sm uppercase tracking-wider transition-colors duration-150 border-b-2 relative ${
               statusFilter === 'upcoming'
                 ? 'text-primary border-primary bg-primary/5'
-                : 'text-on-surface-variant border-transparent hover:bg-white/5'
+                : 'text-on-surface-variant border-transparent hover:bg-surface-variant'
             }`}
           >
             Open Matches
@@ -36,7 +37,7 @@ export default function BottomNav({ view, setView, statusFilter, setStatusFilter
             className={`flex-1 py-3 font-label-md text-sm uppercase tracking-wider transition-colors duration-150 border-b-2 relative ${
               statusFilter === 'completed'
                 ? 'text-primary border-primary bg-primary/5'
-                : 'text-on-surface-variant border-transparent hover:bg-white/5'
+                : 'text-on-surface-variant border-transparent hover:bg-surface-variant'
             }`}
           >
             Results
@@ -63,12 +64,7 @@ export default function BottomNav({ view, setView, statusFilter, setStatusFilter
               {isActive && (
                 <div className="absolute inset-0 bg-primary/10 rounded-xl border border-primary/20 shadow-[inset_0_0_12px_rgba(0,255,135,0.1)]"></div>
               )}
-              <span 
-                className={`material-symbols-outlined mb-1 relative z-10 transition-all ${isActive ? 'text-[28px] drop-shadow-[0_0_8px_rgba(0,255,135,0.8)]' : 'text-[24px]'}`} 
-                style={{ fontVariationSettings: isActive ? "'FILL' 1" : "'FILL' 0" }}
-              >
-                {tab.icon}
-              </span>
+              <Icon name={tab.icon} className={`mb-1 relative z-10 transition-all ${isActive ? 'text-[28px] drop-shadow-[0_0_8px_rgba(0,255,135,0.8)]' : 'text-[24px]'}`} />
               <span className={`font-label-md uppercase tracking-wider relative z-10 transition-all ${isActive ? 'text-xs' : 'text-[10px]'}`}>
                 {tab.label}
               </span>

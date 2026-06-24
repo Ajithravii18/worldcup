@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Teko:wght@300..700&family=Inter:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
 
 @tailwind base;
@@ -14,10 +14,10 @@
     scrollbar-width: none;
   }
   .glass-panel {
-    @apply bg-white/90 backdrop-blur-xl border border-outline-variant/60 shadow-sm;
+    @apply bg-white border border-outline-variant/30 shadow-subtle-card;
   }
   .glass-panel-heavy {
-    @apply bg-white/95 backdrop-blur-2xl border border-outline-variant/80 shadow-md;
+    @apply bg-white border border-outline-variant/50 shadow-subtle-card;
   }
 }
 
@@ -33,7 +33,7 @@
   }
 
   body {
-    @apply font-body-md antialiased bg-pitch-pattern bg-fixed bg-cover bg-center;
+    @apply font-body-md antialiased;
     background-color: theme('colors.background');
     color: theme('colors.on-background');
     min-height: 100dvh;
@@ -57,20 +57,20 @@
 @layer components {
 
   .subtle-card-shadow {
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 10px 40px -10px rgba(0,0,0,0.06);
   }
 
   .stadium-card {
-    @apply glass-panel rounded-xl subtle-card-shadow overflow-hidden relative;
+    @apply glass-panel rounded-3xl overflow-hidden relative;
   }
 
   /* Buttons */
   .btn-primary {
-    @apply bg-gradient-to-r from-primary to-[#e05a14] text-white font-label-md uppercase tracking-wider rounded-lg shadow-[0_4px_14px_rgba(242,101,34,0.39)] hover:shadow-[0_6px_20px_rgba(242,101,34,0.4)] hover:-translate-y-0.5 active:scale-95 transition-all;
+    @apply bg-primary text-white font-label-md capitalize tracking-wide rounded-2xl shadow-neon-primary hover:shadow-[0_10px_25px_rgba(74,222,128,0.4)] hover:-translate-y-0.5 active:scale-95 transition-all;
   }
   
   .btn-ghost {
-    @apply bg-slate-50 border border-outline-variant text-on-surface hover:bg-slate-100 hover:border-slate-300 rounded-lg font-label-md uppercase tracking-wider transition-all;
+    @apply bg-transparent border border-outline-variant/50 text-on-surface hover:bg-surface-variant hover:border-outline-variant rounded-2xl font-label-md capitalize tracking-wide transition-all;
   }
 
   /* Material Symbols Font Setup */
