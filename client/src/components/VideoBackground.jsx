@@ -1,56 +1,49 @@
-import { useRef } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { Icosahedron, Line } from '@react-three/drei';
+import { useLocation } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 
-function SoccerBall() {
-  const ref = useRef();
-  
-  useFrame((state, delta) => {
-    if (!ref.current) return;
-    
-    // Smooth, slow rotation
-    ref.current.rotation.x -= delta / 5;
-    ref.current.rotation.y -= delta / 6;
-
-    // Subtle parallax based on mouse
-    const targetX = (state.mouse.x * Math.PI) / 8;
-    const targetY = (state.mouse.y * Math.PI) / 8;
-
-    ref.current.rotation.y += 0.02 * (targetX - ref.current.rotation.y);
-    ref.current.rotation.x += 0.02 * (targetY - ref.current.rotation.x);
-  });
-
-  return (
-    <group ref={ref} position={[3, 0, 0]} scale={3}>
-      <Icosahedron args={[1, 2]}>
-        <meshBasicMaterial color="#4ade80" wireframe wireframeLinewidth={2} transparent opacity={0.3} />
-      </Icosahedron>
-      
-      {/* Inner glowing core */}
-      <Icosahedron args={[0.98, 1]}>
-        <meshBasicMaterial color="#22c55e" transparent opacity={0.05} />
-      </Icosahedron>
-    </group>
-  );
-}
+const bgMap = {
+  '/': 'https://images.unsplash.com/photo-1527871369852-eb58cb2b54e2?fm=jpg&q=60&w=3000&auto=format&fit=crop',
+  '/app': 'https://images.unsplash.com/photo-1527871369852-eb58cb2b54e2?fm=jpg&q=60&w=3000&auto=format&fit=crop',
+  '/login': 'https://news.files.bbci.co.uk/include/extra/shorthand/assets/sport/i4yxbkxake/assets/OyJwc6GBIY/gettyimages-2235302091-2813x2813.webp',
+  '/register': 'https://news.files.bbci.co.uk/include/extra/shorthand/assets/sport/i4yxbkxake/assets/6kdAp7O1aq/gettyimages-1241207563-1977x1977.webp',
+};
 
 export default function VideoBackground() {
-  return (
-    <div className="fixed inset-0 -z-10 bg-[#030712] overflow-hidden pointer-events-auto">
-      <Canvas camera={{ position: [0, 0, 10], fov: 45 }}>
-        <color attach="background" args={['#030712']} />
-        <SoccerBall />
-        
-        {/* Accent lighting */}
-        <ambientLight intensity={0.5} />
-        <directionalLight position={[10, 10, 5]} intensity={1} color="#4ade80" />
-      </Canvas>
+  const location = useLocation();
+  const bgImage = bgMap[location.pathname] || bgMap['/'];
 
-      {/* Deep Frosted Glass Overlay for dark aesthetic */}
-      <div className="absolute inset-0 z-10 bg-black/40 backdrop-blur-[2px] pointer-events-none" />
+  return (
+    <div className="fixed inset-0 -z-10 bg-[#030712] overflow-hidden pointer-events-none">
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={bgImage}
+          initial={{ opacity: 0, scale: 1.05 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
+          className="absolute inset-0 z-0 blur-[2px]"
+          style={{
+            backgroundImage: `url('${bgImage}')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
+        />
+      </AnimatePresence>
       
-      {/* Heavy Vignette for dramatic sports feel */}
-      <div className="absolute inset-0 z-30 bg-gradient-to-b from-black/60 via-transparent to-black/90 pointer-events-none"></div>
+      {/* Premium Glassmorphism Overlays */}
+      
+      {/* 1. Deep color burn to ensure dark mode text legibility */}
+      <div className="absolute inset-0 z-10 bg-[#030712]/70 backdrop-blur-[4px]" />
+      
+      {/* 2. Soft radial vignette for focus */}
+      <div className="absolute inset-0 z-20 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(3,7,18,0.85)_100%)]" />
+
+      {/* 3. Subtle noise/texture for premium "frosted" finish */}
+      <div className="absolute inset-0 z-30 opacity-[0.03] bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc0JyBoZWlnaHQ9JzQnPgo8cmVjdCB3aWR0aD0nNCcgaGVpZ2h0PSc0JyBmaWxsPScjZmZmJy8+CjxwYXRoIGQ9J00wIDBoMnYySDB6bTIgMmgydjJIMnonIGZpbGw9JyMwMDAnIGZpbGwtb3BhY2l0eT0nLjMnLz4KPC9zdmc+')] mix-blend-overlay" />
+      
+      {/* 4. Neon accent glow (subtle hint of branding) */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-1/2 z-20 bg-[radial-gradient(ellipse_at_top,rgba(74,222,128,0.1),transparent_70%)] opacity-60" />
     </div>
   );
 }

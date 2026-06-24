@@ -13,7 +13,7 @@ const tabs = [
 export default function BottomNav({ view, setView, statusFilter, setStatusFilter }) {
   const { user } = useAuth();
   const navigate = useNavigate();
-  const isMatchesView = view === 'global' || view === 'my';
+  const isMatchesView = view === 'global';
 
   return (
     <motion.nav 
