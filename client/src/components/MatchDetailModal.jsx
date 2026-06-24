@@ -195,14 +195,14 @@ export default function MatchDetailModal({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={handleBackdropClick}
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-md"
+          className="fixed inset-0 z-[100] flex items-center justify-center sm:p-6 bg-black/60 backdrop-blur-md"
         >
           <motion.div
             initial={{ scale: 0.95, y: 20, opacity: 0 }}
             animate={{ scale: 1, y: 0, opacity: 1 }}
             exit={{ scale: 0.95, y: 20, opacity: 0 }}
             transition={{ type: "spring", stiffness: 300, damping: 25 }}
-            className="w-full max-w-xl max-h-[90vh] overflow-y-auto scrollbar-none rounded-3xl p-6 relative bg-black/80 backdrop-blur-2xl shadow-2xl border border-white/20"
+            className="w-full h-full sm:h-auto max-w-xl sm:max-h-[90vh] overflow-y-auto scrollbar-none sm:rounded-3xl p-4 sm:p-6 pt-8 sm:pt-6 pb-12 sm:pb-6 relative bg-[#0a0f18] sm:bg-black/80 sm:backdrop-blur-2xl shadow-2xl sm:border border-white/20"
           >
             <button
               onClick={handleClose}
