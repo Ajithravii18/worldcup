@@ -44,7 +44,7 @@ export default function GlobalPredictionsModal({ isOpen, onClose, match, predict
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={handleBackdropClick}
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-md"
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 bg-black/60 backdrop-blur-md"
         >
           <motion.div
             initial={{ scale: 0.95, y: 20, opacity: 0 }}
