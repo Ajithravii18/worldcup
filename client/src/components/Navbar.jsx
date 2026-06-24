@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import UserAvatar from './UserAvatar';
 import ProfileModal from './ProfileModal';
 import NotificationBell from './NotificationBell';
+import { motion } from 'framer-motion';
 
 export default function Navbar({ view, setView, statusFilter, setStatusFilter }) {
   const { user, logout } = useAuth();
@@ -22,8 +23,6 @@ export default function Navbar({ view, setView, statusFilter, setStatusFilter })
     }
   };
 
-  const isMatchesView = view === 'global' || view === 'my';
-
   const navTabs = [
     { id: 'global',      label: 'Matches' },
     { id: 'my',          label: 'My Preds' },
@@ -31,24 +30,28 @@ export default function Navbar({ view, setView, statusFilter, setStatusFilter })
   ];
 
   return (
-    <header className="fixed top-0 w-full z-50 glass-panel-heavy border-b-0 shadow-lg transition-all duration-200">
-      {/* Decorative top green line */}
-      <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent opacity-80" />
-      
-      <div className="flex items-center justify-between px-4 md:px-8 h-16 w-full max-w-7xl mx-auto">
+    <motion.header 
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+      className="fixed top-0 w-full z-50 bg-black/50 backdrop-blur-xl border-b border-white/10 shadow-2xl"
+    >
+      <div className="flex items-center justify-between px-4 md:px-8 h-20 w-full max-w-[1600px] mx-auto">
         
         {/* Branding */}
-        <div
-          className="flex items-center gap-2.5 cursor-pointer shrink-0 group"
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="flex items-center gap-3 cursor-pointer shrink-0"
           onClick={() => setView && setView('global')}
         >
-          <div className="w-8 h-8 rounded bg-primary text-background flex items-center justify-center font-display-lg text-2xl font-bold shadow-neon-primary group-hover:scale-105 transition-transform">
-            LS
+          <div className="w-10 h-10 rounded-xl bg-primary text-white flex items-center justify-center font-display text-2xl font-black shadow-neon-primary">
+            <Icon name="sports_soccer" className="text-2xl" />
           </div>
-          <h1 className="font-display-lg text-2xl font-bold uppercase tracking-wide text-on-surface group-hover:text-primary transition-colors">
-            LUCKY STAR <span className="text-primary">FC</span>
+          <h1 className="font-display text-2xl md:text-3xl font-black uppercase tracking-widest text-white">
+            Lucky Star <span className="text-primary">FC</span>
           </h1>
-        </div>
+        </motion.div>
 
         {/* Desktop tab nav */}
         {user && setView && (
@@ -59,12 +62,17 @@ export default function Navbar({ view, setView, statusFilter, setStatusFilter })
                 <button
                   key={tab.id}
                   onClick={() => setView(tab.id)}
-                  className={`px-5 h-10 rounded-md font-label-md text-base uppercase tracking-widest transition-all duration-200 flex items-center justify-center ${
-                    isActive
-                      ? 'bg-primary/10 text-primary border border-primary/30 shadow-[inset_0_0_10px_rgba(0,255,135,0.1)]'
-                      : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-variant border border-transparent'
+                  className={`relative px-6 h-12 rounded-xl font-display text-lg uppercase tracking-widest transition-colors flex items-center justify-center z-10 ${
+                    isActive ? 'text-white font-black' : 'text-outline-variant hover:text-white font-bold'
                   }`}
                 >
+                  {isActive && (
+                    <motion.div
+                      layoutId="navbar-active-tab"
+                      className="absolute inset-0 bg-primary rounded-xl shadow-neon-primary -z-10"
+                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                    />
+                  )}
                   {tab.label}
                 </button>
               );
@@ -72,7 +80,7 @@ export default function Navbar({ view, setView, statusFilter, setStatusFilter })
             {user?.role === 'admin' && (
               <button
                 onClick={() => navigate('/admin')}
-                className="px-5 h-10 rounded-md font-label-md text-base uppercase tracking-widest text-secondary border border-transparent hover:bg-surface-variant transition-all flex items-center justify-center ml-2"
+                className="px-6 h-12 rounded-xl font-display text-lg uppercase tracking-widest text-white border border-white/20 hover:bg-white/10 transition-all flex items-center justify-center ml-4 font-bold"
               >
                 Admin
               </button>
@@ -82,50 +90,55 @@ export default function Navbar({ view, setView, statusFilter, setStatusFilter })
 
         {/* Right side: user controls */}
         {user && (
-          <div className="flex items-center gap-4 ml-auto">
+          <div className="flex items-center gap-5 ml-auto">
             {user?.role === 'admin' && (
               <button
                 onClick={() => navigate('/admin')}
-                className="md:hidden flex items-center justify-center p-2 text-secondary hover:bg-surface-variant transition-colors rounded-full"
+                className="md:hidden flex items-center justify-center p-2 text-outline-variant hover:text-white transition-colors"
                 title="Admin Dashboard"
               >
-                <Icon name="settings" className="text-[20px]" />
+                <Icon name="settings" className="text-[24px]" />
               </button>
             )}
 
-            <div className="text-on-surface-variant hover:text-primary transition-colors cursor-pointer">
+            <div className="text-outline-variant hover:text-primary transition-colors cursor-pointer">
               <NotificationBell />
             </div>
 
-            <button
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
               onClick={() => setProfileOpen(true)}
-              className="w-9 h-9 rounded-full overflow-hidden border-2 border-outline-variant hover:border-primary transition-colors focus:outline-none focus:border-primary shadow-sm"
+              className="w-10 h-10 rounded-full overflow-hidden border-2 border-white/20 hover:border-primary transition-colors shadow-lg"
               title="Profile"
             >
               <UserAvatar
                 avatarId={user.avatar}
                 className="w-full h-full object-cover"
               />
-            </button>
+            </motion.button>
 
-            <button
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               id="logout-btn"
               onClick={onLogoutClick}
-              className="flex items-center justify-center h-9 px-3 rounded-md transition-all duration-150 text-on-surface-variant hover:text-error hover:bg-error/10 border border-transparent hover:border-error/30"
+              className="hidden sm:flex items-center justify-center h-10 px-5 rounded-xl transition-all duration-150 text-error border border-error/50 hover:bg-error/20 font-bold uppercase tracking-widest text-xs"
               title="Logout"
             >
-              <span className="hidden sm:block font-label-md text-base uppercase tracking-wider mt-0.5">
-                Logout
-              </span>
-              <span className="sm:hidden flex items-center justify-center">
-                <Icon name="logout" className="text-[20px]" />
-              </span>
+              Logout
+            </motion.button>
+            <button
+              onClick={onLogoutClick}
+              className="sm:hidden text-error hover:text-red-400 p-2"
+            >
+              <Icon name="logout" className="text-[24px]" />
             </button>
           </div>
         )}
       </div>
 
       <ProfileModal isOpen={profileOpen} onClose={() => setProfileOpen(false)} />
-    </header>
+    </motion.header>
   );
 }

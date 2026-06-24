@@ -2,6 +2,21 @@ import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import confetti from 'canvas-confetti';
+import { motion } from 'framer-motion';
+import Icon from '../components/Icon';
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1, delayChildren: 0.1 }
+  }
+};
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: { y: 0, opacity: 1, transition: { type: "spring", stiffness: 300, damping: 24 } }
+};
 
 export default function LoginPage() {
   const { login } = useAuth();
@@ -31,69 +46,67 @@ export default function LoginPage() {
 
   if (success) {
     return (
-      <div className="min-h-dvh flex flex-col items-center justify-center text-center p-6 animate-fade-in bg-surface">
-        <div className="text-8xl mb-6 animate-bounce">🏆</div>
-        <h1 className="font-display text-4xl tracking-widest animate-pulse mb-3 font-black text-primary">WELCOME BACK!</h1>
-        <p className="text-sm uppercase tracking-widest font-bold text-on-surface-variant">Entering the Arena...</p>
-        <div className="mt-8 flex items-center justify-center gap-2 animate-pulse">
-          <div className="w-2 h-2 animate-ping bg-primary rounded-full" />
-          <span className="text-xs uppercase tracking-widest font-bold text-on-surface-variant">Loading...</span>
-        </div>
-      </div>
+      <motion.div 
+        initial={{ opacity: 0 }} animate={{ opacity: 1 }} 
+        className="min-h-dvh flex flex-col items-center justify-center text-center p-6 bg-transparent"
+      >
+        <motion.div 
+          initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring', bounce: 0.5 }}
+          className="w-24 h-24 mb-6 flex items-center justify-center bg-primary rounded-3xl shadow-neon-primary"
+        >
+          <Icon name="check_circle" className="text-black text-6xl" />
+        </motion.div>
+        <h1 className="font-display text-5xl tracking-widest mb-3 font-black text-white drop-shadow-md uppercase">WELCOME BACK!</h1>
+        <p className="text-sm uppercase tracking-widest font-bold text-outline-variant">Entering the Arena...</p>
+      </motion.div>
     );
   }
 
   return (
-    <div className="min-h-dvh flex flex-col items-center justify-center px-4 bg-surface">
+    <div className="min-h-screen flex flex-col items-center justify-center relative overflow-x-hidden px-4 py-12 bg-transparent">
 
       {/* Back */}
-      <Link
-        to="/"
-        className="absolute top-6 left-6 flex items-center gap-2 text-xs tracking-widest uppercase font-bold transition-colors z-50 text-on-surface-variant hover:text-on-surface"
-      >
-        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-        </svg>
-        Back
+      <Link to="/" className="absolute top-6 left-6 z-50">
+        <motion.div whileHover={{ x: -5 }} className="flex items-center gap-2 text-xs tracking-[0.2em] uppercase font-bold text-outline-variant hover:text-white">
+          <Icon name="chevron_left" className="text-lg" /> Back
+        </motion.div>
       </Link>
 
-      {/* Branding */}
-      <div className="mb-8 text-center animate-fade-in">
-        <div className="flex items-center justify-center gap-3 mb-3">
-          <div className="w-10 h-10 flex items-center justify-center font-black text-white text-2xl font-display bg-primary shadow-neon-primary rounded">
-            K
+      <motion.div 
+        variants={containerVariants} initial="hidden" animate="visible"
+        className="relative z-10 w-full max-w-md flex flex-col items-center"
+      >
+        {/* Branding */}
+        <motion.div variants={itemVariants} className="mb-6 text-center">
+          <div className="flex items-center justify-center gap-3 mb-2">
+            <motion.div whileHover={{ scale: 1.05 }} className="flex items-center justify-center">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/1920px-2026_FIFA_World_Cup_emblem.svg.png" alt="World Cup 2026 Emblem" className="h-10 w-auto drop-shadow-[0_0_15px_rgba(0,255,135,0.4)]" />
+            </motion.div>
+            <h1 className="font-display text-3xl sm:text-4xl font-black tracking-widest uppercase text-white drop-shadow-lg">
+              Lucky Star FC
+            </h1>
           </div>
-          <h1 className="font-display text-3xl sm:text-4xl font-black tracking-[0.2em] uppercase text-on-surface">
-            Lucky Star FC
-          </h1>
-        </div>
-        <p className="text-xs tracking-[0.4em] uppercase font-bold text-primary">Predictions</p>
-      </div>
+          <p className="text-xs tracking-[0.4em] uppercase font-bold text-outline-variant drop-shadow-sm">Sign in to the arena</p>
+        </motion.div>
 
-      {/* Card */}
-      <div className="w-full max-w-sm animate-slide-up">
-        <div className="relative p-8 overflow-hidden bg-white border border-outline-variant/30 shadow-md rounded-xl">
-
+        {/* Card */}
+        <motion.div variants={itemVariants} className="w-full relative p-6 overflow-hidden bg-white/10 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.5)] rounded-[2rem]">
           {/* Loading bar */}
           {loading && (
-            <div className="absolute top-0 left-0 w-full h-[2px] overflow-hidden bg-outline-variant/30">
+            <div className="absolute top-0 left-0 w-full h-[2px] overflow-hidden bg-white/10">
               <div className="h-full w-1/2 animate-[slide_1s_ease-in-out_infinite] bg-primary" />
             </div>
           )}
 
-          <h2 className="font-display text-lg font-black tracking-[0.2em] mb-8 text-center uppercase text-on-surface">
-            Sign In
-          </h2>
-
           {error && (
-            <div className="mb-5 p-3 text-sm font-bold animate-fade-in bg-error/10 border border-error/30 text-error rounded">
+            <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="mb-6 p-4 text-sm font-bold bg-error/20 border border-error/50 text-error-container rounded-xl text-center backdrop-blur-md">
               ⚠ {error}
-            </div>
+            </motion.div>
           )}
 
-          <form id="login-form" onSubmit={handleSubmit} className={`space-y-6 transition-opacity duration-300 ${loading ? 'opacity-50' : ''}`}>
+          <form id="login-form" onSubmit={handleSubmit} className={`space-y-6 transition-opacity duration-300 ${loading ? 'opacity-50 pointer-events-none' : ''}`}>
 
-            <div className="relative group pt-4">
+            <motion.div variants={itemVariants} className="relative group pt-4">
               <input
                 id="login-email"
                 type="email"
@@ -102,17 +115,17 @@ export default function LoginPage() {
                 placeholder=" "
                 required
                 autoComplete="email"
-                className="peer w-full bg-transparent px-0 py-2 placeholder-transparent outline-none font-body font-medium transition-colors duration-200 border-b-2 border-outline-variant/50 focus:border-primary text-on-surface"
+                className="peer w-full bg-transparent px-0 py-2.5 placeholder-transparent outline-none font-body font-medium transition-colors duration-300 border-b-2 border-white/20 focus:border-primary text-white text-lg"
               />
               <label
-                className="absolute left-0 top-6 text-xs tracking-[0.2em] uppercase font-bold transition-all duration-300 peer-focus:top-0 peer-focus:text-[10px] peer-valid:top-0 peer-valid:text-[10px] text-on-surface-variant peer-focus:text-primary"
+                className="absolute left-0 top-7 text-xs tracking-[0.2em] uppercase font-bold transition-all duration-300 peer-focus:top-0 peer-focus:text-[10px] peer-valid:top-0 peer-valid:text-[10px] text-outline-variant peer-focus:text-primary"
                 htmlFor="login-email"
               >
-                Email
+                Email Address
               </label>
-            </div>
+            </motion.div>
 
-            <div className="relative group pt-4">
+            <motion.div variants={itemVariants} className="relative group pt-4">
               <input
                 id="login-password"
                 type={showPassword ? 'text' : 'password'}
@@ -121,10 +134,10 @@ export default function LoginPage() {
                 placeholder=" "
                 required
                 autoComplete="current-password"
-                 className="peer w-full bg-transparent px-0 py-2 pr-12 placeholder-transparent outline-none font-body font-medium transition-colors duration-200 border-b-2 border-outline-variant/50 focus:border-primary text-on-surface"
+                 className="peer w-full bg-transparent px-0 py-2.5 pr-12 placeholder-transparent outline-none font-body font-medium transition-colors duration-300 border-b-2 border-white/20 focus:border-primary text-white text-lg"
               />
               <label
-                className="absolute left-0 top-6 text-xs tracking-[0.2em] uppercase font-bold transition-all duration-300 peer-focus:top-0 peer-focus:text-[10px] peer-valid:top-0 peer-valid:text-[10px] text-on-surface-variant peer-focus:text-primary"
+                className="absolute left-0 top-7 text-xs tracking-[0.2em] uppercase font-bold transition-all duration-300 peer-focus:top-0 peer-focus:text-[10px] peer-valid:top-0 peer-valid:text-[10px] text-outline-variant peer-focus:text-primary"
                 htmlFor="login-password"
               >
                 Password
@@ -132,46 +145,44 @@ export default function LoginPage() {
               <button
                 type="button"
                 onClick={() => setShowPassword(v => !v)}
-                className="absolute right-0 top-6 text-xs uppercase tracking-widest font-bold transition-colors text-on-surface-variant hover:text-primary"
+                className="absolute right-0 top-7 text-[10px] uppercase tracking-widest font-bold transition-colors text-outline-variant hover:text-white"
               >
                 {showPassword ? 'Hide' : 'Show'}
               </button>
-            </div>
+            </motion.div>
 
-            <button
-              id="login-submit-btn"
-              type="submit"
-              disabled={loading}
-              className="w-full py-3.5 text-xs tracking-[0.2em] uppercase font-black text-white mt-8 active:scale-95 transition-all disabled:opacity-40 disabled:cursor-not-allowed bg-primary shadow-neon-primary rounded"
-            >
-              {loading ? 'Signing in...' : 'Sign In'}
-            </button>
-
-            <div className="text-center mt-3">
-              <Link
-                to="/forgot-password"
-                className="text-xs uppercase tracking-widest font-bold transition-colors text-on-surface-variant hover:text-primary"
+            <motion.div variants={itemVariants} className="pt-4">
+              <motion.button
+                whileHover={{ scale: 1.02, backgroundColor: "#22c55e" }}
+                whileTap={{ scale: 0.98 }}
+                id="login-submit-btn"
+                type="submit"
+                disabled={loading}
+                className="w-full py-3.5 text-sm tracking-[0.2em] uppercase font-black text-white transition-all disabled:opacity-40 disabled:cursor-not-allowed bg-primary shadow-neon-primary rounded-xl"
               >
+                {loading ? 'Authenticating...' : 'Sign In'}
+              </motion.button>
+            </motion.div>
+
+            <motion.div variants={itemVariants} className="text-center mt-4">
+              <Link to="/forgot-password" className="text-[10px] uppercase tracking-widest font-bold transition-colors text-outline-variant hover:text-white">
                 Forgot Password?
               </Link>
-            </div>
+            </motion.div>
           </form>
 
-          <p className="mt-8 text-center text-xs tracking-widest uppercase font-bold text-on-surface-variant">
+          <motion.p variants={itemVariants} className="mt-10 text-center text-[10px] tracking-widest uppercase font-bold text-outline-variant">
             No account?{' '}
-            <Link
-              to="/register"
-              className="font-black transition-colors text-primary hover:text-primary/80"
-            >
-              Register
+            <Link to="/register" className="font-black transition-colors text-primary hover:text-primary/80 ml-1">
+              Register Here
             </Link>
-          </p>
-        </div>
-      </div>
+          </motion.p>
+        </motion.div>
 
-      <p className="mt-8 text-[10px] uppercase tracking-[0.3em] text-center font-bold animate-fade-in text-outline-variant">
-        Predict · Compete · Glory
-      </p>
+        <motion.p variants={itemVariants} className="mt-8 text-[10px] uppercase tracking-[0.4em] text-center font-bold text-outline-variant/50">
+          Predict · Compete · Glory
+        </motion.p>
+      </motion.div>
     </div>
   );
 }

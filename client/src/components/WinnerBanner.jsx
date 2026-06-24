@@ -1,5 +1,6 @@
 import TeamFlag from './TeamFlag';
 import Icon from './Icon';
+import { motion } from 'framer-motion';
 
 /**
  * WinnerBanner — functions as a premium sports broadcast Live Score Card.
@@ -75,104 +76,100 @@ export default function WinnerBanner({ matches, predictions = [], currentTime = 
       p.awayGoals === matchToDisplay.awayScore
   ) : [];
 
-  const bannerClass = isLive 
-    ? 'bg-gradient-to-br from-[#0a192f] to-[#0d2a45] shadow-neon-primary border-primary/50' 
-    : 'glass-panel shadow-subtle-card border-outline-variant/50';
-
   return (
-    <div
+    <motion.div
+      whileHover={{ scale: 1.01, y: -5 }}
+      whileTap={{ scale: 0.99 }}
       onClick={() => onClick && onClick(matchToDisplay)}
-      className={`animate-slide-up overflow-hidden relative rounded-2xl cursor-pointer transition-transform duration-200 hover:scale-[1.01] active:scale-[0.99] border ${bannerClass}`}
+      className="relative overflow-hidden rounded-[2rem] cursor-pointer bg-black/60 backdrop-blur-3xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] group"
     >
       {/* Decorative Background */}
-      <div className="absolute inset-0 z-0">
-        {isLive && <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-primary opacity-20 blur-[80px] rounded-full translate-x-1/2 -translate-y-1/2"></div>}
-        <div className="absolute inset-0 bg-pitch-pattern opacity-[0.15] mix-blend-overlay"></div>
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        {/* Glow effect */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-primary/20 blur-[100px] rounded-full group-hover:bg-primary/30 transition-colors duration-500" />
+        <div className="absolute inset-0 opacity-[0.05] mix-blend-overlay" style={{ backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)', backgroundSize: '24px 24px' }}></div>
+        {/* Slanted lines */}
+        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 10px, #fff 10px, #fff 20px)' }}></div>
       </div>
 
-      <div className="relative z-10 p-5 sm:p-8">
-        {/* Header row */}
-        <div className="flex items-center justify-between mb-6 border-b border-outline-variant/30 pb-4">
-          <div className="flex items-center gap-4">
-            <span className="font-display-lg tracking-[0.1em] text-2xl text-on-surface font-bold uppercase drop-shadow-sm mr-2 flex items-center gap-2">
-              <Icon name="sports_score" className="text-primary text-[28px]" />
-              MATCH OF THE DAY
+      <div className="relative z-10 p-6 sm:p-10">
+        
+        {/* Header - Stadium and Group */}
+        <div className="flex flex-col items-center justify-center mb-8">
+          <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-md">
+            <span className="w-2 h-2 rounded-full bg-primary animate-pulse shadow-neon-primary" />
+            <span className="font-display tracking-widest text-xs text-white font-black uppercase">
+              {matchToDisplay.stadium || 'PINETA STADIUM'}
             </span>
-            {isLive ? (
-              <div className="flex items-center gap-2 bg-error/20 border border-error/50 px-3 py-1 rounded shadow-neon-accent">
-                <div className="w-2 h-2 rounded-full bg-error animate-pulse"></div>
-                <span className="font-label-md tracking-widest text-sm text-error font-bold uppercase">
-                  LIVE
-                </span>
-                <span className="font-label-md tracking-widest text-sm text-error/80 font-bold ml-1">
-                  {displayTime}
-                </span>
-              </div>
-            ) : (
-              <div className="flex items-center gap-2 bg-white/5 border border-outline-variant/30 px-3 py-1 rounded">
-                <span className="font-label-md tracking-widest text-sm text-on-surface font-bold uppercase hidden sm:block">
-                  {isDraw ? 'MATCH DRAWN' : 'FINAL SCORE'}
-                </span>
-              </div>
-            )}
           </div>
-          <span className="text-xs text-on-surface font-label-md uppercase tracking-widest bg-white border border-outline-variant/30 px-4 py-1.5 rounded shadow-subtle-card hidden sm:block">
-            {matchToDisplay.group}
+          <span className="text-[10px] text-outline-variant font-display uppercase tracking-[0.3em] mt-3 font-bold">
+            {matchToDisplay.group || 'Group Stage'}
           </span>
         </div>
 
-        {/* Stadium Scoreboard Score display */}
-        <div className="flex items-center justify-between bg-white rounded-xl p-4 sm:p-8 relative backdrop-blur-md border border-outline-variant/30 shadow-[inset_0_0_20px_rgba(0,0,0,0.8)]">
+        {/* Score display */}
+        <div className="flex items-center justify-between">
           
           {/* Home team */}
-          <div className="flex-1 flex flex-col items-center gap-3 sm:gap-5 z-10">
-            <TeamFlag teamName={matchToDisplay.homeTeam} fallbackEmoji={matchToDisplay.homeFlag} className="w-16 h-10 sm:w-28 sm:h-16 rounded shadow-md" />
-            <div className="font-headline-md text-lg sm:text-2xl text-on-surface tracking-wide font-bold uppercase text-center drop-shadow-md truncate max-w-full px-1">
+          <div className="flex-1 flex flex-col items-center gap-4 z-10">
+            <div className="w-20 h-20 sm:w-28 sm:h-28 bg-black/50 rounded-2xl p-2 flex items-center justify-center shadow-2xl border border-white/20 backdrop-blur-xl -skew-x-6 group-hover:-skew-x-12 transition-transform duration-500">
+              <div className="skew-x-6 group-hover:skew-x-12 w-full h-full rounded-xl overflow-hidden transition-transform duration-500">
+                <TeamFlag teamName={matchToDisplay.homeTeam} fallbackEmoji={matchToDisplay.homeFlag} className="w-full h-full object-cover" />
+              </div>
+            </div>
+            <div className="font-display text-lg sm:text-2xl text-white tracking-widest font-black uppercase text-center mt-2 drop-shadow-lg">
               {matchToDisplay.homeTeam}
             </div>
+            <span className="text-[10px] font-display text-outline-variant tracking-[0.2em] uppercase font-bold">Home</span>
           </div>
 
           {/* Score */}
-          <div className="flex flex-col items-center justify-center mx-4 sm:mx-8 z-10 bg-white rounded-lg sm:rounded-xl px-5 sm:px-10 py-3 sm:py-5 border-2 border-outline-variant/30 shadow-subtle-card shrink-0">
-            <div className="flex items-center justify-center gap-3 sm:gap-8">
-              <span className={`font-display-lg text-5xl sm:text-8xl font-bold ${isLive ? 'text-primary drop-shadow-[0_0_15px_rgba(0,255,135,0.6)]' : matchToDisplay.homeScore > matchToDisplay.awayScore ? 'text-on-surface' : matchToDisplay.homeScore < matchToDisplay.awayScore ? 'text-on-surface-variant' : 'text-on-surface'}`}>
-                {matchToDisplay.homeScore ?? 0}
-              </span>
-              <span className="text-outline-variant text-2xl sm:text-5xl font-bold">-</span>
-              <span className={`font-display-lg text-5xl sm:text-8xl font-bold ${isLive ? 'text-primary drop-shadow-[0_0_15px_rgba(0,255,135,0.6)]' : matchToDisplay.awayScore > matchToDisplay.homeScore ? 'text-on-surface' : matchToDisplay.awayScore < matchToDisplay.homeScore ? 'text-on-surface-variant' : 'text-on-surface'}`}>
-                {matchToDisplay.awayScore ?? 0}
-              </span>
+          <div className="flex flex-col items-center justify-center mx-2 sm:mx-8 z-10 shrink-0">
+            <div className="flex items-center justify-center gap-4 sm:gap-8 font-display text-6xl sm:text-8xl font-black text-white drop-shadow-[0_0_20px_rgba(0,255,135,0.3)]">
+              <span>{matchToDisplay.homeScore ?? 0}</span>
+              <span className="text-white/20 text-5xl sm:text-7xl font-light">-</span>
+              <span>{matchToDisplay.awayScore ?? 0}</span>
+            </div>
+            <div className={`mt-6 text-xs sm:text-sm font-display font-black tracking-widest uppercase px-6 py-2 rounded-xl shadow-inner border border-white/10 ${isLive ? 'bg-primary/20 text-primary border-primary/30 shadow-neon-primary' : 'bg-white/10 text-white backdrop-blur-md'}`}>
+               {isLive ? displayTime : (isDraw ? 'DRAW' : 'FULL TIME')}
             </div>
           </div>
 
           {/* Away team */}
-          <div className="flex-1 flex flex-col items-center gap-3 sm:gap-5 z-10">
-            <TeamFlag teamName={matchToDisplay.awayTeam} fallbackEmoji={matchToDisplay.awayFlag} className="w-16 h-10 sm:w-28 sm:h-16 rounded shadow-md" />
-            <div className="font-headline-md text-lg sm:text-2xl text-on-surface tracking-wide font-bold uppercase text-center drop-shadow-md truncate max-w-full px-1">
+          <div className="flex-1 flex flex-col items-center gap-4 z-10">
+            <div className="w-20 h-20 sm:w-28 sm:h-28 bg-black/50 rounded-2xl p-2 flex items-center justify-center shadow-2xl border border-white/20 backdrop-blur-xl -skew-x-6 group-hover:-skew-x-12 transition-transform duration-500">
+              <div className="skew-x-6 group-hover:skew-x-12 w-full h-full rounded-xl overflow-hidden transition-transform duration-500">
+                <TeamFlag teamName={matchToDisplay.awayTeam} fallbackEmoji={matchToDisplay.awayFlag} className="w-full h-full object-cover" />
+              </div>
+            </div>
+            <div className="font-display text-lg sm:text-2xl text-white tracking-widest font-black uppercase text-center mt-2 drop-shadow-lg">
               {matchToDisplay.awayTeam}
             </div>
+            <span className="text-[10px] font-display text-outline-variant tracking-[0.2em] uppercase font-bold">Away</span>
           </div>
         </div>
 
         {/* Goal Scorers */}
         {(homeScorers.length > 0 || awayScorers.length > 0) && (
-          <div className="flex justify-between items-start mt-4 px-2 sm:px-8 relative z-10 border-t border-outline-variant/30 pt-4">
-            <div className="flex-1 flex flex-col gap-1.5 text-on-surface text-sm sm:text-base font-medium">
+          <div className="flex justify-between items-start mt-10 px-2 sm:px-6 relative z-10 border-t border-white/10 pt-6">
+            <div className="flex-1 flex flex-col gap-2 text-white text-xs sm:text-sm font-bold font-display">
               {homeScorers.map(s => (
-                <div key={s.player} className="flex items-center gap-2">
-                  <span className="truncate max-w-[120px] sm:max-w-[200px]">{s.player}</span>
-                  <span className="text-primary text-xs sm:text-sm font-label-md uppercase">{s.times.join(', ')}</span>
+                <div key={s.player} className="flex items-center gap-3">
+                  <Icon name="sports_soccer" className="text-[12px] text-primary" />
+                  <span className="truncate max-w-[100px] sm:max-w-[160px] uppercase tracking-wider">{s.player}</span>
+                  <span className="text-primary tracking-widest text-[10px] sm:text-xs bg-primary/10 px-2 py-0.5 rounded">{s.times.join(', ')}</span>
                 </div>
               ))}
             </div>
-            <div className={`flex flex-col justify-center px-4 text-on-surface-variant ${isLive ? 'animate-pulse' : ''}`}>
-              <span className="text-sm sm:text-base opacity-50">⚽</span>
+            <div className={`flex flex-col justify-center px-4 text-white/30 ${isLive ? 'animate-pulse' : ''}`}>
+              <Icon name="sports_score" className="text-3xl" />
             </div>
-            <div className="flex-1 flex flex-col gap-1.5 text-on-surface text-sm sm:text-base font-medium items-end text-right">
+            <div className="flex-1 flex flex-col gap-2 text-white text-xs sm:text-sm font-bold font-display items-end text-right">
               {awayScorers.map(s => (
-                <div key={s.player} className="flex items-center gap-2 justify-end">
-                  <span className="text-primary text-xs sm:text-sm font-label-md uppercase">{s.times.join(', ')}</span>
-                  <span className="truncate max-w-[120px] sm:max-w-[200px]">{s.player}</span>
+                <div key={s.player} className="flex items-center gap-3 justify-end">
+                  <span className="text-primary tracking-widest text-[10px] sm:text-xs bg-primary/10 px-2 py-0.5 rounded">{s.times.join(', ')}</span>
+                  <span className="truncate max-w-[100px] sm:max-w-[160px] uppercase tracking-wider">{s.player}</span>
+                  <Icon name="sports_soccer" className="text-[12px] text-primary" />
                 </div>
               ))}
             </div>
@@ -182,24 +179,25 @@ export default function WinnerBanner({ matches, predictions = [], currentTime = 
         {/* Completed Match Extras */}
         {!isLive && (
           <div className="mt-8 flex flex-col items-center">
-            <div className="w-full pt-5 border-t border-outline-variant/30 text-center text-xs bg-white rounded-xl p-5 border border-outline-variant/20">
-              <span className="text-secondary font-label-md uppercase tracking-[0.2em] block mb-4 text-sm drop-shadow-md">
+            <div className="w-full pt-6 border-t border-white/10 text-center text-xs">
+              <span className="text-outline-variant font-display uppercase tracking-[0.4em] block mb-4 text-[10px] sm:text-xs font-black">
                 CORRECT SCORE PREDICTIONS
               </span>
               {correctPredictions.length > 0 ? (
-                <div className="flex flex-wrap items-center justify-center gap-3">
+                <div className="flex flex-wrap items-center justify-center gap-3 mt-2">
                   {correctPredictions.map((pred) => (
                     <div
                       key={pred._id}
-                      className="flex items-center gap-2 bg-gradient-to-r from-secondary/20 to-secondary/10 border border-secondary/50 rounded px-4 py-2 text-secondary font-bold uppercase tracking-widest shadow-sm"
+                      className="flex items-center gap-3 bg-white/5 rounded-xl px-4 py-2 text-white font-bold uppercase tracking-widest shadow-inner border border-white/10 backdrop-blur-md hover:bg-white/10 transition-colors"
                     >
-                      <span className="text-on-surface">{pred.user?.name || 'Legend'}</span>
-                      <span className="text-secondary font-display-lg text-lg">({pred.homeGoals}-{pred.awayGoals})</span>
+                      <span className="text-primary text-[10px] font-black"><Icon name="military_tech" /></span>
+                      <span className="text-white drop-shadow-sm truncate max-w-[120px]">{pred.user?.name || 'Legend'}</span>
+                      <span className="text-primary font-display text-sm font-black bg-primary/10 px-2 py-0.5 rounded">({pred.homeGoals}-{pred.awayGoals})</span>
                     </div>
                   ))}
                 </div>
               ) : (
-                <span className="text-on-surface-variant uppercase tracking-widest font-label-md bg-white rounded px-5 py-3 border border-outline-variant/30 inline-block shadow-subtle-card">
+                <span className="text-outline-variant uppercase tracking-[0.3em] font-display text-[10px] bg-white/5 border border-white/10 rounded-xl px-6 py-3 inline-block shadow-inner mt-2 font-bold backdrop-blur-md">
                   NO ONE PREDICTED THIS SCORE CORRECTLY
                 </span>
               )}
@@ -207,6 +205,6 @@ export default function WinnerBanner({ matches, predictions = [], currentTime = 
           </div>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 }

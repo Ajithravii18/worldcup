@@ -9,7 +9,21 @@ import BottomNav from '../components/BottomNav';
 import api from '../api/axios';
 import confetti from 'canvas-confetti';
 import Icon from '../components/Icon';
+import Footer from '../components/Footer';
+import { motion, AnimatePresence } from 'framer-motion';
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1, delayChildren: 0.1 }
+  }
+};
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: { y: 0, opacity: 1, transition: { type: "spring", stiffness: 300, damping: 24 } }
+};
 export default function HomePage() {
   const [view, setView] = useState('global');
   const [statusFilter, setStatusFilter] = useState('upcoming');
@@ -238,7 +252,7 @@ export default function HomePage() {
   const matchPages = chunkMatches(filteredMatches, chunkSize);
 
   return (
-    <div className="min-h-screen flex flex-col bg-background text-on-background relative">
+    <div className="min-h-screen flex flex-col bg-transparent text-white relative">
       <Navbar 
         view={view} 
         setView={setView} 
@@ -246,105 +260,100 @@ export default function HomePage() {
         setStatusFilter={setStatusFilter} 
       />
 
-      <main className="flex-1 pt-4 pb-36 max-w-7xl mx-auto w-full flex flex-col px-4 md:px-8 mt-20 relative z-10">
+      <main className="flex-1 pt-4 pb-12 max-w-[1600px] mx-auto w-full flex flex-col px-4 md:px-8 mt-20 relative z-10">
 
-        {/* Error state */}
-        {error && (
-          <div className="mb-4 p-4 font-label-md text-sm uppercase tracking-widest bg-error-container/20 text-error rounded-lg border border-error/50 shadow-neon-accent">
-            {error}
-          </div>
-        )}
+        <AnimatePresence>
+          {error && (
+            <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="mb-4 p-4 font-display text-sm font-bold uppercase tracking-widest bg-error/20 text-error-container rounded-xl border border-error/50 shadow-lg backdrop-blur-md">
+              {error}
+            </motion.div>
+          )}
 
-        {/* Correct Prediction Toast */}
-        {notification && (
-          <div className="fixed top-28 left-1/2 -translate-x-1/2 z-50 animate-slide-up w-[90%] max-w-sm">
-            <div className="relative overflow-hidden p-6 text-center glass-panel-heavy border-l-4 border-l-primary shadow-neon-primary rounded-xl">
-              <button onClick={() => setNotification(null)} className="absolute top-3 right-4 font-bold text-lg text-primary hover:text-white">
-                <span className="material-symbols-outlined">close</span>
-              </button>
-              <h3 className="font-headline-md text-2xl font-bold uppercase tracking-widest text-primary mb-2 mt-1 drop-shadow-[0_0_8px_rgba(0,255,135,0.8)]">SPOT ON!</h3>
-              <p className="font-label-sm text-sm uppercase tracking-widest text-on-surface-variant mb-4">You perfectly predicted:</p>
-              <div className="p-4 bg-white rounded-lg border border-outline-variant/50 text-on-surface text-center shadow-subtle-card">
-                <div className="font-headline-md font-bold text-xl mb-2">{notification.homeTeam} <span className="text-on-surface-variant mx-1 italic text-base font-body-md">VS</span> {notification.awayTeam}</div>
-                <div className="text-4xl font-display-lg tracking-widest text-primary drop-shadow-[0_0_10px_rgba(0,255,135,0.5)]">{notification.score}</div>
+          {notification && (
+            <motion.div initial={{ opacity: 0, y: 50, scale: 0.9 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 50, scale: 0.9 }} className="fixed top-28 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-sm">
+              <div className="relative overflow-hidden p-6 text-center bg-black/60 backdrop-blur-2xl border border-white/20 border-l-4 border-l-primary shadow-2xl rounded-2xl">
+                <button onClick={() => setNotification(null)} className="absolute top-3 right-4 font-bold text-lg text-primary hover:text-white transition-colors">
+                  <Icon name="close" />
+                </button>
+                <h3 className="font-display text-2xl font-black uppercase tracking-widest text-primary mb-2 mt-1 drop-shadow-md">SPOT ON!</h3>
+                <p className="font-display text-xs uppercase tracking-widest text-outline-variant mb-4 font-bold">You perfectly predicted:</p>
+                <div className="p-4 bg-white/10 rounded-xl border border-white/20 text-white text-center shadow-inner backdrop-blur-md">
+                  <div className="font-display font-bold text-xl mb-2">{notification.homeTeam} <span className="text-outline-variant mx-1 italic text-base font-body">VS</span> {notification.awayTeam}</div>
+                  <div className="text-4xl font-display tracking-widest text-primary font-black drop-shadow-md">{notification.score}</div>
+                </div>
               </div>
-            </div>
-          </div>
-        )}
+            </motion.div>
+          )}
+        </AnimatePresence>
 
-        {/* View Selection Logic */}
         {view === 'leaderboard' ? (
           <Leaderboard predictions={globalPredictions} />
         ) : (
-          <div className="flex-1 flex flex-col">
-            {/* Hero Landing Animation */}
+          <motion.div variants={containerVariants} initial="hidden" animate="visible" className="flex-1 flex flex-col">
             {view === 'global' && !isLoading && (
-              <HeroLanding />
+              <motion.div variants={itemVariants}>
+                <HeroLanding />
+              </motion.div>
             )}
 
-            {/* Winner Banner */}
             {!isLoading && matches.length > 0 && (
-              <div className="mb-10">
+              <motion.div variants={itemVariants} className="mb-10">
                 <WinnerBanner matches={matches} predictions={globalPredictions} currentTime={currentTime} onClick={setSelectedMatch} />
-              </div>
+              </motion.div>
             )}
 
-            {/* Loading */}
             {isLoading && (
               <div className="flex flex-col items-center justify-center py-32">
                 <div className="relative w-16 h-16 mb-6">
-                  <div className="absolute inset-0 border-4 border-outline-variant border-t-primary animate-spin rounded-full shadow-neon-primary"></div>
+                  <div className="absolute inset-0 border-4 border-white/10 border-t-primary animate-spin rounded-full shadow-neon-primary"></div>
                 </div>
-                <div className="font-label-md text-lg uppercase tracking-widest animate-pulse text-on-surface-variant">
+                <div className="font-display text-lg uppercase tracking-widest animate-pulse text-outline-variant font-bold">
                   Loading the Arena...
                 </div>
               </div>
             )}
 
-            {/* Empty state */}
             {!isLoading && matches.length === 0 && (
-              <div className="text-center py-20 font-label-md uppercase tracking-widest text-on-surface-variant glass-panel rounded-2xl">
-                <div className="text-6xl mb-6 font-display-lg text-outline-variant opacity-50">0</div>
-                <p className="font-headline-lg text-3xl tracking-wide mb-3 uppercase text-on-surface">No Matches</p>
-                <p className="font-label-sm text-base mb-6">Run the seed script to add matches.</p>
-                <code className="mt-3 block font-body-md text-sm px-5 py-3 mx-auto max-w-xs bg-white border border-outline-variant text-on-surface rounded-lg shadow-subtle-card">
+              <motion.div variants={itemVariants} className="text-center py-20 font-display uppercase tracking-widest text-outline-variant bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl shadow-2xl">
+                <div className="text-6xl mb-6 font-display text-white/20 font-black">0</div>
+                <p className="font-display text-3xl font-black tracking-widest mb-3 uppercase text-white">No Matches</p>
+                <p className="font-display text-sm mb-6 font-bold">Run the seed script to add matches.</p>
+                <code className="mt-3 block font-body text-sm px-5 py-3 mx-auto max-w-xs bg-black/50 border border-white/20 text-white rounded-xl shadow-inner">
                   cd server &amp;&amp; npm run seed
                 </code>
-              </div>
+              </motion.div>
             )}
 
             {!isLoading && matches.length > 0 && (
-              <div className="flex flex-col">
-                {/* Filter and Sort Row */}
-                <div className="mb-6 flex flex-col md:flex-row items-center justify-between gap-4 p-4 animate-fade-in glass-panel rounded-xl shadow-subtle-card">
-                  <div className="flex items-center gap-2 w-full md:w-auto">
-                    <Icon name="sensors" className="text-primary text-[20px]" />
-                    <span className="font-label-md text-base uppercase tracking-widest text-on-surface">
-                      {view === 'global' ? 'Global Match Feed' : 'Your Predictions'} <span className="text-on-surface-variant ml-2 text-sm">({filteredMatches.length})</span>
+              <motion.div variants={itemVariants} className="flex flex-col">
+                <div className="mb-8 flex flex-col md:flex-row items-center justify-between gap-4 p-5 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl">
+                  <div className="flex items-center gap-3 w-full md:w-auto">
+                    <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center text-primary border border-primary/30">
+                      <Icon name="sensors" className="text-[20px]" />
+                    </div>
+                    <span className="font-display text-sm sm:text-base uppercase tracking-widest text-white font-bold">
+                      {view === 'global' ? 'Global Match Feed' : 'Your Predictions'} <span className="text-primary ml-2">({filteredMatches.length})</span>
                     </span>
                   </div>
 
                   <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
-                    {/* Desktop filter pills */}
-                    <div className="hidden md:flex items-center gap-0 border border-outline-variant/50 rounded-lg overflow-hidden bg-white p-1">
+                    <div className="hidden md:flex items-center gap-1 border border-white/10 rounded-xl overflow-hidden bg-black/40 p-1 backdrop-blur-md">
                       <button
                         onClick={() => setStatusFilter('upcoming')}
-                        className={`px-6 py-2 font-label-sm text-sm uppercase tracking-widest transition-all duration-200 rounded-md ${
-                          statusFilter === 'upcoming'
-                            ? 'text-on-background bg-primary shadow-neon-primary'
-                            : 'text-on-surface-variant bg-transparent hover:text-on-surface hover:bg-surface-variant'
+                        className={`relative px-6 py-2.5 font-display text-xs uppercase tracking-widest transition-all duration-300 rounded-lg font-bold z-10 ${
+                          statusFilter === 'upcoming' ? 'text-black' : 'text-outline-variant hover:text-white'
                         }`}
                       >
+                        {statusFilter === 'upcoming' && <motion.div layoutId="filter-tab" className="absolute inset-0 bg-primary rounded-lg -z-10 shadow-neon-primary" transition={{ type: "spring", bounce: 0.2, duration: 0.6 }} />}
                         Open
                       </button>
                       <button
                         onClick={() => setStatusFilter('completed')}
-                        className={`px-6 py-2 font-label-sm text-sm uppercase tracking-widest transition-all duration-200 rounded-md ${
-                          statusFilter === 'completed'
-                            ? 'text-on-background bg-primary shadow-neon-primary'
-                            : 'text-on-surface-variant bg-transparent hover:text-on-surface hover:bg-surface-variant'
+                        className={`relative px-6 py-2.5 font-display text-xs uppercase tracking-widest transition-all duration-300 rounded-lg font-bold z-10 ${
+                          statusFilter === 'completed' ? 'text-black' : 'text-outline-variant hover:text-white'
                         }`}
                       >
+                        {statusFilter === 'completed' && <motion.div layoutId="filter-tab" className="absolute inset-0 bg-primary rounded-lg -z-10 shadow-neon-primary" transition={{ type: "spring", bounce: 0.2, duration: 0.6 }} />}
                         Results
                       </button>
                     </div>
@@ -356,43 +365,47 @@ export default function HomePage() {
                           setTeamFilter(e.target.value);
                           if (scrollContainerRef.current) scrollContainerRef.current.scrollLeft = 0;
                         }}
-                        className="w-full font-label-sm text-sm uppercase tracking-widest px-4 py-3 outline-none appearance-none cursor-pointer bg-white border border-outline-variant/50 text-on-surface rounded-lg transition-colors hover:border-primary focus:border-primary focus:ring-1 focus:ring-primary shadow-subtle-card"
+                        className="w-full font-display text-xs font-bold uppercase tracking-widest px-4 py-3.5 outline-none appearance-none cursor-pointer bg-black/40 border border-white/10 text-white rounded-xl transition-colors hover:border-primary focus:border-primary shadow-inner backdrop-blur-md"
                       >
                         <option value="All">All Teams</option>
                         {uniqueTeams.map(t => (
                           <option key={t} value={t}>{t}</option>
                         ))}
                       </select>
-                      <Icon name="expand_more" className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant text-[18px]" />
+                      <Icon name="expand_more" className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-outline-variant text-[20px]" />
                     </div>
 
-                    <button
+                    <motion.button
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
                       onClick={() => {
                         setDateSort(prev => prev === 'earliest' ? 'latest' : 'earliest');
                         if (scrollContainerRef.current) scrollContainerRef.current.scrollLeft = 0;
                       }}
-                      className="w-full sm:w-auto font-label-sm text-sm uppercase tracking-widest px-5 py-3 active:scale-95 transition-all flex items-center justify-center gap-2 cursor-pointer bg-white border border-outline-variant/50 text-on-surface rounded-lg hover:border-primary hover:text-primary shadow-subtle-card"
+                      className="w-full sm:w-auto font-display text-xs font-bold uppercase tracking-widest px-5 py-3.5 flex items-center justify-center gap-2 cursor-pointer bg-black/40 border border-white/10 text-white rounded-xl hover:border-primary hover:text-primary shadow-inner backdrop-blur-md transition-colors"
                     >
-                      Date <Icon name={dateSort === 'earliest' ? 'arrow_downward' : 'arrow_upward'} className="text-[16px] text-primary" />
-                    </button>
+                      Date <Icon name={dateSort === 'earliest' ? 'arrow_downward' : 'arrow_upward'} className="text-[18px] text-primary" />
+                    </motion.button>
                   </div>
                 </div>
 
                 {filteredMatches.length > 0 ? (
                   <div className="relative group mt-2">
-                    <button
+                    <motion.button
+                      whileHover={{ scale: 1.1, backgroundColor: "#22c55e", color: "#000" }}
+                      whileTap={{ scale: 0.9 }}
                       onClick={scrollLeft}
-                      className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-5 z-20 w-12 h-12 items-center justify-center opacity-0 group-hover:opacity-100 transition-all active:scale-95 bg-surface-container-lowest border border-outline-variant text-primary rounded-full hover:bg-primary hover:text-black shadow-neon-primary"
+                      className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-5 z-20 w-14 h-14 items-center justify-center opacity-0 group-hover:opacity-100 transition-all bg-black/80 border border-white/20 text-primary rounded-full shadow-2xl backdrop-blur-xl"
                     >
-                      <Icon name="chevron_left" className="text-[28px]" />
-                    </button>
+                      <Icon name="chevron_left" className="text-[32px]" />
+                    </motion.button>
                     <div 
                       ref={scrollContainerRef}
-                      className="flex overflow-x-auto snap-x snap-mandatory scrollbar-none pb-6"
+                      className="flex overflow-x-auto snap-x snap-mandatory scrollbar-none pb-8 pt-2"
                       onWheel={handleWheelScroll}
                     >
                       {matchPages.map((pageMatches, pageIndex) => (
-                        <div key={pageIndex} className="min-w-full flex-shrink-0 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-5 px-1 snap-start">
+                        <div key={pageIndex} className="min-w-full flex-shrink-0 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 px-1 snap-start">
                           {pageMatches.map((match) => (
                             <MatchCard
                               key={match._id}
@@ -404,23 +417,27 @@ export default function HomePage() {
                         </div>
                       ))}
                     </div>
-                    <button
+                    <motion.button
+                      whileHover={{ scale: 1.1, backgroundColor: "#22c55e", color: "#000" }}
+                      whileTap={{ scale: 0.9 }}
                       onClick={scrollRight}
-                      className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 z-20 w-12 h-12 items-center justify-center opacity-0 group-hover:opacity-100 transition-all active:scale-95 bg-surface-container-lowest border border-outline-variant text-primary rounded-full hover:bg-primary hover:text-black shadow-neon-primary"
+                      className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 z-20 w-14 h-14 items-center justify-center opacity-0 group-hover:opacity-100 transition-all bg-black/80 border border-white/20 text-primary rounded-full shadow-2xl backdrop-blur-xl"
                     >
-                      <Icon name="chevron_right" className="text-[28px]" />
-                    </button>
+                      <Icon name="chevron_right" className="text-[32px]" />
+                    </motion.button>
                   </div>
                 ) : (
-                  <div className="text-center py-24 font-label-sm text-base animate-fade-in uppercase tracking-widest glass-panel border-dashed rounded-xl text-on-surface-variant">
+                  <motion.div variants={itemVariants} className="text-center py-24 font-display text-sm font-bold uppercase tracking-widest bg-white/5 backdrop-blur-md border border-dashed border-white/20 rounded-2xl text-outline-variant shadow-inner">
                     {view === 'my' ? 'No predictions made yet. Time to enter the arena.' : 'No matches available in this filter.'}
-                  </div>
+                  </motion.div>
                 )}
-              </div>
+              </motion.div>
             )}
-          </div>
+          </motion.div>
         )}
       </main>
+
+      <Footer />
 
       <MatchDetailModal 
         isOpenModal={!!selectedMatch}

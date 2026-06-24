@@ -1,67 +1,109 @@
 import { Link } from 'react-router-dom';
 import Icon from '../components/Icon';
+import { motion } from 'framer-motion';
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.2
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { y: 30, opacity: 0 },
+  visible: { y: 0, opacity: 1, transition: { type: "spring", stiffness: 300, damping: 24 } }
+};
 
 export default function LandingPage() {
   return (
-    <div className="min-h-dvh flex flex-col items-center justify-center relative overflow-hidden px-4 bg-transparent">
+    <div className="min-h-dvh flex flex-col items-center justify-center relative overflow-x-hidden px-4 py-12 bg-transparent">
       {/* Subtle glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] pointer-events-none bg-gradient-to-b from-primary/10 to-transparent" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] pointer-events-none bg-gradient-to-b from-primary/20 to-transparent blur-3xl" />
 
-      <div className="relative z-10 max-w-sm w-full flex flex-col items-center text-center">
-
+      <motion.div 
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        className="relative z-10 max-w-sm md:max-w-4xl w-full flex flex-col items-center text-center md:bg-white/5 md:backdrop-blur-xl md:p-10 md:rounded-[3rem] md:border md:border-white/10 md:shadow-[0_8px_32px_rgba(0,0,0,0.5)]"
+      >
         {/* Logo */}
-        <div className="mb-8 opacity-0 animate-[slideUp_0.6s_ease-out_0.1s_forwards]">
+        <motion.div variants={itemVariants} className="mb-6">
           <div className="flex flex-col items-center justify-center gap-3 mb-2">
-            <div className="w-16 h-16 flex items-center justify-center text-white text-4xl font-display font-bold bg-primary shadow-subtle-card rounded-2xl">
-              <Icon name="sports_soccer" className="text-white text-[36px]" />
+            <motion.div 
+              whileHover={{ scale: 1.05 }}
+              className="flex items-center justify-center"
+            >
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/1920px-2026_FIFA_World_Cup_emblem.svg.png" alt="World Cup 2026 Emblem" className="h-20 w-auto drop-shadow-[0_0_15px_rgba(0,255,135,0.4)]" />
+            </motion.div>
+            <div className="overflow-hidden">
+              <motion.h1 
+                initial={{ y: "100%" }}
+                animate={{ y: 0 }}
+                transition={{ type: "spring", stiffness: 300, damping: 30, delay: 0.4 }}
+                className="font-display text-4xl sm:text-6xl font-black text-white drop-shadow-2xl mt-2 tracking-widest uppercase"
+              >
+                Lucky Star FC
+              </motion.h1>
             </div>
-            <h1 className="font-display text-3xl sm:text-4xl font-bold text-on-surface mt-2">
-              Lucky Star FC
-            </h1>
           </div>
-          <p className="text-sm font-medium text-on-surface-variant">
+          <motion.p variants={itemVariants} className="text-sm md:text-base font-bold text-outline-variant tracking-[0.3em] uppercase drop-shadow-md">
             World Cup 2026 Predictions
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
         {/* Badge */}
-        <div className="mb-10 flex items-center gap-3 px-5 py-2.5 opacity-0 animate-[slideUp_0.6s_ease-out_0.3s_forwards] bg-white border border-outline-variant/30 rounded-full shadow-subtle-card">
-          <span className="text-xl animate-bounce" style={{ animationDuration: '2.5s' }}>🏆</span>
-          <span className="text-sm font-semibold text-on-surface">World Cup 2026</span>
-          <span className="text-outline-variant">|</span>
-          <div className="flex items-center gap-1.5 ml-1">
-            <img src="https://flagcdn.com/w40/ca.png" alt="Canada" className="w-5 h-3.5 rounded-sm object-cover shadow-sm" />
-            <img src="https://flagcdn.com/w40/mx.png" alt="Mexico" className="w-5 h-3.5 rounded-sm object-cover shadow-sm" />
-            <img src="https://flagcdn.com/w40/us.png" alt="USA" className="w-5 h-3.5 rounded-sm object-cover shadow-sm" />
+        <motion.div variants={itemVariants} className="mb-8 flex items-center gap-4 px-6 py-3 bg-white/10 border border-white/20 rounded-full shadow-2xl backdrop-blur-md">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/1920px-2026_FIFA_World_Cup_emblem.svg.png" alt="World Cup Emblem" className="w-6 h-auto drop-shadow-md" />
+          <span className="text-sm md:text-base font-bold text-white tracking-widest uppercase">World Cup 2026</span>
+          <span className="text-outline-variant/50">|</span>
+          <div className="flex items-center gap-2 ml-1">
+            <img src="https://flagcdn.com/w40/ca.png" alt="Canada" className="w-6 h-4 rounded-sm object-cover shadow-md" />
+            <img src="https://flagcdn.com/w40/mx.png" alt="Mexico" className="w-6 h-4 rounded-sm object-cover shadow-md" />
+            <img src="https://flagcdn.com/w40/us.png" alt="USA" className="w-6 h-4 rounded-sm object-cover shadow-md" />
           </div>
-        </div>
+        </motion.div>
 
         {/* Tagline */}
-        <p className="text-sm font-medium leading-relaxed mb-10 px-2 opacity-0 animate-[slideUp_0.6s_ease-out_0.5s_forwards] text-on-surface-variant">
+        <motion.p variants={itemVariants} className="text-base md:text-lg font-medium leading-relaxed mb-8 px-4 text-outline-variant">
           The ultimate prediction arena for the 2026 World Cup.
-        </p>
+        </motion.p>
 
         {/* Buttons */}
-        <div className="w-full flex flex-col gap-4 opacity-0 animate-[slideUp_0.6s_ease-out_0.7s_forwards]">
-          <Link
-            to="/login"
-            className="w-full text-center text-white font-display font-semibold text-lg py-4 transition-all duration-150 active:scale-95 bg-primary hover:bg-primary/90 shadow-neon-primary rounded-2xl"
-          >
-            Sign In
+        <motion.div variants={itemVariants} className="w-full flex flex-col md:flex-row justify-center gap-4 md:gap-6">
+          <Link to="/login" className="w-full md:w-64">
+            <motion.div
+              whileHover={{ scale: 1.05, backgroundColor: "#22c55e" }}
+              whileTap={{ scale: 0.95 }}
+              className="w-full flex items-center justify-center gap-2 text-white tracking-[0.15em] font-display font-bold text-xl py-4 bg-primary shadow-neon-primary rounded-2xl"
+            >
+              Sign In <Icon name="chevron_right" className="text-2xl" />
+            </motion.div>
           </Link>
 
-          <Link
-            to="/register"
-            className="w-full text-center font-display font-semibold text-lg py-4 transition-all duration-150 active:scale-95 bg-white border-2 border-primary/20 text-primary hover:bg-primary/5 rounded-2xl shadow-subtle-card"
-          >
-            Create Account
+          <Link to="/register" className="w-full md:w-64">
+            <motion.div
+              whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)" }}
+              whileTap={{ scale: 0.95 }}
+              className="w-full text-center tracking-[0.15em] font-display font-bold text-xl py-4 bg-transparent border-2 border-white/30 text-white rounded-2xl backdrop-blur-sm"
+            >
+              Create Account
+            </motion.div>
           </Link>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
-      <p className="absolute bottom-8 text-sm font-medium text-center z-10 opacity-0 animate-[fadeIn_1s_ease-out_1.2s_forwards] text-on-surface-variant">
+      <motion.p 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5, duration: 1 }}
+        className="mt-8 text-xs md:text-sm font-bold text-center z-10 text-outline-variant/60 tracking-[0.3em] uppercase"
+      >
         Predict • Compete • Glory
-      </p>
+      </motion.p>
     </div>
   );
 }

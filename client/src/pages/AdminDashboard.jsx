@@ -53,26 +53,26 @@ export default function AdminDashboard() {
   if (loading) {
     return (
       <div className="flex-1 flex items-center justify-center pt-20">
-        <div className="w-12 h-12 border-4 border-theme-primary border-t-transparent rounded-full animate-spin"></div>
+        <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin shadow-neon-primary"></div>
       </div>
     );
   }
 
   return (
-    <div className="flex-1 pt-24 pb-36 px-4 max-w-7xl mx-auto w-full">
-      <div className="bg-white/80 backdrop-blur-md rounded-3xl p-6 md:p-10 shadow-xl border border-outline-variant/30">
+    <div className="flex-1 pt-24 pb-36 px-4 max-w-[1600px] mx-auto w-full relative z-10">
+      <div className="bg-black/60 backdrop-blur-2xl rounded-3xl p-6 md:p-10 shadow-2xl border border-white/10">
         <div className="mb-6">
           <button 
             onClick={() => navigate('/app')}
-            className="flex items-center gap-2 text-xs font-bold text-gray-500 hover:text-theme-primary transition-colors uppercase tracking-widest"
+            className="flex items-center gap-2 text-xs font-display font-bold text-outline-variant hover:text-white transition-colors uppercase tracking-widest"
           >
             ← Back to App
           </button>
         </div>
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 gap-4">
           <div>
-            <h1 className="text-3xl font-black text-gray-900 tracking-tight uppercase">Admin Panel</h1>
-            <p className="text-sm text-gray-500 font-bold uppercase tracking-widest mt-1">Manage Users & Accounts</p>
+            <h1 className="text-3xl font-display font-black text-white tracking-widest uppercase drop-shadow-md">Admin Panel</h1>
+            <p className="text-sm text-outline-variant font-display font-bold uppercase tracking-widest mt-1">Manage Users & Accounts</p>
           </div>
           <div className="flex items-center gap-3">
             <button
@@ -84,18 +84,18 @@ export default function AdminDashboard() {
                   alert(err.response?.data?.message || 'Failed to evaluate matches');
                 }
               }}
-              className="bg-blue-50 hover:bg-blue-100 text-blue-600 px-4 py-2 rounded-full font-bold text-xs uppercase tracking-widest border border-blue-200 transition-colors shadow-sm"
+              className="bg-primary/20 hover:bg-primary/30 text-primary px-4 py-2 rounded-full font-display font-bold text-xs uppercase tracking-widest border border-primary/50 transition-colors shadow-neon-primary"
             >
               Evaluate Points
             </button>
-            <div className="bg-theme-primary/10 text-theme-primary px-4 py-2 rounded-full font-bold text-xs uppercase tracking-widest border border-theme-primary/20">
+            <div className="bg-white/10 text-white px-4 py-2 rounded-full font-display font-bold text-xs uppercase tracking-widest border border-white/20">
               Total Users: {users.length}
             </div>
           </div>
         </div>
 
         {error && (
-          <div className="bg-red-50 text-red-600 p-4 rounded-2xl mb-6 text-sm font-bold border border-red-100">
+          <div className="bg-error/20 text-error-container p-4 rounded-2xl mb-6 text-sm font-bold border border-error/50 backdrop-blur-md">
             {error}
           </div>
         )}
@@ -103,36 +103,36 @@ export default function AdminDashboard() {
         {/* Mobile View (Cards) */}
         <div className="md:hidden space-y-4">
           {users.map((u) => (
-            <div key={u._id} className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex flex-col gap-3">
+            <div key={u._id} className="bg-white/5 p-4 rounded-xl border border-white/10 shadow-inner flex flex-col gap-3 backdrop-blur-md">
               <div className="flex justify-between items-start">
                 <div className="flex flex-col">
-                  <span className="font-bold text-gray-900 truncate max-w-[200px]">{u.name}</span>
-                  <span className="text-xs text-gray-500 truncate max-w-[200px]">{u.email}</span>
+                  <span className="font-display font-black text-white uppercase tracking-widest truncate max-w-[200px]">{u.name}</span>
+                  <span className="text-xs text-outline-variant truncate max-w-[200px]">{u.email}</span>
                 </div>
-                <span className={`px-2 py-1 rounded-full text-[10px] font-black uppercase tracking-widest ${u.role === 'admin' ? 'bg-theme-secondary/10 text-theme-secondary border border-theme-secondary/20' : 'bg-gray-100 text-gray-600'}`}>
+                <span className={`px-2 py-1 rounded border text-[10px] font-display font-black uppercase tracking-widest ${u.role === 'admin' ? 'bg-secondary/20 text-secondary border-secondary/50 shadow-[0_0_5px_rgba(0,255,135,0.3)]' : 'bg-white/5 text-outline-variant border-white/10'}`}>
                   {u.role}
                 </span>
               </div>
               
               <div className="flex justify-between items-center text-xs">
-                <span className="text-gray-500 font-semibold">{new Date(u.createdAt).toLocaleDateString()}</span>
-                <span className={`px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-widest ${u.isFrozen ? 'bg-red-100 text-red-700 border border-red-200' : 'bg-theme-primary/10 text-theme-primary border border-theme-primary/20'}`}>
+                <span className="text-outline-variant font-display font-bold">{new Date(u.createdAt).toLocaleDateString()}</span>
+                <span className={`px-2.5 py-1 rounded border text-[10px] font-display font-black uppercase tracking-widest ${u.isFrozen ? 'bg-error/20 text-error-container border-error/50' : 'bg-primary/20 text-primary border-primary/50'}`}>
                   {u.isFrozen ? 'Frozen' : 'Active'}
                 </span>
               </div>
               
-              <div className="flex gap-2 pt-3 border-t border-gray-100">
+              <div className="flex gap-2 pt-3 border-t border-white/10 mt-2">
                 <button
                   onClick={() => handleToggleFreeze(u._id)}
                   disabled={u.role === 'admin'}
-                  className={`flex-1 text-xs font-bold px-3 py-2 rounded-lg transition-colors border ${u.isFrozen ? 'bg-theme-primary/10 text-theme-primary border-theme-primary/20 hover:bg-theme-primary/20' : 'bg-orange-50 text-orange-600 border-orange-200 hover:bg-orange-100'} disabled:opacity-50 disabled:cursor-not-allowed`}
+                  className={`flex-1 text-[10px] font-display font-black uppercase tracking-widest px-3 py-2 rounded-lg transition-colors border ${u.isFrozen ? 'bg-primary/20 text-primary border-primary/50 hover:bg-primary/30' : 'bg-white/5 text-white border-white/20 hover:bg-white/10'} disabled:opacity-50 disabled:cursor-not-allowed`}
                 >
                   {u.isFrozen ? 'Unfreeze' : 'Freeze'}
                 </button>
                 <button
                   onClick={() => handleDeleteUser(u._id)}
                   disabled={u.role === 'admin'}
-                  className="flex-1 text-xs font-bold px-3 py-2 rounded-lg bg-red-50 text-red-600 border border-red-200 hover:bg-red-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="flex-1 text-[10px] font-display font-black uppercase tracking-widest px-3 py-2 rounded-lg bg-error/20 text-error-container border border-error/50 hover:bg-error/30 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   Delete
                 </button>
@@ -140,16 +140,16 @@ export default function AdminDashboard() {
             </div>
           ))}
           {users.length === 0 && (
-            <div className="text-center text-gray-500 font-semibold uppercase tracking-widest text-xs p-6 bg-white rounded-xl border border-gray-200">
+            <div className="text-center text-outline-variant font-display font-black uppercase tracking-widest text-xs p-6 bg-white/5 rounded-xl border border-white/10">
               No users found
             </div>
           )}
         </div>
 
         {/* Desktop View (Table) */}
-        <div className="hidden md:block overflow-x-auto rounded-2xl border border-gray-200 shadow-sm">
-          <table className="w-full text-left text-sm text-gray-700">
-            <thead className="bg-gray-50 text-xs uppercase font-black text-gray-500 border-b border-gray-200">
+        <div className="hidden md:block overflow-x-auto rounded-2xl border border-white/10 shadow-inner bg-black/40 backdrop-blur-md">
+          <table className="w-full text-left text-sm text-white">
+            <thead className="bg-white/5 text-[10px] font-display font-black uppercase tracking-[0.2em] text-outline-variant border-b border-white/10">
               <tr>
                 <th className="px-6 py-4">User</th>
                 <th className="px-6 py-4">Role</th>
@@ -158,25 +158,25 @@ export default function AdminDashboard() {
                 <th className="px-6 py-4 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-200 bg-white">
+            <tbody className="divide-y divide-white/10">
               {users.map((u) => (
-                <tr key={u._id} className="hover:bg-gray-50 transition-colors">
+                <tr key={u._id} className="hover:bg-white/5 transition-colors">
                   <td className="px-6 py-4">
                     <div className="flex flex-col">
-                      <span className="font-bold text-gray-900 truncate max-w-[150px]">{u.name}</span>
-                      <span className="text-xs text-gray-500 truncate max-w-[150px]">{u.email}</span>
+                      <span className="font-display font-black tracking-widest uppercase text-white truncate max-w-[150px]">{u.name}</span>
+                      <span className="text-[10px] font-bold text-outline-variant truncate max-w-[150px]">{u.email}</span>
                     </div>
                   </td>
                   <td className="px-6 py-4">
-                    <span className={`px-2 py-1 rounded-full text-[10px] font-black uppercase tracking-widest ${u.role === 'admin' ? 'bg-theme-secondary/10 text-theme-secondary border border-theme-secondary/20' : 'bg-gray-100 text-gray-600'}`}>
+                    <span className={`px-3 py-1 rounded border text-[10px] font-display font-black uppercase tracking-widest ${u.role === 'admin' ? 'bg-secondary/20 text-secondary border-secondary/50 shadow-[0_0_5px_rgba(0,255,135,0.3)]' : 'bg-white/5 text-outline-variant border-white/10'}`}>
                       {u.role}
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-xs font-semibold text-gray-500">
+                  <td className="px-6 py-4 text-[10px] font-display font-bold text-outline-variant uppercase tracking-widest">
                     {new Date(u.createdAt).toLocaleDateString()}
                   </td>
                   <td className="px-6 py-4">
-                    <span className={`px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-widest ${u.isFrozen ? 'bg-red-100 text-red-700 border border-red-200' : 'bg-theme-primary/10 text-theme-primary border border-theme-primary/20'}`}>
+                    <span className={`px-3 py-1 rounded border text-[10px] font-display font-black uppercase tracking-widest ${u.isFrozen ? 'bg-error/20 text-error-container border-error/50' : 'bg-primary/20 text-primary border-primary/50'}`}>
                       {u.isFrozen ? 'Frozen' : 'Active'}
                     </span>
                   </td>
@@ -184,14 +184,14 @@ export default function AdminDashboard() {
                     <button
                       onClick={() => handleToggleFreeze(u._id)}
                       disabled={u.role === 'admin'}
-                      className={`text-xs font-bold px-3 py-1.5 rounded-lg transition-colors border ${u.isFrozen ? 'bg-theme-primary/10 text-theme-primary border-theme-primary/20 hover:bg-theme-primary/20' : 'bg-orange-50 text-orange-600 border-orange-200 hover:bg-orange-100'} disabled:opacity-50 disabled:cursor-not-allowed`}
+                      className={`text-[10px] font-display font-black uppercase tracking-widest px-4 py-2 rounded-lg transition-colors border ${u.isFrozen ? 'bg-primary/20 text-primary border-primary/50 hover:bg-primary/30' : 'bg-white/5 text-white border-white/20 hover:bg-white/10'} disabled:opacity-50 disabled:cursor-not-allowed`}
                     >
                       {u.isFrozen ? 'Unfreeze' : 'Freeze'}
                     </button>
                     <button
                       onClick={() => handleDeleteUser(u._id)}
                       disabled={u.role === 'admin'}
-                      className="text-xs font-bold px-3 py-1.5 rounded-lg bg-red-50 text-red-600 border border-red-200 hover:bg-red-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="text-[10px] font-display font-black uppercase tracking-widest px-4 py-2 rounded-lg bg-error/20 text-error-container border border-error/50 hover:bg-error/30 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       Delete
                     </button>
@@ -200,7 +200,7 @@ export default function AdminDashboard() {
               ))}
               {users.length === 0 && (
                 <tr>
-                  <td colSpan="5" className="px-6 py-8 text-center text-gray-500 font-semibold uppercase tracking-widest text-xs">
+                  <td colSpan="5" className="px-6 py-8 text-center text-outline-variant font-display font-black uppercase tracking-widest text-xs">
                     No users found
                   </td>
                 </tr>
