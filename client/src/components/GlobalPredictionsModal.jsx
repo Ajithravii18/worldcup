@@ -56,7 +56,7 @@ export default function GlobalPredictionsModal({ isOpen, onClose, match, predict
 
             <button
               onClick={onClose}
-              className="absolute right-6 top-6 w-10 h-10 rounded-full border border-white/10 bg-white/5 hover:bg-white/20 flex items-center justify-center text-outline-variant hover:text-white transition-colors text-sm font-bold z-10 backdrop-blur-md"
+              className="fixed sm:absolute right-6 top-6 w-10 h-10 rounded-full border border-white/10 bg-black/60 sm:bg-white/5 hover:bg-white/20 flex items-center justify-center text-outline-variant hover:text-white transition-colors text-sm font-bold z-50 backdrop-blur-xl shadow-lg"
             >
               <span className="material-symbols-outlined text-[20px]">close</span>
             </button>

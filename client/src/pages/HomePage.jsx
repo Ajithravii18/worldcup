@@ -1,11 +1,11 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import Navbar from '../components/Navbar';
-import WinnerBanner from '../components/WinnerBanner';
+import HeroCarousel from '../components/HeroCarousel';
+import HeroLanding from '../components/HeroLanding';
 import MatchCard from '../components/MatchCard';
 import MatchDetailModal from '../components/MatchDetailModal';
 import ProfileModal from '../components/ProfileModal';
 import Leaderboard from '../components/Leaderboard';
-import HeroLanding from '../components/HeroLanding';
 import BottomNav from '../components/BottomNav';
 import api from '../api/axios';
 import confetti from 'canvas-confetti';
@@ -299,15 +299,18 @@ export default function HomePage() {
         ) : (
           <motion.div variants={containerVariants} initial="hidden" animate="visible" className="flex-1 flex flex-col">
             {view === 'global' && !isLoading && (
-              <motion.div variants={itemVariants}>
-                <HeroLanding />
-              </motion.div>
-            )}
-
-            {!isLoading && matches.length > 0 && (
-              <motion.div variants={itemVariants} className="mb-10">
-                <WinnerBanner matches={matches} predictions={globalPredictions} currentTime={currentTime} onClick={setSelectedMatch} />
-              </motion.div>
+              matches.length > 0 ? (
+                <HeroCarousel 
+                  matches={matches} 
+                  globalPredictions={globalPredictions} 
+                  currentTime={currentTime} 
+                  onMatchClick={setSelectedMatch} 
+                />
+              ) : (
+                <motion.div variants={itemVariants}>
+                  <HeroLanding />
+                </motion.div>
+              )
             )}
 
             {isLoading && (
