@@ -1,33 +1,16 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import confetti from 'canvas-confetti';
-import { motion } from 'framer-motion';
-import Icon from '../components/Icon';
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1, delayChildren: 0.1 }
-  }
-};
-
-const itemVariants = {
-  hidden: { y: 20, opacity: 0 },
-  visible: { y: 0, opacity: 1, transition: { type: "spring", stiffness: 300, damping: 24 } }
-};
+import { ArrowRight, Mail, Lock } from 'lucide-react';
 
 export default function LoginPage() {
-  const { login } = useAuth();
-  const navigate = useNavigate();
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
-  const [success, setSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
+  
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,154 +18,92 @@ export default function LoginPage() {
     setLoading(true);
     try {
       await login(email, password);
-      setSuccess(true);
-      confetti({ particleCount: 150, spread: 85, origin: { y: 0.5 } });
-      setTimeout(() => navigate('/app'), 1600);
+      navigate('/app');
     } catch (err) {
-      setError(err.response?.data?.message || 'Login failed. Please try again.');
+      setError(err.response?.data?.message || 'Login failed');
+    } finally {
       setLoading(false);
     }
   };
 
-  if (success) {
-    return (
-      <motion.div 
-        initial={{ opacity: 0 }} animate={{ opacity: 1 }} 
-        className="min-h-dvh flex flex-col items-center justify-center text-center p-6 bg-transparent bg-[radial-gradient(#ffffff22_1px,transparent_1px)] [background-size:24px_24px]"
-      >
-        <motion.div 
-          initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring', bounce: 0.5 }}
-          className="w-24 h-24 mb-6 flex items-center justify-center bg-primary rounded-3xl shadow-neon-primary"
-        >
-          <Icon name="check_circle" className="text-black text-6xl" />
-        </motion.div>
-        <h1 className="font-display text-5xl tracking-widest mb-3 font-black text-white drop-shadow-md uppercase">WELCOME BACK!</h1>
-        <p className="text-sm uppercase tracking-widest font-bold text-outline-variant">Entering the Arena...</p>
-      </motion.div>
-    );
-  }
-
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center relative overflow-x-hidden px-4 py-12 bg-transparent">
+    <div className="flex min-h-[100dvh] flex-col justify-center bg-app-bg px-4 py-12 sm:px-6 lg:px-8">
+      <div className="sm:mx-auto sm:w-full sm:max-w-md">
+        <h2 className="mt-6 text-center text-3xl font-black tracking-tight text-app-ink">
+          Welcome back
+        </h2>
+        <p className="mt-2 text-center text-sm font-medium text-app-muted">
+          Or{' '}
+          <Link to="/register" className="font-bold text-app-primary hover:text-app-secondary">
+            create a new account
+          </Link>
+        </p>
+      </div>
 
-      {/* Back */}
-      <Link to="/" className="absolute top-6 left-6 z-50">
-        <motion.div whileHover={{ x: -5 }} className="flex items-center gap-2 text-xs tracking-[0.2em] uppercase font-bold text-outline-variant hover:text-white">
-          <Icon name="chevron_left" className="text-lg" /> Back
-        </motion.div>
-      </Link>
-
-      <motion.div 
-        variants={containerVariants} initial="hidden" animate="visible"
-        className="relative z-10 w-full max-w-md flex flex-col items-center"
-      >
-        {/* Branding */}
-        <motion.div variants={itemVariants} className="mb-6 text-center">
-          <div className="flex items-center justify-center gap-3 mb-2">
-            <motion.div whileHover={{ scale: 1.05 }} className="flex items-center justify-center">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/1920px-2026_FIFA_World_Cup_emblem.svg.png" alt="World Cup 2026 Emblem" className="h-10 w-auto drop-shadow-[0_0_15px_rgba(0,255,135,0.4)]" />
-            </motion.div>
-            <h1 className="font-display text-3xl sm:text-4xl font-black tracking-widest uppercase text-white drop-shadow-lg">
-              Lucky Star FC
-            </h1>
-          </div>
-          <p className="text-xs tracking-[0.4em] uppercase font-bold text-outline-variant drop-shadow-sm">Sign in to the arena</p>
-        </motion.div>
-
-        {/* Card */}
-        <motion.div variants={itemVariants} className="w-full relative p-6 overflow-hidden bg-white/10 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.5)] rounded-[2rem]">
-          {/* Loading bar */}
-          {loading && (
-            <div className="absolute top-0 left-0 w-full h-[2px] overflow-hidden bg-white/10">
-              <div className="h-full w-1/2 animate-[slide_1s_ease-in-out_infinite] bg-primary" />
-            </div>
-          )}
-
-          {error && (
-            <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="mb-6 p-4 text-sm font-bold bg-error/20 border border-error/50 text-error-container rounded-xl text-center backdrop-blur-md">
-              ⚠ {error}
-            </motion.div>
-          )}
-
-          <form id="login-form" onSubmit={handleSubmit} className={`space-y-6 transition-opacity duration-300 ${loading ? 'opacity-50 pointer-events-none' : ''}`}>
-
-            <motion.div variants={itemVariants} className="relative group pt-4">
-              <input
-                id="login-email"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder=" "
-                required
-                autoComplete="email"
-                className="peer w-full bg-transparent px-0 py-2.5 placeholder-transparent outline-none font-body font-medium transition-colors duration-300 border-b-2 border-white/20 focus:border-primary text-white text-lg"
-              />
-              <label
-                className="absolute left-0 top-7 text-xs tracking-[0.2em] uppercase font-bold transition-all duration-300 peer-focus:top-0 peer-focus:text-[10px] peer-valid:top-0 peer-valid:text-[10px] text-outline-variant peer-focus:text-primary"
-                htmlFor="login-email"
-              >
-                Email Address
+      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+        <div className="rounded-app bg-white px-6 py-8 shadow-card sm:px-10">
+          <form className="space-y-6" onSubmit={handleSubmit}>
+            {error && (
+              <div className="rounded-xl bg-red-50 p-4 text-sm font-bold text-red-600">
+                {error}
+              </div>
+            )}
+            
+            <div>
+              <label className="block text-sm font-bold text-app-ink">
+                Email address
               </label>
-            </motion.div>
+              <div className="relative mt-1">
+                <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                  <Mail className="h-5 w-5 text-gray-400" />
+                </div>
+                <input
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="block w-full rounded-xl border border-gray-300 pl-10 px-4 py-3 text-app-ink focus:border-app-primary focus:outline-none focus:ring-1 focus:ring-app-primary"
+                  placeholder="you@example.com"
+                />
+              </div>
+            </div>
 
-            <motion.div variants={itemVariants} className="relative group pt-4">
-              <input
-                id="login-password"
-                type={showPassword ? 'text' : 'password'}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder=" "
-                required
-                autoComplete="current-password"
-                 className="peer w-full bg-transparent px-0 py-2.5 pr-12 placeholder-transparent outline-none font-body font-medium transition-colors duration-300 border-b-2 border-white/20 focus:border-primary text-white text-lg"
-              />
-              <label
-                className="absolute left-0 top-7 text-xs tracking-[0.2em] uppercase font-bold transition-all duration-300 peer-focus:top-0 peer-focus:text-[10px] peer-valid:top-0 peer-valid:text-[10px] text-outline-variant peer-focus:text-primary"
-                htmlFor="login-password"
-              >
+            <div>
+              <label className="block text-sm font-bold text-app-ink">
                 Password
               </label>
-              <button
-                type="button"
-                onClick={() => setShowPassword(v => !v)}
-                className="absolute right-0 top-7 text-[10px] uppercase tracking-widest font-bold transition-colors text-outline-variant hover:text-white"
-              >
-                {showPassword ? 'Hide' : 'Show'}
-              </button>
-            </motion.div>
+              <div className="relative mt-1">
+                <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                  <Lock className="h-5 w-5 text-gray-400" />
+                </div>
+                <input
+                  type="password"
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="block w-full rounded-xl border border-gray-300 pl-10 px-4 py-3 text-app-ink focus:border-app-primary focus:outline-none focus:ring-1 focus:ring-app-primary"
+                  placeholder="••••••••"
+                />
+              </div>
+            </div>
 
-            <motion.div variants={itemVariants} className="pt-4">
-              <motion.button
-                whileHover={{ scale: 1.02, backgroundColor: "#22c55e" }}
-                whileTap={{ scale: 0.98 }}
-                id="login-submit-btn"
-                type="submit"
-                disabled={loading}
-                className="w-full py-3.5 text-sm tracking-[0.2em] uppercase font-black text-white transition-all disabled:opacity-40 disabled:cursor-not-allowed bg-primary shadow-neon-primary rounded-xl"
-              >
-                {loading ? 'Authenticating...' : 'Sign In'}
-              </motion.button>
-            </motion.div>
-
-            <motion.div variants={itemVariants} className="text-center mt-4">
-              <Link to="/forgot-password" className="text-[10px] uppercase tracking-widest font-bold transition-colors text-outline-variant hover:text-white">
-                Forgot Password?
+            <div className="flex items-center justify-end">
+              <Link to="/forgot-password" className="text-sm font-bold text-app-primary hover:text-app-secondary">
+                Forgot password?
               </Link>
-            </motion.div>
+            </div>
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="flex w-full justify-center items-center gap-2 rounded-xl bg-app-primary px-4 py-3 text-sm font-bold text-white shadow-soft hover:bg-app-secondary focus:outline-none focus:ring-2 focus:ring-app-primary focus:ring-offset-2 disabled:opacity-50"
+            >
+              {loading ? 'Signing in...' : 'Sign in'}
+              <ArrowRight className="h-5 w-5" />
+            </button>
           </form>
-
-          <motion.p variants={itemVariants} className="mt-10 text-center text-[10px] tracking-widest uppercase font-bold text-outline-variant">
-            No account?{' '}
-            <Link to="/register" className="font-black transition-colors text-primary hover:text-primary/80 ml-1">
-              Register Here
-            </Link>
-          </motion.p>
-        </motion.div>
-
-        <motion.p variants={itemVariants} className="mt-8 text-[10px] uppercase tracking-[0.4em] text-center font-bold text-outline-variant/50">
-          Predict · Compete · Glory
-        </motion.p>
-      </motion.div>
+        </div>
+      </div>
     </div>
   );
 }
