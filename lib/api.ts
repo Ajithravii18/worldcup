@@ -1,6 +1,6 @@
 import type { AuthResponse, Match, Prediction, LeaderboardEntry, AdminStats, User } from './types'
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api'
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://wcbackend-6iib.onrender.com/api'
 
 // ── Token management ──
 const TOKEN_KEY = 'knockout.auth.token'
@@ -46,10 +46,17 @@ export async function apiLogin(email: string, password: string): Promise<AuthRes
   })
 }
 
-export async function apiRegister(username: string, email: string, password: string): Promise<AuthResponse> {
-  return apiFetch<AuthResponse>('/auth/register', {
+export async function apiSendRegisterOtp(name: string, email: string, password: string): Promise<{ message: string }> {
+  return apiFetch<{ message: string }>('/auth/register/send-otp', {
     method: 'POST',
-    body: JSON.stringify({ username, email, password }),
+    body: JSON.stringify({ name, email, password }),
+  })
+}
+
+export async function apiVerifyRegisterOtp(email: string, otp: string): Promise<AuthResponse> {
+  return apiFetch<AuthResponse>('/auth/register/verify-otp', {
+    method: 'POST',
+    body: JSON.stringify({ email, otp }),
   })
 }
 

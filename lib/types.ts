@@ -3,7 +3,7 @@
 export interface User {
   id: string
   _id?: string
-  username: string
+  name: string
   email: string
   role: 'user' | 'admin'
   points: number
@@ -40,7 +40,7 @@ export interface Prediction {
 
 export interface LeaderboardEntry {
   _id?: string
-  username: string
+  name: string
   points: number
   correctPredictions: number
   totalPredictions: number
@@ -58,7 +58,7 @@ export interface AuthResponse {
   token: string
   user: {
     id: string
-    username: string
+    name: string
     email: string
     role: 'user' | 'admin'
     points: number

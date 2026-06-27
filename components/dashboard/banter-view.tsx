@@ -9,8 +9,8 @@ import { cn } from "@/lib/utils"
 
 type ChatMessage = { id: string; sender: string; text: string; time: Date }
 
-function UserAvatar({ username, color, size = 'sm' }: { username: string; color: string; size?: 'sm' | 'md' }) {
-  const initials = username.substring(0, 2).toUpperCase()
+function UserAvatar({ name, color, size = 'sm' }: { name: string; color: string; size?: 'sm' | 'md' }) {
+  const initials = name.substring(0, 2).toUpperCase()
   const sizes = { sm: 'size-7 text-[11px]', md: 'size-9 text-xs' }
   return (
     <div
@@ -67,8 +67,8 @@ function WallOfFameShame({ entries }: { entries: LeaderboardEntry[] }) {
               </div>
               <p className="mt-3 text-sm font-semibold tracking-tight">{c.title}</p>
               <div className="mt-2 flex items-center gap-2">
-                <UserAvatar username={c.entry.username} color={getColor(i)} />
-                <span className="text-xs font-medium">{c.entry.username}</span>
+                <UserAvatar name={c.entry.name} color={getColor(i)} />
+                <span className="text-xs font-medium">{c.entry.name}</span>
               </div>
               <p className="mt-2 text-xs text-muted-foreground">{c.entry.points} pts · {c.entry.correctPredictions} correct</p>
             </div>
@@ -94,7 +94,7 @@ function ChatPanel() {
   function send() {
     const text = draft.trim()
     if (!text || !user) return
-    setMessages(m => [...m, { id: `c${Date.now()}`, sender: user.username, text, time: new Date() }])
+    setMessages(m => [...m, { id: `c${Date.now()}`, sender: user.name, text, time: new Date() }])
     setDraft('')
   }
 
@@ -110,10 +110,10 @@ function ChatPanel() {
 
       <div ref={scrollRef} className="thin-scrollbar flex-1 space-y-3 overflow-y-auto px-4 py-4">
         {messages.map(m => {
-          const mine = m.sender === user?.username
+          const mine = m.sender === user?.name
           return (
             <div key={m.id} className={cn('flex items-end gap-2', mine && 'flex-row-reverse')}>
-              <UserAvatar username={m.sender} color={mine ? '#34d399' : '#60a5fa'} />
+              <UserAvatar name={m.sender} color={mine ? '#34d399' : '#60a5fa'} />
               <div className={cn('max-w-[78%]', mine && 'items-end text-right')}>
                 <div className="flex items-center gap-2">
                   <span className="text-[11px] font-medium text-muted-foreground">{mine ? 'You' : m.sender}</span>

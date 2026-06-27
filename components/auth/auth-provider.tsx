@@ -1,7 +1,7 @@
 "use client"
 
 import { createContext, useContext, useEffect, useState, useCallback, type ReactNode } from "react"
-import { apiLogin, apiRegister, apiGetMe, getToken, setToken } from "@/lib/api"
+import { apiLogin, apiSendRegisterOtp, apiVerifyRegisterOtp, apiGetMe, getToken, setToken } from "@/lib/api"
 import type { User } from "@/lib/types"
 
 export type { User }
@@ -11,7 +11,8 @@ type AuthContextValue = {
   ready: boolean
   isAdmin: boolean
   login: (email: string, password: string) => Promise<void>
-  register: (username: string, email: string, password: string) => Promise<void>
+  sendRegisterOtp: (name: string, email: string, password: string) => Promise<void>
+  verifyRegisterOtp: (email: string, otp: string) => Promise<void>
   logout: () => void
 }
 
@@ -63,10 +64,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     persistUser(me)
   }
 
-  async function register(username: string, email: string, password: string) {
-    if (!username || !email || !password) throw new Error("Fill in every field.")
+  async function sendRegisterOtp(name: string, email: string, password: string) {
+    if (!name || !email || !password) throw new Error("Fill in every field.")
     if (password.length < 6) throw new Error("Password must be at least 6 characters.")
-    const res = await apiRegister(username, email, password)
+    await apiSendRegisterOtp(name, email, password)
+  }
+
+  async function verifyRegisterOtpAndLogin(email: string, otp: string) {
+    if (!email || !otp) throw new Error("Missing email or OTP.")
+    const res = await apiVerifyRegisterOtp(email, otp)
     setToken(res.token)
     const me = await apiGetMe()
     persistUser(me)
@@ -80,7 +86,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const isAdmin = user?.role === 'admin'
 
   return (
-    <AuthContext.Provider value={{ user, ready, isAdmin, login, register, logout }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ user, ready, isAdmin, login, sendRegisterOtp, verifyRegisterOtp: verifyRegisterOtpAndLogin, logout }}>{children}</AuthContext.Provider>
   )
 }
 

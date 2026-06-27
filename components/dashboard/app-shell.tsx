@@ -23,8 +23,8 @@ const NAV: { id: ViewId; label: string; icon: typeof Goal }[] = [
   { id: "global", label: "Rules", icon: Globe },
 ]
 
-function UserAvatar({ username, size = 'md' }: { username: string; size?: 'sm' | 'md' | 'lg' }) {
-  const initials = username.substring(0, 2).toUpperCase()
+function UserAvatar({ name, size = 'md' }: { name: string; size?: 'sm' | 'md' | 'lg' }) {
+  const initials = name.substring(0, 2).toUpperCase()
   const sizes = { sm: 'size-7 text-[11px]', md: 'size-9 text-xs', lg: 'size-11 text-sm' }
   return (
     <div
@@ -46,7 +46,7 @@ export function AppShell() {
     async function fetchRank() {
       try {
         const entries = await apiGetLeaderboard()
-        const idx = entries.findIndex(e => e.username === user?.username)
+        const idx = entries.findIndex(e => e.name === user?.name)
         if (idx >= 0) {
           setRank(idx + 1)
           setPoints(entries[idx].points)
@@ -119,9 +119,9 @@ export function AppShell() {
           </nav>
 
           <div className="mt-auto flex items-center gap-3 rounded-xl border border-border bg-card/60 p-3">
-            <UserAvatar username={user?.username || 'U'} size="md" />
+            <UserAvatar name={user?.name || 'U'} size="md" />
             <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-semibold">{user?.username}</p>
+              <p className="truncate text-sm font-semibold">{user?.name}</p>
               <p className="text-[11px] text-muted-foreground">
                 {rank ? `Rank #${rank}` : 'Unranked'} · {points} pts
               </p>
@@ -169,7 +169,7 @@ export function AppShell() {
                   #{rank || '–'} · {points} pts
                 </span>
               </div>
-              <UserAvatar username={user?.username || 'U'} size="md" />
+              <UserAvatar name={user?.name || 'U'} size="md" />
               <button
                 type="button"
                 onClick={handleLogout}

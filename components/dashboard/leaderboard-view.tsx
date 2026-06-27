@@ -7,8 +7,8 @@ import { apiGetLeaderboard } from "@/lib/api"
 import type { LeaderboardEntry } from "@/lib/types"
 import { cn } from "@/lib/utils"
 
-function UserAvatar({ username, color, size = 'md', glow }: { username: string; color: string; size?: 'sm' | 'md' | 'lg'; glow?: boolean }) {
-  const initials = username.substring(0, 2).toUpperCase()
+function UserAvatar({ name, color, size = 'md', glow }: { name: string; color: string; size?: 'sm' | 'md' | 'lg'; glow?: boolean }) {
+  const initials = name.substring(0, 2).toUpperCase()
   const sizes = { sm: 'size-7 text-[11px]', md: 'size-9 text-xs', lg: 'size-11 text-sm' }
   return (
     <div
@@ -86,13 +86,13 @@ export function LeaderboardView() {
         <div className="relative overflow-hidden rounded-2xl border border-gold/30 bg-gradient-to-br from-gold/10 to-transparent p-5 shadow-[0_0_50px_-20px] shadow-gold/40">
           <div className="flex items-center gap-4">
             <div className="relative">
-              <UserAvatar username={leader.username} color={getColor(0)} size="lg" glow />
+              <UserAvatar name={leader.name} color={getColor(0)} size="lg" glow />
               <Crown className="absolute -right-1.5 -top-2.5 size-5 -rotate-12 fill-gold text-gold drop-shadow" />
             </div>
             <div className="flex-1">
               <div className="flex items-center gap-2">
-                <span className="text-lg font-bold tracking-tight">{leader.username}</span>
-                {user?.username === leader.username && (
+                <span className="text-lg font-bold tracking-tight">{leader.name}</span>
+                {user?.name === leader.name && (
                   <span className="rounded border border-primary/40 bg-primary/10 px-1.5 text-[10px] font-bold uppercase text-primary">You</span>
                 )}
                 <span className="rounded-full border border-gold/40 bg-gold/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-gold">League leader</span>
@@ -120,11 +120,11 @@ export function LeaderboardView() {
         <ul>
           {entries.map((entry, i) => {
             const isLeader = i === 0
-            const isYou = user?.username === entry.username
+            const isYou = user?.name === entry.name
             const accuracy = entry.totalPredictions > 0 ? Math.round((entry.correctPredictions / entry.totalPredictions) * 100) : 0
             return (
               <li
-                key={entry.username}
+                key={entry.name}
                 className={cn(
                   'grid grid-cols-[36px_1fr_auto] items-center gap-3 border-b border-border/70 px-4 py-3 transition last:border-0 sm:grid-cols-[44px_1fr_70px_70px_84px]',
                   isLeader && 'bg-gold/[0.04]',
@@ -142,10 +142,10 @@ export function LeaderboardView() {
                 </span>
 
                 <div className="flex min-w-0 items-center gap-3">
-                  <UserAvatar username={entry.username} color={getColor(i)} size="md" glow={isLeader} />
+                  <UserAvatar name={entry.name} color={getColor(i)} size="md" glow={isLeader} />
                   <div className="min-w-0">
                     <div className="flex items-center gap-2">
-                      <span className="truncate text-sm font-semibold">{entry.username}</span>
+                      <span className="truncate text-sm font-semibold">{entry.name}</span>
                       {isYou && (
                         <span className="rounded border border-primary/40 bg-primary/10 px-1.5 text-[10px] font-bold uppercase text-primary">You</span>
                       )}
