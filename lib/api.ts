@@ -74,10 +74,10 @@ export async function apiGetMatch(id: string): Promise<Match> {
 }
 
 // ── Predictions ──
-export async function apiSubmitPrediction(matchId: string, homeScore: number, awayScore: number): Promise<Prediction> {
+export async function apiSubmitPrediction(matchId: string, homeGoals: number, awayGoals: number): Promise<Prediction> {
   return apiFetch<Prediction>('/predictions', {
     method: 'POST',
-    body: JSON.stringify({ matchId, homeScore, awayScore }),
+    body: JSON.stringify({ matchId, homeGoals, awayGoals }),
   })
 }
 

@@ -14,16 +14,16 @@ export interface User {
 
 export interface Match {
   _id: string
-  matchNumber: number
   homeTeam: string
   awayTeam: string
   group: string
   venue: string
-  date: string
-  stage: 'group' | 'round_of_16' | 'quarter_final' | 'semi_final' | 'third_place' | 'final'
+  kickoffTime: string
   status: 'upcoming' | 'live' | 'completed'
   homeScore: number | null
   awayScore: number | null
+  matchday: number
+  timeState?: 'early' | 'open' | 'locked'
   createdAt?: string
 }
 
@@ -31,11 +31,10 @@ export interface Prediction {
   _id: string
   user: string | User
   match: string | Match
-  homeScore: number
-  awayScore: number
+  homeGoals: number
+  awayGoals: number
   points: number
-  isEvaluated: boolean
-  createdAt?: string
+  submittedAt?: string
 }
 
 export interface LeaderboardEntry {

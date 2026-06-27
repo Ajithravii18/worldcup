@@ -88,41 +88,35 @@ function MatchCardSkeleton() {
 
 function MatchCard({
   match,
-  userPrediction,
   onPredictionSubmitted,
 }: {
-  match: Match
-  userPrediction?: Prediction
+  match: Match & { userPrediction?: { homeGoals: number, awayGoals: number, points?: number } }
   onPredictionSubmitted: () => void
 }) {
-  const isCompleted = match.status === 'completed'
+  const isLocked = match.timeState === 'locked' || match.status !== 'upcoming'
   const isLive = match.status === 'live'
-  const isUpcoming = match.status === 'upcoming'
+  const isCompleted = match.status === 'completed'
   const matchDate = new Date(match.date)
   const now = new Date()
   const msUntilKickoff = matchDate.getTime() - now.getTime()
-  const isLocked = !isUpcoming || msUntilKickoff < 0
 
-  const [homeScore, setHomeScore] = useState(userPrediction?.homeScore ?? 0)
-  const [awayScore, setAwayScore] = useState(userPrediction?.awayScore ?? 0)
+  const [homeScore, setHomeScore] = useState(match.userPrediction?.homeGoals ?? 0)
+  const [awayScore, setAwayScore] = useState(match.userPrediction?.awayGoals ?? 0)
   const [submitting, setSubmitting] = useState(false)
-  const [submitted, setSubmitted] = useState(!!userPrediction)
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    if (userPrediction) {
-      setHomeScore(userPrediction.homeScore)
-      setAwayScore(userPrediction.awayScore)
-      setSubmitted(true)
+    if (match.userPrediction) {
+      setHomeScore(match.userPrediction.homeGoals)
+      setAwayScore(match.userPrediction.awayGoals)
     }
-  }, [userPrediction])
+  }, [match.userPrediction])
 
   async function handleSubmit() {
     setSubmitting(true)
     setError(null)
     try {
       await apiSubmitPrediction(match._id, homeScore, awayScore)
-      setSubmitted(true)
       onPredictionSubmitted()
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to submit')
@@ -142,21 +136,19 @@ function MatchCard({
     return `${m}m`
   }
 
-  const stageLabel = match.stage.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase())
-
   return (
     <article className="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card/70 backdrop-blur transition duration-300 hover:border-white/20 hover:shadow-[0_8px_40px_-12px] hover:shadow-black/60">
       {/* top accent line */}
       <div
         className={cn(
           "absolute inset-x-0 top-0 h-px",
-          isLive ? "bg-crimson/70" : isCompleted ? "bg-muted-foreground/30" : submitted ? "bg-gold/50" : "bg-primary/50",
+          isLive ? "bg-crimson/70" : isCompleted ? "bg-muted-foreground/30" : match.userPrediction ? "bg-gold/50" : "bg-primary/50",
         )}
       />
 
       <header className="flex items-center justify-between gap-2 px-4 pt-4">
         <span className="text-[11px] font-medium uppercase tracking-wider text-muted-foreground">
-          {match.group} · Match {match.matchNumber} · {stageLabel}
+          {match.group} · Match {match.matchNumber}
         </span>
         {isCompleted ? (
           <span className="flex items-center gap-1.5 rounded-full border border-border bg-secondary/60 px-2.5 py-1 text-[11px] font-semibold text-muted-foreground">
@@ -166,7 +158,7 @@ function MatchCard({
           <span className="flex items-center gap-1.5 rounded-full border border-crimson/40 bg-crimson/10 px-2.5 py-1 text-[11px] font-semibold text-crimson">
             <Radio className="size-3 animate-pulse" /> Live now
           </span>
-        ) : submitted ? (
+        ) : match.userPrediction ? (
           <span className="flex items-center gap-1.5 rounded-full border border-gold/40 bg-gold/10 px-2.5 py-1 text-[11px] font-semibold text-gold">
             <Lock className="size-3" /> Predicted
           </span>
@@ -199,15 +191,15 @@ function MatchCard({
               <span className="text-muted-foreground">:</span>
               <span>{match.awayScore}</span>
             </div>
-            {userPrediction && userPrediction.isEvaluated && (
+            {match.userPrediction && (
               <div className="mt-1">
                 <span className={cn(
                   "rounded-full border px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide",
-                  userPrediction.points === 3 ? "border-primary/40 bg-primary/10 text-primary" :
-                  userPrediction.points === 1 ? "border-gold/40 bg-gold/10 text-gold" :
+                  (match.userPrediction.points ?? 0) === 3 ? "border-primary/40 bg-primary/10 text-primary" :
+                  (match.userPrediction.points ?? 0) === 1 ? "border-gold/40 bg-gold/10 text-gold" :
                   "border-crimson/40 bg-crimson/10 text-crimson"
                 )}>
-                  {userPrediction.points === 3 ? 'Exact' : userPrediction.points === 1 ? 'Outcome' : 'Missed'} +{userPrediction.points}
+                  {(match.userPrediction.points ?? 0) === 3 ? 'Exact' : (match.userPrediction.points ?? 0) === 1 ? 'Outcome' : 'Missed'} +{match.userPrediction.points ?? 0}
                 </span>
               </div>
             )}
@@ -232,11 +224,11 @@ function MatchCard({
       </div>
 
       {/* show user's prediction under completed matches */}
-      {isCompleted && userPrediction && (
+      {isCompleted && match.userPrediction && (
         <div className="border-t border-border bg-secondary/20 px-4 py-2">
           <div className="flex items-center justify-between">
             <span className="text-[11px] text-muted-foreground">Your prediction</span>
-            <span className="text-sm font-bold tabular-nums">{userPrediction.homeScore} : {userPrediction.awayScore}</span>
+            <span className="text-sm font-bold tabular-nums">{match.userPrediction.homeGoals} : {match.userPrediction.awayGoals}</span>
           </div>
         </div>
       )}
