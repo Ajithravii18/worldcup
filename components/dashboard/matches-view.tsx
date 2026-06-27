@@ -95,6 +95,7 @@ function MatchCard({
 }) {
   const isLocked = match.timeState === 'locked' || match.status !== 'upcoming'
   const isLive = match.status === 'live'
+  const isUpcoming = match.status === 'upcoming'
   const isCompleted = match.status === 'completed'
   const matchDate = new Date(match.date)
   const now = new Date()
