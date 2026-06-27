@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Landing - Stadium Pro Light</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#bcc3ff",
+                        "tertiary-fixed-dim": "#ffb5a0",
+                        "secondary-fixed-dim": "#88d982",
+                        "primary-fixed": "#dfe0ff",
+                        "outline-variant": "#c5c5d7",
+                        "primary-container": "#0020b2",
+                        "surface-bright": "#fcf9f8",
+                        "surface-container-lowest": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "inverse-on-surface": "#f3f0ef",
+                        "surface-container": "#f0edec",
+                        "on-primary-fixed-variant": "#1b32be",
+                        "surface-variant": "#e5e2e1",
+                        "tertiary-fixed": "#ffdbd1",
+                        "on-primary-container": "#8f9dff",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed": "#3b0900",
+                        "surface-container-low": "#f6f3f2",
+                        "inverse-primary": "#bcc3ff",
+                        "on-secondary-fixed": "#002204",
+                        "on-error": "#ffffff",
+                        "surface": "#fcf9f8",
+                        "surface-container-highest": "#e5e2e1",
+                        "surface-tint": "#3a4ed5",
+                        "inverse-surface": "#313030",
+                        "on-background": "#1c1b1b",
+                        "on-tertiary-fixed-variant": "#862200",
+                        "on-primary-fixed": "#000d60",
+                        "on-error-container": "#93000a",
+                        "primary": "#001278",
+                        "background": "#fcf9f8",
+                        "secondary": "#1b6d24",
+                        "surface-container-high": "#ebe7e7",
+                        "secondary-container": "#a0f399",
+                        "on-secondary-container": "#217128",
+                        "on-surface": "#1c1b1b",
+                        "secondary-fixed": "#a3f69c",
+                        "surface-dim": "#dcd9d9",
+                        "on-surface-variant": "#454654",
+                        "tertiary-container": "#701b00",
+                        "on-tertiary": "#ffffff",
+                        "outline": "#757686",
+                        "on-tertiary-container": "#ff7f59",
+                        "on-secondary-fixed-variant": "#005312",
+                        "tertiary": "#4a0f00"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "container-max": "1440px",
+                        "margin-desktop": "48px",
+                        "gutter": "24px",
+                        "unit": "4px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Archivo Narrow"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Archivo Narrow"],
+                        "label-md": ["Archivo Narrow"],
+                        "headline-lg-mobile": ["Archivo Narrow"],
+                        "display-lg": ["Archivo Narrow"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Archivo Narrow"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "34px", "fontWeight": "700" }],
+                        "display-lg": ["48px", { "lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(233, 236, 239, 0.8);
+            box-shadow: 0 4px 12px rgba(0, 32, 178, 0.04);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex flex-col relative overflow-hidden">
+<!-- Dynamic Background Image -->
+<div class="absolute inset-0 z-0">
+<div class="bg-cover bg-center bg-no-repeat w-full h-full opacity-40" data-alt="A professional, high-fidelity light-themed abstract background representing a futuristic sports stadium or pitch. Soft, high-key ambient lighting with pristine whites and light cool-gray tones, accented by subtle, tactical deep blue geometric lines. The scene conveys energetic movement, structural integrity, and match-day readiness in a corporate modern aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAbM61i2Yixc5x5-w2movNFqZI8Q2_jVrmyNXmboUQwFDu7SH3fhsGKcO-CcbesH2tKlbdr5il8gVp4nRPsOvp_gpHYUy1Eixe-1DQtLT-VjP4_lNVmHrS9mzIFdWSuQxnaWe4axaoUmw6CM9A6PHEG3Mv-S7wi0nJEa_BsEX_cVPlbUE5_aHBOhZqhcIpOhkXqDBxtrHcbE6opomg7fZG-aM9GIxOC3y5nkZkD75R8NR9FIDMqTFmkcIZHGj5pQvp7TcWoYozPtcR3')"></div>
+</div>
+<!-- Main Content Canvas -->
+<main class="relative z-10 flex-grow flex flex-col items-center justify-center p-margin-mobile md:p-margin-desktop w-full max-w-container-max mx-auto">
+<div class="glass-panel rounded-xl p-8 md:p-12 max-w-md w-full flex flex-col items-center text-center space-y-8">
+<!-- Branding Container -->
+<div class="space-y-4 flex flex-col items-center">
+<!-- Soccer Ball Logo/Icon -->
+<div class="w-24 h-24 rounded-full bg-surface-container-low border border-outline-variant flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-6xl text-primary" style="font-variation-settings: 'FILL' 1;">sports_soccer</span>
+</div>
+<!-- World Cup 2026 Branding -->
+<div>
+<h1 class="font-display-lg text-display-lg text-primary uppercase tracking-tighter">LUCKY STAR FC</h1>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest mt-2">FIFA World Cup 2026™ Edition</p>
+</div>
+</div>
+<div class="w-full h-[1px] bg-outline-variant my-4"></div>
+<!-- Action Buttons -->
+<div class="w-full flex flex-col space-y-4">
+<button class="w-full h-12 bg-[#FF5A00] text-on-primary font-label-md text-label-md uppercase rounded hover:opacity-90 active:scale-95 transition-all shadow-sm">
+                    Sign In
+                </button>
+<button class="w-full h-12 bg-transparent border border-primary text-primary font-label-md text-label-md uppercase rounded hover:bg-surface-container-low active:scale-95 transition-all">
+                    Create Account
+                </button>
+</div>
+<!-- Guest Link -->
+<button class="text-on-surface-variant font-label-sm text-label-sm hover:text-primary transition-colors flex items-center space-x-1 mt-4">
+<span>Continue as Guest</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</main>
+</body></html>

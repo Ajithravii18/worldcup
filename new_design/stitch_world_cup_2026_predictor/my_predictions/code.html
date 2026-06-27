@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>My Predictions - Lucky Star FC</title>
+<!-- Google Fonts & Material Symbols -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&amp;family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error": "#ba1a1a",
+                    "on-primary": "#ffffff",
+                    "primary-fixed-dim": "#bcc3ff",
+                    "tertiary-fixed-dim": "#ffb5a0",
+                    "secondary-fixed-dim": "#88d982",
+                    "primary-fixed": "#dfe0ff",
+                    "outline-variant": "#c5c5d7",
+                    "primary-container": "#0020b2",
+                    "surface-bright": "#fcf9f8",
+                    "surface-container-lowest": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "inverse-on-surface": "#f3f0ef",
+                    "surface-container": "#f0edec",
+                    "on-primary-fixed-variant": "#1b32be",
+                    "surface-variant": "#e5e2e1",
+                    "tertiary-fixed": "#ffdbd1",
+                    "on-primary-container": "#8f9dff",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed": "#3b0900",
+                    "surface-container-low": "#f6f3f2",
+                    "inverse-primary": "#bcc3ff",
+                    "on-secondary-fixed": "#002204",
+                    "on-error": "#ffffff",
+                    "surface": "#fcf9f8",
+                    "surface-container-highest": "#e5e2e1",
+                    "surface-tint": "#3a4ed5",
+                    "inverse-surface": "#313030",
+                    "on-background": "#1c1b1b",
+                    "on-tertiary-fixed-variant": "#862200",
+                    "on-primary-fixed": "#000d60",
+                    "on-error-container": "#93000a",
+                    "primary": "#001278",
+                    "background": "#fcf9f8",
+                    "secondary": "#1b6d24",
+                    "surface-container-high": "#ebe7e7",
+                    "secondary-container": "#a0f399",
+                    "on-secondary-container": "#217128",
+                    "on-surface": "#1c1b1b",
+                    "secondary-fixed": "#a3f69c",
+                    "surface-dim": "#dcd9d9",
+                    "on-surface-variant": "#454654",
+                    "tertiary-container": "#701b00",
+                    "on-tertiary": "#ffffff",
+                    "outline": "#757686",
+                    "on-tertiary-container": "#ff7f59",
+                    "on-secondary-fixed-variant": "#005312",
+                    "tertiary": "#4a0f00"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-mobile": "16px",
+                    "container-max": "1440px",
+                    "margin-desktop": "48px",
+                    "gutter": "24px",
+                    "unit": "4px"
+            },
+            "fontFamily": {
+                    "label-sm": ["Archivo Narrow"],
+                    "body-md": ["Inter"],
+                    "headline-lg": ["Archivo Narrow"],
+                    "label-md": ["Archivo Narrow"],
+                    "headline-lg-mobile": ["Archivo Narrow"],
+                    "display-lg": ["Archivo Narrow"],
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Archivo Narrow"]
+            },
+            "fontSize": {
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}],
+                    "display-lg": ["48px", {"lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pt-16 pb-24 md:pb-8">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface dark:bg-surface-dim shadow-sm border-b border-outline-variant dark:border-outline">
+<div class="flex items-center justify-between px-margin-mobile md:px-margin-desktop h-16 w-full max-w-container-max mx-auto">
+<!-- Leading Icon (Mobile Only) -->
+<button class="md:hidden text-primary dark:text-primary-fixed-dim hover:bg-surface-container-low transition-colors active:opacity-80 transition-opacity p-2 -ml-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<!-- Brand Logo -->
+<div class="font-headline-md text-headline-md font-bold uppercase tracking-tighter text-primary dark:text-primary-fixed-dim">
+                LUCKY STAR FC
+            </div>
+<!-- Desktop Navigation -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-on-surface-variant hover:bg-surface-container-low transition-colors font-label-md text-label-md uppercase" href="#">Arena</a>
+<a class="text-on-surface-variant hover:bg-surface-container-low transition-colors font-label-md text-label-md uppercase" href="#">Matches</a>
+<!-- Active State -->
+<a class="text-primary font-bold hover:bg-surface-container-low transition-colors font-label-md text-label-md uppercase border-b-2 border-primary py-1" href="#">My Preds</a>
+<a class="text-on-surface-variant hover:bg-surface-container-low transition-colors font-label-md text-label-md uppercase" href="#">Players</a>
+<a class="text-on-surface-variant hover:bg-surface-container-low transition-colors font-label-md text-label-md uppercase" href="#">Profile</a>
+</nav>
+<!-- Trailing Avatar -->
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant cursor-pointer hover:bg-surface-container-low transition-colors active:opacity-80 transition-opacity flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A close-up, highly detailed portrait of a focused sports analytics manager in a brightly lit modern office overlooking a stadium. High-key light-mode aesthetic, crisp corporate attire, shallow depth of field with geometric structures in the background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCi__BX-T2hyv2Kzrtm_rGFIfhPshA_ntgQv5GYauB9oU99lKqa5sJMeqH2TnA5wzAZl2aRZaEcso4eHDF-QeuJnvDMN6X_q1ZhTVZQtfos-fnxvnJyYR0y4XZqZuwohZ8z2vPqzQMWAEh8qj9mPherPcdqvsoFFfc7_FqRAEaL2CNKA7dle5kcsPVEv79EOJ2nf-_rq1YyfBtpUIcLtOEQDCqGzhrqrH30kWG0roJ5f9_bj5cehfRRetwrRruwGabUcE0J3xz12azI"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mt-6 flex flex-col gap-8">
+<!-- Header & Stats Overview -->
+<section class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-primary uppercase">Prediction Center</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Track your accuracy and global ranking.</p>
+</div>
+<div class="flex gap-4">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-4 flex-1 min-w-[120px]">
+<div class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Season Pts</div>
+<div class="font-headline-md text-headline-md text-primary">1,420</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-4 flex-1 min-w-[120px]">
+<div class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Win Rate</div>
+<div class="font-headline-md text-headline-md text-secondary">68%</div>
+</div>
+</div>
+</section>
+<!-- Segmented Control (Tabs) -->
+<div class="flex p-1 bg-surface-container-low rounded-lg border border-outline-variant w-full md:max-w-md">
+<button class="flex-1 bg-surface-container-lowest text-primary font-label-md text-label-md uppercase py-2 rounded shadow-sm border border-outline-variant">Active (2)</button>
+<button class="flex-1 text-on-surface-variant font-label-md text-label-md uppercase py-2 rounded hover:bg-surface-container transition-colors">Completed</button>
+</div>
+<!-- Active Predictions Grid -->
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+<!-- Live Match Card -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden flex flex-col shadow-sm relative">
+<!-- Status Bar -->
+<div class="bg-error-container text-on-error-container px-4 py-2 flex items-center justify-between border-b border-outline-variant">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] animate-pulse">sensors</span>
+<span class="font-label-md text-label-md uppercase">Live - 65'</span>
+</div>
+<span class="font-label-md text-label-md">Current Pts: <strong class="font-bold">+10</strong></span>
+</div>
+<div class="p-6 flex flex-col md:flex-row items-center gap-8">
+<!-- Teams & Score -->
+<div class="flex-1 w-full">
+<div class="flex justify-between items-center mb-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-surface-container-high border border-outline-variant overflow-hidden flex items-center justify-center p-1">
+<img class="w-full h-full object-contain" data-alt="A clean, minimalist vector logo of a professional soccer team featuring a stylized star and shield motif. Rendered in deep blue and white, set against a pristine light gray background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXUxcnUrvcgn2mhoVEAlxrrsp76_u6dMWRlo3ijstR70MhJ4O5ovC9zAFE4axTVrcbmnJdaFnZ5TXb-lOOUraZC83Fw3BD7j8JJmjusbaes6ERt5aoEzZ2LB8nStoQ36OSty1JLXjCXP7n9IbM2vSWk_JciPuAwNvEtgEwDFuRw2fCjuqsZ3JuRYzAyNbm6puVOFL4G4Rc7eMw3QJfJlnS0EZPpyFVNv630T4XqLcWmXVR4lLQ96CCdZlFws7q2UQtUeK_qGWqHRjq"/>
+</div>
+<span class="font-headline-md text-headline-md">LSFC</span>
+</div>
+<span class="font-display-lg text-display-lg text-primary">2</span>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-surface-container-high border border-outline-variant overflow-hidden flex items-center justify-center p-1">
+<img class="w-full h-full object-contain" data-alt="A bold, modern vector logo of a rival sports club featuring an aggressive eagle head in red and black. Crisp corporate athletic design language, flat lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9oPMcdjVRTjdSMrrxxul4Egja1IlPb2lR68Qfza8g4mi3-4Ou5Uu59oaG1fMGZj8ZjiS0-dc9Crgzvx1Yhcx--ZZQCqi5fUTQ51n5WXKnnJKLMTTS35WKlS59Br3OtvMMREmvTIZyUFu5FyOWI5emRMavzUC3pWn06r0_IF-V2Ddv2RUGfvbp3zF2pd2Ezp1gGYKHFKyskRLzXUM7ijRYkkQFODhK5UiircS38_ckWL9Rh9fRpiFl4zO_Vfl2I3LzrfpdJvjD3VQE"/>
+</div>
+<span class="font-headline-md text-headline-md text-on-surface-variant">RIVL</span>
+</div>
+<span class="font-display-lg text-display-lg text-on-surface-variant">1</span>
+</div>
+</div>
+<!-- Divider -->
+<div class="hidden md:block w-px h-24 bg-outline-variant"></div>
+<div class="md:hidden w-full h-px bg-outline-variant"></div>
+<!-- User Pick -->
+<div class="w-full md:w-auto flex flex-col items-center bg-surface-container-low p-4 rounded-lg border border-outline-variant">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-2">Your Pick</span>
+<div class="flex items-center gap-4">
+<span class="font-headline-md text-headline-md text-primary">2</span>
+<span class="font-body-md text-body-md text-outline">-</span>
+<span class="font-headline-md text-headline-md text-on-surface-variant">0</span>
+</div>
+<span class="mt-2 font-label-sm text-label-sm text-secondary bg-secondary-container px-2 py-1 rounded-full uppercase">On Track</span>
+</div>
+</div>
+<!-- Progress track -->
+<div class="h-2 w-full bg-surface-container-high">
+<div class="h-full bg-primary" style="width: 72%;"></div>
+</div>
+</article>
+<!-- Upcoming Match Card -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden flex flex-col shadow-sm">
+<!-- Status Bar -->
+<div class="bg-surface-container-low text-on-surface-variant px-4 py-2 flex items-center justify-between border-b border-outline-variant">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span class="font-label-md text-label-md uppercase">Today, 20:00</span>
+</div>
+<span class="font-label-md text-label-md text-primary hover:underline cursor-pointer">Edit Pick</span>
+</div>
+<div class="p-6 flex flex-col md:flex-row items-center gap-8">
+<!-- Teams -->
+<div class="flex-1 w-full">
+<div class="flex justify-between items-center mb-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-surface-container-high border border-outline-variant overflow-hidden flex items-center justify-center p-1">
+<img class="w-full h-full object-contain" data-alt="A sharp, geometric vector logo of an athletic team featuring crossed hammers in deep green and silver. Clean, flat design style suitable for a modern sports application UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGsFwS6NouUoogCwGJidUI_9keHEWK6bYc3mJzbsSH5uBoWJOsg9ttlkUgBIo4752CuRsMkheRe_eNGOc3SqE6IiaXz5epTXxtk1ObEGOclGz5cCIgPwX5pj5y3kuS2Sw8e5molk1P2Tbw_XVAszmTZgBz-psm48lS6Tc3efEg6Q20XpEakhkEBTnkyUtt4jG3nV1NrLNXU1XmDj7e2DDf0bczyogc6fpq6j-Ds3QzNorFXynDTWTKxapftls9Ws3GS0RJgaah5vOD"/>
+</div>
+<span class="font-headline-md text-headline-md">HMMR</span>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-surface-container-high border border-outline-variant overflow-hidden flex items-center justify-center p-1">
+<img class="w-full h-full object-contain" data-alt="A clean, minimalist vector logo of a professional soccer team featuring a stylized star and shield motif. Rendered in deep blue and white, set against a pristine light gray background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGV8B6KLCWsTKmGprAeDW1JhJb5ujWO4-Wxpg66bzcgk6Gyw6oKwVPQn7EyU1km-gxF7Gkn2PDZi6sgVCFAag6RA5nnRKXRlxlGvgZCBI7rVDFM96ANHQHfI_LGx5HJqMMFtcYDl9KvdxnHU3jSVjTHDj0Lhi2ja6XvUPGrqGxDoCFRRyii5G9xnqqEhoOpBQCcwbzRUp7_InSISCQdRjNTNifjfDQIq1Isbd4XGHTd4BvqZT2XVgyx3X8L_GngSugwhgQeY1YYVnF"/>
+</div>
+<span class="font-headline-md text-headline-md">LSFC</span>
+</div>
+</div>
+</div>
+<!-- Divider -->
+<div class="hidden md:block w-px h-24 bg-outline-variant"></div>
+<div class="md:hidden w-full h-px bg-outline-variant"></div>
+<!-- User Pick -->
+<div class="w-full md:w-auto flex flex-col items-center bg-surface-container-lowest p-4 rounded-lg border border-primary">
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-wider mb-2">Your Pick</span>
+<div class="flex items-center gap-4">
+<span class="font-headline-md text-headline-md text-on-surface-variant">0</span>
+<span class="font-body-md text-body-md text-outline">-</span>
+<span class="font-headline-md text-headline-md text-primary">3</span>
+</div>
+<span class="mt-2 font-label-sm text-label-sm text-on-surface-variant bg-surface-container px-2 py-1 rounded-full uppercase">Locked</span>
+</div>
+</div>
+</article>
+</section>
+<!-- Completed Section Header -->
+<div class="mt-8 mb-2 flex items-center justify-between border-b border-outline-variant pb-2">
+<h2 class="font-headline-md text-headline-md text-on-background uppercase">Recent Results</h2>
+<button class="text-primary font-label-md text-label-md uppercase hover:underline">View All</button>
+</div>
+<!-- History List (High Density) -->
+<div class="flex flex-col gap-2">
+<!-- Win Row -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-4 flex items-center justify-between hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-6">
+<div class="bg-secondary-container text-on-secondary-container w-12 h-12 rounded flex flex-col items-center justify-center flex-shrink-0">
+<span class="font-label-sm text-label-sm leading-none">PTS</span>
+<span class="font-headline-md text-headline-md leading-none mt-1">+15</span>
+</div>
+<div>
+<div class="font-label-md text-label-md text-on-background uppercase">LSFC vs CTY</div>
+<div class="font-body-md text-body-md text-on-surface-variant mt-1 text-sm">Exact Score Predicted: 2-1</div>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<!-- Loss Row -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-4 flex items-center justify-between hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-6">
+<div class="bg-surface-container-high text-on-surface-variant w-12 h-12 rounded flex flex-col items-center justify-center flex-shrink-0">
+<span class="font-label-sm text-label-sm leading-none">PTS</span>
+<span class="font-headline-md text-headline-md leading-none mt-1">0</span>
+</div>
+<div>
+<div class="font-label-md text-label-md text-on-background uppercase">UTD vs LSFC</div>
+<div class="font-body-md text-body-md text-on-surface-variant mt-1 text-sm">Predicted 1-1 • Actual 3-0</div>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline">cancel</span>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 flex justify-around items-center h-20 px-2 pb-safe bg-surface-container-lowest dark:bg-surface-container-highest border-t border-outline-variant dark:border-outline shadow-lg">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">stadium</span>
+<span class="font-label-sm text-label-sm uppercase mt-1">Arena</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">event_note</span>
+<span class="font-label-sm text-label-sm uppercase mt-1">Matches</span>
+</a>
+<!-- Active Tab -->
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 hover:text-primary transition-all active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<span class="font-label-sm text-label-sm uppercase mt-1">My Preds</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-label-sm text-label-sm uppercase mt-1">Players</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm uppercase mt-1">Profile</span>
+</a>
+</nav>
+</body></html>

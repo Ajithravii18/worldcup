@@ -1,0 +1,2853 @@
+[
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec255"
+    },
+    "homeTeam": "Mexico",
+    "homeFlag": "🇲🇽",
+    "awayTeam": "South Africa",
+    "awayFlag": "🇿🇦",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-11T19:00:00.000Z"
+    },
+    "status": "completed",
+    "homeScore": 2,
+    "awayScore": 0,
+    "winner": "Mexico",
+    "apiVerified": true,
+    "group": "Group Stage",
+    "matchday": 2,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.252Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:59.878Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec256"
+    },
+    "homeTeam": "South Korea",
+    "homeFlag": "🇰🇷",
+    "awayTeam": "Czechia",
+    "awayFlag": "🇨🇿",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-12T02:00:00.000Z"
+    },
+    "status": "completed",
+    "homeScore": 2,
+    "awayScore": 1,
+    "winner": "South Korea",
+    "apiVerified": true,
+    "group": "Group Stage",
+    "matchday": 2,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.253Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:03:00.309Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec257"
+    },
+    "homeTeam": "Canada",
+    "homeFlag": "🇨🇦",
+    "awayTeam": "Bosnia and Herzegovina",
+    "awayFlag": "🇧🇦",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-12T19:00:00.000Z"
+    },
+    "status": "completed",
+    "homeScore": 1,
+    "awayScore": 1,
+    "winner": "Draw",
+    "apiVerified": true,
+    "group": "Group Stage",
+    "matchday": 3,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.253Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:03:00.316Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec258"
+    },
+    "homeTeam": "USA",
+    "homeFlag": "🇺🇸",
+    "awayTeam": "Paraguay",
+    "awayFlag": "🇵🇾",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-13T01:00:00.000Z"
+    },
+    "status": "completed",
+    "homeScore": 4,
+    "awayScore": 1,
+    "winner": "USA",
+    "apiVerified": true,
+    "group": "Group Stage",
+    "matchday": 3,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.253Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:03:00.614Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec259"
+    },
+    "homeTeam": "Qatar",
+    "homeFlag": "🇶🇦",
+    "awayTeam": "Switzerland",
+    "awayFlag": "🇨🇭",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-13T19:00:00.000Z"
+    },
+    "status": "completed",
+    "homeScore": 1,
+    "awayScore": 1,
+    "winner": "Draw",
+    "apiVerified": true,
+    "group": "Group Stage",
+    "matchday": 4,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.253Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:03:00.618Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec25a"
+    },
+    "homeTeam": "Brazil",
+    "homeFlag": "🇧🇷",
+    "awayTeam": "Morocco",
+    "awayFlag": "🇲🇦",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-13T22:00:00.000Z"
+    },
+    "status": "completed",
+    "homeScore": 1,
+    "awayScore": 1,
+    "winner": "Draw",
+    "apiVerified": true,
+    "group": "Group Stage",
+    "matchday": 4,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.253Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:03:00.621Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec25b"
+    },
+    "homeTeam": "Haiti",
+    "homeFlag": "🇭🇹",
+    "awayTeam": "Scotland",
+    "awayFlag": "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-14T01:00:00.000Z"
+    },
+    "status": "completed",
+    "homeScore": 0,
+    "awayScore": 1,
+    "winner": "Scotland",
+    "apiVerified": true,
+    "group": "Group Stage",
+    "matchday": 4,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.253Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:03:00.981Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec25c"
+    },
+    "homeTeam": "Australia",
+    "homeFlag": "🇦🇺",
+    "awayTeam": "Turkiye",
+    "awayFlag": "🇹🇷",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-14T04:00:00.000Z"
+    },
+    "status": "completed",
+    "homeScore": 2,
+    "awayScore": 0,
+    "winner": "Australia",
+    "apiVerified": true,
+    "group": "Group Stage",
+    "matchday": 4,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.253Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:03:00.984Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec25d"
+    },
+    "homeTeam": "Germany",
+    "homeFlag": "🇩🇪",
+    "awayTeam": "Curacao",
+    "awayFlag": "🇨🇼",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-14T17:00:00.000Z"
+    },
+    "status": "completed",
+    "homeScore": 7,
+    "awayScore": 1,
+    "winner": "Germany",
+    "apiVerified": true,
+    "group": "Group Stage",
+    "matchday": 4,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.253Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:03:00.987Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec25e"
+    },
+    "homeTeam": "Netherlands",
+    "homeFlag": "🇳🇱",
+    "awayTeam": "Japan",
+    "awayFlag": "🇯🇵",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-14T20:00:00.000Z"
+    },
+    "status": "completed",
+    "homeScore": 2,
+    "awayScore": 2,
+    "winner": "Draw",
+    "apiVerified": true,
+    "group": "Group Stage",
+    "matchday": 5,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.253Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:03:00.989Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec25f"
+    },
+    "homeTeam": "Ivory Coast",
+    "homeFlag": "🇨🇮",
+    "awayTeam": "Ecuador",
+    "awayFlag": "🇪🇨",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-14T23:00:00.000Z"
+    },
+    "status": "completed",
+    "homeScore": 1,
+    "awayScore": 0,
+    "winner": "Ivory Coast",
+    "apiVerified": true,
+    "group": "Group Stage",
+    "matchday": 5,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.253Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:03:00.991Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec260"
+    },
+    "homeTeam": "Sweden",
+    "homeFlag": "🇸🇪",
+    "awayTeam": "Tunisia",
+    "awayFlag": "🇹🇳",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-15T02:00:00.000Z"
+    },
+    "status": "completed",
+    "homeScore": 5,
+    "awayScore": 1,
+    "winner": "Sweden",
+    "apiVerified": true,
+    "group": "Group Stage",
+    "matchday": 5,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.254Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:03:01.338Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec261"
+    },
+    "homeTeam": "Spain",
+    "homeFlag": "🇪🇸",
+    "awayTeam": "Cape Verde",
+    "awayFlag": "🇨🇻",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-15T16:00:00.000Z"
+    },
+    "status": "completed",
+    "homeScore": 0,
+    "awayScore": 0,
+    "winner": "Draw",
+    "apiVerified": true,
+    "group": "Group Stage",
+    "matchday": 5,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.254Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:03:01.342Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec262"
+    },
+    "homeTeam": "Belgium",
+    "homeFlag": "🇧🇪",
+    "awayTeam": "Egypt",
+    "awayFlag": "🇪🇬",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-15T19:00:00.000Z"
+    },
+    "status": "completed",
+    "homeScore": 1,
+    "awayScore": 1,
+    "winner": "Draw",
+    "apiVerified": true,
+    "group": "Group Stage",
+    "matchday": 6,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.254Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:03:01.347Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec263"
+    },
+    "homeTeam": "Saudi Arabia",
+    "homeFlag": "🇸🇦",
+    "awayTeam": "Uruguay",
+    "awayFlag": "🇺🇾",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-15T22:00:00.000Z"
+    },
+    "status": "completed",
+    "homeScore": 1,
+    "awayScore": 1,
+    "winner": "Draw",
+    "apiVerified": true,
+    "group": "Group Stage",
+    "matchday": 6,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.254Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:03:01.349Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec264"
+    },
+    "homeTeam": "Iran",
+    "homeFlag": "🇮🇷",
+    "awayTeam": "New Zealand",
+    "awayFlag": "🇳🇿",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-16T01:00:00.000Z"
+    },
+    "status": "completed",
+    "homeScore": 2,
+    "awayScore": 2,
+    "winner": "Draw",
+    "apiVerified": true,
+    "group": "Group Stage",
+    "matchday": 6,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.254Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:03:01.674Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec265"
+    },
+    "homeTeam": "France",
+    "homeFlag": "🇫🇷",
+    "awayTeam": "Senegal",
+    "awayFlag": "🇸🇳",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-16T19:00:00.000Z"
+    },
+    "status": "completed",
+    "homeScore": 3,
+    "awayScore": 1,
+    "winner": "France",
+    "apiVerified": true,
+    "group": "Group Stage",
+    "matchday": 7,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.254Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:03:01.680Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec266"
+    },
+    "homeTeam": "Iraq",
+    "homeFlag": "🇮🇶",
+    "awayTeam": "Norway",
+    "awayFlag": "🇳🇴",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-16T22:00:00.000Z"
+    },
+    "status": "completed",
+    "homeScore": 1,
+    "awayScore": 4,
+    "winner": "Norway",
+    "apiVerified": true,
+    "group": "Group Stage",
+    "matchday": 7,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.254Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:03:01.683Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec267"
+    },
+    "homeTeam": "Argentina",
+    "homeFlag": "🇦🇷",
+    "awayTeam": "Algeria",
+    "awayFlag": "🇩🇿",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-17T01:00:00.000Z"
+    },
+    "status": "completed",
+    "homeScore": 3,
+    "awayScore": 0,
+    "winner": "Argentina",
+    "apiVerified": true,
+    "group": "Group Stage",
+    "matchday": 7,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.254Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:03:02.005Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec268"
+    },
+    "homeTeam": "Austria",
+    "homeFlag": "🇦🇹",
+    "awayTeam": "Jordan",
+    "awayFlag": "🇯🇴",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-17T04:00:00.000Z"
+    },
+    "status": "completed",
+    "homeScore": 3,
+    "awayScore": 1,
+    "winner": "Austria",
+    "apiVerified": true,
+    "group": "Group Stage",
+    "matchday": 7,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.254Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:03:02.012Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec269"
+    },
+    "homeTeam": "Portugal",
+    "homeFlag": "🇵🇹",
+    "awayTeam": "DR Congo",
+    "awayFlag": "🏳️",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-17T17:00:00.000Z"
+    },
+    "status": "completed",
+    "homeScore": 1,
+    "awayScore": 1,
+    "winner": "Draw",
+    "apiVerified": true,
+    "group": "Group Stage",
+    "matchday": 7,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.254Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:03:02.018Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec26a"
+    },
+    "homeTeam": "England",
+    "homeFlag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+    "awayTeam": "Croatia",
+    "awayFlag": "🇭🇷",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-17T20:00:00.000Z"
+    },
+    "status": "completed",
+    "homeScore": 4,
+    "awayScore": 2,
+    "winner": "England",
+    "apiVerified": true,
+    "group": "Group Stage",
+    "matchday": 8,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.254Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:03:02.021Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec26b"
+    },
+    "homeTeam": "Ghana",
+    "homeFlag": "🇬🇭",
+    "awayTeam": "Panama",
+    "awayFlag": "🇵🇦",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-17T23:00:00.000Z"
+    },
+    "status": "completed",
+    "homeScore": 1,
+    "awayScore": 0,
+    "winner": "Ghana",
+    "apiVerified": true,
+    "group": "Group Stage",
+    "matchday": 8,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.254Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:03:02.024Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec26c"
+    },
+    "homeTeam": "Uzbekistan",
+    "homeFlag": "🇺🇿",
+    "awayTeam": "Colombia",
+    "awayFlag": "🇨🇴",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-18T02:00:00.000Z"
+    },
+    "status": "completed",
+    "homeScore": 1,
+    "awayScore": 3,
+    "winner": "Colombia",
+    "apiVerified": true,
+    "group": "Group Stage",
+    "matchday": 8,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.254Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:03:02.367Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec26d"
+    },
+    "homeTeam": "Czechia",
+    "homeFlag": "🇨🇿",
+    "awayTeam": "South Africa",
+    "awayFlag": "🇿🇦",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-18T16:00:00.000Z"
+    },
+    "status": "completed",
+    "homeScore": 1,
+    "awayScore": 1,
+    "winner": "Draw",
+    "apiVerified": true,
+    "group": "Group Stage",
+    "matchday": 8,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.254Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:03:02.369Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec26e"
+    },
+    "homeTeam": "Switzerland",
+    "homeFlag": "🇨🇭",
+    "awayTeam": "Bosnia and Herzegovina",
+    "awayFlag": "🇧🇦",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-18T19:00:00.000Z"
+    },
+    "status": "completed",
+    "homeScore": 4,
+    "awayScore": 1,
+    "winner": "Switzerland",
+    "apiVerified": true,
+    "group": "Group Stage",
+    "matchday": 9,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.254Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:03:02.372Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec26f"
+    },
+    "homeTeam": "Canada",
+    "homeFlag": "🇨🇦",
+    "awayTeam": "Qatar",
+    "awayFlag": "🇶🇦",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-18T22:00:00.000Z"
+    },
+    "status": "completed",
+    "homeScore": 6,
+    "awayScore": 0,
+    "winner": "Canada",
+    "apiVerified": true,
+    "group": "Group Stage",
+    "matchday": 9,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.254Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:03:02.374Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec270"
+    },
+    "homeTeam": "Mexico",
+    "homeFlag": "🇲🇽",
+    "awayTeam": "South Korea",
+    "awayFlag": "🇰🇷",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-19T01:00:00.000Z"
+    },
+    "status": "completed",
+    "homeScore": 1,
+    "awayScore": 0,
+    "winner": "Mexico",
+    "apiVerified": true,
+    "group": "Group Stage",
+    "matchday": 9,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.254Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:03:02.721Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec271"
+    },
+    "homeTeam": "USA",
+    "homeFlag": "🇺🇸",
+    "awayTeam": "Australia",
+    "awayFlag": "🇦🇺",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-19T19:00:00.000Z"
+    },
+    "status": "completed",
+    "homeScore": 2,
+    "awayScore": 0,
+    "winner": "USA",
+    "apiVerified": true,
+    "group": "Group Stage",
+    "matchday": 10,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.254Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:03:02.724Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec272"
+    },
+    "homeTeam": "Scotland",
+    "homeFlag": "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
+    "awayTeam": "Morocco",
+    "awayFlag": "🇲🇦",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-19T22:00:00.000Z"
+    },
+    "status": "completed",
+    "homeScore": 0,
+    "awayScore": 1,
+    "winner": "Morocco",
+    "apiVerified": true,
+    "group": "Group Stage",
+    "matchday": 10,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.254Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:03:02.729Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec273"
+    },
+    "homeTeam": "Brazil",
+    "homeFlag": "🇧🇷",
+    "awayTeam": "Haiti",
+    "awayFlag": "🇭🇹",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-20T00:30:00.000Z"
+    },
+    "status": "completed",
+    "homeScore": 3,
+    "awayScore": 0,
+    "winner": "Brazil",
+    "apiVerified": true,
+    "group": "Group Stage",
+    "matchday": 10,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.254Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:03:03.320Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec274"
+    },
+    "homeTeam": "Turkiye",
+    "homeFlag": "🇹🇷",
+    "awayTeam": "Paraguay",
+    "awayFlag": "🇵🇾",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-20T03:00:00.000Z"
+    },
+    "status": "completed",
+    "homeScore": 0,
+    "awayScore": 1,
+    "winner": "Paraguay",
+    "apiVerified": true,
+    "group": "Group Stage",
+    "matchday": 10,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.254Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:03:03.323Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec275"
+    },
+    "homeTeam": "Netherlands",
+    "homeFlag": "🇳🇱",
+    "awayTeam": "Sweden",
+    "awayFlag": "🇸🇪",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-20T17:00:00.000Z"
+    },
+    "status": "completed",
+    "homeScore": 5,
+    "awayScore": 1,
+    "winner": "Netherlands",
+    "apiVerified": true,
+    "group": "Group Stage",
+    "matchday": 10,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.254Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-21T15:44:23.568Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec276"
+    },
+    "homeTeam": "Germany",
+    "homeFlag": "🇩🇪",
+    "awayTeam": "Ivory Coast",
+    "awayFlag": "🇨🇮",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-20T20:00:00.000Z"
+    },
+    "status": "completed",
+    "homeScore": 2,
+    "awayScore": 1,
+    "winner": "Germany",
+    "apiVerified": true,
+    "group": "Group Stage",
+    "matchday": 11,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.254Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-21T15:44:23.806Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec277"
+    },
+    "homeTeam": "Ecuador",
+    "homeFlag": "🇪🇨",
+    "awayTeam": "Curacao",
+    "awayFlag": "🇨🇼",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-21T00:00:00.000Z"
+    },
+    "status": "completed",
+    "homeScore": 0,
+    "awayScore": 0,
+    "winner": "Draw",
+    "apiVerified": true,
+    "group": "Group Stage",
+    "matchday": 11,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.255Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-21T15:44:24.095Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec278"
+    },
+    "homeTeam": "Tunisia",
+    "homeFlag": "🇹🇳",
+    "awayTeam": "Japan",
+    "awayFlag": "🇯🇵",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-21T04:00:00.000Z"
+    },
+    "status": "completed",
+    "homeScore": 0,
+    "awayScore": 4,
+    "winner": "Japan",
+    "apiVerified": true,
+    "group": "Group Stage",
+    "matchday": 11,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.255Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-21T15:44:24.331Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec279"
+    },
+    "homeTeam": "Spain",
+    "homeFlag": "🇪🇸",
+    "awayTeam": "Saudi Arabia",
+    "awayFlag": "🇸🇦",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-21T16:00:00.000Z"
+    },
+    "status": "completed",
+    "homeScore": 4,
+    "awayScore": 0,
+    "winner": "Spain",
+    "apiVerified": true,
+    "group": "Group Stage",
+    "matchday": 11,
+    "__v": 1,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.255Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-21T18:17:17.298Z"
+    },
+    "events": [
+      {
+        "player": "Lamine Yamal",
+        "time": 10,
+        "team": "Spain",
+        "type": "Goal",
+        "detail": "Normal Goal"
+      },
+      {
+        "player": "Mikel Oyarzabal",
+        "time": 21,
+        "team": "Spain",
+        "type": "Goal",
+        "detail": "Normal Goal"
+      },
+      {
+        "player": "Mikel Oyarzabal",
+        "time": 24,
+        "team": "Spain",
+        "type": "Goal",
+        "detail": "Normal Goal"
+      },
+      {
+        "player": "Hassan Al Tambakti",
+        "time": 49,
+        "team": "Saudi Arabia",
+        "type": "Goal",
+        "detail": "Own Goal"
+      }
+    ]
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec27a"
+    },
+    "homeTeam": "Belgium",
+    "homeFlag": "🇧🇪",
+    "awayTeam": "Iran",
+    "awayFlag": "🇮🇷",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-21T19:00:00.000Z"
+    },
+    "status": "completed",
+    "homeScore": 0,
+    "awayScore": 0,
+    "winner": "Draw",
+    "apiVerified": true,
+    "group": "Group Stage",
+    "matchday": 12,
+    "__v": 1,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.255Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-21T21:08:04.518Z"
+    },
+    "events": [],
+    "elapsed": 45,
+    "shortStatus": "HT"
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec27b"
+    },
+    "homeTeam": "Uruguay",
+    "homeFlag": "🇺🇾",
+    "awayTeam": "Cape Verde",
+    "awayFlag": "🇨🇻",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-21T22:00:00.000Z"
+    },
+    "status": "completed",
+    "homeScore": 2,
+    "awayScore": 2,
+    "winner": "Draw",
+    "apiVerified": true,
+    "group": "Group Stage",
+    "matchday": 12,
+    "__v": 1,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.255Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-22T07:47:48.005Z"
+    },
+    "events": []
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec27c"
+    },
+    "homeTeam": "New Zealand",
+    "homeFlag": "🇳🇿",
+    "awayTeam": "Egypt",
+    "awayFlag": "🇪🇬",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-22T01:00:00.000Z"
+    },
+    "status": "completed",
+    "homeScore": 1,
+    "awayScore": 3,
+    "winner": "Egypt",
+    "apiVerified": true,
+    "group": "Group Stage",
+    "matchday": 12,
+    "__v": 1,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.255Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-22T07:47:48.246Z"
+    },
+    "events": []
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec27d"
+    },
+    "homeTeam": "Argentina",
+    "homeFlag": "🇦🇷",
+    "awayTeam": "Austria",
+    "awayFlag": "🇦🇹",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-22T17:00:00.000Z"
+    },
+    "status": "completed",
+    "homeScore": 2,
+    "awayScore": 0,
+    "winner": "Argentina",
+    "apiVerified": true,
+    "group": "Group Stage",
+    "matchday": 12,
+    "__v": 1,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.255Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-24T09:50:04.925Z"
+    },
+    "events": []
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec27e"
+    },
+    "homeTeam": "France",
+    "homeFlag": "🇫🇷",
+    "awayTeam": "Iraq",
+    "awayFlag": "🇮🇶",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-22T21:00:00.000Z"
+    },
+    "status": "completed",
+    "homeScore": 3,
+    "awayScore": 0,
+    "winner": "France",
+    "apiVerified": true,
+    "group": "Group Stage",
+    "matchday": 13,
+    "__v": 1,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.255Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-24T09:50:05.167Z"
+    },
+    "events": []
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec27f"
+    },
+    "homeTeam": "Norway",
+    "homeFlag": "🇳🇴",
+    "awayTeam": "Senegal",
+    "awayFlag": "🇸🇳",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-23T00:00:00.000Z"
+    },
+    "status": "completed",
+    "homeScore": 3,
+    "awayScore": 2,
+    "winner": "Norway",
+    "apiVerified": true,
+    "group": "Group Stage",
+    "matchday": 13,
+    "__v": 1,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.255Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-24T09:50:05.405Z"
+    },
+    "events": []
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec280"
+    },
+    "homeTeam": "Jordan",
+    "homeFlag": "🇯🇴",
+    "awayTeam": "Algeria",
+    "awayFlag": "🇩🇿",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-23T03:00:00.000Z"
+    },
+    "status": "completed",
+    "homeScore": 1,
+    "awayScore": 2,
+    "winner": "Algeria",
+    "apiVerified": true,
+    "group": "Group Stage",
+    "matchday": 13,
+    "__v": 1,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.255Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-24T09:50:05.641Z"
+    },
+    "events": []
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec281"
+    },
+    "homeTeam": "Portugal",
+    "homeFlag": "🇵🇹",
+    "awayTeam": "Uzbekistan",
+    "awayFlag": "🇺🇿",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-23T17:00:00.000Z"
+    },
+    "status": "completed",
+    "homeScore": 5,
+    "awayScore": 0,
+    "winner": "Portugal",
+    "apiVerified": true,
+    "group": "Group Stage",
+    "matchday": 13,
+    "__v": 1,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.255Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-24T09:50:05.878Z"
+    },
+    "events": []
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec282"
+    },
+    "homeTeam": "England",
+    "homeFlag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+    "awayTeam": "Ghana",
+    "awayFlag": "🇬🇭",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-23T20:00:00.000Z"
+    },
+    "status": "completed",
+    "homeScore": 0,
+    "awayScore": 0,
+    "winner": "Draw",
+    "apiVerified": true,
+    "group": "Group Stage",
+    "matchday": 14,
+    "__v": 1,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.255Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-24T09:50:06.114Z"
+    },
+    "events": []
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec283"
+    },
+    "homeTeam": "Panama",
+    "homeFlag": "🇵🇦",
+    "awayTeam": "Croatia",
+    "awayFlag": "🇭🇷",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-23T23:00:00.000Z"
+    },
+    "status": "completed",
+    "homeScore": 0,
+    "awayScore": 1,
+    "winner": "Croatia",
+    "apiVerified": true,
+    "group": "Group Stage",
+    "matchday": 14,
+    "__v": 1,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.255Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-24T09:50:06.350Z"
+    },
+    "events": []
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec284"
+    },
+    "homeTeam": "Colombia",
+    "homeFlag": "🇨🇴",
+    "awayTeam": "DR Congo",
+    "awayFlag": "🏳️",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-24T02:00:00.000Z"
+    },
+    "status": "completed",
+    "homeScore": 1,
+    "awayScore": 0,
+    "winner": "Colombia",
+    "apiVerified": true,
+    "group": "Group Stage",
+    "matchday": 14,
+    "__v": 1,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.255Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-24T09:50:06.586Z"
+    },
+    "events": []
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec285"
+    },
+    "homeTeam": "Bosnia and Herzegovina",
+    "homeFlag": "🇧🇦",
+    "awayTeam": "Qatar",
+    "awayFlag": "🇶🇦",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-24T19:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": 15,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.255Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.255Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec286"
+    },
+    "homeTeam": "Switzerland",
+    "homeFlag": "🇨🇭",
+    "awayTeam": "Canada",
+    "awayFlag": "🇨🇦",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-24T19:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": 15,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.255Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.255Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec287"
+    },
+    "homeTeam": "Morocco",
+    "homeFlag": "🇲🇦",
+    "awayTeam": "Haiti",
+    "awayFlag": "🇭🇹",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-24T22:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": 15,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.255Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.255Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec288"
+    },
+    "homeTeam": "Scotland",
+    "homeFlag": "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
+    "awayTeam": "Brazil",
+    "awayFlag": "🇧🇷",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-24T22:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": 15,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.255Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.255Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec289"
+    },
+    "homeTeam": "Czechia",
+    "homeFlag": "🇨🇿",
+    "awayTeam": "Mexico",
+    "awayFlag": "🇲🇽",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-25T01:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": 15,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.255Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.255Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec28a"
+    },
+    "homeTeam": "South Africa",
+    "homeFlag": "🇿🇦",
+    "awayTeam": "South Korea",
+    "awayFlag": "🇰🇷",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-25T01:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": 15,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.255Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.255Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec28b"
+    },
+    "homeTeam": "Curacao",
+    "homeFlag": "🇨🇼",
+    "awayTeam": "Ivory Coast",
+    "awayFlag": "🇨🇮",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-25T20:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": 16,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.255Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.255Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec28c"
+    },
+    "homeTeam": "Ecuador",
+    "homeFlag": "🇪🇨",
+    "awayTeam": "Germany",
+    "awayFlag": "🇩🇪",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-25T20:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": 16,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.255Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.255Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec28d"
+    },
+    "homeTeam": "Japan",
+    "homeFlag": "🇯🇵",
+    "awayTeam": "Sweden",
+    "awayFlag": "🇸🇪",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-25T23:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": 16,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.255Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.255Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec28e"
+    },
+    "homeTeam": "Tunisia",
+    "homeFlag": "🇹🇳",
+    "awayTeam": "Netherlands",
+    "awayFlag": "🇳🇱",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-25T23:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": 16,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.255Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.255Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec28f"
+    },
+    "homeTeam": "Paraguay",
+    "homeFlag": "🇵🇾",
+    "awayTeam": "Australia",
+    "awayFlag": "🇦🇺",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-26T02:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": 16,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.256Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.256Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec290"
+    },
+    "homeTeam": "Turkiye",
+    "homeFlag": "🇹🇷",
+    "awayTeam": "USA",
+    "awayFlag": "🇺🇸",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-26T02:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": 16,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.256Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.256Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec291"
+    },
+    "homeTeam": "Norway",
+    "homeFlag": "🇳🇴",
+    "awayTeam": "France",
+    "awayFlag": "🇫🇷",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-26T19:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": 17,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.256Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.256Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec292"
+    },
+    "homeTeam": "Senegal",
+    "homeFlag": "🇸🇳",
+    "awayTeam": "Iraq",
+    "awayFlag": "🇮🇶",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-26T19:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": 0,
+    "winner": "Draw",
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": 17,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.256Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-21T20:23:58.536Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec293"
+    },
+    "homeTeam": "Cape Verde",
+    "homeFlag": "🇨🇻",
+    "awayTeam": "Saudi Arabia",
+    "awayFlag": "🇸🇦",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-27T00:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": 17,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.256Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.256Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec294"
+    },
+    "homeTeam": "Uruguay",
+    "homeFlag": "🇺🇾",
+    "awayTeam": "Spain",
+    "awayFlag": "🇪🇸",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-27T00:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": 17,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.256Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.256Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec295"
+    },
+    "homeTeam": "Egypt",
+    "homeFlag": "🇪🇬",
+    "awayTeam": "Iran",
+    "awayFlag": "🇮🇷",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-27T03:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": 17,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.256Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.256Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec296"
+    },
+    "homeTeam": "New Zealand",
+    "homeFlag": "🇳🇿",
+    "awayTeam": "Belgium",
+    "awayFlag": "🇧🇪",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-27T03:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": 17,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.256Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.256Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec297"
+    },
+    "homeTeam": "Croatia",
+    "homeFlag": "🇭🇷",
+    "awayTeam": "Ghana",
+    "awayFlag": "🇬🇭",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-27T21:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": 18,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.256Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.256Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec298"
+    },
+    "homeTeam": "Panama",
+    "homeFlag": "🇵🇦",
+    "awayTeam": "England",
+    "awayFlag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-27T21:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": 18,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.256Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.256Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec299"
+    },
+    "homeTeam": "Colombia",
+    "homeFlag": "🇨🇴",
+    "awayTeam": "Portugal",
+    "awayFlag": "🇵🇹",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-27T23:30:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": 18,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.256Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.256Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec29a"
+    },
+    "homeTeam": "DR Congo",
+    "homeFlag": "🏳️",
+    "awayTeam": "Uzbekistan",
+    "awayFlag": "🇺🇿",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-27T23:30:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": 18,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.256Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.256Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec29b"
+    },
+    "homeTeam": "Algeria",
+    "homeFlag": "🇩🇿",
+    "awayTeam": "Austria",
+    "awayFlag": "🇦🇹",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-28T02:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": 18,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.256Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.256Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec29c"
+    },
+    "homeTeam": "Jordan",
+    "homeFlag": "🇯🇴",
+    "awayTeam": "Argentina",
+    "awayFlag": "🇦🇷",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-28T02:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": 18,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.257Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.257Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec29d"
+    },
+    "homeTeam": "Runner-up Group A",
+    "homeFlag": "⚽️",
+    "awayTeam": "Runner-up Group B",
+    "awayFlag": "🏳️",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-28T19:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": 19,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.257Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.257Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec29e"
+    },
+    "homeTeam": "Winner Group C",
+    "homeFlag": "⚽️",
+    "awayTeam": "Runner-up Group F",
+    "awayFlag": "🏳️",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-29T17:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": 19,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.257Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.257Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec29f"
+    },
+    "homeTeam": "Winner Group E",
+    "homeFlag": "⚽️",
+    "awayTeam": "TBD (3ABCDF)",
+    "awayFlag": "🏳️",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-29T20:30:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": 20,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.257Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.257Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec2a0"
+    },
+    "homeTeam": "Winner Group F",
+    "homeFlag": "⚽️",
+    "awayTeam": "Runner-up Group C",
+    "awayFlag": "🏳️",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-30T01:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": 20,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.257Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.257Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec2a1"
+    },
+    "homeTeam": "Runner-up Group E",
+    "homeFlag": "⚽️",
+    "awayTeam": "Runner-up Group I",
+    "awayFlag": "🏳️",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-30T17:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": 20,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.257Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.257Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec2a2"
+    },
+    "homeTeam": "Winner Group I",
+    "homeFlag": "⚽️",
+    "awayTeam": "TBD (3CDFGH)",
+    "awayFlag": "🏳️",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-06-30T21:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": -9,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.257Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.257Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec2a3"
+    },
+    "homeTeam": "Winner Group A",
+    "homeFlag": "⚽️",
+    "awayTeam": "TBD (3CEFHI)",
+    "awayFlag": "🏳️",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-07-01T01:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": -9,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.257Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.257Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec2a4"
+    },
+    "homeTeam": "Winner Group L",
+    "homeFlag": "⚽️",
+    "awayTeam": "TBD (3EHIJK)",
+    "awayFlag": "🏳️",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-07-01T16:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": -9,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.257Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.257Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec2a5"
+    },
+    "homeTeam": "Winner Group G",
+    "homeFlag": "⚽️",
+    "awayTeam": "TBD (3AEHIJ)",
+    "awayFlag": "🏳️",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-07-01T20:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": -8,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.257Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.257Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec2a6"
+    },
+    "homeTeam": "Winner Group D",
+    "homeFlag": "⚽️",
+    "awayTeam": "TBD (3BEFIJ)",
+    "awayFlag": "🏳️",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-07-02T00:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": -8,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.257Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.257Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec2a7"
+    },
+    "homeTeam": "Winner Group H",
+    "homeFlag": "⚽️",
+    "awayTeam": "Runner-up Group J",
+    "awayFlag": "🏳️",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-07-02T19:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": -7,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.257Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.257Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec2a8"
+    },
+    "homeTeam": "Runner-up Group K",
+    "homeFlag": "⚽️",
+    "awayTeam": "Runner-up Group L",
+    "awayFlag": "🏳️",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-07-02T23:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": -7,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.257Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.257Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec2a9"
+    },
+    "homeTeam": "Winner Group B",
+    "homeFlag": "⚽️",
+    "awayTeam": "TBD (3EFGIJ)",
+    "awayFlag": "🏳️",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-07-03T03:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": -7,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.257Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.257Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec2aa"
+    },
+    "homeTeam": "Runner-up Group D",
+    "homeFlag": "⚽️",
+    "awayTeam": "Runner-up Group G",
+    "awayFlag": "🏳️",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-07-03T18:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": -7,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.257Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.257Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec2ab"
+    },
+    "homeTeam": "Winner Group J",
+    "homeFlag": "⚽️",
+    "awayTeam": "Runner-up Group H",
+    "awayFlag": "🏳️",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-07-03T22:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": -6,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.257Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.257Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec2ac"
+    },
+    "homeTeam": "Winner Group K",
+    "homeFlag": "⚽️",
+    "awayTeam": "TBD (3DEIJL)",
+    "awayFlag": "🏳️",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-07-04T01:30:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": -6,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.258Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.258Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec2ad"
+    },
+    "homeTeam": "2A/2B",
+    "homeFlag": "⚽️",
+    "awayTeam": "1F/2C",
+    "awayFlag": "🏳️",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-07-04T17:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": -6,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.258Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.258Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec2ae"
+    },
+    "homeTeam": "1E/3ABCDF",
+    "homeFlag": "⚽️",
+    "awayTeam": "1I/3CDFGH",
+    "awayFlag": "🏳️",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-07-04T21:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": -5,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.258Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.258Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec2af"
+    },
+    "homeTeam": "1C/2F",
+    "homeFlag": "⚽️",
+    "awayTeam": "2E/2I",
+    "awayFlag": "🏳️",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-07-05T20:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": -4,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.258Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.258Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec2b0"
+    },
+    "homeTeam": "1A/3CEFHI",
+    "homeFlag": "⚽️",
+    "awayTeam": "1L/3EHIJK",
+    "awayFlag": "🏳️",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-07-06T00:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": -4,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.258Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.258Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec2b1"
+    },
+    "homeTeam": "2K/2L",
+    "homeFlag": "⚽️",
+    "awayTeam": "1H/2J",
+    "awayFlag": "🏳️",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-07-06T19:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": -3,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.258Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.258Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec2b2"
+    },
+    "homeTeam": "1D/3BEFIJ",
+    "homeFlag": "⚽️",
+    "awayTeam": "1G/3AEHIJ",
+    "awayFlag": "🏳️",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-07-07T00:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": -3,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.258Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.258Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec2b3"
+    },
+    "homeTeam": "1J/2H",
+    "homeFlag": "⚽️",
+    "awayTeam": "2D/2G",
+    "awayFlag": "🏳️",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-07-07T16:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": -3,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.258Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.258Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec2b4"
+    },
+    "homeTeam": "1B/3EFGIJ",
+    "homeFlag": "⚽️",
+    "awayTeam": "1K/3DEIJL",
+    "awayFlag": "🏳️",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-07-07T20:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": -2,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.258Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.258Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec2b5"
+    },
+    "homeTeam": "Winner EF 1",
+    "homeFlag": "⚽️",
+    "awayTeam": "Winner EF 2",
+    "awayFlag": "🏳️",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-07-09T20:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": 0,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.258Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.258Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec2b6"
+    },
+    "homeTeam": "Winner EF 5",
+    "homeFlag": "⚽️",
+    "awayTeam": "Winner EF 6",
+    "awayFlag": "🏳️",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-07-10T19:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": 1,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.258Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.258Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec2b7"
+    },
+    "homeTeam": "Winner EF 3",
+    "homeFlag": "⚽️",
+    "awayTeam": "Winner EF 4",
+    "awayFlag": "🏳️",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-07-11T21:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": 2,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.258Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.258Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec2b8"
+    },
+    "homeTeam": "Winner EF 7",
+    "homeFlag": "⚽️",
+    "awayTeam": "Winner EF 8",
+    "awayFlag": "🏳️",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-07-12T01:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": 2,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.258Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.258Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec2b9"
+    },
+    "homeTeam": "Winner QF 1",
+    "homeFlag": "⚽️",
+    "awayTeam": "Winner QF 2",
+    "awayFlag": "🏳️",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-07-14T19:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": 5,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.258Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.258Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec2ba"
+    },
+    "homeTeam": "Winner QF 3",
+    "homeFlag": "⚽️",
+    "awayTeam": "Winner QF 4",
+    "awayFlag": "🏳️",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-07-15T19:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": 6,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.258Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.258Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec2bb"
+    },
+    "homeTeam": "Loser SF 1",
+    "homeFlag": "⚽️",
+    "awayTeam": "Loser SF 2",
+    "awayFlag": "🏳️",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-07-18T21:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": 9,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.258Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.258Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6a3673551074b2a5d73ec2bc"
+    },
+    "homeTeam": "Winner SF 1",
+    "homeFlag": "⚽️",
+    "awayTeam": "Winner SF 2",
+    "awayFlag": "🏳️",
+    "venue": "World Cup Arena",
+    "kickoffTime": {
+      "$date": "2026-07-19T19:00:00.000Z"
+    },
+    "status": "upcoming",
+    "homeScore": null,
+    "awayScore": null,
+    "winner": null,
+    "apiVerified": false,
+    "group": "Group Stage",
+    "matchday": 10,
+    "__v": 0,
+    "createdAt": {
+      "$date": "2026-06-20T11:02:45.258Z"
+    },
+    "updatedAt": {
+      "$date": "2026-06-20T11:02:45.258Z"
+    }
+  }
+]

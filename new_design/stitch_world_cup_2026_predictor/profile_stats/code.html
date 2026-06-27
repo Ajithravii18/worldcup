@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Profile &amp; Stats - LUCKY STAR FC</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&amp;family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#bcc3ff",
+                        "tertiary-fixed-dim": "#ffb5a0",
+                        "secondary-fixed-dim": "#88d982",
+                        "primary-fixed": "#dfe0ff",
+                        "outline-variant": "#c5c5d7",
+                        "primary-container": "#0020b2",
+                        "surface-bright": "#fcf9f8",
+                        "surface-container-lowest": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "inverse-on-surface": "#f3f0ef",
+                        "surface-container": "#f0edec",
+                        "on-primary-fixed-variant": "#1b32be",
+                        "surface-variant": "#e5e2e1",
+                        "tertiary-fixed": "#ffdbd1",
+                        "on-primary-container": "#8f9dff",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed": "#3b0900",
+                        "surface-container-low": "#f6f3f2",
+                        "inverse-primary": "#bcc3ff",
+                        "on-secondary-fixed": "#002204",
+                        "on-error": "#ffffff",
+                        "surface": "#fcf9f8",
+                        "surface-container-highest": "#e5e2e1",
+                        "surface-tint": "#3a4ed5",
+                        "inverse-surface": "#313030",
+                        "on-background": "#1c1b1b",
+                        "on-tertiary-fixed-variant": "#862200",
+                        "on-primary-fixed": "#000d60",
+                        "on-error-container": "#93000a",
+                        "primary": "#001278",
+                        "background": "#fcf9f8",
+                        "secondary": "#1b6d24",
+                        "surface-container-high": "#ebe7e7",
+                        "secondary-container": "#a0f399",
+                        "on-secondary-container": "#217128",
+                        "on-surface": "#1c1b1b",
+                        "secondary-fixed": "#a3f69c",
+                        "surface-dim": "#dcd9d9",
+                        "on-surface-variant": "#454654",
+                        "tertiary-container": "#701b00",
+                        "on-tertiary": "#ffffff",
+                        "outline": "#757686",
+                        "on-tertiary-container": "#ff7f59",
+                        "on-secondary-fixed-variant": "#005312",
+                        "tertiary": "#4a0f00"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "container-max": "1440px",
+                        "margin-desktop": "48px",
+                        "gutter": "24px",
+                        "unit": "4px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Archivo Narrow", "sans-serif"],
+                        "body-md": ["Inter", "sans-serif"],
+                        "headline-lg": ["Archivo Narrow", "sans-serif"],
+                        "label-md": ["Archivo Narrow", "sans-serif"],
+                        "headline-lg-mobile": ["Archivo Narrow", "sans-serif"],
+                        "display-lg": ["Archivo Narrow", "sans-serif"],
+                        "body-lg": ["Inter", "sans-serif"],
+                        "headline-md": ["Archivo Narrow", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "34px", "fontWeight": "700" }],
+                        "display-lg": ["48px", { "lineHeight": "52px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-md antialiased min-h-screen pb-[80px] md:pb-0 pt-[64px]">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 shadow-sm border-b border-outline-variant bg-surface">
+<div class="flex items-center justify-between px-margin-mobile md:px-margin-desktop h-16 w-full max-w-container-max mx-auto">
+<button class="flex items-center justify-center p-2 rounded-full hover:bg-surface-container-low transition-colors active:opacity-80 transition-opacity">
+<span class="material-symbols-outlined text-primary" data-icon="menu">menu</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold uppercase tracking-tighter text-primary">LUCKY STAR FC</h1>
+<div class="w-10 h-10 rounded-full bg-surface-container overflow-hidden border border-outline-variant">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A professional, high-definition headshot of a fictional elite sports player in a sleek, modern team jersey. The lighting is high-key and bright, evoking a pristine light-mode dashboard aesthetic. The background is a clean, neutral white to emphasize the subject's focused, determined expression." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqkxnuGHnj09wmQOuQB2IkI2Hx0YvEY2FC_qMVPdqC3ouUzfSxutDcUaMm_7m5bJzu4OiKFEH6GvU7hKPqYunr5UH4MO-ZvHeg6pg0mZ_WmYfGnnGU7alHkp4KZGsxxlhp8G4mH0TXGaYtJh_9z4FPHuZ6EYHJKiIAssfu9yy7US5ONA8G4Q1k4gKqpYUKHxnEYNFWZa-ojRwk6Q5pZHTmErtLS7xm5-9Hsv_2YjG08H4tjXIJYBGTBov5CmJ0flS0qaN9RlhdMbyD"/>
+</div>
+</div>
+</header>
+<main class="w-full max-w-container-max mx-auto md:px-margin-desktop">
+<!-- Professional Blue Header Accent & Profile Card -->
+<div class="relative bg-primary h-32 md:h-48 w-full md:rounded-b-xl flex flex-col justify-end px-margin-mobile pb-6 pt-12 overflow-hidden shadow-sm">
+<div class="absolute inset-0 opacity-10 bg-[url('placeholder')]" data-alt="A subtle, abstract geometric pattern consisting of fine grid lines and intersecting energetic diagonals, designed to overlay a solid blue background. The aesthetic is corporate modern sports, evoking precision, statistics, and tactical planning without overwhelming the primary solid color." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD976gXIa8iUppN-Rho_N37BTQWacVPzvZvHQd48vAWjPynXQgVEiMr7KDXgRIvfKcll9HCsGJO0Bk9UyclVFfuDIvOBjg2REXObRgPln5WY-6MP3O7UhXNkOedeZtIpMm6rkQbjQeJv0Yj6r2XDgvCRE3GCd8NS5nLPHt--F_D3bGgj02lqT_uWRvio81G-iebVNJcoqPAjIYsDYw_BOMwqvnqXJ2sM53FsLTEOIwvSeXWLhiMVQpEJzEviH29fUJ7Lh7DLnvN-osT');"></div>
+<div class="relative z-10 flex items-center gap-4 translate-y-12">
+<div class="w-24 h-24 rounded-full border-4 border-surface-container-lowest overflow-hidden shadow-sm bg-surface-container">
+<img alt="Striker Pro Avatar" class="w-full h-full object-cover" data-alt="A professional, high-definition headshot of a fictional elite sports player named 'Striker Pro' in a sleek, modern team jersey. The lighting is high-key and bright, evoking a pristine light-mode dashboard aesthetic. The background is a clean, neutral white to emphasize the subject's focused, determined expression." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBte-zddVMMqBRImLZhQDOjh53VtB8DjT1O-cuBBhngMrJwRH22UyLINuh3xWr0W8DrBzAL8ZjUYE5cAxQx1iEFkiDFiu_zuUUJLmb1lsSPBF1MXNBJFZgYrfVdsVaj-dl_-Dd0cnQRQS-gW2x9twUNHu03eRv8o8XHYFhY7cFnIt-e8CN_u4BdQ6X_VaoTmNYvnxH1zaAzbPckEjU7cgSFROzsVvd1msk-Dy4me3AE-AqPdMf1edKISwAUgKQzhIqQDnxWS8xpWd0d"/>
+</div>
+<div class="pt-4 flex flex-col justify-end text-on-primary">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg m-0 leading-tight">Striker Pro</h2>
+<div class="flex items-center gap-2 mt-1">
+<span class="inline-flex items-center px-2 py-0.5 rounded-DEFAULT bg-secondary-container text-on-secondary-container font-label-sm text-label-sm uppercase tracking-wider">Active Roster</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Content Area -->
+<div class="px-margin-mobile mt-16 md:mt-20 flex flex-col gap-margin-mobile">
+<!-- Total Points Highlight -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-margin-mobile shadow-sm flex items-center justify-between">
+<div>
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-1">Total Points</h3>
+<div class="font-display-lg text-display-lg text-primary">1,450</div>
+</div>
+<div class="h-12 w-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl" data-icon="star">star</span>
+</div>
+</div>
+<!-- Accuracy Stats Bento Grid -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-unit-2 md:gap-gutter">
+<!-- Stat Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-margin-mobile shadow-sm hover:shadow-md transition-shadow">
+<h4 class="font-label-sm text-label-sm text-on-surface-variant uppercase mb-2">Pass Accuracy</h4>
+<div class="font-headline-md text-headline-md text-on-surface mb-3">88%</div>
+<div class="w-full h-2 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-500" style="width: 88%;"></div>
+</div>
+</div>
+<!-- Stat Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-margin-mobile shadow-sm hover:shadow-md transition-shadow">
+<h4 class="font-label-sm text-label-sm text-on-surface-variant uppercase mb-2">Shot Accuracy</h4>
+<div class="font-headline-md text-headline-md text-on-surface mb-3">65%</div>
+<div class="w-full h-2 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-500" style="width: 65%;"></div>
+</div>
+</div>
+<!-- Stat Card 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-margin-mobile shadow-sm hover:shadow-md transition-shadow">
+<h4 class="font-label-sm text-label-sm text-on-surface-variant uppercase mb-2">Tackle Success</h4>
+<div class="font-headline-md text-headline-md text-on-surface mb-3">72%</div>
+<div class="w-full h-2 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-500" style="width: 72%;"></div>
+</div>
+</div>
+<!-- Stat Card 4 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-margin-mobile shadow-sm hover:shadow-md transition-shadow">
+<h4 class="font-label-sm text-label-sm text-on-surface-variant uppercase mb-2">Aerial Duels</h4>
+<div class="font-headline-md text-headline-md text-on-surface mb-3">54%</div>
+<div class="w-full h-2 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-500" style="width: 54%;"></div>
+</div>
+</div>
+</div>
+<!-- Settings List -->
+<div class="mt-4 mb-8">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-4 px-1">Account Configuration</h3>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden shadow-sm">
+<button class="w-full flex items-center justify-between p-4 border-b border-outline-variant hover:bg-surface-container-low transition-colors active:opacity-80">
+<div class="flex items-center gap-3 text-on-surface">
+<span class="material-symbols-outlined text-outline" data-icon="person_outline">person_outline</span>
+<span class="font-body-md text-body-md">Account Details</span>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="chevron_right">chevron_right</span>
+</button>
+<button class="w-full flex items-center justify-between p-4 border-b border-outline-variant hover:bg-surface-container-low transition-colors active:opacity-80">
+<div class="flex items-center gap-3 text-on-surface">
+<span class="material-symbols-outlined text-outline" data-icon="notifications">notifications</span>
+<span class="font-body-md text-body-md">Notifications &amp; Alerts</span>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="chevron_right">chevron_right</span>
+</button>
+<button class="w-full flex items-center justify-between p-4 border-b border-outline-variant hover:bg-surface-container-low transition-colors active:opacity-80">
+<div class="flex items-center gap-3 text-on-surface">
+<span class="material-symbols-outlined text-outline" data-icon="security">security</span>
+<span class="font-body-md text-body-md">Privacy &amp; Security</span>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="chevron_right">chevron_right</span>
+</button>
+<button class="w-full flex items-center justify-between p-4 hover:bg-surface-container-low transition-colors active:opacity-80 group">
+<div class="flex items-center gap-3 text-error">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-body-md text-body-md font-medium">Log Out</span>
+</div>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center h-20 px-2 pb-safe bg-surface border-t border-outline-variant shadow-lg md:hidden">
+<!-- Tab 1: Arena -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-95 transition-transform duration-150 w-16">
+<span class="material-symbols-outlined mb-1" data-icon="stadium">stadium</span>
+<span class="font-label-sm text-label-sm uppercase">Arena</span>
+</button>
+<!-- Tab 2: Matches -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-95 transition-transform duration-150 w-16">
+<span class="material-symbols-outlined mb-1" data-icon="event_note">event_note</span>
+<span class="font-label-sm text-label-sm uppercase">Matches</span>
+</button>
+<!-- Tab 3: My Preds -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-95 transition-transform duration-150 w-16">
+<span class="material-symbols-outlined mb-1" data-icon="analytics">analytics</span>
+<span class="font-label-sm text-label-sm uppercase">My Preds</span>
+</button>
+<!-- Tab 4: Players -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all active:scale-95 transition-transform duration-150 w-16">
+<span class="material-symbols-outlined mb-1" data-icon="groups">groups</span>
+<span class="font-label-sm text-label-sm uppercase">Players</span>
+</button>
+<!-- Tab 5: Profile (ACTIVE) -->
+<button class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 hover:text-primary transition-all active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined mb-1" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label-sm text-label-sm uppercase font-bold">Profile</span>
+</button>
+</nav>
+</body></html>
