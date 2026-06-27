@@ -239,18 +239,18 @@ function MatchCard({
         {isUpcoming && !isLocked ? (
           <button
             type="button"
-            onClick={handleSubmit}
             disabled={submitting}
-            className="flex items-center gap-2 rounded-lg bg-primary px-3.5 py-2 text-xs font-semibold text-primary-foreground shadow-[0_0_22px_-6px] shadow-primary/60 transition hover:brightness-110 active:scale-95 disabled:opacity-50"
+            onClick={handleSubmit}
+            className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-primary/20 px-3 py-2 text-sm font-semibold text-primary transition hover:bg-primary/30 disabled:opacity-50"
           >
-            {submitting ? <Loader2 className="size-3.5 animate-spin" /> : <Lock className="size-3.5" />}
-            {submitted ? 'Update pick' : 'Lock in pick'}
+            {submitting ? <Loader2 className="size-4 animate-spin" /> : <Save className="size-4" />}
+            {!!match.userPrediction ? 'Update pick' : 'Lock in pick'}
           </button>
         ) : (
-          <span className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
-            <Lock className="size-3.5" />
-            {isCompleted ? 'Match completed' : submitted ? 'Pick locked in' : 'Predictions closed'}
-          </span>
+          <div className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-secondary/50 px-3 py-2 text-sm font-medium text-muted-foreground">
+            <Lock className="size-4" />
+            {isCompleted ? 'Match completed' : !!match.userPrediction ? 'Pick locked in' : 'Predictions closed'}
+          </div>
         )}
         {error && <span className="text-[11px] text-crimson">{error}</span>}
       </footer>
